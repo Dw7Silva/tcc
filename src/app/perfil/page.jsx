@@ -1,7 +1,7 @@
-export default function Login() {
+export default function Perfil() {
     return(
         <div>
-            <h1>Login</h1>
+            <h1>Perfil</h1>
         </div>
     )
 }

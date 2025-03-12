@@ -1,7 +1,7 @@
-export default function Login() {
+export default function Cadastro1() {
     return(
         <div>
-            <h1>Login</h1>
+            <h1>Cadastro</h1>
         </div>
     )
 }
