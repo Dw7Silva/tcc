@@ -5,8 +5,8 @@ import { IoChatbox } from "react-icons/io5";
 import { MdSupportAgent } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { HiOutlineMenu } from "react-icons/hi";
-import Carousel from "./carrosel";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+
 
 
 
@@ -15,14 +15,12 @@ export default function Inicio() {
         <>
           <div className={styles.navbar}>
             <div className={styles.logoNav}>Meu Site</div>
-    
             <div className={styles.searchBar}>
               <input type="text" placeholder="Pesquisar..." />
               <button>
                 <FaSearch />
               </button>
             </div>
-    
             <div className={styles.navIcons}>
               <GoHomeFill />
               <IoChatbox />
@@ -33,11 +31,7 @@ export default function Inicio() {
           </div>
     
          
-           <div className={styles.carouselContainer}> 
-            <Carousel/> 
-            
-            
-             </div> 
+           
              
         </>
       );
