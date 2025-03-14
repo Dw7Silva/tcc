@@ -1,9 +1,111 @@
-.container {
-    max-width: 100%;
-    max-height: 100%;
-    background-color: aqua;
-    min-height: 80%;
-    min-width: 80%;
+@media (max-width: 768px) {
+    .carouselContainer {
+      width: 90%;
+    }
+  }
+  body {
+    overflow-x: hidden;
+  }
+  
+  .navbar {
+    background-color: rgba(255, 241, 203, 0.3);
+    height: 10%;
     width: 100%;
-    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-sizing: border-box;
+  }
+  
+  .logoNav {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .searchBar {
+    display: flex;
+    align-items: center;
+    width: 25%;
+    height: 30%;
+    background: white;
+    border-radius: 20px;
+    padding: 0.2%;
+    border: outset;
+    border-width: 2px;
+    align-items: end;
+  }
+  
+  .searchBar input {
+    width: 85%;
+    border: none;
+    outline: none;
+    font-size: 120%;
+    border-radius: 20px;
+    color: black;
+  }
+  
+  .searchBar button {
+    width: 15%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #A87453;
+    padding-left: 10%;
+  }
+  
+  .navIcons {
+    display: flex;
+    gap: 15px;
+    font-size: 250%;
+    color: #A87453;
+  }
+  
+  .carouselContainer {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 40px ;
+    margin-top: 6%;
+    position: relative; /* Adicionado para posicionar as bolinhas corretamente */
+  }
+  
+  .slick-dots li button:before {
+    font-size: 15px !important;
+    color: #A87453 !important;
+    opacity: 1 !important;
+  }
+  
+  .slick-dots li.slick-active button:before {
+    color: #A87453 !important;
+  }
+  
+  .slick-dots {
+    bottom: 10px !important; /* Move as bolinhas para baixo */
+    position: absolute; /* Adicionado para posicionar as bolinhas corretamente */
+    width: 100%; /* Garante que as bolinhas ocupem toda a largura */
+    text-align: center; /* Centraliza as bolinhas */
+  }
+
+  .slick-prev,
+ .slick-next {
+  font-size: 20px;
+  color: #A87453;
+}
+
+ .slick-prev:before,
+ .slick-next:before {
+  font-size: 20px;
+  color: #A87453;
 }
