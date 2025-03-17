@@ -1,24 +1,21 @@
-   body {
-     position: hidden;
-     align-items: center;
-
-   }
-
-
-.container {
-      overflow-x: hidden;
-      align-items: center;
-      justify-content: center;
+body {
+  background-color: rgba(157, 96, 53, 0.72);
+  margin: 0;
 }
 
-
+.container {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
 
 .navbar {
   background-color: rgba(255, 241, 203, 0.3);
-  height: auto;
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 10px 1%;
@@ -28,13 +25,17 @@
   z-index: 100;
   box-sizing: border-box;
   margin: 0;
+  height: 10%;
 }
 
-.logoNav {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: white;
-  padding: 10px;
+.logocontainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
 }
 
 .searchBar {
@@ -81,56 +82,78 @@
 }
 
 .navIcons > :last-child {
-  display: none; /* Oculta o ícone de menu por padrão */
+  display: none;
 }
 
-/* Media Queries dentro das classes */
-
-/* Para telas menores que 768px (tablets e celulares) */
 @media (max-width: 768px) {
   .navbar {
-      flex-direction: column;
-      align-items: stretch;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .searchBar {
-      width: 90%;
-      margin: 10px auto;
+    width: 90%;
+    margin: 10px auto;
   }
 
   .navIcons {
-      justify-content: center;
+    justify-content: center;
   }
 }
 
-/* Para telas menores que 600px (celulares) */
 @media (max-width: 600px) {
   .navIcons > :not(:last-child) {
-      display: none; /* Oculta todos os ícones, exceto o último (menu) */
+    display: none;
   }
 
   .navIcons > :last-child {
-      display: block;
-      position: absolute;
-      top: 10px;
-      right: 10px;
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }
 
-/* Para telas menores que 480px (celulares pequenos) */
 @media (max-width: 480px) {
   .logoNav {
-      font-size: 1.2em;
+    font-size: 1.2em;
   }
 }
 
 .carouselContainer {
-  margin-top: 10%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  width:98%; /* Garante que o container ocupe toda a largura disponível */
-  margin-top: 8%; /* Adiciona um espaço acima do carrossel */
-  border-radius: 15px;
+  width: 100%;
+  padding: 20px 0;
+  margin: 10%;
+}
 
+/* Estilos adicionais para o carrossel */
+.splide {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.splide__track {
+  padding: 10px;
+}
+
+.splide__slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ajustes responsivos para o carrossel */
+@media (max-width: 768px) {
+  .splide {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .splide {
+    width: 100%;
+  }
 }
