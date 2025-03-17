@@ -1,3 +1,18 @@
+   body {
+     position: hidden;
+     align-items: center;
+
+   }
+
+
+.container {
+      overflow-x: hidden;
+      align-items: center;
+      justify-content: center;
+}
+
+
+
 .navbar {
   background-color: rgba(255, 241, 203, 0.3);
   height: auto;
@@ -107,4 +122,15 @@
   .logoNav {
       font-size: 1.2em;
   }
+}
+
+.carouselContainer {
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:98%; /* Garante que o container ocupe toda a largura disponível */
+  margin-top: 8%; /* Adiciona um espaço acima do carrossel */
+  border-radius: 15px;
+
 }
