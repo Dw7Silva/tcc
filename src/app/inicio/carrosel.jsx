@@ -10,14 +10,13 @@ const Carousel = ({ images }) => {
     if (splide) {
       const pagination = splide.querySelector(".splide__pagination");
       if (pagination) {
-        pagination.style.marginTop = "3%";
+        pagination.style.marginTop = "1%"; // Margem superior ajustada
       }
 
       const bullets = splide.querySelectorAll(".splide__pagination__page");
       bullets.forEach((bullet) => {
         bullet.style.width = "5px";
         bullet.style.height = "5px";
-        bullet.style.margin = "0 10px";
       });
     }
   }, []);
@@ -41,8 +40,8 @@ const Carousel = ({ images }) => {
           width: "90%",
           height: "600px",
           breakpoints: {
-            768: {
-              height: "400px",
+            1200: {
+              height: "450px",
             },
             480: {
               height: "300px",
@@ -59,7 +58,7 @@ const Carousel = ({ images }) => {
               style={{
                 borderRadius: "15px",
                 width: "100%",
-                height: "100%",
+                height: "90%",
                 objectFit: "cover",
               }}
             />
