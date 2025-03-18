@@ -31,11 +31,14 @@ body {
 .logocontainer {
   display: flex;
   align-items: center;
+  padding: 5%;
 }
 
 .logo {
   max-width: 150px;
   height: auto;
+  padding: 5%;
+  margin-top: 1.5%;
 }
 
 .searchBar {
@@ -82,7 +85,7 @@ body {
 }
 
 .navIcons > :last-child {
-  display:flex ;
+  display: flex;
 }
 
 @media (max-width: 600px) {
@@ -113,15 +116,8 @@ body {
 
   .carouselContainer {
     margin: 25%;
-    
   }
-  
-
-}   
-
-
-
-
+}
 
 @media (max-width: 480px) {
   .navbar {
@@ -157,17 +153,16 @@ body {
 .carouselContainer {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 100%; /* Garante 100% de largura */
   padding: 20px 0;
   margin: 4.5%;
   height: 50%;
 }
 
-/* Estilos adicionais para o carrossel */
 .splide {
   width: 90%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto; /* Centraliza o .splide */
 }
 
 .splide__track {
@@ -180,29 +175,23 @@ body {
   display: block;
 }
 
-/* Ajustes responsivos para o carrossel */
 @media (max-width: 1300px) {
-
-  .carouselContainer{
+  .carouselContainer {
     margin-top: 7%;
- 
-   }
+  }
+
   .splide {
     width: 95%;
-   
   }
 }
-  @media (max-width: 1000px) {
 
-  .carouselContainer{
-  margin-top: 15%;
-
- }
- .splide {
-  width: 95%;
-  height: 70%;
+@media (max-width: 1000px) {
+  .carouselContainer {
+    margin-top: 15%;
   }
- }
 
-
-
+  .splide {
+    width: 95%;
+    height: 70%;
+  }
+}

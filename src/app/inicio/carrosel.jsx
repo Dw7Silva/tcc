@@ -10,7 +10,7 @@ const Carousel = ({ images }) => {
     if (splide) {
       const pagination = splide.querySelector(".splide__pagination");
       if (pagination) {
-        pagination.style.marginTop = "1%"; // Margem superior ajustada
+        pagination.style.marginTop = "1%";
       }
 
       const bullets = splide.querySelectorAll(".splide__pagination__page");
@@ -33,12 +33,13 @@ const Carousel = ({ images }) => {
       <Splide
         options={{
           perPage: 1,
-          gap: "2rem",
+          gap: "1rem",
           autoplay: true,
           interval: 5000,
           loop: true,
           width: "90%",
           height: "600px",
+          keyboard: true,
           breakpoints: {
             1200: {
               height: "450px",
@@ -59,7 +60,8 @@ const Carousel = ({ images }) => {
                 borderRadius: "15px",
                 width: "100%",
                 height: "90%",
-                objectFit: "cover",
+                objectFit: "cover", // Alterado para cover
+                objectPosition: "auto"
               }}
             />
           </SplideSlide>
