@@ -35,6 +35,7 @@ export default function Inicio() {
           </button>
         </div>
 
+           {/* icones*/}
         <div className={styles.navIcons}>
           <GoHomeFill />
           <IoChatbox />

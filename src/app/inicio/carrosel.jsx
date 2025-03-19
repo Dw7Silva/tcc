@@ -27,7 +27,9 @@ const Carousel = ({ images }) => {
         display: "flex",
         justifyContent: "center",
         width: "100%",
-        padding: "20px 0",
+        padding: "2% 2%",
+
+      
       }}
     >
       <Splide
@@ -37,6 +39,8 @@ const Carousel = ({ images }) => {
           autoplay: true,
           interval: 5000,
           loop: true,
+          pagination: true,
+          paginationKeyboard:true,
           width: "90%",
           height: "600px",
           keyboard: true,
@@ -49,7 +53,7 @@ const Carousel = ({ images }) => {
             },
           },
         }}
-        style={{ margin: "0 auto" }}
+        style={{ margin: "0 auto",  borderRadius: "15px" }}
       >
         {images.map((img, index) => (
           <SplideSlide key={index}>
@@ -59,9 +63,10 @@ const Carousel = ({ images }) => {
               style={{
                 borderRadius: "15px",
                 width: "100%",
-                height: "90%",
-                objectFit: "cover", // Alterado para cover
-                objectPosition: "auto"
+                height: "100%",
+                objectFit: "cover", 
+                objectPosition: "center", 
+
               }}
             />
           </SplideSlide>
