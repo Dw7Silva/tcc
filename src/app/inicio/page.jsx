@@ -21,16 +21,16 @@ export default function Inicio() {
   const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
 
   return (
-    <div className={styles.container}>
-      {/* Navbar que se adapta automaticamente */}
-      <nav className={styles.navbar}>
-        <div className={styles.logoContainer}>
-          <img src={Logo} alt="Logo" className={styles.logo} />
-        </div>
+   <div className={styles.container}>
+         {/* Navbar que se adapta automaticamente */}
+         <nav className={styles.navbar}>
+             <div className={styles.logoContainer}>
+                <img src={Logo} alt="Logo" className={styles.logo} />
+             </div>
 
-        <div className={styles.searchBar}>
-          <input type="text" placeholder="Pesquisar..." />
-          <button>
+            <div className={styles.searchBar}>
+            <input type="text" placeholder="Pesquisar..." />
+            <button>
             <FaSearch />
           </button>
         </div>
@@ -44,11 +44,15 @@ export default function Inicio() {
           <HiOutlineMenu />
         </div>
       </nav>
-
+           <div className={styles.destaques}>
+             < h1 className={styles.nossosdestaques}>Nossos destaques</h1>
+           </div>
       {/* Carrossel */}
       <div className={styles.carouselContainer}>
-        <Carousel images={Carroselimages} />
+        <Carousel images={Carroselimages}></Carousel>
       </div>
+       
+        
     </div>
   );
 }
