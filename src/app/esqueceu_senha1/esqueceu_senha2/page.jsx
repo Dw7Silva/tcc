@@ -1,7 +1,7 @@
-export default function Login() {
+export default function Esqueceu2() {
     return(
         <div>
-            <h1>Login</h1>
+            <h1>Esqueceu2</h1>
         </div>
     )
 }

@@ -1,7 +1,7 @@
-export default function Login() {
+export default function minhas_ofertas() {
     return(
         <div>
-            <h1>Login</h1>
+            <h1>minhas_ofertas</h1>
         </div>
     )
 }

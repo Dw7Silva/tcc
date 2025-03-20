@@ -1,4 +1,4 @@
-export default function Login() {
+export default function Proposta() {
     return(
         <div>
             <h1>Login</h1>

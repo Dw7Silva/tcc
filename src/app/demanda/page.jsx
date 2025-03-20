@@ -1,7 +1,7 @@
-export default function Login() {
+export default function Demanda() {
     return(
         <div>
-            <h1>Login</h1>
+            <h1>Demanda</h1>
         </div>
     )
 }

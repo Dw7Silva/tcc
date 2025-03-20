@@ -1,7 +1,7 @@
-export default function Login() {
+export default function Chat() {
     return(
         <div>
-            <h1>Login</h1>
+            <h1>Chat</h1>
         </div>
     )
 }
