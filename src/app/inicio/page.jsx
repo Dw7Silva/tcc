@@ -22,7 +22,7 @@ export default function Inicio() {
 
   return (
     <div className={styles.container}>
-      {/* Navbar que se adapta automaticamente */}
+      {/* Navbar */}
       <nav className={styles.navbar}>
         <div className={styles.logoContainer}>
           <img src={Logo} alt="Logo" className={styles.logo} />
@@ -35,7 +35,7 @@ export default function Inicio() {
           </button>
         </div>
 
-           {/* icones*/}
+        {/* Ícones */}
         <div className={styles.navIcons}>
           <GoHomeFill />
           <IoChatbox />
@@ -45,10 +45,37 @@ export default function Inicio() {
         </div>
       </nav>
 
+      {/* Destaques */}
+      <div className={styles.destaquescontainer}>
+        <h1 className={styles.textdestaques}>Nossos destaques</h1>
+      </div>
+
       {/* Carrossel */}
       <div className={styles.carouselContainer}>
         <Carousel images={Carroselimages} />
       </div>
+
+      {/* Principais Produtos */}
+      <div className={styles.produtoscontainer}>
+        <h1 className={styles.textprodutos}>Principais Produtos</h1>
+      </div>
+
+      <div className={styles.produtosGrid}>
+  <div className={styles.produtoItem}>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-jueBrZJmix2Lzhx3CDl0sTh-3Q-0qiVEfQ&s" alt="Produto 1" className={styles.produtoImg} />
+    <h1 className={styles.produtoTitulo}>Amendoim c/ casca</h1>
+  </div>
+  <div className={styles.produtoItem}>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNf7U3GwL5ibmFc0nbody6nqdBAi9af7cbkA&s" alt="Produto 2" className={styles.produtoImg} />
+    <h1 className={styles.produtoTitulo} style={{}}>Amendoim c/ pele</h1>
+  </div>
+  <div className={styles.produtoItem}>
+    <img src="https://cdn.awsli.com.br/2500x2500/2777/2777231/produto/309434382/amendoim-torrado-sempele-dtm9zuthq1.jpg" alt="Produto 3" className={styles.produtoImg} />
+    <h1 className={styles.produtoTitulo}>Amendoim s/ pele</h1>
+  </div>
+</div>
+
+
     </div>
   );
 }

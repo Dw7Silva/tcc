@@ -35,7 +35,6 @@ const Carousel = ({ images }) => {
       <Splide
         options={{
           perPage: 1,
-          gap: "1rem",
           autoplay: true,
           interval: 5000,
           loop: true,

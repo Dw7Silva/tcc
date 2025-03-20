@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+
+
 body {
   background-color: rgba(157, 96, 53, 0.72);
   margin: 0;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 400; /* Regular */
 }
+
+
 
 .container {
   overflow-x: hidden;
@@ -154,8 +161,7 @@ body {
   display: flex;
   justify-content: center;
   width: 100%; /* Garante 100% de largura */
-  padding: 20px 0;
-  margin: 4.5%;
+  margin: 0px;
   height: 50%;
   border-radius: 10px;
 }
@@ -178,7 +184,7 @@ body {
 
 @media (max-width: 1300px) {
   .carouselContainer {
-    margin-top: 7%;
+    margin-top: 2%;
   }
 
   .splide {
@@ -188,16 +194,94 @@ body {
 
 @media (max-width: 1000px) {
   .carouselContainer {
-    margin-top: 15%;
+    margin-top: 2%;
   }
 
   .splide {
     width: 95%;
     height: 70%;
+
+   .produtosGrid {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .produtoItem {
+      width: 80%;
+      max-width: 300px;
+    }
   }
 }
 
 .splide__arrow svg {
   font-size: 2em;
   color: #A87453;
+} 
+
+.destaquescontainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* Alinha à esquerda */
+  padding-left: 2%;
+  margin-top: 100px; /* Espaço abaixo da navbar */
 }
+
+.textdestaques {
+  font-size: 24px;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 600; /* Semibold */
+}
+
+/* Seção Principais Produtos (Igual ao Destaques) */
+.produtoscontainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* Alinha à esquerda */
+  padding-left: 2%;
+  margin-top: 25px; /* Espaço abaixo do carrossel */
+}
+
+.textprodutos {
+  font-size: 24px;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 600; /* Semibold */
+}
+
+/* Grid dos produtos */
+.produtosGrid {
+  display: flex;
+  justify-content: space-around; /* Mantém espaço igual */
+  gap: 300px; /* Ajusta o espaço entre os itens */
+  flex-wrap: wrap;
+  padding: 0 5%;
+  max-width: 100%;
+  text-align: center; /* Para centralizar o h1 */
+}
+
+/* Remove fundo da div e organiza os itens */
+.produtoItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilização da imagem redonda */
+.produtoImg {
+  width: 200px; /* Define um tamanho fixo */
+  height: 200px;
+  border-radius: 50%; /* Torna a imagem redonda */
+  object-fit: cover; /* Mantém a proporção sem distorcer */
+  border: 2px solid #ffffff; /* Opcional: Adiciona uma borda */
+}
+
+/* Estilização do título abaixo da imagem */
+.produtoTitulo {
+  font-size: 18px;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 600; /* Semibold */
+  margin-top: 10px;
+  color: #333;
+  text-align: center;
+}
+
