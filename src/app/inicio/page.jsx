@@ -54,9 +54,7 @@ export default function Inicio() {
       </div>
 
 
-           <div className={styles.destaques}>
-             < h1 className={styles.nossosdestaques}>Nossos destaques</h1>
-           </div>
+          
 
       {/* Carrossel */}
       <div className={styles.carouselContainer}>
