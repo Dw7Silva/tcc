@@ -17,6 +17,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
+  padding: 0px;
 }
 
 .navbar {
@@ -25,7 +26,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 1%;
+  padding: 0px;
   position: fixed;
   top: 0;
   left: 0;
@@ -157,19 +158,40 @@ body {
   }
 }
 
+.destaques {
+  font-size: 10em;
+  font-weight: 600;
+  margin: 9% 0 1% 2%;
+  text-align: left;
+  width: 96%;
+  padding: 0;
+}
+
+.nossosdestaques {
+  font-size: large;
+  font-family: Arial;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+}
+
 .carouselContainer {
+  margin-top: 9%;
   display: flex;
   justify-content: center;
-  width: 100%; /* Garante 100% de largura */
-  margin: 0px;
+  width: 100%;
+  padding: 20px 0;
+  margin: 1% 0; /* Ajuste aqui */
   height: 50%;
   border-radius: 10px;
+  padding: 0;
+  margin: 10px;
 }
 
 .splide {
   width: 90%;
   max-width: 800px;
-  margin: 0 auto; /* Centraliza o .splide */
+  margin: 0 auto;
 }
 
 .splide__track {
@@ -216,6 +238,7 @@ body {
 .splide__arrow svg {
   font-size: 2em;
   color: #A87453;
+
 } 
 
 .destaquescontainer {
@@ -285,3 +308,53 @@ body {
   text-align: center;
 }
 
+
+
+
+@media (max-width: 768px) {
+  .destaques {
+    font-size: 8em;
+  }
+
+  .carouselContainer {
+    margin-top: 5%; /* Ajuste aqui */
+  }
+
+  .searchBar {
+    width: 60%; /* Ajuste aqui */
+  }
+}
+
+@media (max-width: 600px) {
+  .destaques {
+    font-size: 6em;
+  }
+
+  .carouselContainer {
+    margin-top: 5%; /* Ajuste aqui */
+  }
+
+  .searchBar {
+    width: 80%; /* Ajuste aqui */
+  }
+}
+
+@media (max-width: 480px) {
+  .destaques {
+    font-size: 5em;
+  }
+
+  .carouselContainer {
+    margin-top: 5%; /* Ajuste aqui */
+  }
+
+  .searchBar {
+    width: 90%; /* Ajuste aqui */
+  }
+}
+
+@media (max-width: 375px) {
+  .destaques {
+    font-size: 4em;
+  }
+}

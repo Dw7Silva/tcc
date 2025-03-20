@@ -21,16 +21,18 @@ export default function Inicio() {
   const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
 
   return (
-    <div className={styles.container}>
-      {/* Navbar */}
-      <nav className={styles.navbar}>
-        <div className={styles.logoContainer}>
-          <img src={Logo} alt="Logo" className={styles.logo} />
-        </div>
 
-        <div className={styles.searchBar}>
-          <input type="text" placeholder="Pesquisar..." />
-          <button>
+   <div className={styles.container}>
+         {/* Navbar que se adapta automaticamente */}
+         <nav className={styles.navbar}>
+             <div className={styles.logoContainer}>
+                <img src={Logo} alt="Logo" className={styles.logo} />
+             </div>
+
+
+            <div className={styles.searchBar}>
+            <input type="text" placeholder="Pesquisar..." />
+            <button>
             <FaSearch />
           </button>
         </div>
@@ -45,15 +47,22 @@ export default function Inicio() {
         </div>
       </nav>
 
+
       {/* Destaques */}
       <div className={styles.destaquescontainer}>
         <h1 className={styles.textdestaques}>Nossos destaques</h1>
       </div>
 
+
+           <div className={styles.destaques}>
+             < h1 className={styles.nossosdestaques}>Nossos destaques</h1>
+           </div>
+
       {/* Carrossel */}
       <div className={styles.carouselContainer}>
-        <Carousel images={Carroselimages} />
+        <Carousel images={Carroselimages}></Carousel>
       </div>
+
 
       {/* Principais Produtos */}
       <div className={styles.produtoscontainer}>
@@ -75,6 +84,10 @@ export default function Inicio() {
   </div>
 </div>
 
+
+
+       
+        
 
     </div>
   );

@@ -52,7 +52,7 @@ const Carousel = ({ images }) => {
             },
           },
         }}
-        style={{ margin: "0 auto",  borderRadius: "15px" }}
+        style={{ margin: "15 auto",  borderRadius: "15px" }}
       >
         {images.map((img, index) => (
           <SplideSlide key={index}>
