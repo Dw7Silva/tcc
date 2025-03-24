@@ -1,0 +1,106 @@
+/* Estilos gerais */
+body {
+  background-color: rgba(157, 96, 53, 0.72);
+  margin: 0;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 400; /* Regular */
+}
+
+.cadastroContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2%;
+}
+
+.cadastroForm {
+  background-color: rgba(254, 241, 203, 0.23);
+  padding: 2%;
+  border-radius: 10px;
+  width: 900px;
+  height: 600px;
+  max-height: 90%;
+  max-width: 90%;
+}
+
+.cadastroForm h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.formGroup select {
+  appearance: none; /* Remove estilos padrão do select */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 16px;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.formButtons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.formButtons button:first-child {
+  background-color: #f0f0f0;
+}
+
+.formButtons button:last-child {
+  background-color: #a87453;
+  color: white;
+}
+
+.formButtons button:hover {
+  opacity: 0.8;
+}
+
+.criarContaButton {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #a87453;
+  color: white;
+  cursor: pointer;
+}
+
+.criarContaButton:hover {
+  opacity: 0.8;
+}
+
+.error-input {
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
