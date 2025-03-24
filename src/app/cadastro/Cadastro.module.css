@@ -1,4 +1,6 @@
 /* Estilos gerais */
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 body {
   background-color: rgba(157, 96, 53, 0.72);
   margin: 0;
@@ -18,9 +20,9 @@ body {
   background-color: rgba(254, 241, 203, 0.23);
   padding: 2%;
   border-radius: 10px;
-  width: 900px;
-  height: 600px;
-  max-height: 90%;
+  width: 800px;
+  height: 650px;
+  max-height: 70%;
   max-width: 90%;
 }
 
@@ -82,13 +84,16 @@ body {
 }
 
 .criarContaButton {
+  margin-top: 1%;
   width: 100%;
-  padding: 10px;
+  padding: 1.5%;
   border: none;
   border-radius: 5px;
   background-color: #a87453;
   color: white;
   cursor: pointer;
+  font-size: larger;
+  font-family: 'Comfortaa', sans-serif;;
 }
 
 .criarContaButton:hover {

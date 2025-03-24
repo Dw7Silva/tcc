@@ -112,30 +112,36 @@ function Cadastro() {
           />
           <p className={styles['error-message']}></p>
         </div>
+
         <div className={styles.formGroup}>
           <label htmlFor="endereco">Endereço</label>
           <input type="text" id="endereco" name="endereco" />
           <p className={styles['error-message']}></p>
         </div>
+        
         <div className={styles.formGroup}>
           <label htmlFor="telefone">Número de Telefone</label>
           <input type="number" id="telefone" name="telefone" pattern="[0-9]*" />
           <p className={styles['error-message']}></p>
         </div>
+
         <div className={styles.formGroup}>
           <label htmlFor="senha">Senha</label>
           <input type="password" id="senha" name="senha" />
           <p className={styles['error-message']}></p>
         </div>
+
         <div className={styles.formGroup}>
           <label htmlFor="confirmarSenha">Confirmar Senha</label>
           <input type="password" id="confirmarSenha" name="confirmarSenha" />
           <p className={styles['error-message']}></p>
         </div>
+
         <div className={styles.formButtons}>
           <button type="button">Agricultor</button>
           <button type="button">Empresa</button>
         </div>
+        
         <button type="submit" className={styles.criarContaButton}>Criar Conta</button>
       </form>
     </div>
