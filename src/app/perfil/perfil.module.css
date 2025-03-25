@@ -178,3 +178,9 @@ body {
     }
    
 }
+
+@media (max-width: 1000px) {
+    .profileCard {
+        margin-top: 20%;
+    }
+}
