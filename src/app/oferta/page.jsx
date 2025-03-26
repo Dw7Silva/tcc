@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef,  } from "react";
 import styles from "./oferta.module.css";
 import { GoHomeFill } from "react-icons/go";
 import { FaSearch } from "react-icons/fa";
@@ -12,13 +12,11 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function Demandas() {
     const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
-    const [scrollPositions, setScrollPositions] = useState([0, 0]);
-    const cardWidth = 500 + 20;
-    const containerRefs = [useRef(null), useRef(null)];
-    const contentWidthRefs = [useRef(0), useRef(0)];
+    const cardWidth = 520; // 500 + 20 de margem
+    const containerRefs = [useRef(null), useRef(null), useRef(null)];
 
     const demandas = [
-        { id: 1, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "50 saca ", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
+        { id: 1, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "50 saca", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
         { id: 2, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "50 saca", imagem: "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg" },
         { id: 3, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "50 saca", imagem: "https://image.tuasaude.com/media/article/wg/xp/beneficios-do-amendoim_17802.jpg" },
         { id: 4, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "40 saca", imagem: "https://feed.continente.pt/media/aaeoih2v/amendoim-beneficios.jpg?center=0.43958293115759167,0.45275669909355631&mode=crop&width=1090&height=467&rnd=133298540351630000&format=webp" },
@@ -26,34 +24,10 @@ export default function Demandas() {
         { id: 6, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "60 saca", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
     ];
 
-    useEffect(() => {
-        containerRefs.forEach((ref, index) => {
-            if (ref.current) {
-                contentWidthRefs[index].current = demandas.length * cardWidth;
-            }
-        });
-    }, [demandas]);
-
-    const scrollLeft = (rowIndex) => {
-        if (scrollPositions[rowIndex] > 0) {
-            const newScrollPositions = [...scrollPositions];
-            newScrollPositions[rowIndex] -= cardWidth;
-            setScrollPositions(newScrollPositions);
-            if (containerRefs[rowIndex].current) {
-                containerRefs[rowIndex].current.scrollLeft = newScrollPositions[rowIndex];
-            }
-        }
-    };
-
-    const scrollRight = (rowIndex) => {
+    // Função genérica para rolar os cards
+    const scroll = (rowIndex, direction) => {
         if (containerRefs[rowIndex].current) {
-            const maxScroll = contentWidthRefs[rowIndex].current - containerRefs[rowIndex].current.offsetWidth;
-            const newScrollPositions = [...scrollPositions];
-            newScrollPositions[rowIndex] += cardWidth;
-            if (newScrollPositions[rowIndex] <= maxScroll) {
-                setScrollPositions(newScrollPositions);
-                containerRefs[rowIndex].current.scrollLeft = newScrollPositions[rowIndex];
-            }
+            containerRefs[rowIndex].current.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
         }
     };
 
@@ -65,9 +39,7 @@ export default function Demandas() {
                 </div>
                 <div className={styles.searchBar}>
                     <input type="text" placeholder="Pesquise seu produto" />
-                    <button>
-                        <FaSearch />
-                    </button>
+                    <button><FaSearch /></button>
                 </div>
                 <div className={styles.navIcons}>
                     <GoHomeFill />
@@ -92,39 +64,30 @@ export default function Demandas() {
                     </div>
                 </div>
 
-                <div className={styles.scrollContainer}>
-                    <button className={styles.arrow} onClick={() => scrollLeft(0)}><IoIosArrowBack /></button>
-                    <div className={styles.demandasGrid} ref={containerRefs[0]}>
-                        {demandas.map((demanda) => (
-                            <div key={demanda.id} className={styles.demandaCard}>
-                                <p>{demanda.nome_empresa}</p>
-                                <img src={demanda.imagem} alt={demanda.tipo} />
-                                <h3>{demanda.tipo}</h3>
-                                <p>{demanda.quantidade}</p>
-                                <button>Ver detalhes do pedido</button>
-                            </div>
-                        ))}
+                {/* Renderiza duas linhas de cards */}
+                {containerRefs.map((ref, index) => (
+                    <div key={index} className={styles.scrollContainer}>
+                        <button className={styles.arrow} onClick={() => scroll(index, -1)}>
+                            <IoIosArrowBack />
+                        </button>
+                        <div className={styles.demandasGrid} ref={ref}>
+                            {demandas.map((demanda) => (
+                                <div key={demanda.id} className={styles.demandaCard}>
+                                    <p>{demanda.nome_empresa}</p>
+                                    <img src={demanda.imagem} alt={demanda.tipo} />
+                                    <h3>{demanda.tipo}</h3>
+                                    <p>{demanda.quantidade}</p>
+                                    <button>Ver detalhes do pedido</button>
+                                </div>
+                            ))}
+                        </div>
+                        <button className={styles.arrow} onClick={() => scroll(index, 1)}>
+                            <IoIosArrowForward />
+                        </button>
                     </div>
-                    <button className={styles.arrow} onClick={() => scrollRight(0)}><IoIosArrowForward /></button>
-                </div>
+                ))}
 
-                <div className={styles.scrollContainer}>
-                    <button className={styles.arrow} onClick={() => scrollLeft(1)}><IoIosArrowBack /></button>
-                    <div className={styles.demandasGrid} ref={containerRefs[1]}>
-                        {demandas.map((demanda) => (
-                            <div key={demanda.id} className={styles.demandaCard}>
-                                <p>{demanda.nome_empresa}</p>
-                                <img src={demanda.imagem} alt={demanda.tipo} />
-                                <h3>{demanda.tipo}</h3>
-                                <p>{demanda.quantidade}</p>
-                                <button>Ver detalhes do pedido</button>
-                            </div>
-                        ))}
-                    </div>
-                    <button className={styles.arrow} onClick={() => scrollRight(1)}><IoIosArrowForward /></button>
-                </div>
-
-                <button className={styles.criarOferta}>Criar Oferta</button>
+                <button className={styles.criarOferta}>Criar Demanda</button>
             </div>
         </div>
     );
