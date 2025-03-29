@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+
+body {
+  background-color: rgba(157, 96, 53, 0.72);
+  margin: 0;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 400;
+}
+
+.container {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 2%;
+}
+
+.navbar {
+  background-color: rgba(254, 241, 203, 0.23);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-sizing: border-box;
+  margin: 0;
+  height: 10%;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  padding: 5%;
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
+  padding: 5%;
+  margin-top: 1.5%;
+}
+.searchBar {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    min-width: 200px;
+    height: 40px;
+    background: white;
+    border-radius: 20px;
+    padding: 2px;
+    border: outset;
+    border-width: 2px; }
+    .searchBar input {
+        width: 85%;
+        border: none;
+        outline: none;
+        font-size: 1em;
+        border-radius: 20px;
+        color: black;
+        padding: 5px;
+      }
+      
+      .searchBar button {
+        width: 15%;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-size: 1em;
+        color: #A87453;
+        position: static;
+        padding: 5px;
+      }
+      
+      .navIcons {
+        display: flex;
+        gap: 10px;
+        font-size: 2em;
+        color: #A87453;
+        padding: 10px;
+      }
+      
+      .navIcons > :last-child {
+        display: flex;
+      }
+      
+      .demandasContainer {
+        width: 95%;
+        max-width: 1600px;
+        margin-top: 5%;
+      }
+      
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      
+      .filtro {
+        display: flex;
+        align-items: center;
+      }
+      
+      .filtro select {
+        margin-left: 10px;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      
+      .scrollContainer {
+        min-width: 1;
+        max-width: 1800px;
+        margin-top: 2%;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      .demandasGrid {
+        max-width: 1700px;
+        width: 1700px;
+        display: flex;
+        transition: transform 0.3s ease;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 10px 0;
+        border-radius: 5%;
+      }
+      
+      .demandasGrid::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .demandaCard {
+        width: 485px;
+        height: 90%;
+        margin: 0 10px; /* Adicione margem */
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        text-align: center;
+        flex: 0 0 auto;
+        background-color: #ffffff;
+      }
+      
+      .demandaCard img {
+        width: 300px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      
+      .demandaCard h3 {
+        margin-bottom: 5px;
+      }
+      
+      .demandaCard p {
+        margin-bottom: 10px;
+      }
+      
+      .demandaCard button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        background-color: #A87453;
+        color: white;
+        cursor: pointer;
+      }
+      
+      .arrow {
+        background: transparent;
+        border: none;
+        font-size: 2em;
+        color: #000000;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+      
+      .arrow:first-child {
+        left: 0;
+      }
+      
+      .arrow:last-child {
+        right: 0;
+      }
+      
+      .criarOferta {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #A87453;
+        color: white;
+        cursor: pointer;
+        margin-top: 20px;
+        align-self: flex-end;
+      }
+      
+      @media (max-width: 600px) {
+        .navIcons > :not(:last-child) {
+          display: none;
+        }
+      
+        .logoContainer {
+          width: 100%;
+          text-align: left;
+          padding: 10px;
+        }
+      
+        .searchBar {
+          width: 90%;
+          margin: 20px;
+        }
+      
+        .navIcons {
+          width: 100%;
+          justify-content: flex-end;
+        }
+      
+        .navIcons > :last-child {
+          display: block;
+          position: static;
+        }
+      }

@@ -33,7 +33,9 @@ export default function Perfil() {
       </nav>
 
       <div className={styles.profileCard}>
-        <div className={styles.profileImage}></div> {/* Placeholder para a imagem do perfil */}
+        <div className={styles.profileImage}>
+           <img src={foto.Perfil} />
+          </div> {/* Placeholder para a imagem do perfil */}
        
 
         <div className={styles.infoGrid}>

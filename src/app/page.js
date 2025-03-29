@@ -4,10 +4,12 @@ import Inicio from "./inicio/page";
 import Cadastro from "./cadastro/page";
 import Login from "./login/page"
 import Perfil from "./perfil/page"
-import Demandas from "./oferta/page"
+import Demandas from "./demanda/demandas.page"
+import CriarOferta from "./oferta/page";
+
 
 export default function dev() {
   return (
-    <Demandas></Demandas>
+    <CriarOferta></CriarOferta>
   );
 }
