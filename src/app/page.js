@@ -6,10 +6,11 @@ import Login from "./login/page"
 import Perfil from "./perfil/page"
 import Demandas from "./demanda/demandas.page"
 import CriarOferta from "./oferta/page";
-
+import Chat from "./chat/page";
+import Suporte from "./suporte/page";
 
 export default function dev() {
   return (
-    <CriarOferta></CriarOferta>
+    <Suporte></Suporte>
   );
 }

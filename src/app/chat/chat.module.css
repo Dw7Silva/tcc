@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .chatContainer {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+  }
+  
+  .message {
+    padding: 8px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    max-width: 70%;
+    position: relative;
+  }
+  
+  .userMessage {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+  }
+  
+  .otherMessage {
+    background-color: #ffffff;
+    align-self: flex-start;
+  }
+  
+  .likeIcon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #888;
+  }
+  
+  .inputContainer {
+    display: flex;
+    padding: 10px;
+    background-color: #e0e0e0;
+  }
+  
+  .inputWrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-right: 10px;
+  }
+  
+  .attachmentIcon {
+    color: #888;
+    margin-right: 10px;
+  }
+  
+  .inputWrapper input {
+    flex: 1;
+    border: none;
+    outline: none;
+  }
+  
+  .inputContainer button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
