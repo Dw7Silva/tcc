@@ -11,6 +11,6 @@ import Suporte from "./suporte/page";
 
 export default function dev() {
   return (
-    <Suporte></Suporte>
+    <Inicio></Inicio>
   );
 }
