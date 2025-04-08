@@ -40,8 +40,10 @@ body {
 }
 
 .logo {
-    max-width: 150px;
-    height: auto;
+    max-width: 20%;
+    max-height: 20%;
+    width: 70%;
+    height: 70%;
     padding: 5%;
     margin-top: 1.5%;
 }
