@@ -12,6 +12,6 @@ import Esqueceu1 from "./esqueceu_senha1/page"
 
 export default function dev() {
   return (
-    <Esqueceu1></Esqueceu1>
+    <Inicio></Inicio>
   );
 }

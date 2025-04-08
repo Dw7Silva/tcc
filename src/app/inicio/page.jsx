@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 
 import styles from "./home.module.css";
 import { GoHomeFill } from "react-icons/go";
@@ -16,10 +16,6 @@ export default function Inicio() {
     setMenuAberto(!menuAberto);
   };
 
-  const fecharMenu = () => {
-    setMenuAberto(false);
-  };
-
   const Carroselimages = [
     "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg",
     "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg",
@@ -32,6 +28,7 @@ export default function Inicio() {
 
   return (
     <div className={styles.container}>
+      {/* Navbar que se adapta automaticamente */}
       <nav className={styles.navbar}>
         <div className={styles.logoContainer}>
           <img src={Logo} alt="Logo" className={styles.logo} />
@@ -44,47 +41,44 @@ export default function Inicio() {
           </button>
         </div>
 
+        {/* Ícones */}
         <div className={styles.navIcons}>
-          <div className={styles.desktopIcons}>
-            <GoHomeFill />
-            <IoChatbox />
-            <MdSupportAgent />
-            <FaUser />
-          </div>
-
-          <div className={styles.menuIcon} onClick={toggleMenu}>
-            <HiOutlineMenu />
-          </div>
-
-          <div
-            className={`${styles.menuMobile} ${
-              menuAberto ? styles.menuMobileAberto : ""
-            }`}
-          >
-            <div className={styles.menumobile} >
-            <a href="#" onClick={fecharMenu} className={styles.linkMobile}>Início</a>
-            <a href="#" onClick={fecharMenu} className={styles.linkMobile}>Chat</a>
-            <a href="#" onClick={fecharMenu} className={styles.linkMobile}>Suporte</a>
-            <a href="#" onClick={fecharMenu} className={styles.linkMobile}>Perfil</a>
-            </div>
-            <a href="#" onClick={fecharMenu}>Demanda</a>
-            <a href="#" onClick={fecharMenu}>Oferta</a>
-            <a href="#" onClick={fecharMenu}>Minhas Ofertas</a>
-            <a href="#" onClick={fecharMenu}>Configuração</a>
-          </div>
+          <GoHomeFill />
+          <IoChatbox />
+          <MdSupportAgent />
+          <FaUser />
+          <HiOutlineMenu onClick={toggleMenu} className={styles.menuIcon} />
         </div>
+
+        {/* Menu Mobile */}
+        {menuAberto && (
+          <div className={styles.menuMobile}>
+            <a href="#">Demandas</a>
+            <a href="#">Ofertas</a>
+            <a href="#">minhas off/dem</a>
+            <a href="#">Configuração</a>
+            <a href="#">Início</a>
+            <a href="#">Chat</a>
+            <a href="#">Suporte</a>
+            <a href="#">Perfil</a>
+            
+          </div>
+        )}
       </nav>
 
-      <div className={styles.destaquesContainer}>
-        <h1 className={styles.textDestaques}>Nossos destaques</h1>
+      {/* Destaques */}
+      <div className={styles.destaquescontainer}>
+        <h1 className={styles.textdestaques}>Nossos destaques</h1>
       </div>
 
+      {/* Carrossel */}
       <div className={styles.carouselContainer}>
-        <Carousel images={Carroselimages} />
+        <Carousel images={Carroselimages}></Carousel>
       </div>
 
-      <div className={styles.produtosContainer}>
-        <h1 className={styles.textProdutos}>Principais Produtos</h1>
+      {/* Principais Produtos */}
+      <div className={styles.produtoscontainer}>
+        <h1 className={styles.textprodutos}>Principais Produtos</h1>
       </div>
 
       <div className={styles.produtosGrid}>
