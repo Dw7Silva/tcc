@@ -2,14 +2,24 @@
 
 import styles from "./home.module.css";
 import { GoHomeFill } from "react-icons/go";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaUser } from "react-icons/fa";
 import { IoChatbox } from "react-icons/io5";
 import { MdSupportAgent } from "react-icons/md";
-import { FaUser } from "react-icons/fa";
 import { HiOutlineMenu } from "react-icons/hi";
 import Carousel from "./carrosel";
+import { useState } from "react";
 
 export default function Inicio() {
+  const [menuAberto, setMenuAberto] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuAberto(!menuAberto);
+  };
+
+  const fecharMenu = () => {
+    setMenuAberto(false);
+  };
+
   const Carroselimages = [
     "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg",
     "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg",
@@ -21,72 +31,88 @@ export default function Inicio() {
   const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
 
   return (
+    <div className={styles.container}>
+      <nav className={styles.navbar}>
+        <div className={styles.logoContainer}>
+          <img src={Logo} alt="Logo" className={styles.logo} />
+        </div>
 
-   <div className={styles.container}>
-         {/* Navbar que se adapta automaticamente */}
-         <nav className={styles.navbar}>
-             <div className={styles.logoContainer}>
-                <img src={Logo} alt="Logo" className={styles.logo} />
-             </div>
-
-
-            <div className={styles.searchBar}>
-            <input type="text" placeholder="Pesquisar..." />
-            <button>
+        <div className={styles.searchBar}>
+          <input type="text" placeholder="Pesquisar..." />
+          <button>
             <FaSearch />
           </button>
         </div>
 
-        {/* Ícones */}
         <div className={styles.navIcons}>
-          <GoHomeFill />
-          <IoChatbox />
-          <MdSupportAgent />
-          <FaUser />
-          <HiOutlineMenu />
+          <div className={styles.desktopIcons}>
+            <GoHomeFill />
+            <IoChatbox />
+            <MdSupportAgent />
+            <FaUser />
+          </div>
+
+          <div className={styles.menuIcon} onClick={toggleMenu}>
+            <HiOutlineMenu />
+          </div>
+
+          <div
+            className={`${styles.menuMobile} ${
+              menuAberto ? styles.menuMobileAberto : ""
+            }`}
+          >
+            <div className={styles.menumobile} >
+            <a href="#" onClick={fecharMenu} className={styles.linkMobile}>Início</a>
+            <a href="#" onClick={fecharMenu} className={styles.linkMobile}>Chat</a>
+            <a href="#" onClick={fecharMenu} className={styles.linkMobile}>Suporte</a>
+            <a href="#" onClick={fecharMenu} className={styles.linkMobile}>Perfil</a>
+            </div>
+            <a href="#" onClick={fecharMenu}>Demanda</a>
+            <a href="#" onClick={fecharMenu}>Oferta</a>
+            <a href="#" onClick={fecharMenu}>Minhas Ofertas</a>
+            <a href="#" onClick={fecharMenu}>Configuração</a>
+          </div>
         </div>
       </nav>
 
-
-      {/* Destaques */}
-      <div className={styles.destaquescontainer}>
-        <h1 className={styles.textdestaques}>Nossos destaques</h1>
+      <div className={styles.destaquesContainer}>
+        <h1 className={styles.textDestaques}>Nossos destaques</h1>
       </div>
 
-
-          
-
-      {/* Carrossel */}
       <div className={styles.carouselContainer}>
-        <Carousel images={Carroselimages}></Carousel>
+        <Carousel images={Carroselimages} />
       </div>
 
-
-      {/* Principais Produtos */}
-      <div className={styles.produtoscontainer}>
-        <h1 className={styles.textprodutos}>Principais Produtos</h1>
+      <div className={styles.produtosContainer}>
+        <h1 className={styles.textProdutos}>Principais Produtos</h1>
       </div>
 
       <div className={styles.produtosGrid}>
-  <div className={styles.produtoItem}>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-jueBrZJmix2Lzhx3CDl0sTh-3Q-0qiVEfQ&s" alt="Produto 1" className={styles.produtoImg} />
-    <h1 className={styles.produtoTitulo}>Amendoim c/ casca</h1>
-  </div>
-  <div className={styles.produtoItem}>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNf7U3GwL5ibmFc0nbody6nqdBAi9af7cbkA&s" alt="Produto 2" className={styles.produtoImg} />
-    <h1 className={styles.produtoTitulo} style={{}}>Amendoim c/ pele</h1>
-  </div>
-  <div className={styles.produtoItem}>
-    <img src="https://cdn.awsli.com.br/2500x2500/2777/2777231/produto/309434382/amendoim-torrado-sempele-dtm9zuthq1.jpg" alt="Produto 3" className={styles.produtoImg} />
-    <h1 className={styles.produtoTitulo}>Amendoim s/ pele</h1>
-  </div>
-</div>
-
-
-
-       
-        
-
+        <div className={styles.produtoItem}>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-jueBrZJmix2Lzhx3CDl0sTh-3Q-0qiVEfQ&s"
+            alt="Produto 1"
+            className={styles.produtoImg}
+          />
+          <h1 className={styles.produtoTitulo}>Amendoim c/ casca</h1>
+        </div>
+        <div className={styles.produtoItem}>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNf7U3GwL5ibmFc0nbody6nqdBAi9af7cbkA&s"
+            alt="Produto 2"
+            className={styles.produtoImg}
+          />
+          <h1 className={styles.produtoTitulo}>Amendoim c/ pele</h1>
+        </div>
+        <div className={styles.produtoItem}>
+          <img
+            src="https://cdn.awsli.com.br/2500x2500/2777/2777231/produto/309434382/amendoim-torrado-sempele-dtm9zuthq1.jpg"
+            alt="Produto 3"
+            className={styles.produtoImg}
+          />
+          <h1 className={styles.produtoTitulo}>Amendoim s/ pele</h1>
+        </div>
+      </div>
     </div>
   );
 }
