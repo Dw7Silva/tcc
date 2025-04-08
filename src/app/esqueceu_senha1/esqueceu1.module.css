@@ -23,6 +23,9 @@
     
 
   }
+  @media(max-height){
+    
+  }
   .title {
     
     font-size: 1.5rem;
@@ -48,16 +51,16 @@
   }
   
   .button {
-    background-color: #c68a53da;
+    background-color: #d4c6b3af;
     color: rgb(255, 255, 255);
     padding: 10px 20px;
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
   }
   
   .button:hover {
-    background-color: #b07a4b;
+    background-color: #bd936e;
   }
   
