@@ -1,111 +1,123 @@
-/* Estilos gerais */
-
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+
+/* Estilo global da página */
 body {
-  background-color: rgba(157, 96, 53, 0.72);
-  margin: 0;
-  font-family: 'Comfortaa', sans-serif;
-  font-weight: 400; /* Regular */
+  background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
+  margin: 0; /* Remove margens padrão */
+  font-family: 'Comfortaa', sans-serif; /* Fonte da página */
+  font-weight: 400; /* Peso da fonte regular */
 }
 
+/* Estilo do contêiner do formulário */
 .cadastroContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 2%;
+  display: flex; /* Usa flexbox para centralizar */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  min-height: 100vh; /* Altura mínima da tela */
+  padding: 2%; /* Espaçamento interno */
 }
 
+/* Estilo do formulário */
 .cadastroForm {
-  background-color: rgba(254, 241, 203, 0.23);
-  padding: 2%;
-  border-radius: 10px;
-  width: 550px;
-  height: 650px;
-  max-height: 70%;
-  max-width: 90%;
+  display: flex; /* Usa flexbox para organizar elementos */
+  flex-direction: column; /* Coloca os elementos em coluna */
+  background-color: rgba(254, 241, 203, 0.23); /* Cor de fundo do formulário */
+  padding: 2%; /* Espaçamento interno */
+  border-radius: 10px; /* Bordas arredondadas */
+  width: 550px; /* Largura do formulário */
+  max-height: 80%; /* Altura máxima */
+  max-width: 90%; /* Largura máxima */
+  min-height: 650px; /* Altura mínima */
 }
 
+/* Estilo do título do formulário */
 .cadastroForm h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  text-align: center; /* Centraliza o texto */
+  margin-bottom: 20px; /* Espaço abaixo do título */
 }
 
+/* Estilo dos grupos de formulário */
 .formGroup {
-  margin-bottom: 15px;
+  margin-bottom: 15px; /* Espaço abaixo de cada grupo */
 }
 
+/* Estilo dos rótulos dos campos */
 .formGroup label {
-  display: block;
-  margin-bottom: 5px;
+  display: block; /* Cada rótulo ocupa uma linha */
+  margin-bottom: 5px; /* Espaço abaixo do rótulo */
 }
 
+/* Estilo dos campos de entrada e seleção */
 .formGroup input,
 .formGroup select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
+  width: 100%; /* Largura total do campo */
+  padding: 10px; /* Espaçamento interno */
+  border: 1px solid #ccc; /* Borda padrão */
+  border-radius: 5px; /* Bordas arredondadas */
+  box-sizing: border-box; /* Inclui padding e borda no tamanho total */
 }
 
-.formGroup select {
-  appearance: none; /* Remove estilos padrão do select */
-  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 10px top 50%;
-  background-size: 16px;
+/* Estilo do grupo de botões de tipo de usuário */
+.radioGroup {
+  display: flex; /* Usa flexbox para organizar os botões */
+  justify-content: center; /* Centraliza os botões */
+  margin-bottom: 15px; /* Espaço abaixo do grupo */
 }
 
+/* Estilo dos botões de tipo de usuário */
+.userTypeButton {
+  background-color: #a87453; /* Cor de fundo padrão */
+  color: white; /* Cor do texto */
+  border: none; /* Remove bordas padrão */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 10px 20px; /* Espaçamento interno */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+  margin: 0 10px; /* Espaçamento horizontal entre os botões */
+  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+/* Estilo ao passar o mouse sobre o botão */
+.userTypeButton:hover {
+  background-color: #8f5a3c; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilo para o botão selecionado */
+.selected {
+  background-color: #6b4c3a; /* Cor de fundo quando selecionado */
+}
+
+/* Estilo do grupo de botões de envio */
 .formButtons {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
+  display: flex; /* Usa flexbox para organizar */
+  justify-content: center; /* Centraliza o botão de envio */
+  margin-top: 20px; /* Espaço acima do botão */
 }
 
-.formButtons button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.formButtons button:first-child {
-  background-color: #f0f0f0;
-}
-
-.formButtons button:last-child {
-  background-color: #a87453;
-  color: white;
-}
-
-.formButtons button:hover {
-  opacity: 0.8;
-}
-
+/* Estilo do botão de criar conta */
 .criarContaButton {
-  margin-top: 1%;
-  width: 100%;
-  padding: 1.5%;
-  border: none;
-  border-radius: 5px;
-  background-color: #a87453;
-  color: white;
-  cursor: pointer;
-  font-size: larger;
-  font-family: 'Comfortaa', sans-serif;;
+  padding: 1.5%; /* Espaçamento interno */
+  border: none; /* Remove bordas padrão */
+  border-radius: 5px; /* Bordas arredondadas */
+  background-color: #a87453; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+  font-size: larger; /* Aumenta o tamanho da fonte */
+  width: 100%; /* O botão ocupa toda a largura */
 }
 
+/* Efeito ao passar o mouse sobre o botão de criar conta */
 .criarContaButton:hover {
-  opacity: 0.8;
+  opacity: 0.8; /* Diminui a opacidade ao passar o mouse */
 }
 
+/* Estilo para campos com erro */
 .error-input {
-  border: 1px solid red;
+  border: 1px solid red; /* Borda vermelha para indicar erro */
 }
 
+/* Estilo para mensagens de erro */
 .error-message {
-  color: red;
-  font-size: 0.8em;
-  margin-top: 5px;
+  color: red; /* Cor do texto da mensagem de erro */
+  font-size: 0.8em; /* Tamanho da fonte menor */
+  margin-top: 5px; /* Espaço acima da mensagem de erro */
 }

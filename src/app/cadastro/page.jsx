@@ -1,43 +1,50 @@
-"use client";
+"use client"; // Indica que este componente é um componente de cliente
 import React, { useState } from 'react';
-import styles from './Cadastro.module.css';
+import styles from './Cadastro.module.css'; // Importa o CSS do módulo
 
 function Cadastro() {
+  // Estados para armazenar os dados do formulário
   const [cpfCnpj, setCpfCnpj] = useState('');
+  const [userType, setUserType] = useState('Agricultor'); // Estado para armazenar o tipo de usuário
 
+  // Função para formatar CPF/CNPJ
   const formatCpfCnpj = (value) => {
-    let formattedValue = value.replace(/\D/g, '');
+    let formattedValue = value.replace(/\D/g, ''); // Remove caracteres não numéricos
 
+    // Formata CPF
     if (formattedValue.length <= 11) {
       formattedValue = formattedValue.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-    } else {
+    } else { // Formata CNPJ
       formattedValue = formattedValue.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
     }
 
-    return formattedValue;
+    return formattedValue; // Retorna o valor formatado
   };
 
+  // Função chamada ao enviar o formulário
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevê o comportamento padrão do envio do formulário
 
+    // Obtém os valores dos campos do formulário
     const email = event.target.email.value;
     const endereco = event.target.endereco.value;
     const telefone = event.target.telefone.value;
     const senha = event.target.senha.value;
     const confirmarSenha = event.target.confirmarSenha.value;
 
-    // Remover classes de erro e ocultar mensagens de erro
+    // Remove classes de erro e oculta mensagens de erro
     const inputs = event.target.querySelectorAll('input, select');
     inputs.forEach((input) => {
       input.classList.remove(styles['error-input']);
-      input.nextSibling.textContent = '';
+      input.nextSibling.textContent = ''; // Limpa mensagens de erro
     });
 
-    let hasErrors = false;
+    let hasErrors = false; // Flag para verificar se há erros
 
+    // Valida os campos do formulário
     if (!email) {
-      event.target.email.classList.add(styles['error-input']);
-      event.target.email.nextSibling.textContent = 'Campo obrigatório';
+      event.target.email.classList.add(styles['error-input']); // Adiciona classe de erro
+      event.target.email.nextSibling.textContent = 'Campo obrigatório'; // Mensagem de erro
       hasErrors = true;
     }
 
@@ -71,6 +78,7 @@ function Cadastro() {
       hasErrors = true;
     }
 
+    // Verifica se as senhas coincidem
     if (senha !== confirmarSenha) {
       event.target.senha.classList.add(styles['error-input']);
       event.target.confirmarSenha.classList.add(styles['error-input']);
@@ -78,23 +86,55 @@ function Cadastro() {
       hasErrors = true;
     }
 
+    // Verifica se o telefone contém apenas números
     if (!/^\d+$/.test(telefone)) {
       event.target.telefone.classList.add(styles['error-input']);
       event.target.telefone.nextSibling.textContent = 'Apenas números são permitidos';
       hasErrors = true;
     }
 
+    // Se houver erros, foca no primeiro campo com erro
     if (hasErrors) {
-      return;
+      const firstErrorInput = event.target.querySelector('.error-input');
+      if (firstErrorInput) {
+        firstErrorInput.focus();
+      }
+      return; // Sai da função se houver erros
     }
 
+    // Se tudo estiver correto, exibe os dados no console
     console.log('Formulário enviado com sucesso!');
+    console.log('Tipo de Usuário:', userType); // Exibe o tipo de usuário selecionado
   };
 
   return (
     <div className={styles.cadastroContainer}>
       <form className={styles.cadastroForm} onSubmit={handleSubmit}>
         <h2>Cadastro</h2>
+
+        <div className={styles.formGroup}>
+          <label>Tipo de Usuário</label>
+          <div className={styles.radioGroup}>
+            {/* Botão para selecionar Agricultor */}
+            <button
+              type="button"
+              className={`${styles.userTypeButton} ${userType === 'Agricultor' ? styles.selected : ''}`}
+              onClick={() => setUserType('Agricultor')}
+            >
+              Agricultor
+            </button>
+            {/* Botão para selecionar Empresa */}
+            <button
+              type="button"
+              className={`${styles.userTypeButton} ${userType === 'Empresa' ? styles.selected : ''}`}
+              onClick={() => setUserType('Empresa')}
+            >
+              Empresa
+            </button>
+          </div>
+        </div>
+
+        {/* Campos do formulário */}
         <div className={styles.formGroup}>
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" />
@@ -108,7 +148,7 @@ function Cadastro() {
             id="cpfCnpj"
             name="cpfCnpj"
             value={cpfCnpj}
-            onChange={(e) => setCpfCnpj(formatCpfCnpj(e.target.value))}
+            onChange={(e) => setCpfCnpj(formatCpfCnpj(e.target.value))} // Formata CPF/CNPJ ao digitar
           />
           <p className={styles['error-message']}></p>
         </div>
@@ -137,15 +177,13 @@ function Cadastro() {
           <p className={styles['error-message']}></p>
         </div>
 
+        {/* Botão para enviar o formulário */}
         <div className={styles.formButtons}>
-          <button type="button">Agricultor</button>
-          <button type="button">Empresa</button>
+          <button type="submit" className={styles.criarContaButton}>Criar Conta</button>
         </div>
-        
-        <button type="submit" className={styles.criarContaButton}>Criar Conta</button>
       </form>
     </div>
   );
 }
 
-export default Cadastro;
+export default Cadastro; 
