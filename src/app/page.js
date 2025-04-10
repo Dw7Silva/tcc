@@ -10,7 +10,7 @@ export default function dev() {
 
 
   return (
-    <Login></Login>
+    <Inicio></Inicio>
   );
 }
 

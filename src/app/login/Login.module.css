@@ -9,9 +9,10 @@ body {
 }
 
 .container {
+  overflow: hidden;
   background-color: rgba(157, 96, 53, 0.72);
+  height: 100vh;
   width: 100vw;
-  min-height: 100vh;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
