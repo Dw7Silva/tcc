@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 body {
-    background-color: rgba(157, 96, 53, 0.72);
+  
     margin: 0;
     font-family: 'Comfortaa', sans-serif;
     font-weight: 400; /* Regular */
@@ -18,7 +18,7 @@ body {
 }
 
 .navbar {
-    background-color: rgba(254, 241, 203, 0.23);
+
     width: 100%;
     display: flex;
     align-items: center;

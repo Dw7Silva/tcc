@@ -1,17 +1,16 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import React from "react";
+import Proposta from "./proposta/page";
 import Inicio from "./inicio/page";
-import Cadastro from "./cadastro/page";
-import Login from "./login/page"
-import Perfil from "./perfil/page"
-import Demandas from "./demanda/demandas.page"
-import CriarOferta from "./oferta/page";
-import Chat from "./chat/page";
-import Suporte from "./suporte/page";
-import Esqueceu1 from "./esqueceu_senha1/page"
+import Login from "./login/page";
+
 
 export default function dev() {
+
+
+
+
   return (
-    <Inicio></Inicio>
+    <Login></Login>
   );
 }
+

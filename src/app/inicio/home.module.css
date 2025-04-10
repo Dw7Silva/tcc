@@ -1,348 +1,221 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 body {
-    background-color: rgba(157, 96, 53, 0.72);
-    margin: 0;
-    font-family: 'Comfortaa', sans-serif;
-    font-weight: 400; /* Regular */
+  margin: 0;
+  font-family: 'Comfortaa', sans-serif;
 }
 
+
 .container {
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    padding: 2%;
+  background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 90vh; /* Já está em vh! */
+  padding: 0 2vw; /* Use vw para padding horizontal */
+  margin-top: 10vh; /* compensação da navbar fixa */
 }
 
 .navbar {
-    background-color: rgba(254, 241, 203, 0.23);
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    box-sizing: border-box;
-    margin: 0;
-    height: 11%;
+  background-color: rgb(187, 160, 144); 
+  ;/* Cor de fundo */
+  width: 100vw; /* Use vw para ocupar toda a largura */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2vw; /* Use vw para padding horizontal */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 10vh; /* Já está em vh! */
+  box-sizing: border-box;
 }
 
-.logocontainer {
-    display: flex;
-    align-items: center;
-    padding: 5%;
-}
+
 
 .logo {
-    max-width: 20%;
-    max-height: 20%;
-    height: auto;
-    height: auto;
-    padding: 5%;
-    margin-top: 1.5%;
+  min-height:20vh;
+  max-height: 10vh;
 }
-
 .searchBar {
-    display: flex;
-    align-items: center;
-    width: 40%;
-    min-width: 200px;
-    height: 40px;
-    background: white;
-    border-radius: 20px;
-    padding: 2px;
-    border: outset;
-    border-width: 2px;
-    margin: 10px;
+  display: flex;
+  align-items: center;
+  width: 40vw; /* Use vw para largura */
+  min-width: 200px; /* Mantenha um mínimo em pixels */
+  height: 4vh; /* Use vh para altura */
+  background: white;
+  border-radius: 2vh; /* Use vh para borda arredondada */
+  padding: 0.2vw; /* Use vw para padding */
+  border: outset 0.4vh; /* Use vh para largura da borda */
+  margin: 1vh; /* Use vh para margem */
 }
 
 .searchBar input {
-    width: 85%;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    border-radius: 20px;
-    color: black;
-    padding: 5px;
+  width: 80%; /* Ajuste a largura interna */
+  border: none;
+  outline: none;
+  font-size: 1em;
+  border-radius: 2vh; /* Use vh para borda arredondada */
+  padding: 1vh; /* Use vh para padding */
 }
 
 .searchBar button {
-    width: 15%;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 1em;
-    color: #A87453;
-    position: static;
-    padding: 5px;
+  width: 20%; /* Ajuste a largura interna */
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1em;
+  color: #A87453;
 }
 
 .navIcons {
-    display: flex;
-    gap: 10px;
-    font-size: 2em;
-    color: #A87453;
-    padding: 10px;
+  display: flex;
+  gap: 0.5vw; /* Use vw para espaçamento */
+  font-size: 3vh; /* Use vh para tamanho dos ícones */
+  color: #A87453;
+  padding: 1vh; /* Use vh para padding */
 }
 
-.navIcons > :last-child {
-    display: flex;
-}
-
-
-
-.destaques {
-    font-size: 10em;
-    font-weight: 600;
-    margin: 9% 0 1% 2%;
-    text-align: left;
-    width: 96%;
-    padding: 0;
-}
-
-.nossosdestaques {
-    font-size: large;
-    font-family: Arial;
-    font-weight: 600;
-    padding: 0;
-    margin: 0;
-}
-
-.carouselContainer {
-    margin-top: 9%;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 20px 0;
-    margin: 1% 0;
-    height: 50%;
-    border-radius: 10px;
-    padding: 0;
-    margin: 10px;
-}
-
-.splide {
-    width: 90%;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.splide__track {
-    padding: 10px;
-}
-
-.splide__slide img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-@media (max-width: 600px) {
-  .navIcons > :not(:last-child) {
-      display: none;
-  }
-
-  .logocontainer {
-      width: 70%;
-      text-align: left;
-      padding: 10px;
-  }
-
-  .searchBar {
-      width: 90%;
-      margin: 20px;
-  }
-
-  .navIcons {
-      width: 100%;
-      justify-content: flex-end;
-  }
-
-  .navIcons > :last-child {
-      display: block;
-      position: static;
-  }
-
-  .carouselContainer {
-      margin: 25%;
-  }
-
-  .produtosGrid {
-    flex-direction: column; /* Alinha os itens em coluna */
-    gap: 24px; /* Ajusta o espaçamento */
-}
-}
-
-
-@media (max-width: 1300px) {
-    .carouselContainer {
-        margin-top: 2%;
-    }
-
-    .splide {
-        width: 95%;
-    }
-    .logo {
-      max-width: 35%;
-      max-height:35%;
-      height: auto;
-      height: auto;
-      padding: 5%;
-      margin-top: 1.5%;
-  }
-}
-
-@media (max-width: 1000px) {
-    .carouselContainer {
-        margin-top: 2%;
-    }
-
-    .splide {
-        width: 95%;
-        height: 70%;
-    }
-
-
-    .produtosGrid {
-      display: flex;
-      justify-content: space-around;
-      gap: 100px;
-      flex-wrap: wrap;
-      padding: 0 5%;
-      max-width: 100%;
-      text-align: center;
-      margin-top: 3%;
-  }
-
-    .produtoItem {
-        width: 80%;
-        max-width: 300px;
-    }
-
-    .logo {
-      max-width: 75%;
-      max-height:75%;
-      height: auto;
-      height: auto;
-      padding: 5%;
-      margin-top: 1.5%;
-  }
-}
-
-.splide__arrow svg {
-    font-size: 2em;
-    color: #A87453;
-}
-
-.destaquescontainer {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 2%;
-    margin-top: 100px;
-}
-
-.textdestaques {
-    font-size: 24px;
-    font-family: 'Comfortaa', sans-serif;
-    font-weight: 600;
-}
-
-.produtoscontainer {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 2%;
-    margin-top: 25px;
-}
-
-.textprodutos {
-    font-size: 24px;
-    font-family: 'Comfortaa', sans-serif;
-    font-weight: 600;
-}
-
-.produtosGrid {
-    display: flex;
-    justify-content: space-around;
-    gap: 300px;
-    flex-wrap: wrap;
-    padding: 0 5%;
-    max-width: 100%;
-    text-align: center;
-}
-
-.produtoItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.produtoImg {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ffffff;
-}
-
-.produtoTitulo {
-    font-size: 18px;
-    font-family: 'Comfortaa', sans-serif;
-    font-weight: 60;
-}
-.menuIcon {
-  cursor: pointer;
+.navIconHidden {
   display: none;
 }
 
-/* Menu mobile aparece só quando ativado */
+.navIconVisible {
+  display: flex;
+}
+
+.menuIcon {
+  cursor: pointer;
+  display: flex; /* Always show the menu icon */
+  font-size: 4vh;
+  color: #A87453;
+}
+
+/* Menu mobile */
 .menuMobile {
   position: absolute;
-  top: 100%;
-  right: 10px;
+  top: 10vh;
+  right: 2vw;
   background-color: #fff;
-  border: 1px solid #A87453;
-  border-radius: 10px;
-  padding: 10px;
+  border: 0.2vh solid #A87453;
+  border-radius: 1vh;
+  padding: 1vh;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1vh;
   z-index: 200;
-  width: 150px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  width: 10vw;
+  box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
 }
 
 .menuMobile a {
   color: #A87453;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1em;
-  transition: 0.2s;
+  font-size: 2vh;
+  font-size: 1.6vw;
 }
 
 .menuMobile a:hover {
   color: #5c3b28;
 }
 
-/* Exibir menuIcon apenas em telas pequenas */
+.destaquescontainer {
+  width: 96vw; /* Use vw para largura */
+  display: flex;
+  justify-content: flex-start;
+}
+
+.produtoscontainer {
+  width: 96vw; /* Use vw para largura */
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 2vw; /* Use vw para padding */
+  margin-top: 3vh; /* Use vh para margem */
+}
+
+.textdestaques,
+.textprodutos {
+  font-size: 3vh; /* Use vh para tamanho da fonte */
+  font-weight: 600;
+}
+
+.carouselContainer {
+  width: 96vw; /* Use vw para largura */
+  display: flex;
+  justify-content: center;
+  /* Use vh para padding vertical */
+}
+
+.produtosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr)); /* Use vw para largura mínima das colunas */
+  gap: 2vh; /* Use vh para espaçamento */
+  flex-wrap: wrap;
+  padding: 2vw; /* Use vw para padding */
+  max-width: 96vw; /* Use vw para largura máxima */
+  text-align: center;
+  margin-top: 2vh; /* Use vh para margem */
+}
+
+.produtoItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.produtoImg {
+  width: 10vw; /* Use vw para largura */
+  height: 10vw; /* Use vw para altura (manter quadrado) */
+  border-radius: 10vw; /* Use vw para borda arredondada */
+  object-fit: cover;
+  border: 0.4vh solid #ffffff; /* Use vh para largura da borda */
+}
+
+.produtoTitulo {
+  font-size: 2.5vh; /* Use vh para tamanho da fonte */
+  font-weight: 600;
+  margin-top: 1vh; /* Use vh para margem */
+}
+
+/* Media query for smaller screens */
 @media (max-width: 600px) {
-  .menuIcon {
-      display: block;
-  }
-
-  .navIcons {
-      justify-content: flex-end;
-  }
-
-  .navIcons > * {
-      font-size: 1.8em;
-  }
+    .navIcons > :not(:last-child) {
+        display: none;
+      }
+    
+      .menuIcon {
+        display: block;
+        font-size: 4vh;
+      }
+    
+      .searchBar {
+        width: 90vw; /* Ocupa mais largura em telas pequenas */
+        margin: 2vh auto; /* Ajusta a margem */
+      }
+    
+      .carouselContainer {
+        margin-top: 10vh; /* Reduzi bastante a margem superior em telas pequenas */
+      }
+    
+      .produtosGrid {
+        grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr)); /* Colunas maiores em telas pequenas */
+        gap: 3vh; /* Aumenta o espaçamento */
+      }
+    
+      .produtoImg {
+        width: 30vw; /* Imagens maiores em telas pequenas */
+        height: 30vw;
+        border-radius: 15vw;
+      }
+    
+      .produtoTitulo {
+        font-size: 3vh; /* Fonte maior em telas pequenas */
+      }
 }
