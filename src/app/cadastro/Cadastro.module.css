@@ -2,7 +2,7 @@
 
 /* Estilo global da página */
 body {
- 
+  background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
   margin: 0; /* Remove margens padrão */
   font-family: 'Comfortaa', sans-serif; /* Fonte da página */
   font-weight: 400; /* Peso da fonte regular */
@@ -120,4 +120,35 @@ body {
   color: red; /* Cor do texto da mensagem de erro */
   font-size: 0.8em; /* Tamanho da fonte menor */
   margin-top: 5px; /* Espaço acima da mensagem de erro */
+}
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+  /* Ajustes para telas menores que 768px */
+  .cadastroForm {
+    padding: 5%; /* Aumenta o espaçamento interno para telas pequenas */
+    width: 90%; /* Largura do formulário reduzida */
+  }
+
+  .userTypeButton {
+    padding: 8px 16px; /* Reduz o espaçamento interno dos botões */
+    font-size: 0.9em; /* Reduz o tamanho da fonte dos botões */
+  }
+
+  .criarContaButton {
+    padding: 1%; /* Ajusta o espaçamento interno do botão de criar conta */
+    font-size: 1em; /* Ajusta o tamanho da fonte do botão de criar conta */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustes para telas menores que 480px */
+  .cadastroForm {
+    width: 95%; /* Largura do formulário reduzida */
+  }
+
+  .userTypeButton {
+    width: 100%; /* Botões ocupam toda a largura */
+    margin: 5px 0; /* Espaçamento vertical entre os botões */
+  }
 }
