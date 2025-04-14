@@ -1,4 +1,5 @@
 .container {
+    background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
     display: flex;
     justify-content: center;
     align-items: center;

@@ -110,14 +110,17 @@ body {
   z-index: 200;
   width: 10vw;
   box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
+  align-items:self-start;
 }
 
 .menuMobile a {
   color: #A87453;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.5vh;
-  font-size: 1.4vw;
+  font-size: 80%;
+  padding: 0px;
+
+  
 }
 
 .menuMobile a:hover {
@@ -188,7 +191,8 @@ body {
     .navIcons > :not(:last-child) {
         display: none;
       }
-    
+      
+      
       .menuIcon {
         display: block;
         font-size: 4vh;
@@ -216,5 +220,14 @@ body {
     
       .produtoTitulo {
         font-size: 3vh; /* Fonte maior em telas pequenas */
+      }
+
+      .menuMobile a {
+        color: #A87453;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 60%;
+        padding: 2%;
+        
       }
 }
