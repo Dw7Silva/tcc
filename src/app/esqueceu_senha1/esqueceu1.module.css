@@ -1,66 +1,76 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(157, 96, 53, 0.72);
-  }
-  
-  .formWrapper {
-    background:#d2b48ce1;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(214, 208, 208, 0.829);
-    text-align: center;
-    width: 45%;
-    height:45%;
-    align-items: center;
-    flex-direction: column; 
-    display: flex; 
-    justify-content: center; 
-   
-    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh; /* Mantém a altura total da janela */
+  background-color: rgba(157, 96, 53, 0.72);
+}
 
+.formWrapper {
+  background: #d2b48ce1;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(214, 208, 208, 0.829);
+  text-align:start;
+  width: 40%; /* Retorna ao tamanho maior */
+  height: 45%; /* Mantém uma altura generosa */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  max-width: 350px; /* Limita a largura máxima */
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  font-size: 1rem;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.button {
+  background-color: #d4c6b3af;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  max-width: 350px; /* Igual ao campo de input */
+}
+
+.button:hover {
+  background-color: #bd936e;
+}
+
+
+.title{
+  margin: 0%;
+  padding: 0%;
+  font-size: 175%;
+
+}
+@media (max-width: 600px) {
+  .formWrapper {
+    padding: 15px;
+    width: 85%; /* Preenche mais a tela em dispositivos pequenos */
+    height: 55%;
   }
-  @media(max-height){
-    
-  }
-  .title {
-    
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #000000;
-  }
-  
-  .description {
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-    color: #000000;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    font-size: 1rem;
-    height:25px;
-    
-  }
-  
+
+  .input,
   .button {
-    background-color: #d4c6b3af;
-    color: rgb(255, 255, 255);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
+    max-width: 100%; /* Garante que ocupem o espaço disponível */
   }
+  .title{
+    margin: 0%;
+    padding: 0%;
+    font-size: 150%;
   
-  .button:hover {
-    background-color: #bd936e;
   }
-  
+}
