@@ -1,124 +1,171 @@
 .container {
-    background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-   
-  }
-  
-  .card {
-    width: 800px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-  }
-  
+  background-color: rgba(157, 96, 53, 0.72);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.card {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.textcriar {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.formContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.imageInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageInputLarge {
+  width: 100%;
+  max-width: 300px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+}
+
+.imageInput label,
+.imageInputLarge label {
+  cursor: pointer;
+}
+
+.imageInput input{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.imageInputLarge input {
+  display: none;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+}
+
+.imageInput img{
+
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  border: solid #edd09a;
+}
+.imageInputLarge img {
+  width: 300px;
+  max-width: 300px;
+  height: 250px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.formFields {
+  flex: 1;
+  min-width: 250px;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  width: 100%;
+}
+
+.formGroup input,
+.formGroup select {
+  border: 1px solid rgba(157, 96, 53, 0.72);
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  border-color: #A87453;
+  outline: none;
+}
+
+.criarOferta {
+  width: 100%;
+  padding: 12px;
+  background-color: #A87453;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #A87453, #C2967C);
+  transition: background-image 0.3s ease;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.criarOferta:hover {
+  background-image: linear-gradient(to right, #C2967C, #A87453);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
   .formContent {
-    display: flex;
-  }
-  
-  .imageInput {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 20px;
-  }
-  
-  .imageInput label {
-    cursor: pointer;
-  }
-  
-  .imageInput input {
-    display: none;
-  }
-  
-  .imageInput img {
-    border-radius: 10px;
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    margin-top: 10px;
-  }
-  
-  .imageInputLarge {
-    width: 300px;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-  }
-  
-  .imageInputLarge label {
-    cursor: pointer;
-  }
-  
-  .imageInputLarge input {
-    display: none;
-  }
-  
-  .imageInputLarge img {
-    width: 300px;
-    height: 250px;
-    object-fit: contain;
-    border-radius: 10px;
-  }
-  
-  .formFields {
-    flex: 1;
-  }
-  
-  .formGroup {
-    margin-bottom: 15px;
-  }
-  
-  .formGroup label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .formGroup input,
-  .formGroup select {
-    border: 1px solid rgba(157, 96, 53, 0.72);
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    transition: border-color 0.3s ease;
-  }
-  
-  .formGroup input:focus,
-  .formGroup select:focus {
-    border-color: #A87453;
-  }
-  
-  .criarOferta {
-    width: 100%;
-    padding: 10px;
-    background-color: #A87453;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-image: linear-gradient(to right, #A87453, #C2967C);
-    transition: background-image 0.3s ease;
-  }
-  
-  .criarOferta:hover {
-    background-image: linear-gradient(to right, #C2967C, #A87453);
   }
 
-  .textcriar {
-    display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: flex-start; /* Alinha no topo do card */
-    width: 100%; /* Largura total para ocupar todo o espaço do card */
-    margin-bottom: 20px; /* Espaçamento abaixo do título */
+  .formFields {
+    width: 100%;
   }
+
+  .imageInputLarge,
+  .imageInput {
+    width: 300px;
+    max-width: 300px;
+  }
+
+  .imageInput img,
+  .imageInputLarge img {
+    width: 100%;
+    max-width: 100%;
+    height:300px;
+  }
+}

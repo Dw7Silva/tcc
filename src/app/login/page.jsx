@@ -16,7 +16,7 @@ function Login() {
     <div className={styles.container}>
       <div className={styles.loginContainer}>
         <form className={styles.loginForm} onSubmit={handleSubmit}>
-          <h2>LOGIN</h2>
+          <h2>Login</h2>
           <div className={styles.formGroup}>
             <label htmlFor="email">Email</label>
             <input

@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+   background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
   overflow-x: hidden;
   display: flex;
   flex-direction: column;

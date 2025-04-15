@@ -1,186 +1,188 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 body {
-  
-    margin: 0;
-    font-family: 'Comfortaa', sans-serif;
-    font-weight: 400; /* Regular */
+  margin: 0;
+  font-family: 'Comfortaa', sans-serif;
 }
 
 .container {
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    padding: 2%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 2%;
 }
 
 .navbar {
-
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    box-sizing: border-box;
-    margin: 0;
-    height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 10%;
+  background-color: white;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.logocontainer {
-    display: flex;
-    align-items: center;
-    padding: 5%;
+.logoContainer {
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-    max-width: 150px;
-    height: auto;
-    padding: 5%;
-    margin-top: 1.5%;
+  max-width: 150px;
+  height: auto;
 }
 
 .searchBar {
-    display: flex;
-    align-items: center;
-    width: 40%;
-    min-width: 200px;
-    height: 40px;
-    background: white;
-    border-radius: 20px;
-    padding: 2px;
-    border: outset;
-    border-width: 2px;
-    margin: 10px;
+  display: flex;
+  align-items: center;
+  width: 40%;
+  min-width: 200px;
+  height: 40px;
+  background: white;
+  border-radius: 20px;
+  padding: 2px;
+  border: outset;
+  border-width: 2px;
+  margin: 10px;
 }
 
 .searchBar input {
-    width: 85%;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    border-radius: 20px;
-    color: black;
-    padding: 5px;
+  width: 85%;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  border-radius: 20px;
+  color: black;
+  padding: 5px;
 }
 
 .searchBar button {
-    width: 15%;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 1em;
-    color: #A87453;
-    position: static;
-    padding: 5px;
+  width: 15%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1em;
+  color: #A87453;
+  padding: 5px;
 }
 
 .navIcons {
-    display: flex;
-    gap: 10px;
-    font-size: 2em;
-    color: #A87453;
-    padding: 10px;
+  display: flex;
+  gap: 10px;
+  font-size: 2em;
+  color: #A87453;
+  padding: 10px;
 }
 
 .navIcons > :last-child {
-    display: flex;
+  display: flex;
 }
 
+.profileCard {
+  background-color: rgba(254, 241, 203, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  margin-top: 12%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-@media (max-width: 600px) {
-    .navIcons > :not(:last-child) {
-        display: none;
-    }
-  
-    .logocontainer {
-        width: 100%;
-        text-align: left;
-        padding: 10px;
-    }
-  
-    .searchBar {
-        width: 90%;
-        margin: 20px;
-    }
-  
-    .navIcons {
-        width: 100%;
-        justify-content: flex-end;
-    }
-  
-    .navIcons > :last-child {
-        display: block;
-        position: static;
-    }
-    .profileCard {
-        margin-top: 25%;
-    }
-   
-  }
+.profileImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 auto 20px;
+  overflow: hidden;
+}
 
+.perfilImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
+.description {
+  width: calc(100% - 15%);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  resize: vertical;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 4%;
+  margin-left: 7%;
+}
+
+.infoInput {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Responsivo */
+@media (max-width: 1300px) {
   .profileCard {
-    background-color: rgba(254, 241, 203, 0.5); /* Amarelo claro com transparência */
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    margin-top: 12%; /* Ajuste para evitar sobreposição com a navbar */
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20%;
   }
-  
-  .profileImage {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: #ccc; /* Placeholder para a imagem do perfil */
-    margin: 0 auto 20px;
-  }
-  
-  .description {
-    width: calc(100% - 15%);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-    resize: vertical; /* Permite redimensionar verticalmente */
-  }
-  
-  .infoGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin: 4%;
-    margin-left: 7%;
-  }
-  
-  .infoInput {
-    width: calc(100% - 22px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-
-
-  @media (max-width: 1300px) {
-    .profileCard {
-        margin-top: 20%;
-    }
-   
 }
 
 @media (max-width: 1000px) {
-    .profileCard {
-        margin-top: 20%;
-    }
+  .profileCard {
+    margin-top: 25%;
+  }
+}
+
+@media (max-width: 600px) {
+  .navIcons > :not(:last-child) {
+    display: none;
+  }
+
+  .logoContainer {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+  }
+
+  .searchBar {
+    width: 90%;
+    margin: 20px;
+  }
+
+  .navIcons {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .navIcons > :last-child {
+    display: block;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+  }
+
+  .description {
+    width: 100%;
+  }
 }
