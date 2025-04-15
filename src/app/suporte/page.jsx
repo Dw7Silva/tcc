@@ -62,8 +62,8 @@ const Suporte = () => {
             <div className={styles.chatContainer}>
                 {/* Cabeçalho do Chat */}
                 <div className={styles.chatHeader}>
-                    <MdSupportAgent /> {/* Ícone de suporte */}
-                    <span>Suporte</span> {/* Título do chat */}
+                    <MdSupportAgent />   {/* Ícone de suporte */}
+                    <span>Suporte</span> {/* Título do chat   */}
                 </div>
 
                 {/* Mensagens do Chat */}
