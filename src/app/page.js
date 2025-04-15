@@ -13,7 +13,7 @@ export default function dev() {
 
   return (
 
-    <CriarOferta></CriarOferta>
+    <Perfil></Perfil>
 
 
   );

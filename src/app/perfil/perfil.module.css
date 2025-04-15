@@ -6,104 +6,145 @@ body {
 }
 
 .container {
+  background-color: rgba(157, 96, 53, 0.72);
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh;
-  padding: 2%;
+  padding: 0 2vw;
+  margin-top: 10vh;
+  height: auto;
+  min-height: 90vh;
 }
 
 .navbar {
-  width: 100%;
+  background-color: rgb(187, 160, 144);
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 2vw;
   position: fixed;
   top: 0;
   left: 0;
-  height: 10%;
-  background-color: white;
   z-index: 100;
-  padding: 0 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.logoContainer {
-  display: flex;
-  align-items: center;
+  height: 10vh;
+  box-sizing: border-box;
 }
 
 .logo {
-  max-width: 150px;
-  height: auto;
+  min-height:20vh;
+  max-height: 10vh;
 }
 
 .searchBar {
   display: flex;
   align-items: center;
-  width: 40%;
+  width: 40vw;
   min-width: 200px;
-  height: 40px;
+  height: 4vh;
   background: white;
-  border-radius: 20px;
-  padding: 2px;
-  border: outset;
-  border-width: 2px;
-  margin: 10px;
+  border-radius: 2vh;
+  padding: 0.2vw;
+  border: outset 0.4vh;
+  margin: 1vh;
 }
 
 .searchBar input {
-  width: 85%;
+  width: 80%;
   border: none;
   outline: none;
   font-size: 1em;
-  border-radius: 20px;
-  color: black;
-  padding: 5px;
+  border-radius: 2vh;
+  padding: 1vh;
 }
 
 .searchBar button {
-  width: 15%;
+  width: 20%;
   border: none;
   background: transparent;
   cursor: pointer;
   font-size: 1em;
   color: #A87453;
-  padding: 5px;
 }
 
 .navIcons {
   display: flex;
-  gap: 10px;
-  font-size: 2em;
+  gap: 0.5vw;
+  font-size: 3vh;
   color: #A87453;
-  padding: 10px;
+  padding: 1vh;
 }
 
-.navIcons > :last-child {
+.navIconHidden {
+  display: none;
+}
+
+.navIconVisible {
   display: flex;
 }
 
+.menuIcon {
+  cursor: pointer;
+  display: flex;
+  font-size: 4vh;
+  color: #A87453;
+}
+
+.menuMobile {
+  position: absolute;
+  top: 10vh;
+  right: 2vw;
+  background-color: #fff;
+  border: 0.2vh solid #A87453;
+  border-radius: 1vh;
+  padding: 1vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  z-index: 200;
+  width: 30vw;
+  box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
+  align-items: flex-start;
+}
+
+.menuMobile a {
+  color: #A87453;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 80%;
+}
+
+.menuMobile a:hover {
+  color: #5c3b28;
+}
+
 .profileCard {
-  background-color: rgba(254, 241, 203, 0.5);
+  background-color: rgba(254, 241, 203, 0.8);
   padding: 20px;
   border-radius: 10px;
-  width: 80%;
+  width: 90%;
   max-width: 600px;
-  margin-top: 12%;
+  margin-top: 5%;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .profileImage {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background-color: #ccc;
   margin: 0 auto 20px;
   overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.profileImage:hover {
+  opacity: 0.8;
 }
 
 .perfilImg {
@@ -114,7 +155,7 @@ body {
 }
 
 .description {
-  width: calc(100% - 15%);
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -127,12 +168,11 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  margin: 4%;
-  margin-left: 7%;
+  margin: 20px 0;
 }
 
 .infoInput {
-  width: calc(100% - 22px);
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -140,49 +180,30 @@ body {
 }
 
 /* Responsivo */
-@media (max-width: 1300px) {
-  .profileCard {
-    margin-top: 20%;
-  }
-}
-
-@media (max-width: 1000px) {
-  .profileCard {
-    margin-top: 25%;
-  }
-}
-
 @media (max-width: 600px) {
   .navIcons > :not(:last-child) {
     display: none;
   }
 
-  .logoContainer {
-    width: 100%;
-    text-align: left;
-    padding: 10px;
-  }
-
   .searchBar {
-    width: 90%;
-    margin: 20px;
+    width: 90vw;
+    margin: 2vh auto;
   }
 
-  .navIcons {
-    width: 100%;
-    justify-content: flex-end;
+  .menuMobile {
+    width: 60vw;
   }
 
-  .navIcons > :last-child {
-    display: block;
+  .menuMobile a {
+    font-size: 60%;
+    padding: 2%;
   }
 
   .infoGrid {
     grid-template-columns: 1fr;
-    margin-left: 0;
   }
 
-  .description {
-    width: 100%;
+  .profileCard {
+    margin-top: 18%;
   }
 }

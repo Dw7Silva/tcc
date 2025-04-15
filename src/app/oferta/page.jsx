@@ -65,7 +65,7 @@ export default function CriarOferta() {
                 <option value="">Selecione</option>
                 <option value="casca">Com Casca</option>
                 <option value="pele">Com Pele</option>
-                <option value="sempele">Sem Pele</option>
+                <option value="sem_pele">Sem Pele</option>
               </select>
             </div>
 
