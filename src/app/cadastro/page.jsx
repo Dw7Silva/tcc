@@ -22,7 +22,7 @@ function Cadastro() {
   };
 
   // Função chamada ao enviar o formulário
-  const handleSubmit = (event) => {
+  const validar_formulario = (event) => {
     event.preventDefault(); // Prevê o comportamento padrão do envio do formulário
 
     // Obtém os valores dos campos do formulário
@@ -109,7 +109,7 @@ function Cadastro() {
 
   return (
     <div className={styles.cadastroContainer}>
-      <form className={styles.cadastroForm} onSubmit={handleSubmit}>
+      <form className={styles.cadastroForm} onSubmit={validar_formulario}>
         <h2>Cadastro</h2>
 
         <div className={styles.formGroup}>

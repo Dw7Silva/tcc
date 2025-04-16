@@ -14,6 +14,23 @@ export default function Inicio() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null); // Para guardar a imagem selecionada
   const imageInputRef = useRef(null); // Referência para o input de arquivo
+  const [cpfCnpj, setCpfCnpj] = useState('');
+  
+     const formatCpfCnpj = (value) => {
+        let formattedValue = value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    // Formata CPF
+        if (formattedValue.length <= 11) {
+         formattedValue = formattedValue.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+       } else { // Formata CNPJ
+        formattedValue = formattedValue.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+       }
+
+    return formattedValue; // Retorna o valor formatado
+  };
+
+
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,11 +47,11 @@ export default function Inicio() {
     setMenuAberto(!menuAberto);
   };
 
-  const handleImageClick = () => {
+  const editar_foto_perfil = () => {
     imageInputRef.current.click(); // Aciona o clique no input de arquivo
   };
 
-  const handleImageChange = (event) => {
+  const mudar_foto_perfil = (event) => {
     if (event.target.files && event.target.files[0]) {
       setSelectedImage(URL.createObjectURL(event.target.files[0]));
     }
@@ -86,9 +103,9 @@ export default function Inicio() {
       </div> 
       <div className={styles.container}>
       <div className={styles.profileCard}>
-        <div className={styles.profileImage} onClick={handleImageClick} style={{ cursor: 'pointer' }}> {/* Adicionei onClick e cursor */}
+        <div className={styles.profileImage} onClick={editar_foto_perfil} style={{ cursor: 'pointer' }}> {/* Adicionei onClick e cursor */}
           <img
-            src={selectedImage || fotoPerfil} // Use a imagem selecionada ou a padrão
+            src={selectedImage || fotoPerfil} 
             alt="Foto de Perfil"
             className={styles.perfilImg}
           />
@@ -97,7 +114,7 @@ export default function Inicio() {
             type="file"
             id="imageUpload"
             accept="image/*"
-            onChange={handleImageChange}
+            onChange={mudar_foto_perfil}
             ref={imageInputRef}
           />
         </div>
@@ -105,26 +122,34 @@ export default function Inicio() {
         <div className={styles.infoGrid}>
           <input type="text" placeholder="Nome" className={styles.infoInput} />
           <input
-            type="tel"
-            placeholder="Telefone: 40022922"
+            type="number"
+            placeholder="Telefone: (14)123456789"
             className={styles.infoInput}
+            id="telefone"
           />
           <input
             type="email"
-            placeholder="Email: Enois@gmail.com"
+            placeholder="Ex: Enois@gmail.com"
             className={styles.infoInput}
+            id="email"
           />
           <input
-            type="text"
-            placeholder="CNPJ ou CPF"
-            className={styles.infoInput}
+           placeholder="CPF ou CNPJ"
+           maxLength={15}
+           type="text"
+           id="cpfCnpj"
+           name="cpfCnpj"
+           value={cpfCnpj}
+           onChange={(e) => setCpfCnpj(formatCpfCnpj(e.target.value))} 
+           className={styles.infoInput}
           />
           <input
             type="text"
             placeholder="Nome da propriedade"
             className={styles.infoInput}
+            id="Nome da Propriedade"
           />
-          <input type="text" placeholder="CEP" className={styles.infoInput} />
+          <input type="number" placeholder="CEP" className={styles.infoInput } id="cep" />
         </div>
 
         <textarea
