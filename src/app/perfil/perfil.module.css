@@ -104,7 +104,7 @@ body {
   flex-direction: column;
   gap: 1vh;
   z-index: 200;
-  width: 30vw;
+  width: 15vw;
   box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
   align-items: flex-start;
 }
@@ -141,6 +141,12 @@ body {
   position: relative;
   cursor: pointer;
   transition: 0.3s;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
 }
 
 .profileImage:hover {
@@ -191,12 +197,12 @@ body {
   }
 
   .menuMobile {
-    width: 60vw;
+    width: 15vw;
   }
 
   .menuMobile a {
     font-size: 60%;
-    padding: 2%;
+    padding: 1%;
   }
 
   .infoGrid {
