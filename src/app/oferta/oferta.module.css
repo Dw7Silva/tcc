@@ -7,8 +7,109 @@
   min-height: 100vh;
   box-sizing: border-box;
 }
+.navbar {
+  background-color: rgb(187, 160, 144);
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 10vh;
+  box-sizing: border-box;
+}
 
+.logo {
+  min-height:20vh;
+  max-height: 10vh;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  width: 40vw;
+  min-width: 200px;
+  height: 4vh;
+  background: white;
+  border-radius: 2vh;
+  padding: 0.2vw;
+  border: outset 0.4vh;
+  margin: 1vh;
+}
+
+.searchBar input {
+  width: 80%;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  border-radius: 2vh;
+  padding: 1vh;
+}
+
+.searchBar button {
+  width: 20%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1em;
+  color: #A87453;
+}
+
+.navIcons {
+  display: flex;
+  gap: 0.5vw;
+  font-size: 3vh;
+  color: #A87453;
+  padding: 1vh;
+}
+
+.navIconHidden {
+  display: none;
+}
+
+.navIconVisible {
+  display: flex;
+}
+
+.menuIcon {
+  cursor: pointer;
+  display: flex;
+  font-size: 4vh;
+  color: #A87453;
+}
+
+.menuMobile {
+  position: absolute;
+  top: 10vh;
+  right: 2vw;
+  background-color: #fff;
+  border: 0.2vh solid #A87453;
+  border-radius: 1vh;
+  padding: 1vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  z-index: 200;
+  width: 15vw;
+  box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
+  align-items: flex-start;
+}
+
+.menuMobile a {
+  color: #A87453;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 80%;
+}
+
+.menuMobile a:hover {
+  color: #5c3b28;
+}
 .card {
+  margin-top: 13vh;
   width: 100%;
   max-width: 800px;
   padding: 20px;
@@ -168,4 +269,30 @@
     max-width: 100%;
     height:300px;
   }
+
+  .menuMobile a {
+    color: #A87453;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 60%;
+    padding: 2%;}
+
+    .navIcons > :not(:last-child) {
+      display: none;
+    }
+    
+    
+    .menuIcon {
+      display: block;
+      font-size: 4vh;
+    }
+  
+    .searchBar {
+      width: 90vw; /* Ocupa mais largura em telas pequenas */
+      margin: 2vh auto; /* Ajusta a margem */
+    }
+  
+
 }
+
+

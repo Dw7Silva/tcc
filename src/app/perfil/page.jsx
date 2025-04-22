@@ -170,6 +170,7 @@ export default function Perfil() {
               onChange={(e) => setCep(e.target.value)}
               onBlur={(e) => buscarEndereco(e.target.value)}
               onFocus={handleCepFocus}
+              maxLength={8}
             />
           </div>
 

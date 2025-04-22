@@ -1,12 +1,35 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Importe useState e useEffect uma única vez
 import styles from './oferta.module.css';
 import { FaImage } from 'react-icons/fa';
+import { GoHomeFill } from "react-icons/go";
+import { FaSearch, FaUser } from "react-icons/fa";
+import { IoChatbox } from "react-icons/io5";
+import { MdSupportAgent } from "react-icons/md";
+import { HiOutlineMenu } from "react-icons/hi";
 
 export default function CriarOferta() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isImageInputLarge, setIsImageInputLarge] = useState(true);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [menuAberto, setMenuAberto] = useState(false);
+  const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png"; // Defina a URL da sua logo aqui
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 600);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const toggleMenu = () => {
+    setMenuAberto(!menuAberto);
+  };
 
   const handleImageChange = ({ target: { files } }) => {
     if (files && files[0]) {
@@ -36,7 +59,48 @@ export default function CriarOferta() {
   };
 
   return (
+   <>
+    <nav className={styles.navbar}>
+    <div className={styles.logoContainer}>
+      <img src={Logo} alt="Logo" className={styles.logo} />
+    </div>
+
+    <div className={styles.searchBar}>
+      <input type="text" placeholder="Pesquisar..." />
+      <button>
+        <FaSearch />
+      </button>
+    </div>
+
+    <div className={styles.navIcons}>
+      <GoHomeFill className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
+      <IoChatbox className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
+      <MdSupportAgent className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
+      <FaUser className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
+      <HiOutlineMenu onClick={toggleMenu} className={styles.menuIcon} />
+    </div>
+
+    {menuAberto && (
+      <div className={styles.menuMobile}>
+        <a href="#">Demandas</a>
+        <a href="#">Ofertas</a>
+        <a href="#">Minhas O/D</a>
+        <a href="#">config</a>
+        {isSmallScreen && (
+          <>
+            <a href="#">Início</a>
+            <a href="#">Chat</a>
+            <a href="#">Suporte</a>
+            <a href="#">Perfil</a>
+          </>
+        )}
+      </div>
+    )}
+
+  </nav>
     <div className={styles.container}>
+    
+
       <div className={styles.card}>
         <div className={styles.textcriar}>
           <h2>Criar oferta</h2>
@@ -103,5 +167,7 @@ export default function CriarOferta() {
         </form>
       </div>
     </div>
+    </>
+
   );
 }
