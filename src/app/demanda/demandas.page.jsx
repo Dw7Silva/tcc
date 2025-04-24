@@ -47,7 +47,7 @@ export default function Demandas() {
   }, []);
 
   return (
-  <>
+  <div className="all">
     <nav className={styles.navbar}>
     <div className={styles.logoContainer}>
       <img src={Logo} alt="Logo" className={styles.logo} />
@@ -84,7 +84,7 @@ export default function Demandas() {
     <div className={styles.container}>
 
 
-      <div className={styles.demandasContainer}>
+      <div >
         <div className={styles.header}>
           <h2>Demandas</h2>
           <div className={styles.filtro}>
@@ -124,6 +124,6 @@ export default function Demandas() {
       </div>
     </div>
 
-    </>
+    </div>
   );
 }

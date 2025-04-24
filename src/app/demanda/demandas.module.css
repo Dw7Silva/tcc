@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
-body {
-
-  margin: 0;
-  font-family: 'Comfortaa', sans-serif;
-  font-weight: 400;
-}
-
 .container {
   margin-top: 10vh;
    background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
@@ -16,7 +9,6 @@ body {
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
-  padding: 2%;
 }
 
 .navbar {
@@ -121,11 +113,7 @@ body {
   color: #5c3b28;
 }
       
-      .demandasContainer {
-        width: 95%;
-        max-width: 1600px;
-        margin-top: 5%;
-      }
+    
       
       .header {
         display: flex;
