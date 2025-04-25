@@ -1,256 +1,342 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
-.container {
-  margin-top: 10vh;
-   background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-}
+  .container {
+    margin-top: 10vh;
+    background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+  }
 
-.navbar {
-  background-color: rgb(187, 160, 144);
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  height: 10vh;
-  box-sizing: border-box;
-}
+  .navbar {
+    background-color: rgb(187, 160, 144);
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 10vh;
+    box-sizing: border-box;
+  }
 
-.logo {
-  min-height:20vh;
-  max-height: 10vh;
-}
+  .logo {
+    min-height:20vh;
+    max-height: 10vh;
+  }
 
-.searchBar {
-  display: flex;
-  align-items: center;
-  width: 40vw;
-  min-width: 200px;
-  height: 4vh;
-  background: white;
-  border-radius: 2vh;
-  padding: 0.2vw;
-  border: outset 0.4vh;
-  margin: 1vh;
-}
+  .searchBar {
+    display: flex;
+    align-items: center;
+    width: 40vw;
+    min-width: 200px;
+    height: 4vh;
+    background: white;
+    border-radius: 2vh;
+    padding: 0.2vw;
+    border: outset 0.4vh;
+    margin: 1vh;
+  }
 
-.searchBar input {
-  width: 80%;
-  border: none;
-  outline: none;
-  font-size: 1em;
-  border-radius: 2vh;
-  padding: 1vh;
-}
+  .searchBar input {
+    width: 80%;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    border-radius: 2vh;
+    padding: 1vh;
+  }
 
-.searchBar button {
-  width: 20%;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 1em;
-  color: #A87453;
-}
+  .searchBar button {
+    width: 20%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1em;
+    color: #A87453;
+  }
 
-.navIcons {
-  display: flex;
-  gap: 0.5vw;
-  font-size: 3vh;
-  color: #A87453;
-  padding: 1vh;
-}
+  .navIcons {
+    display: flex;
+    gap: 0.5vw;
+    font-size: 3vh;
+    color: #A87453;
+    padding: 1vh;
+  }
 
-.navIconHidden {
-  display: none;
-}
+  .navIconHidden {
+    display: none;
+  }
 
-.navIconVisible {
-  display: flex;
-}
+  .navIconVisible {
+    display: flex;
+  }
 
-.menuIcon {
-  cursor: pointer;
-  display: flex;
-  font-size: 4vh;
-  color: #A87453;
-}
+  .menuIcon {
+    cursor: pointer;
+    display: flex;
+    font-size: 4vh;
+    color: #A87453;
+  }
 
-.menuMobile {
-  position: absolute;
-  top: 10vh;
-  right: 2vw;
-  background-color: #fff;
-  border: 0.2vh solid #A87453;
-  border-radius: 1vh;
-  padding: 1vh;
-  display: flex;
-  flex-direction: column;
-  gap: 1vh;
-  z-index: 200;
-  width: 15vw;
-  box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
-  align-items: flex-start;
-}
+  .menuMobile {
+    position: absolute;
+    top: 10vh;
+    right: 2vw;
+    background-color: #fff;
+    border: 0.2vh solid #A87453;
+    border-radius: 1vh;
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    z-index: 200;
+    width: 15vw;
+    box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
+    align-items: flex-start;
+  }
 
-.menuMobile a {
-  color: #A87453;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 80%;
-}
+  .menuMobile a {
+    color: #A87453;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 80%;
+  }
 
-.menuMobile a:hover {
-  color: #5c3b28;
-}
+  .menuMobile a:hover {
+    color: #5c3b28;
+  }
+        
       
-    
+        
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+        
+        .filtro {
+          display: flex;
+          align-items: center;
+        }
+        
+        .filtro select {
+          margin-left: 10px;
+          padding: 8px;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+        }
+        
+        .scrollContainer {
+          width: 100%;
+          margin-top: 2vh;
+          display: flex;
+          align-items: center;
+          /* overflow: hidden; Remova ou comente esta linha para ver o efeito inicial */
+          position: relative; /* Necessário para posicionar as setas */
+          padding: 0 2vw; /* Adicione um padding horizontal para dar espaço aos botões */
+          box-sizing: border-box; /* Garante que o padding não afete a largura total */
+        }
+        
+        /* Estilos para os botões de seta para controlar o scroll horizontal */
+        .arrow {
+          background: transparent;
+          border: none;
+          font-size: 2em;
+          color: #000000;
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 1; /* Garante que a seta fique acima dos cards */
+        }
+        
+        /* Posiciona a seta da esquerda */
+        .arrow:first-child {
+          left: 0; /* Alinha a seta à esquerda do .scrollContainer */
+        }
+        
+        /* Posiciona a seta da direita */
+        .arrow:last-child {
+          right: 0; /* Alinha a seta à direita do .scrollContainer */
+        }
+        
+        /* Estilos para a grade de cards de demanda */
+        .demandasGrid {
       
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-      
-      .filtro {
-        display: flex;
-        align-items: center;
-      }
-      
-      .filtro select {
-        margin-left: 10px;
-        padding: 8px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-      }
-      
-      .scrollContainer {
-        min-width: 1;
-        max-width: 1800px;
-        margin-top: 2%;
-        display: flex;
-        align-items: center;
-        overflow: hidden;
-        position: relative;
-      }
-      
-      .demandasGrid {
-        max-width: 90vw;
-        width: 90vw;
-        display: flex;
-        transition: transform 0.3s ease;
-        overflow-x: auto;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        padding: 10px 0;
-        border-radius: 5%;
-      }
-      
-      .demandasGrid::-webkit-scrollbar {
-        display: none;
-      }
-      
-      .demandaCard {
-        width: 485px;
-        height: 90%;
-        margin: 0 10px; /* Adicione margem */
-        padding: 15px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        text-align: center;
-        flex: 0 0 auto;
-        background-color: #ffffff;
-      }
-      
-      .demandaCard img {
-        width: 300px;
-        height: 250px;
-        object-fit: cover;
-        border-radius: 5px;
-        margin-bottom: 10px;
-      }
-      
-      .demandaCard h3 {
-        margin-bottom: 5px;
-      }
-      
-      .demandaCard p {
-        margin-bottom: 10px;
-      }
-      
-      .demandaCard button {
-        padding: 8px 15px;
-        border: none;
-        border-radius: 5px;
-        background-color: #A87453;
-        color: white;
-        cursor: pointer;
-      }
-      
-      .arrow {
-        background: transparent;
-        border: none;
-        font-size: 2em;
-        color: #000000;
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1;
-      }
-      
-      .arrow:first-child {
-        left: 0;
-      }
-      
-      .arrow:last-child {
-        right: 0;
-      }
-      
-      .criarOferta {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        background-color: #A87453;
-        color: white;
-        cursor: pointer;
-        margin-top: 20px;
-        align-self: flex-end;
-      }
-      
-      @media (max-width: 600px) {
-        .navIcons > :not(:last-child) {
+          max-width: 90vw;
+          width: 90vw;
+          display: flex;
+          transition: transform 0.3s ease;
+          overflow-x: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          border-radius: 15px;
+          margin: 0 auto; /* Centraliza a grade dentro do .scrollContainer */
+        }
+        
+        .demandasGrid::-webkit-scrollbar {
           display: none;
         }
-      
-        .logoContainer {
-          width: 100%;
-          text-align: left;
-          padding: 10px;
+        
+        .demandaCard {
+          width:28vw;
+          height: 42vh;
+          margin: 0 5px; /* Adicione margem */
+          padding: 15px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          text-align: center;
+          flex: 0 0 auto;
+          background-color: #ffffff;
         }
-      
-        .searchBar {
-          width: 90%;
-          margin: 20px;
+        
+        .demandaCard img {
+          width: 15vw;
+          height: 25vh;
+          object-fit: cover;
+          border-radius: 5px;
+
         }
-      
-        .navIcons {
-          width: 100%;
-          justify-content: flex-end;
+        
+        .demandaCard h3 {
+          margin-bottom: 5px;
         }
-      
-        .navIcons > :last-child {
-          display: block;
-          position: static;
+        
+        .demandaCard p {
+          margin-bottom: 10px;
         }
-      }
+        
+        .demandaCard button {
+          padding: 8px 15px;
+          border: none;
+          border-radius: 5px;
+          background-color: #A87453;
+          color: white;
+          cursor: pointer;
+        }
+        
+        .arrow {
+          background: transparent;
+          border: none;
+          font-size: 2em;
+          color: #000000;
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 1;
+        }
+        
+        .arrow:first-child {
+          left: 0;
+        }
+        
+        .arrow:last-child {
+          right: 0;
+        }
+        
+        .criarOferta {
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          background-color: #A87453;
+          color: white;
+          cursor: pointer;
+          margin-top: 20px;
+          align-self: flex-end;
+        }
+        
+        @media (max-width: 800px) {
+          .navIcons > :not(:last-child) {
+            display: none;
+          }
+        
+          .logoContainer {
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+          }
+        
+          .searchBar {
+            width: 90%;
+            margin: 20px;
+          }
+        
+          .navIcons {
+            width: 100%;
+            justify-content: flex-end;
+          }
+        
+          .navIcons > :last-child {
+            display: block;
+            position: static;
+          }
+          .demandasGrid {
+      
+            max-width: 90vw;
+            width: 90vw;
+            display: flex;
+            transition: transform 0.3s ease;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            border-radius: 15px;
+            margin: 0 auto; /* Centraliza a grade dentro do .scrollContainer */
+          }
+          
+          .demandasGrid::-webkit-scrollbar {
+            display: none;
+          }
+          
+          .demandaCard {
+            width: 38vw;
+            height: 25vh;
+            margin: 0 5px; /* Adicione margem */
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            flex: 0 0 auto;
+            background-color: #ffffff;
+            margin: 0 1vw;
+          }
+          
+          .demandaCard img {
+            width: 24vw;
+            height: 12vh;
+            object-fit: cover;
+            border-radius: 5px;
+    
+          }
+
+          .demandaCard h3 {
+            font-size: small;
+          }
+          
+          .demandaCard p {
+            margin-bottom: 2px;
+            font-size: smaller;
+          }
+          .detalhes {
+            width: 34vw;
+            height: 3vh;
+            font-size: smaller;
+            padding: 0px;
+            margin: 0px;
+          }
+          .detalhes p {
+            
+            font-size: smaller;
+          
+          }
+          
+          
+        }

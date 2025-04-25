@@ -11,10 +11,10 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function Demandas() {
   const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
-  const cardWidth = 520; // 500 + 20 de margem
-  const containerRefs = [useRef(null), useRef(null), useRef(null)];
-  const [menuAberto, setMenuAberto] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const containerRefs = [useRef(null), useRef(null), useRef(null)]; // Referências para os containers de scroll
+  const [menuAberto, setMenuAberto] = useState(false); // Estado para controlar a abertura do menu mobile
+  const [isSmallScreen, setIsSmallScreen] = useState(false); // Estado para verificar se a tela é pequena
+  const [cardWidth, setCardWidth] = useState(0); // Estado para armazenar a largura dinâmica do card + margem
 
   const demandas = [
     { id: 1, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "50 saca", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
@@ -25,105 +25,125 @@ export default function Demandas() {
     { id: 6, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "60 saca", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
   ];
 
+  // Função para realizar o scroll horizontal dos cards
   const scroll = (rowIndex, direction) => {
     if (containerRefs[rowIndex].current) {
-      containerRefs[rowIndex].current.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
+      const container = containerRefs[rowIndex].current;
+      const currentScrollLeft = container.scrollLeft;
+      const newScrollLeft = currentScrollLeft + direction * cardWidth;
+
+      container.scrollTo({ left: Math.round(newScrollLeft), behavior: "smooth" });
     }
   };
-
+  // Função para alternar a visibilidade do menu mobile
   const toggleMenu = () => {
     setMenuAberto(!menuAberto);
   };
 
+  // Hook useEffect para verificar o tamanho da tela na montagem e em cada redimensionamento
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 600);
+      setIsSmallScreen(window.innerWidth <= 610);
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    handleResize(); // Chama a função na montagem para definir o estado inicial
+    window.addEventListener("resize", handleResize); // Adiciona um listener para o evento de redimensionamento
 
+    // Remove o listener quando o componente é desmontado para evitar vazamentos de memória
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Hook useEffect para calcular a largura do card + margem após a montagem
+  useEffect(() => {
+    if (demandas.length > 0 && containerRefs[0].current) {
+      const firstCard = containerRefs[0].current.querySelector(`.${styles.demandaCard}`);
+      if (firstCard) {
+        const cardOuterWidth = firstCard.offsetWidth; // Largura total do elemento (incluindo padding e borda)
+        const cardMarginRight = parseFloat(window.getComputedStyle(firstCard).marginRight) || 0; // Obtém a margem direita computada
+        setCardWidth(cardOuterWidth + cardMarginRight);
+      }
+    }
+  }, [demandas, containerRefs]);
   return (
-  <div className="all">
-    <nav className={styles.navbar}>
-    <div className={styles.logoContainer}>
-      <img src={Logo} alt="Logo" className={styles.logo} />
-    </div>
-    <div className={styles.searchBar}>
-      <input type="text" placeholder="Pesquise seu produto" />
-      <button><FaSearch /></button>
-    </div>
-    <div className={styles.navIcons}>
-      <GoHomeFill className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-      <IoChatbox className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-      <MdSupportAgent className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-      <FaUser className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-      <HiOutlineMenu onClick={toggleMenu} className={styles.menuIcon} />
-    </div>
-    {menuAberto && (
-      <div className={styles.menuMobile}>
-        <a href="#">Demandas</a>
-        <a href="#">Ofertas</a>
-        <a href="#">Minhas O/D</a>
-        <a href="#">config</a>
-        {isSmallScreen && (
-          <>
-            <a href="#">Início</a>
-            <a href="#">Chat</a>
-            <a href="#">Suporte</a>
-            <a href="#">Perfil</a>
-          </>
-        )}
-      </div>
-    )}
-  </nav>
-
-    <div className={styles.container}>
-
-
-      <div >
-        <div className={styles.header}>
-          <h2>Demandas</h2>
-          <div className={styles.filtro}>
-            <span>Filtro</span>
-            <select>
-              <option value="todos">Todos</option>
-              <option value="casca">Com Casca</option>
-              <option value="pele">Com Pele</option>
-              <option value="sempele">Sem Pele</option>
-            </select>
-          </div>
+    <div className="all">
+      <nav className={styles.navbar}>
+        <div className={styles.logoContainer}>
+          <img src={Logo} alt="Logo" className={styles.logo} />
         </div>
-
-        {containerRefs.map((ref, index) => (
-          <div key={index} className={styles.scrollContainer}>
-            <button className={styles.arrow} onClick={() => scroll(index, -1)}>
-              <IoIosArrowBack />
-            </button>
-            <div className={styles.demandasGrid} ref={ref}>
-              {demandas.map((demanda) => (
-                <div key={demanda.id} className={styles.demandaCard}>
-                  <p>{demanda.nome_empresa}</p>
-                  <img src={demanda.imagem} alt={demanda.tipo} />
-                  <h3>{demanda.tipo}</h3>
-                  <p>{demanda.quantidade}</p>
-                  <button>Ver detalhes do pedido</button>
-                </div>
-              ))}
-            </div>
-            <button className={styles.arrow} onClick={() => scroll(index, 1)}>
-              <IoIosArrowForward />
-            </button>
+        <div className={styles.searchBar}>
+          <input type="text" placeholder="Pesquise seu produto" />
+          <button><FaSearch /></button>
+        </div>
+        <div className={styles.navIcons}>
+          <GoHomeFill className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
+          <IoChatbox className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
+          <MdSupportAgent className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
+          <FaUser className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
+          <HiOutlineMenu onClick={toggleMenu} className={styles.menuIcon} />
+        </div>
+        {menuAberto && (
+          <div className={styles.menuMobile}>
+            <a href="#">Demandas</a>
+            <a href="#">Ofertas</a>
+            <a href="#">Minhas O/D</a>
+            <a href="#">config</a>
+            {isSmallScreen && (
+              <>
+                <a href="#">Início</a>
+                <a href="#">Chat</a>
+                <a href="#">Suporte</a>
+                <a href="#">Perfil</a>
+              </>
+            )}
           </div>
-        ))}
+        )}
+      </nav>
 
-        <button className={styles.criarOferta}>Criar Demanda</button>
+      <div className={styles.container}>
+        <div>
+          <div className={styles.header}>
+            <h2>Demandas</h2>
+            <div className={styles.filtro}>
+              <span>Filtro</span>
+              <select>
+                <option value="todos">Todos</option>
+                <option value="casca">Com Casca</option>
+                <option value="pele">Com Pele</option>
+                <option value="sempele">Sem Pele</option>
+              </select>
+            </div>
+          </div>
+
+          {containerRefs.map((ref, index) => (
+            <div key={index} className={styles.scrollContainer}>
+              {/* Botão da seta para scrollar para a esquerda */}
+              <button className={styles.arrow} onClick={() => scroll(index, -1)}>
+                <IoIosArrowBack />
+              </button>
+              {/* Container que envolve os cards de demanda e permite o scroll horizontal */}
+              <div className={styles.demandasGrid} ref={ref}>
+                {demandas.map((demanda) => (
+                  <div key={demanda.id} className={styles.demandaCard}>
+                    <p className={styles.empresa}>{demanda.nome_empresa}</p>
+                    <img src={demanda.imagem} alt={demanda.tipo} />
+                    <h3>{demanda.tipo}</h3>
+                    <p className={styles.quantidadep} >{demanda.quantidade}</p>
+                    <button className={styles.detalhes}> 
+                      Ver detalhes do pedido 
+                      </button>
+                  </div>
+                ))}
+              </div>
+              {/* Botão da seta para scrollar para a direita */}
+              <button className={styles.arrow} onClick={() => scroll(index, 1)}>
+                <IoIosArrowForward />
+              </button>
+            </div>
+          ))}
+
+          <button className={styles.criarOferta}>Criar Demanda</button>
+        </div>
       </div>
-    </div>
-
     </div>
   );
 }
