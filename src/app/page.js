@@ -15,7 +15,7 @@ export default function dev() {
 
   return (
 
-    <Demandas></Demandas>
+    <Proposta></Proposta>
 
 
   );
