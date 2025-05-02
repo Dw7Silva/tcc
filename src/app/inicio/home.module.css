@@ -1,232 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
-  @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+:root {
+  --cor-primaria: #A87453;
+  --cor-secundaria: #5c3b28;
+  --cor-fundo: rgba(157, 96, 53, 0.72);
+  --cor-navbar: rgb(187, 160, 144);
+  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
+  --altura-navbar: clamp(60px, 10vh, 80px);
+  --altura-logo: clamp(40px, 8vh, 60px);
+  --padding-lateral: clamp(10px, 2vw, 20px);
+}
 
 body {
   margin: 0;
   font-family: 'Comfortaa', sans-serif;
+  font-size: var(--tamanho-fonte-base);
+  min-height: 100vh;
 }
 
-
 .container {
-  background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
-  overflow-x: hidden;
+  background-color: var(--cor-fundo);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 0 2vw; /* Use vw para padding horizontal */
-  margin-top: 10vh; /* compensação da navbar fixa */
+  padding: 0 var(--padding-lateral);
+  margin-top: var(--altura-navbar);
+  min-height: calc(100vh - var(--altura-navbar));
 }
 
 .navbar {
-  background-color: rgb(187, 160, 144); 
-  ;/* Cor de fundo */
-  width: 100vw; /* Use vw para ocupar toda a largura */
+  background-color: var(--cor-navbar);
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2vw; /* Use vw para padding horizontal */
+  padding: 0 var(--padding-lateral);
   position: fixed;
   top: 0;
-  left: 0;
+  height: var(--altura-navbar);
   z-index: 100;
-  height: 10vh; /* Já está em vh! */
-  box-sizing: border-box;
 }
-
-
 
 .logo {
-  min-height:20vh;
-  max-height: 10vh;
+  height: 125px;
+  width: 100px;
 }
+
 .searchBar {
   display: flex;
   align-items: center;
-  width: 40vw; /* Use vw para largura */
-  min-width: 200px; /* Mantenha um mínimo em pixels */
-  height: 4vh; /* Use vh para altura */
+  width: min(40vw, 600px);
+  height: 5vh min(100vh, 15vh);
   background: white;
-  border-radius: 2vh; /* Use vh para borda arredondada */
-  padding: 0.2vw; /* Use vw para padding */
-  border: outset 0.4vh; /* Use vh para largura da borda */
-  margin: 1vh; /* Use vh para margem */
+  border-radius: 20px;
+  padding: 0.4rem 0.6rem;
+  border: 2px solid var(--cor-primaria);
+  margin: 0 1rem;
 }
 
 .searchBar input {
-  width: 80%; /* Ajuste a largura interna */
+  width: 75%;
   border: none;
   outline: none;
   font-size: 1em;
-  border-radius: 2vh; /* Use vh para borda arredondada */
-  padding: 1vh; /* Use vh para padding */
+  padding: 0.5rem;
+  border-radius: 50px;
+  background: transparent;
+  min-width: 100px;
 }
 
 .searchBar button {
-  width: 20%; /* Ajuste a largura interna */
+  width: 25%;
   border: none;
-  background: transparent;
-  cursor: pointer;
+  color : rgba(157, 96, 53, 0.72);
   font-size: 1em;
-  color: #A87453;
+  padding: 0.2rem 0.2rem;
+  border-radius: 15px;
+  cursor: pointer;
+  min-width: 30px;
+}
+
+.searchBar button:hover {
+  background-color: var(--cor-secundaria);
 }
 
 .navIcons {
   display: flex;
-  gap: 0.5vw; /* Use vw para espaçamento */
-  font-size: 3vh; /* Use vh para tamanho dos ícones */
-  color: #A87453;
-  padding: 1vh; /* Use vh para padding */
+  gap: 0.5vw;
+  font-size: clamp(24px, 2.5vw, 30px);
+  color: var(--cor-primaria);
+  margin-right: 25px;
 }
 
-.navIconHidden {
-  display: none;
-}
-
-.navIconVisible {
+.navIcons > * {
   display: flex;
 }
 
-.menuIcon {
-  cursor: pointer;
-  display: flex; /* Always show the menu icon */
-  font-size: 4vh;
-  color: #A87453;
-}
-
-/* Menu mobile */
 .menuMobile {
   position: absolute;
-  top: 10vh;
-  right: 2vw;
+  top: 100%;
+  right: 2%;
   background-color: #fff;
-  border: 0.2vh solid #A87453;
-  border-radius: 1vh;
-  padding: 1vh;
+  border: 2px solid var(--cor-primaria);
+  border-radius: 8px;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1vh;
-  z-index: 200;
-  width: 10vw;
-  box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
-  align-items:self-start;
+  gap: 0.5rem;
+  min-width: 150px;
 }
 
 .menuMobile a {
-  color: #A87453;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 80%;
-  padding: 0px;
-
-  
-}
-
-.menuMobile a:hover {
-  color: #5c3b28;
-}
-
-.destaquescontainer {
-  width: 96vw; /* Use vw para largura */
-  display: flex;
-  justify-content: flex-start;
-}
-
-.produtoscontainer {
-  width: 96vw; /* Use vw para largura */
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 2vw; /* Use vw para padding */
-  margin-top: 3vh; /* Use vh para margem */
-}
-
-.textdestaques,
-.textprodutos {
-  font-size: 3vh; /* Use vh para tamanho da fonte */
+  color: var(--cor-primaria);
   font-weight: 600;
 }
 
-.carouselContainer {
-  width: 96vw; /* Use vw para largura */
-  display: flex;
-  justify-content: center;
-  /* Use vh para padding vertical */
+@media (hover: hover) {
+  .menuMobile a:hover {
+    color: var(--cor-secundaria);
+  }
+}
+
+/* Componentes de conteúdo */
+.destaquescontainer, .produtoscontainer {
+  width: 100%;
+  padding: 1rem 0;
+  margin-left: 10vw;
 }
 
 .produtosGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr)); /* Use vw para largura mínima das colunas */
-  gap: 2vh; /* Use vh para espaçamento */
-  flex-wrap: wrap;
-  padding: 2vw; /* Use vw para padding */
-  max-width: 96vw; /* Use vw para largura máxima */
-  text-align: center;
-  margin-top: 2vh; /* Use vh para margem */
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  padding: 1rem;
 }
 
 .produtoItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
 }
 
 .produtoImg {
-  width: 10vw; /* Use vw para largura */
-  height: 10vw; /* Use vw para altura (manter quadrado) */
-  border-radius: 10vw; /* Use vw para borda arredondada */
+  width: min(150px, 20vw);
+  height: min(150px, 20vw);
+  border-radius: 50%;
   object-fit: cover;
-  border: 0.4vh solid #ffffff; /* Use vh para largura da borda */
-}
-
-.produtoTitulo {
-  font-size: 2.5vh; /* Use vh para tamanho da fonte */
-  font-weight: 600;
-  margin-top: 1vh; /* Use vh para margem */
-}
-
-/* Media query for smaller screens */
-@media (max-width: 600px) {
-    .navIcons > :not(:last-child) {
-        display: none;
-      }
-      
-      
-      .menuIcon {
-        display: block;
-        font-size: 4vh;
-      }
-    
-      .searchBar {
-        width: 90vw; /* Ocupa mais largura em telas pequenas */
-        margin: 2vh auto; /* Ajusta a margem */
-      }
-    
-      .carouselContainer {
-        margin-top: 10vh; /* Reduzi bastante a margem superior em telas pequenas */
-      }
-    
-      .produtosGrid {
-        grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr)); /* Colunas maiores em telas pequenas */
-        gap: 3vh; /* Aumenta o espaçamento */
-      }
-    
-      .produtoImg {
-        width: 30vw; /* Imagens maiores em telas pequenas */
-        height: 30vw;
-        border-radius: 15vw;
-      }
-    
-      .produtoTitulo {
-        font-size: 3vh; /* Fonte maior em telas pequenas */
-      }
-
-      .menuMobile a {
-        color: #A87453;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 60%;
-        padding: 2%;
-        
-      }
+  border: 2px solid white;
 }
