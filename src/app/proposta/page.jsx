@@ -11,7 +11,39 @@ import { HiOutlineMenu } from "react-icons/hi";
 export default function Proposta() {
   // Estados do menu/navbar
   const [menuAberto, setMenuAberto] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const isSmallScreen = useMediaQuery("(max-width: 600px)");
+
+  // Hook personalizado para detectar tamanho de tela
+  function useMediaQuery(query) {
+    const [matches, setMatches] = useState(false);
+    
+    useEffect(() => {
+      const media = window.matchMedia(query);
+      if (media.matches !== matches) setMatches(media.matches);
+      
+      const listener = () => setMatches(media.matches);
+      media.addListener(listener);
+      
+      return () => media.removeListener(listener);
+    }, [matches, query]);
+    
+    return matches;
+  }
+
+  const toggleMenu = () => setMenuAberto(!menuAberto);
+
+  const menuItems = [
+    { label: "Demandas", href: "#" },
+    { label: "Ofertas", href: "#" },
+    { label: "Minhas O/D", href: "#" },
+    { label: "Config", href: "#" },
+    ...(isSmallScreen ? [
+      { label: "Início", href: "#" },
+      { label: "Chat", href: "#" },
+      { label: "Suporte", href: "#" },
+      { label: "Perfil", href: "#" }
+    ] : [])
+  ];
 
   // Estados do formulário
   const [proposta, setProposta] = useState({
@@ -27,14 +59,6 @@ export default function Proposta() {
     mensagem: ""
   });
 
-  // Efeito para responsividade
-  useEffect(() => {
-    const handleResize = () => setIsSmallScreen(window.innerWidth <= 600);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   // Função para enviar os dados
   const enviarProposta = async (dados) => {
     try {
@@ -42,7 +66,7 @@ export default function Proposta() {
       
       // Simulação de envio - substitua pela sua API real
       console.log("Dados enviados:", dados);
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Simula delay de rede
+      await new Promise(resolve => setTimeout(resolve, 1500));
       
       setStatusEnvio({
         enviando: false,
@@ -67,9 +91,6 @@ export default function Proposta() {
     }
   };
 
-  // Handlers
-  const toggleMenu = () => setMenuAberto(!menuAberto);
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProposta(prev => ({ ...prev, [name]: value }));
@@ -98,29 +119,29 @@ export default function Proposta() {
             <FaSearch />
           </button>
         </div>
-
+      
         <div className={styles.navIcons}>
-          <GoHomeFill className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-          <IoChatbox className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-          <MdSupportAgent className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-          <FaUser className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-          <HiOutlineMenu onClick={toggleMenu} className={styles.menuIcon} />
+          {!isSmallScreen && (
+            <>
+              <GoHomeFill />
+              <IoChatbox />
+              <MdSupportAgent />
+              <FaUser />
+            </>
+          )}
+          <HiOutlineMenu 
+            onClick={toggleMenu} 
+            className={styles.menuIcon} 
+          />
         </div>
 
         {menuAberto && (
           <div className={styles.menuMobile}>
-            <a href="#">Demandas</a>
-            <a href="#">Ofertas</a>
-            <a href="#">Minhas O/D</a>
-            <a href="#">Config</a>
-            {isSmallScreen && (
-              <>
-                <a href="#">Início</a>
-                <a href="#">Chat</a>
-                <a href="#">Suporte</a>
-                <a href="#">Perfil</a>
-              </>
-            )}
+            {menuItems.map((item, index) => (
+              <a key={index} href={item.href} onClick={toggleMenu}>
+                {item.label}
+              </a>
+            ))}
           </div>
         )}
       </nav>
@@ -151,7 +172,7 @@ export default function Proposta() {
           </div>
           
           <div className={styles.infoGroup}>
-            <label>Contato</label>
+            <label>Espécie Amendoim</label>
             <p className={styles.infoValue}>(31) 99999-9999</p>
           </div>
           
