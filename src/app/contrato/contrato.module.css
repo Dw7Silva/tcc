@@ -1,0 +1,207 @@
+/* Container principal do chat */
+.chatContainer {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  background-color: #d9b08c;
+  font-family: 'Comfortaa', sans-serif;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 100%;
+  max-width: 250px;
+  background: #fff;
+  border-right: 2px solid #ccc;
+  padding: 1rem;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 1.2em;
+  color: #5c3b28;
+}
+
+.conversaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 0;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.conversaItem:hover {
+  background-color: #f0f0f0;
+}
+
+.ativo {
+  background-color: #e0e0e0;
+}
+
+/* Área de mensagens */
+.mensagemArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #d1d1d1;
+  border-radius: 0 0 10px 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Cabeçalho das mensagens */
+.mensagemHeader {
+  background: #fff;
+  padding: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.userIcon {
+  font-size: 2em;
+}
+
+/* Corpo das mensagens */
+.mensagemCorpo {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Mensagem */
+.mensagem {
+  max-width: 60%;
+  padding: 0.6rem 1rem;
+  background: #fff;
+  border-radius: 15px;
+  font-size: 0.95em;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.esquerda {
+  align-self: flex-start;
+}
+
+.direita {
+  align-self: flex-end;
+  background: #f5f5f5;
+}
+
+/* Input de mensagem */
+.mensagemInput {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  background: #fff;
+  border-top: 2px solid #ccc;
+  gap: 1rem;
+  position: relative;
+  flex-wrap: nowrap; /* Impede que os itens se empurrem */
+}
+
+.mensagemInput input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  min-width: 100px;
+}
+
+.iconesInput {
+  display: flex;
+  gap: 0.8rem;
+  font-size: 1.2em;
+  color: #5c3b28;
+}
+
+.enviarBtn {
+  background-color: #5c3b28;
+  border: none;
+  border-radius: 50%;
+  padding: 0.6rem;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: background-color 0.3s;
+  margin-left: auto; /* Faz com que o botão de envio fique no final */
+}
+
+.enviarBtn:hover {
+  background-color: #4a2b1f;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .chatContainer {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    border-bottom: 1px solid #ccc;
+    padding: 0.5rem;
+  }
+
+  .sidebar h2 {
+    display: none;
+  }
+
+  .conversaItem {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 100px;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+  }
+
+  .conversaItem div {
+    display: block;
+    text-align: center;
+    font-size: 0.85em;
+    margin-top: 0.3rem;
+  }
+
+  .userIcon {
+    font-size: 1.6em;
+  }
+
+  .mensagemInput {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .mensagemInput input {
+    flex: 1 1 100%;
+  }
+
+  .iconesInput, .enviarBtn {
+    flex-shrink: 0;
+  }
+
+  .enviarBtn {
+    position: absolute;
+    right: 10px;
+  }
+}

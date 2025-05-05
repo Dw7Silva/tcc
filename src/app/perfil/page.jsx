@@ -9,9 +9,7 @@ import { HiOutlineMenu } from "react-icons/hi"; // Importa o ícone de menu de c
 import { useState, useEffect, useRef } from "react"; // Importa hooks do React: useState (para gerenciar estados), useEffect (para efeitos colaterais), useRef (para referências a elementos)
 
 export default function Perfil() {
-  const fotoPerfil = "https://i.ibb.co/zHcKbby/perfil-usuario.png";
-  const [menuAberto, setMenuAberto] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const fotoPerfil = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
   const [selectedImage, setSelectedImage] = useState(null);
   const imageInputRef = useRef(null);
   const [cpfCnpj, setCpfCnpj] = useState('');
@@ -20,6 +18,42 @@ export default function Perfil() {
   const [estado, setEstado] = useState('');
   const [cepError, setCepError] = useState('');
   const [hasCepError, setHasCepError] = useState(false);
+
+  const [menuAberto, setMenuAberto] = useState(false);
+  const isSmallScreen = useMediaQuery("(max-width: 600px)");
+
+  // Hook personalizado para detectar tamanho de tela
+  function useMediaQuery(query) {
+    const [matches, setMatches] = useState(false);
+    
+    useEffect(() => {
+      const media = window.matchMedia(query);
+      if (media.matches !== matches) setMatches(media.matches);
+      
+      const listener = () => setMatches(media.matches);
+      media.addListener(listener);
+      
+      return () => media.removeListener(listener);
+    }, [matches, query]);
+    
+    return matches;
+  }
+
+  const toggleMenu = () => setMenuAberto(!menuAberto);
+
+  const menuItems = [
+    { label: "Demandas", href: "#" },
+    { label: "Ofertas", href: "#" },
+    { label: "Minhas O/D", href: "#" },
+    { label: "Config", href: "#" },
+    ...(isSmallScreen ? [
+      { label: "Início", href: "#" },
+      { label: "Chat", href: "#" },
+      { label: "Suporte", href: "#" },
+      { label: "Perfil", href: "#" }
+    ] : [])
+  ];
+
 
   const formatCpfCnpj = (value) => { /* Formata CPF/CNPJ */
     const formattedValue = value.replace(/\D/g, '');
@@ -47,14 +81,7 @@ export default function Perfil() {
     if (hasCepError) { setCep(''); setCepError(''); setHasCepError(false); }
   };
 
-  useEffect(() => { /* Verifica tamanho da tela para responsividade */
-    const handleResize = () => setIsSmallScreen(window.innerWidth <= 600);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const toggleMenu = () => setMenuAberto(!menuAberto); /* Alterna a visibilidade do menu mobile */
+ 
   const editar_foto_perfil = () => imageInputRef.current.click(); /* Aciona clique no input de arquivo da foto de perfil */
   const mudar_foto_perfil = (event) => { /* Atualiza a imagem de perfil selecionada */
     if (event.target.files && event.target.files[0]) setSelectedImage(URL.createObjectURL(event.target.files[0]));
@@ -65,44 +92,43 @@ export default function Perfil() {
   return (
     <>
     <div className="tudo">
-      <nav className={styles.navbar}>
-        <div className={styles.logoContainer}>
-          <img src={Logo} alt="Logo" className={styles.logo} />
-        </div>
+    <nav className={styles.navbar}>
+          <div className={styles.logoContainer}>
+            <img src={Logo} alt="Logo" className={styles.logo} />
+          </div>
 
-        <div className={styles.searchBar}>
-          <input type="text" placeholder="Pesquisar..." />
-          <button>
-            <FaSearch />
-          </button>
-        </div>
-
-        <div className={styles.navIcons}>
-        <GoHomeFill className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-        <IoChatbox className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-        <MdSupportAgent className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-        <FaUser className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-        <HiOutlineMenu onClick={toggleMenu} className={styles.menuIcon} />
-        </div>
-
-        {menuAberto && (
-          <div className={styles.menuMobile}>
-            <a href="#">Demandas</a>
-            <a href="#">Ofertas</a>
-            <a href="#">Minhas O/D</a>
-            <a href="#">config</a>
-            {isSmallScreen && (
+          <div className={styles.searchBar}>
+            <input type="text" placeholder="Pesquisar..." />
+            <button>
+              <FaSearch />
+            </button>
+          </div>
+        
+          <div className={styles.navIcons}>
+            {!isSmallScreen && (
               <>
-                <a href="#">Início</a>
-                <a href="#">Chat</a>
-                <a href="#">Suporte</a>
-                <a href="#">Perfil</a>
+                <GoHomeFill />
+                <IoChatbox />
+                <MdSupportAgent />
+                <FaUser />
               </>
             )}
+            <HiOutlineMenu 
+              onClick={toggleMenu} 
+              className={styles.menuIcon} 
+            />
           </div>
-        )}
 
-      </nav>
+          {menuAberto && (
+            <div className={styles.menuMobile}>
+              {menuItems.map((item, index) => (
+                <a key={index} href={item.href} onClick={toggleMenu}>
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </nav>
       </div>
       <div className={styles.container}>
       <div className={styles.profileCard}>

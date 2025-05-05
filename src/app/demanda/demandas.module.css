@@ -1,118 +1,128 @@
-  @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
-  .container {
-    margin-top: 10vh;
-    background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-  }
+:root {
+  --cor-primaria: #A87453;
+  --cor-secundaria: #5c3b28;
+  --cor-fundo: rgba(157, 96, 53, 0.72);
+  --cor-navbar: rgb(187, 160, 144);
+  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
+  --altura-navbar: clamp(60px, 10vh, 80px);
+  --altura-logo: clamp(40px, 8vh, 60px);
+  --padding-lateral: clamp(10px, 2vw, 20px);
+}
 
-  .navbar {
-    background-color: rgb(187, 160, 144);
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    height: 10vh;
-    box-sizing: border-box;
-  }
+body {
+  margin: 0;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: var(--tamanho-fonte-base);
+  min-height: 100vh;
+}
 
-  .logo {
-    min-height:20vh;
-    max-height: 10vh;
-  }
+.container {
+  background-color: var(--cor-fundo);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 var(--padding-lateral);
+  margin-top: var(--altura-navbar);
+  min-height: calc(100vh - var(--altura-navbar));
+}
 
-  .searchBar {
-    display: flex;
-    align-items: center;
-    width: 40vw;
-    min-width: 200px;
-    height: 4vh;
-    background: white;
-    border-radius: 2vh;
-    padding: 0.2vw;
-    border: outset 0.4vh;
-    margin: 1vh;
-  }
+.navbar {
+  background-color: var(--cor-navbar);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--padding-lateral);
+  position: fixed;
+  top: 0;
+  height: var(--altura-navbar);
+  z-index: 100;
+}
 
-  .searchBar input {
-    width: 80%;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    border-radius: 2vh;
-    padding: 1vh;
-  }
+.logo {
+  height: 125px;
+  width: 100px;
+}
 
-  .searchBar button {
-    width: 20%;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 1em;
-    color: #A87453;
-  }
+.searchBar {
+  display: flex;
+  align-items: center;
+  width: min(40vw, 600px);
+  height: 5vh min(100vh, 15vh);
+  background: white;
+  border-radius: 20px;
+  padding: 0.4rem 0.6rem;
+  border: 2px solid var(--cor-primaria);
+  margin: 0 1rem;
+}
 
-  .navIcons {
-    display: flex;
-    gap: 0.5vw;
-    font-size: 3vh;
-    color: #A87453;
-    padding: 1vh;
-  }
+.searchBar input {
+  width: 75%;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0.5rem;
+  border-radius: 50px;
+  background: transparent;
+  min-width: 100px;
+}
 
-  .navIconHidden {
-    display: none;
-  }
+.searchBar button {
+  width: 25%;
+  border: none;
+  color : rgba(157, 96, 53, 0.72);
+  font-size: 1em;
+  padding: 0.2rem 0.2rem;
+  border-radius: 15px;
+  cursor: pointer;
+  min-width: 30px;
+}
 
-  .navIconVisible {
-    display: flex;
-  }
+.searchBar button:hover {
+  transform: scale(1.1);
+  
+}
 
-  .menuIcon {
-    cursor: pointer;
-    display: flex;
-    font-size: 4vh;
-    color: #A87453;
-  }
+.navIcons {
+  display: flex;
+  gap: 0.5vw;
+  font-size: clamp(24px, 2.5vw, 30px);
+  color: var(--cor-primaria);
+  margin-right: 25px;
+}
 
-  .menuMobile {
-    position: absolute;
-    top: 10vh;
-    right: 2vw;
-    background-color: #fff;
-    border: 0.2vh solid #A87453;
-    border-radius: 1vh;
-    padding: 1vh;
-    display: flex;
-    flex-direction: column;
-    gap: 1vh;
-    z-index: 200;
-    width: 15vw;
-    box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
-    align-items: flex-start;
-  }
+.navIcons > * {
+  display: flex;
+}
 
-  .menuMobile a {
-    color: #A87453;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 80%;
-  }
+.menuMobile {
+  position: absolute;
+  top: 100%;
+  right: 2%;
+  background-color: #fff;
+  border: 2px solid var(--cor-primaria);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 150px;
+}
 
+.menuMobile a {
+  text-decoration: none;
+  color: var(--cor-primaria);
+  font-weight: 600;
+}
+
+@media (hover: hover) {
   .menuMobile a:hover {
-    color: #5c3b28;
+    color: var(--cor-secundaria);
   }
-        
+}
+
       
         
         .header {
