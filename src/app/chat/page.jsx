@@ -64,10 +64,6 @@ export default function Chat() {
     novasMensagensPorConversa[conversaAtiva] = novasMensagens;
 
     setMensagensPorConversa(novasMensagensPorConversa);
-
-    // Atualiza a última mensagem da conversa ativa
-    const novasConversas = [...conversas];
-    novasConversas[conversaAtiva].msg = novaMensagem;
     setNovaMensagem(""); // Limpa o campo de entrada
   };
 
@@ -81,10 +77,10 @@ export default function Chat() {
       <aside className={styles.sidebar}>
         <h2>Conversas</h2>
         {conversas.map((conversa, index) => (
-          <div
-            key={index}
-            className={`${styles.conversaItem} ${conversaAtiva === index ? styles.ativo : ''}`}
-            onClick={() => alternarConversa(index)}
+          <div 
+            key={index} 
+            className={`${styles.conversaItem} ${conversaAtiva === index ? styles.ativo : ''}`} 
+            onClick={() => alternarConversa(index)} // Alterna a conversa ao clicar
           >
             <FaUser />
             <div>
@@ -98,7 +94,7 @@ export default function Chat() {
       <main className={styles.mensagemArea}>
         <header className={styles.mensagemHeader}>
           <FaUser className={styles.userIcon} />
-          <span>{conversas[conversaAtiva].nome}</span>
+          <span>{conversas[conversaAtiva].nome}</span> {/* Exibe o nome do contato ativo */}
         </header>
 
         <div className={styles.mensagemCorpo}>
@@ -118,15 +114,12 @@ export default function Chat() {
             <FaFileAlt />
           </div>
           <form onSubmit={enviarMensagem}>
-            <input
-              type="text"
-              placeholder="Digite sua mensagem aqui"
+            <input 
+              type="text" 
+              placeholder="Digite sua mensagem aqui" 
               value={novaMensagem}
-              onChange={(e) => setNovaMensagem(e.target.value)}
+              onChange={(e) => setNovaMensagem(e.target.value)} // Atualiza o estado da nova mensagem
             />
-            <button type="submit" className={styles.enviarBtn}>
-              &#10148;
-            </button>
           </form>
         </footer>
       </main>
