@@ -5,6 +5,7 @@ import CriarOferta from "./oferta/page";
 import Perfil from "./perfil/page";
 import Demandas from "./demanda/demandas.page";
 import Contrato from "./contrato/page";
+import BarraNvg from "@/components/navbar/navbar";
 
 export default function dev() {
 
@@ -16,7 +17,7 @@ export default function dev() {
 
   return (
 
-    <Contrato></Contrato>
+    <barra_nvg></barra_nvg>
 
 
   );
