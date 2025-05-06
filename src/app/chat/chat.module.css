@@ -1,18 +1,20 @@
-/* Container principal do chat */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Comfortaa', sans-serif;
+}
+
 .chatContainer {
   display: flex;
   height: 100vh;
-  flex-direction: row;
   background-color: #d9b08c;
-  font-family: 'Comfortaa', sans-serif;
   overflow: hidden;
 }
 
-
 /* Sidebar */
 .sidebar {
-  width: 100%;
-  max-width: 250px;
+  width: 250px;
   background: #fff;
   border-right: 2px solid #ccc;
   padding: 1rem;
@@ -28,8 +30,7 @@
 
 .conversaItem {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
   border-bottom: 1px solid #ccc;
   padding: 0.5rem 0;
   font-size: 0.9em;
@@ -45,19 +46,17 @@
   background-color: #e0e0e0;
 }
 
-/* Área de mensagens */
+/* Área principal do chat */
 .mensagemArea {
   flex: 1;
   display: flex;
   flex-direction: column;
   background: #d1d1d1;
-  border-radius: 0 0 10px 10px;
-  padding: 1rem;
+  height: 100vh;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
-/* Cabeçalho das mensagens */
+/* Cabeçalho */
 .mensagemHeader {
   background: #fff;
   padding: 1rem;
@@ -68,11 +67,7 @@
   border-bottom: 1px solid #ccc;
 }
 
-.userIcon {
-  font-size: 2em;
-}
-
-/* Corpo das mensagens */
+/* Corpo da mensagem */
 .mensagemCorpo {
   flex: 1;
   padding: 1rem;
@@ -82,7 +77,7 @@
   gap: 0.5rem;
 }
 
-/* Mensagem */
+/* Balões de mensagem */
 .mensagem {
   max-width: 60%;
   padding: 0.6rem 1rem;
@@ -102,16 +97,15 @@
   background: #f5f5f5;
 }
 
-/* Input de mensagem */
+/* Campo de digitação */
 .mensagemInput {
   display: flex;
   align-items: center;
-  padding: 0.8rem;
   background: #fff;
   border-top: 2px solid #ccc;
-  gap: 1rem;
-  position: relative;
-  flex-wrap: nowrap; /* Impede que os itens se empurrem */
+  padding: 0.6rem 1rem;
+  box-sizing: border-box;
+  gap: 0.5rem;
 }
 
 .mensagemInput input {
@@ -124,13 +118,7 @@
   min-width: 100px;
 }
 
-.iconesInput {
-  display: flex;
-  gap: 0.8rem;
-  font-size: 1.2em;
-  color: #5c3b28;
-}
-
+/* Botão de enviar - AGORA SEM margin-left: auto */
 .enviarBtn {
   background-color: #5c3b28;
   border: none;
@@ -140,69 +128,35 @@
   cursor: pointer;
   font-size: 1.2em;
   transition: background-color 0.3s;
-  margin-left: auto; /* Faz com que o botão de envio fique no final */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Removido margin-left: auto */
 }
 
-.enviarBtn:hover {
-  background-color: #4a2b1f;
-}
-
-/* Responsividade */
+/* Versão Mobile */
 @media (max-width: 768px) {
-  .chatContainer {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow-x: auto;
-    border-bottom: 1px solid #ccc;
-    padding: 0.5rem;
-  }
-
-  .sidebar h2 {
-    display: none;
-  }
-
-  .conversaItem {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    min-width: 100px;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 8px;
-    background-color: transparent;
-  }
-
-  .conversaItem div {
-    display: block;
-    text-align: center;
-    font-size: 0.85em;
-    margin-top: 0.3rem;
-  }
-
-  .userIcon {
-    font-size: 1.6em;
-  }
-
   .mensagemInput {
-    flex-wrap: wrap;
+    display: flex;
+    padding: 0.6rem;
     gap: 0.5rem;
+    background: #fff;
+    border-top: 2px solid #ccc;
+    align-items: center;
   }
 
   .mensagemInput input {
-    flex: 1 1 100%;
+    flex: 1;
+    margin-right: 0;
   }
 
-  .iconesInput, .enviarBtn {
-    flex-shrink: 0;
+  /* Remove todas as ordens (order) desnecessárias */
+  .iconesInput {
+    order: unset;
   }
 
   .enviarBtn {
-    position: absolute;
-    right: 10px;
+    order: unset;
+    margin-left: 0; /* Garante que fique ao lado do input */
   }
 }

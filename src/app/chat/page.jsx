@@ -64,6 +64,10 @@ export default function Chat() {
     novasMensagensPorConversa[conversaAtiva] = novasMensagens;
 
     setMensagensPorConversa(novasMensagensPorConversa);
+
+    // Atualiza a última mensagem da conversa ativa
+    const novasConversas = [...conversas];
+    novasConversas[conversaAtiva].msg = novaMensagem;
     setNovaMensagem(""); // Limpa o campo de entrada
   };
 
@@ -80,7 +84,7 @@ export default function Chat() {
           <div 
             key={index} 
             className={`${styles.conversaItem} ${conversaAtiva === index ? styles.ativo : ''}`} 
-            onClick={() => alternarConversa(index)} // Alterna a conversa ao clicar
+            onClick={() => alternarConversa(index)} 
           >
             <FaUser />
             <div>
@@ -94,7 +98,7 @@ export default function Chat() {
       <main className={styles.mensagemArea}>
         <header className={styles.mensagemHeader}>
           <FaUser className={styles.userIcon} />
-          <span>{conversas[conversaAtiva].nome}</span> {/* Exibe o nome do contato ativo */}
+          <span>{conversas[conversaAtiva].nome}</span> 
         </header>
 
         <div className={styles.mensagemCorpo}>
@@ -118,8 +122,11 @@ export default function Chat() {
               type="text" 
               placeholder="Digite sua mensagem aqui" 
               value={novaMensagem}
-              onChange={(e) => setNovaMensagem(e.target.value)} // Atualiza o estado da nova mensagem
+              onChange={(e) => setNovaMensagem(e.target.value)} 
             />
+            <button type="submit" className={styles.enviarBtn}>
+              &#10148; 
+            </button>
           </form>
         </footer>
       </main>

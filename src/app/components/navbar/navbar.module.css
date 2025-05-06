@@ -1,0 +1,12 @@
+.navbar {
+    background-color: var(--cor-navbar);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--padding-lateral);
+    position: fixed;
+    top: 0;
+    height: var(--altura-navbar);
+    z-index: 100;
+  }
