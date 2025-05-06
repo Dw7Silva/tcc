@@ -1,10 +1,10 @@
 "use client";
-import styles from "./chat.module.css";
+import styles from "./contrato.module.css";
 import { FaUser } from "react-icons/fa";
 import { FaImage, FaFileAlt } from "react-icons/fa";
 import { useState } from "react";
 
-export default function Chat() {
+export default function Contrato() {
   const [conversaAtiva, setConversaAtiva] = useState(0); // Índice da conversa ativa
   const [novaMensagem, setNovaMensagem] = useState("");
 

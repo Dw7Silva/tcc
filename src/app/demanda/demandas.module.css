@@ -78,8 +78,8 @@ body {
   border-radius: 15px;
   cursor: pointer;
   min-width: 30px;
+  background: transparent;
 }
-
 .searchBar button:hover {
   transform: scale(1.1);
   
