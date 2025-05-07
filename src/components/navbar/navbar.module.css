@@ -39,136 +39,87 @@ body {
   top: 0;
   height: var(--altura-navbar);
   z-index: 100;
-  box-sizing: border-box;
-}
-
-.logoContainer {
-  height: var(--altura-navbar);
-  display: flex;
-  align-items: center;
 }
 
 .logo {
-  height: var(--altura-logo);
-  width: auto;
-  object-fit: contain;
+  height: 125px;
+  width: 100px;
 }
 
 .searchBar {
   display: flex;
   align-items: center;
   width: min(40vw, 600px);
-  height: clamp(30px, 5vh, 50px);
+  height: 5vh min(100vh, 15vh);
   background: white;
   border-radius: 20px;
-  padding: 0 0.8rem;
+  padding: 0.4rem 0.6rem;
   border: 2px solid var(--cor-primaria);
   margin: 0 1rem;
-  flex-grow: 0.5;
 }
 
 .searchBar input {
-  width: 100%;
+  width: 75%;
   border: none;
   outline: none;
   font-size: 1em;
   padding: 0.5rem;
+  border-radius: 50px;
   background: transparent;
-  font-family: 'Comfortaa', sans-serif;
+  min-width: 100px;
 }
 
 .searchBar button {
+  width: 25%;
   border: none;
-  color: var(--cor-primaria);
+  color : rgba(157, 96, 53, 0.72);
   font-size: 1em;
-  padding: 0.5rem;
+  padding: 0.2rem 0.2rem;
+  border-radius: 15px;
   cursor: pointer;
+  min-width: 30px;
   background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease;
 }
 
 .searchBar button:hover {
   transform: scale(1.1);
+  
 }
 
 .navIcons {
   display: flex;
-  gap: clamp(10px, 1.5vw, 20px);
-  font-size: clamp(20px, 2.5vw, 28px);
+  gap: 0.5vw;
+  font-size: clamp(24px, 2.5vw, 30px);
   color: var(--cor-primaria);
+  margin-right: 25px;
 }
 
 .navIcons > * {
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.navIcons > *:hover {
-  transform: scale(1.1);
-}
-
-.menuIcon {
-  cursor: pointer;
-  display: none;
+  display: flex;
 }
 
 .menuMobile {
   position: absolute;
   top: 100%;
-  right: var(--padding-lateral);
+  right: 2%;
   background-color: #fff;
   border: 2px solid var(--cor-primaria);
   border-radius: 8px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  min-width: 180px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 0.5rem;
+  min-width: 150px;
 }
 
 .menuMobile a {
   text-decoration: none;
   color: var(--cor-primaria);
   font-weight: 600;
-  padding: 0.3rem 0;
-  transition: color 0.2s ease;
 }
 
-.menuMobile a:hover {
-  color: var(--cor-secundaria);
-}
-
-@media (max-width: 768px) {
-  .searchBar {
-    width: auto;
-    flex-grow: 1;
-    margin: 0 0.5rem;
-  height: 35px;
-  }
-  
-  .navIcons > :not(.menuIcon) {
-    display: none;
-  }
-  
-  .menuIcon {
-    display: block;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo {
-    height: clamp(30px, 6vh, 40px);
-  }
-  
-  .searchBar {
-    padding: 0 0.5rem;
-  }
-  
-  .searchBar input::placeholder {
-    font-size: 0.8em;
+@media (hover: hover) {
+  .menuMobile a:hover {
+    color: var(--cor-secundaria);
   }
 }

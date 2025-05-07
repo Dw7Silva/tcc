@@ -7,6 +7,8 @@ import { IoChatbox } from "react-icons/io5"; // Importa o ícone de chatbox do p
 import { MdSupportAgent } from "react-icons/md"; // Importa o ícone de agente de suporte do pacote 'react-icons/md'
 import { HiOutlineMenu } from "react-icons/hi"; // Importa o ícone de menu de contorno do pacote 'react-icons/hi'
 import { useState, useEffect, useRef } from "react"; // Importa hooks do React: useState (para gerenciar estados), useEffect (para efeitos colaterais), useRef (para referências a elementos)
+import BarraNvg from "@/components/navbar/navbar";
+
 
 export default function Perfil() {
   const fotoPerfil = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
@@ -18,41 +20,6 @@ export default function Perfil() {
   const [estado, setEstado] = useState('');
   const [cepError, setCepError] = useState('');
   const [hasCepError, setHasCepError] = useState(false);
-
-  const [menuAberto, setMenuAberto] = useState(false);
-  const isSmallScreen = useMediaQuery("(max-width: 600px)");
-
-  // Hook personalizado para detectar tamanho de tela
-  function useMediaQuery(query) {
-    const [matches, setMatches] = useState(false);
-    
-    useEffect(() => {
-      const media = window.matchMedia(query);
-      if (media.matches !== matches) setMatches(media.matches);
-      
-      const listener = () => setMatches(media.matches);
-      media.addListener(listener);
-      
-      return () => media.removeListener(listener);
-    }, [matches, query]);
-    
-    return matches;
-  }
-
-  const toggleMenu = () => setMenuAberto(!menuAberto);
-
-  const menuItems = [
-    { label: "Demandas", href: "#" },
-    { label: "Ofertas", href: "#" },
-    { label: "Minhas O/D", href: "#" },
-    { label: "Config", href: "#" },
-    ...(isSmallScreen ? [
-      { label: "Início", href: "#" },
-      { label: "Chat", href: "#" },
-      { label: "Suporte", href: "#" },
-      { label: "Perfil", href: "#" }
-    ] : [])
-  ];
 
 
   const formatCpfCnpj = (value) => { /* Formata CPF/CNPJ */
@@ -92,43 +59,7 @@ export default function Perfil() {
   return (
     <>
     <div className="tudo">
-    <nav className={styles.navbar}>
-          <div className={styles.logoContainer}>
-            <img src={Logo} alt="Logo" className={styles.logo} />
-          </div>
-
-          <div className={styles.searchBar}>
-            <input type="text" placeholder="Pesquisar..." />
-            <button>
-              <FaSearch />
-            </button>
-          </div>
-        
-          <div className={styles.navIcons}>
-            {!isSmallScreen && (
-              <>
-                <GoHomeFill />
-                <IoChatbox />
-                <MdSupportAgent />
-                <FaUser />
-              </>
-            )}
-            <HiOutlineMenu 
-              onClick={toggleMenu} 
-              className={styles.menuIcon} 
-            />
-          </div>
-
-          {menuAberto && (
-            <div className={styles.menuMobile}>
-              {menuItems.map((item, index) => (
-                <a key={index} href={item.href} onClick={toggleMenu}>
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          )}
-        </nav>
+     <BarraNvg></BarraNvg>
       </div>
       <div className={styles.container}>
       <div className={styles.profileCard}>

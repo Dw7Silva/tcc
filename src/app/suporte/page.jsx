@@ -8,10 +8,12 @@ import { IoChatbox } from "react-icons/io5"; // Importa ícone de chat
 import { MdSupportAgent } from "react-icons/md"; // Importa ícone de suporte
 import { FaUser } from "react-icons/fa"; // Importa ícone de usuário
 import { HiOutlineMenu } from "react-icons/hi"; // Importa ícone de menu
+import BarraNvg from "@/components/navbar/navbar";
+
+
 
 const Suporte = () => {
-    // URL do logo
-    const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
+  
 
     // Estado para armazenar as mensagens do chat
     const [messages, setMessages] = useState([
@@ -36,27 +38,7 @@ const Suporte = () => {
     return (
         <div className={styles.container}>
             {/* Navbar */}
-            <nav className={styles.navbar}>
-                <div className={styles.logoContainer}>
-                    {/* Exibe o logo */}
-                    <img src={Logo} alt="Logo" className={styles.logo} />
-                </div>
-                <div className={styles.searchBar}>
-                    {/* Campo de busca */}
-                    <input type="text" placeholder="Pesquise seu produto" />
-                    <button>
-                        <FaSearch /> {/* Botão de busca com ícone */}
-                    </button>
-                </div>
-                <div className={styles.navIcons}>
-                    {/* Ícones de navegação */}
-                    <GoHomeFill />
-                    <IoChatbox />
-                    <MdSupportAgent />
-                    <FaUser />
-                    <HiOutlineMenu />
-                </div>
-            </nav>
+            <BarraNvg></BarraNvg>
 
             {/* Container do Chat */}
             <div className={styles.chatContainer}>

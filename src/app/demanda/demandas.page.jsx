@@ -2,18 +2,11 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import styles from "./demandas.module.css";
-import { GoHomeFill } from "react-icons/go";
-import { FaSearch, FaUser } from "react-icons/fa";
-import { IoChatbox } from "react-icons/io5";
-import { MdSupportAgent } from "react-icons/md";
-import { HiOutlineMenu } from "react-icons/hi";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import BarraNvg from "@/components/navbar/navbar";
 
 export default function Demandas() {
-  const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
   const containerRefs = [useRef(null), useRef(null), useRef(null)]; // Referências para os containers de scroll
-  const [menuAberto, setMenuAberto] = useState(false); // Estado para controlar a abertura do menu mobile
-  const [isSmallScreen, setIsSmallScreen] = useState(false); // Estado para verificar se a tela é pequena
   const [cardWidth, setCardWidth] = useState(0); // Estado para armazenar a largura dinâmica do card + margem
 
   const demandas = [
@@ -35,11 +28,7 @@ export default function Demandas() {
       container.scrollTo({ left: Math.round(newScrollLeft), behavior: "smooth" });
     }
   };
-  // Função para alternar a visibilidade do menu mobile
-  const toggleMenu = () => {
-    setMenuAberto(!menuAberto);
-  };
-
+  
   // Hook useEffect para verificar o tamanho da tela na montagem e em cada redimensionamento
   useEffect(() => {
     const handleResize = () => {
@@ -65,40 +54,9 @@ export default function Demandas() {
     }
   }, [demandas, containerRefs]);
   return (
-    <div className="all">
-      <nav className={styles.navbar}>
-        <div className={styles.logoContainer}>
-          <img src={Logo} alt="Logo" className={styles.logo} />
-        </div>
-        <div className={styles.searchBar}>
-          <input type="text" placeholder="Pesquise seu produto" />
-          <button><FaSearch /></button>
-        </div>
-        <div className={styles.navIcons}>
-          <GoHomeFill className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-          <IoChatbox className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-          <MdSupportAgent className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-          <FaUser className={!isSmallScreen ? styles.navIconVisible : styles.navIconHidden} />
-          <HiOutlineMenu onClick={toggleMenu} className={styles.menuIcon} />
-        </div>
-        {menuAberto && (
-          <div className={styles.menuMobile}>
-            <a href="#">Demandas</a>
-            <a href="#">Ofertas</a>
-            <a href="#">Minhas O/D</a>
-            <a href="#">config</a>
-            {isSmallScreen && (
-              <>
-                <a href="#">Início</a>
-                <a href="#">Chat</a>
-                <a href="#">Suporte</a>
-                <a href="#">Perfil</a>
-              </>
-            )}
-          </div>
-        )}
-      </nav>
-
+    <>
+     
+      <BarraNvg></BarraNvg>
       <div className={styles.container}>
         <div>
           <div className={styles.header}>
@@ -144,6 +102,6 @@ export default function Demandas() {
           <button className={styles.criarOferta}>Criar Demanda</button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
