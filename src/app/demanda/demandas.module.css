@@ -20,333 +20,262 @@ body {
 
 .container {
   background-color: var(--cor-fundo);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 var(--padding-lateral);
+  padding: 2rem var(--padding-lateral);
   margin-top: var(--altura-navbar);
   min-height: calc(100vh - var(--altura-navbar));
 }
 
-.navbar {
-  background-color: var(--cor-navbar);
+.content {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.header {
   width: 100%;
+  margin-bottom: 2rem;
+}
+
+.headerTitle {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 var(--padding-lateral);
-  position: fixed;
-  top: 0;
-  height: var(--altura-navbar);
-  z-index: 100;
-}
-
-.logo {
-  height: 125px;
-  width: 100px;
-}
-
-.searchBar {
-  display: flex;
   align-items: center;
-  width: min(40vw, 600px);
-  height: 5vh min(100vh, 15vh);
-  background: white;
-  border-radius: 20px;
-  padding: 0.4rem 0.6rem;
-  border: 2px solid var(--cor-primaria);
-  margin: 0 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
 }
 
-.searchBar input {
-  width: 75%;
-  border: none;
-  outline: none;
-  font-size: 1em;
-  padding: 0.5rem;
-  border-radius: 50px;
-  background: transparent;
-  min-width: 100px;
-}
-
-.searchBar button {
-  width: 25%;
-  border: none;
-  color : rgba(157, 96, 53, 0.72);
-  font-size: 1em;
-  padding: 0.2rem 0.2rem;
-  border-radius: 15px;
-  cursor: pointer;
-  min-width: 30px;
-  background: transparent;
-}
-.searchBar button:hover {
-  transform: scale(1.1);
-  
-}
-
-.navIcons {
-  display: flex;
-  gap: 0.5vw;
-  font-size: clamp(24px, 2.5vw, 30px);
-  color: var(--cor-primaria);
-  margin-right: 25px;
-}
-
-.navIcons > * {
-  display: flex;
-}
-
-.menuMobile {
-  position: absolute;
-  top: 100%;
-  right: 2%;
-  background-color: #fff;
-  border: 2px solid var(--cor-primaria);
-  border-radius: 8px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.header h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  color: var(--cor-secundaria);
+  flex: 1;
   min-width: 150px;
 }
 
-.menuMobile a {
-  text-decoration: none;
-  color: var(--cor-primaria);
+.filtro {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: flex-end;
+  min-width: 250px;
+}
+
+.filtro label {
+  font-weight: 600;
+  color: var(--cor-secundaria);
+  white-space: nowrap;
+}
+
+.filtro select {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-family: inherit;
+  min-width: 180px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.scrollWrapper {
+  position: relative;
+  width: 100%;
+  margin: 2.5rem 0;
+}
+
+.demandasGrid {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 1rem;
+  border-radius: 15px;
+}
+
+.demandasGrid::-webkit-scrollbar {
+  display: none;
+}
+
+.demandaCard {
+  flex: 0 0 auto;
+  width: 320px;
+  height: 320px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+
+.demandaCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.imageContainer {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+.demandaCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.demandaCard:hover img {
+  transform: scale(1.05);
+}
+
+.empresa {
+  font-weight: 600;
+  color: var(--cor-secundaria);
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.demandaCard h3 {
+  margin: 0.8rem 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.quantidade {
+  margin: 0.8rem 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+.detalhes {
+  margin-top: auto;
+  padding: 0.8rem;
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 1rem;
   font-weight: 600;
 }
 
-@media (hover: hover) {
-  .menuMobile a:hover {
-    color: var(--cor-secundaria);
+.detalhes:hover {
+  background-color: var(--cor-secundaria);
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  color: var(--cor-secundaria);
+  font-size: 1.8rem;
+  transition: all 0.2s;
+}
+
+.arrow:hover {
+  background-color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.arrowLeft {
+  left: -25px;
+}
+
+.arrowRight {
+  right: -25px;
+}
+
+.criarOferta {
+  display: block;
+  margin: 3rem auto 0;
+  padding: 1rem 2rem;
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.criarOferta:hover {
+  background-color: var(--cor-secundaria);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .headerTitle {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .filtro {
+    justify-content: flex-end;
+    min-width: auto;
+  }
+  
+  .filtro select {
+    min-width: 150px;
+    max-width: 180px;
+  }
+  
+  .demandaCard {
+    width: 280px;
+    height: 380px;
+  }
+  
+  .imageContainer {
+    height: 160px;
   }
 }
 
-      
-        
-        .header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 20px;
-        }
-        
-        .filtro {
-          display: flex;
-          align-items: center;
-        }
-        
-        .filtro select {
-          margin-left: 10px;
-          padding: 8px;
-          border-radius: 5px;
-          border: 1px solid #ccc;
-        }
-        
-        .scrollContainer {
-          width: 100%;
-          margin-top: 2vh;
-          display: flex;
-          align-items: center;
-          /* overflow: hidden; Remova ou comente esta linha para ver o efeito inicial */
-          position: relative; /* Necessário para posicionar as setas */
-          padding: 0 2vw; /* Adicione um padding horizontal para dar espaço aos botões */
-          box-sizing: border-box; /* Garante que o padding não afete a largura total */
-        }
-        
-        /* Estilos para os botões de seta para controlar o scroll horizontal */
-        .arrow {
-          background: transparent;
-          border: none;
-          font-size: 2em;
-          color: #000000;
-          cursor: pointer;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 1; /* Garante que a seta fique acima dos cards */
-        }
-        
-        /* Posiciona a seta da esquerda */
-        .arrow:first-child {
-          left: 0; /* Alinha a seta à esquerda do .scrollContainer */
-        }
-        
-        /* Posiciona a seta da direita */
-        .arrow:last-child {
-          right: 0; /* Alinha a seta à direita do .scrollContainer */
-        }
-        
-        /* Estilos para a grade de cards de demanda */
-        .demandasGrid {
-      
-          max-width: 90vw;
-          width: 90vw;
-          display: flex;
-          transition: transform 0.3s ease;
-          overflow-x: auto;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-          border-radius: 15px;
-          margin: 0 auto; /* Centraliza a grade dentro do .scrollContainer */
-        }
-        
-        .demandasGrid::-webkit-scrollbar {
-          display: none;
-        }
-        
-        .demandaCard {
-          width:28vw;
-          height: 42vh;
-          margin: 0 5px; /* Adicione margem */
-          padding: 15px;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          text-align: center;
-          flex: 0 0 auto;
-          background-color: #ffffff;
-        }
-        
-        .demandaCard img {
-          width: 15vw;
-          height: 25vh;
-          object-fit: cover;
-          border-radius: 5px;
-
-        }
-        
-        .demandaCard h3 {
-          margin-bottom: 5px;
-        }
-        
-        .demandaCard p {
-          margin-bottom: 10px;
-        }
-        
-        .demandaCard button {
-          padding: 8px 15px;
-          border: none;
-          border-radius: 5px;
-          background-color: #A87453;
-          color: white;
-          cursor: pointer;
-        }
-        
-        .arrow {
-          background: transparent;
-          border: none;
-          font-size: 2em;
-          color: #000000;
-          cursor: pointer;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 1;
-        }
-        
-        .arrow:first-child {
-          left: 0;
-        }
-        
-        .arrow:last-child {
-          right: 0;
-        }
-        
-        .criarOferta {
-          padding: 10px 20px;
-          border: none;
-          border-radius: 5px;
-          background-color: #A87453;
-          color: white;
-          cursor: pointer;
-          margin-top: 20px;
-          align-self: flex-end;
-        }
-        
-        @media (max-width: 800px) {
-          .navIcons > :not(:last-child) {
-            display: none;
-          }
-        
-          .logoContainer {
-            width: 100%;
-            text-align: left;
-            padding: 10px;
-          }
-        
-          .searchBar {
-            width: 90%;
-            margin: 20px;
-          }
-        
-          .navIcons {
-            width: 100%;
-            justify-content: flex-end;
-          }
-        
-          .navIcons > :last-child {
-            display: block;
-            position: static;
-          }
-          .demandasGrid {
-      
-            max-width: 90vw;
-            width: 90vw;
-            display: flex;
-            transition: transform 0.3s ease;
-            overflow-x: auto;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            border-radius: 15px;
-            margin: 0 auto; /* Centraliza a grade dentro do .scrollContainer */
-          }
-          
-          .demandasGrid::-webkit-scrollbar {
-            display: none;
-          }
-          
-          .demandaCard {
-            width: 38vw;
-            height: 25vh;
-            margin: 0 5px; /* Adicione margem */
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            text-align: center;
-            flex: 0 0 auto;
-            background-color: #ffffff;
-            margin: 0 1vw;
-          }
-          
-          .demandaCard img {
-            width: 24vw;
-            height: 12vh;
-            object-fit: cover;
-            border-radius: 5px;
-    
-          }
-
-          .demandaCard h3 {
-            font-size: small;
-          }
-          
-          .demandaCard p {
-            margin-bottom: 2px;
-            font-size: smaller;
-          }
-          .detalhes {
-            width: 34vw;
-            height: 3vh;
-            font-size: smaller;
-            padding: 0px;
-            margin: 0px;
-          }
-          .detalhes p {
-            
-            font-size: smaller;
-          
-          }
-          
-          
-        }
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .demandaCard {
+    width: 240px;
+    height: 340px;
+  }
+  
+  .arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+  }
+  
+  .arrowLeft {
+    left: -18px;
+  }
+  
+  .arrowRight {
+    right: -18px;
+  }
+  
+  .filtro select {
+    min-width: 140px;
+  }
+}
