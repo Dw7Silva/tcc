@@ -19,7 +19,7 @@ body {
 }
 
 .container {
-  background-color: var(--cor-fundo);
+  background-color:#fcfaf9;
   padding: 2rem var(--padding-lateral);
   margin-top: var(--altura-navbar);
   min-height: calc(100vh - var(--altura-navbar));
@@ -27,7 +27,8 @@ body {
 
 .content {
   max-width: 1600px;
-  margin: 0 auto;
+  margin: 5 auto;
+  padding: 10px;
 }
 
 .header {
@@ -58,24 +59,24 @@ body {
   gap: 0.5rem;
   flex: 1;
   justify-content: flex-end;
-  min-width: 250px;
+  width: 75px;
 }
 
 .filtro label {
-  font-weight: 600;
+  font-weight: 400;
   color: var(--cor-secundaria);
   white-space: nowrap;
 }
 
 .filtro select {
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: white;
-  font-family: inherit;
-  min-width: 180px;
-  width: 100%;
-  max-width: 200px;
+  padding: 0.6rem 1rem;         /* Tamanho do padding interno */
+  border-radius: 8px;           /* Arredondamento das bordas */
+  border: 1px solid #ccc;       /* Borda */
+  background-color: white;      /* Cor de fundo */
+  font-family: inherit;         /* Fonte */
+  min-width: 150px;             /* Largura mínima */
+  width: 75px;                  /* Largura relativa */
+  max-width: 200px;             /* Largura máxima */
 }
 
 .scrollWrapper {
@@ -92,6 +93,7 @@ body {
   scrollbar-width: none;
   padding-bottom: 1rem;
   border-radius: 15px;
+  padding: 10px;
 }
 
 .demandasGrid::-webkit-scrollbar {
@@ -109,6 +111,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: transform 0.2s;
+  border: solid 1px #c76138;
 }
 
 .demandaCard:hover {
