@@ -9,3 +9,11 @@
     min-height: 100vh;
     content: "width=device-width, initial-scale=1.0, max-scale=1.0";
   }
+
+  
+.container {
+  background-color:#fcfaf9;
+  padding: 2rem var(--padding-lateral);
+  margin-top: var(--altura-navbar);
+  min-height: calc(100vh - var(--altura-navbar));
+}

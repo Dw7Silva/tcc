@@ -1,9 +1,9 @@
 "use client";
-
 import React, { useRef, useState, useEffect } from "react";
 import styles from "./demandas.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
+
 
 export default function Demandas() {
   const containerRefs = [useRef(null), useRef(null), useRef(null)];
@@ -60,7 +60,7 @@ export default function Demandas() {
   return (
     <>
       <BarraNvg />
-      <BarraNvg />
+  
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.header}>

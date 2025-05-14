@@ -7,6 +7,8 @@ import Demandas from "./demanda/demandas.page";
 import Contrato from "./contrato/page";
 import BarraNvg from "@/components/navbar/navbar";
 
+
+
 export default function dev() {
 
 

@@ -1,0 +1,7 @@
+
+.container {
+    background-color:#fcfaf9;
+    padding: 2rem var(--padding-lateral);
+    margin-top: var(--altura-navbar);
+    min-height: calc(100vh - var(--altura-navbar));
+  }

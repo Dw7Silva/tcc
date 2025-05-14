@@ -4,7 +4,7 @@
   --cor-primaria: #A87453;
   --cor-secundaria: #5c3b28;
   --cor-fundo: rgba(157, 96, 53, 0.72);
-  --cor-navbar: rgb(187, 160, 144);
+  --cor-navbar: #311e04;
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
   --altura-logo: clamp(40px, 8vh, 60px);
@@ -18,18 +18,8 @@ body {
   min-height: 100vh;
 }
 
-.container {
-  background-color:#fcfaf9;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 var(--padding-lateral);
-  margin-top: var(--altura-navbar);
-  min-height: calc(100vh - var(--altura-navbar));
-}
-
 .navbar {
-  background-color:  rgba(199, 97, 56, 0.5);;
+  background-color: #cd7e12;
   width: 100%;
   display: flex;
   align-items: center;

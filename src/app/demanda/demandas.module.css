@@ -1,14 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 :root {
+  /* Tema Claro (default) */
   --cor-primaria: #A87453;
   --cor-secundaria: #5c3b28;
-  --cor-fundo: rgba(157, 96, 53, 0.72);
-  --cor-navbar: rgb(187, 160, 144);
+  --cor-fundo: #fcfaf9;
+  --cor-texto: #333;
+  --cor-texto-secundario: #666;
+  --cor-borda: #e0d6d0;
+  --cor-card: #ffffff;
+  --cor-sombra: rgba(0, 0, 0, 0.1);
+  --cor-navbar: #311e04;
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
   --altura-logo: clamp(40px, 8vh, 60px);
   --padding-lateral: clamp(10px, 2vw, 20px);
+}
+
+/* Tema Escuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria: #c78a6a;
+    --cor-secundaria: #d9b08c;
+    --cor-fundo: #2a1e17;
+    --cor-texto: #f5f5f5;
+    --cor-texto-secundario: #d0c8c3;
+    --cor-borda: #4a3a2f;
+    --cor-card: #3a2a21;
+    --cor-sombra: rgba(0, 0, 0, 0.3);
+    --cor-navbar: #3a2a21;
+  }
 }
 
 body {
@@ -16,10 +37,13 @@ body {
   font-family: 'Comfortaa', sans-serif;
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
-  background-color:#fcfaf9;
+  background-color: var(--cor-fundo);
   padding: 2rem var(--padding-lateral);
   margin-top: var(--altura-navbar);
   min-height: calc(100vh - var(--altura-navbar));
@@ -27,7 +51,7 @@ body {
 
 .content {
   max-width: 1600px;
-  margin: 5 auto;
+  margin: 0 auto;
   padding: 10px;
 }
 
@@ -59,7 +83,7 @@ body {
   gap: 0.5rem;
   flex: 1;
   justify-content: flex-end;
-  width: 75px;
+  min-width: 250px;
 }
 
 .filtro label {
@@ -69,14 +93,16 @@ body {
 }
 
 .filtro select {
-  padding: 0.6rem 1rem;         /* Tamanho do padding interno */
-  border-radius: 8px;           /* Arredondamento das bordas */
-  border: 1px solid #ccc;       /* Borda */
-  background-color: white;      /* Cor de fundo */
-  font-family: inherit;         /* Fonte */
-  min-width: 150px;             /* Largura mínima */
-  width: 75px;                  /* Largura relativa */
-  max-width: 200px;             /* Largura máxima */
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-card);
+  color: var(--cor-texto);
+  font-family: inherit;
+  min-width: 150px;
+  width: 100%;
+  max-width: 200px;
+  transition: all 0.3s;
 }
 
 .scrollWrapper {
@@ -104,19 +130,19 @@ body {
   flex: 0 0 auto;
   width: 320px;
   height: 320px;
-  background-color: white;
+  background-color: var(--cor-card);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px var(--cor-sombra);
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s;
-  border: solid 1px #c76138;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--cor-borda);
 }
 
 .demandaCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 16px var(--cor-sombra);
 }
 
 .imageContainer {
@@ -148,12 +174,12 @@ body {
 .demandaCard h3 {
   margin: 0.8rem 0;
   font-size: 1.2rem;
-  color: #333;
+  color: var(--cor-texto);
 }
 
 .quantidade {
   margin: 0.8rem 0;
-  color: #666;
+  color: var(--cor-texto-secundario);
   font-size: 1rem;
 }
 
@@ -188,14 +214,14 @@ body {
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px var(--cor-sombra);
   color: var(--cor-secundaria);
   font-size: 1.8rem;
   transition: all 0.2s;
 }
 
 .arrow:hover {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.95);
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -218,14 +244,14 @@ body {
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px var(--cor-sombra);
 }
 
 .criarOferta:hover {
   background-color: var(--cor-secundaria);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px var(--cor-sombra);
 }
 
 @media (max-width: 768px) {
