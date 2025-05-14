@@ -1,15 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 :root {
+  /* Tema Claro */
   --cor-primaria: #A87453;
   --cor-secundaria: #5c3b28;
   --cor-fundo: rgba(157, 96, 53, 0.72);
   --cor-navbar: #311e04;
+  --cor-navbar-text: #ffffff;
+  --cor-navbar-bg: transparent;
+  --cor-menu-mobile-bg: #ffffff;
+  --cor-menu-mobile-text: var(--cor-primaria);
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
   --altura-logo: clamp(40px, 8vh, 60px);
   --padding-lateral: clamp(10px, 2vw, 20px);
+  --icon-color: #A46434;
+  --cor-borda: #A87453;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria: #c78a6a;
+    --cor-secundaria: #d9b08c;
+    --cor-fundo: #2a1e17;
+    --cor-navbar: #1a1005;
+    --cor-navbar-text: #f0f0f0;
+    --cor-navbar-bg: rgba(26, 16, 5, 0.9);
+    --cor-menu-mobile-bg: #2a1e17;
+    --cor-menu-mobile-text: #d9b08c;
+    --icon-color: #d9b08c;
+    --cor-borda: #c78a6a;
+  }
+}
+
 
 body {
   margin: 0;
@@ -19,7 +42,7 @@ body {
 }
 
 .navbar {
-  background-color: #cd7e12;
+  background-color:transparent;
   width: 100%;
   display: flex;
   align-items: center;
@@ -80,7 +103,7 @@ body {
   display: flex;
   gap: 0.5vw;
   font-size: clamp(24px, 2.5vw, 30px);
-  color:aliceblue;
+  color: var(--icon-color);
   margin-right: 25px;
   cursor: pointer;
 }
