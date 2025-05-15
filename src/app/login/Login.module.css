@@ -1,129 +1,264 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
-body {
-  overflow-x: hidden;
-  margin: 0;
-  font-family: 'Comfortaa', sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
+:root {
+  /* Light Theme */
+  --cor-primaria: #A87453;
+  --cor-secundaria: #5c3b28;
+  --cor-fundo: rgba(157, 96, 53, 0.72);
+  --cor-texto: #333;
+  --cor-texto-claro: #f8f8f8;
+  --cor-borda: #A46434;
+  --cor-sombra: rgba(0, 0, 0, 0.1);
+  --cor-link: #A87453;
+  --card_login : #ffffff;
 }
 
-.container {
+/* Dark Theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria: #F8DCA5;
+    --cor-secundaria: #F8DCA5;
+    --cor-fundo: #313030;
+    --cor-texto: #f0f0f0;
+    --cor-texto-claro: #2a2a2a;
+    --cor-borda: #A46434;
+    --cor-sombra: rgba(0, 0, 0, 0.5);
+    --cor-link: #F8DCA5;
+    --card_login :#1e1e1e;
+  }
+}
 
-  background-color: rgba(157, 96, 53, 0.72);
-  height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
+/* Base Styles */
+.loginPage {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Comfortaa', sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  transition: all 0.3s ease;
+}
+
+/* Branding Section */
+.brandingSection {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 2%;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto-claro);
+  position: relative;
+  overflow: hidden;
 }
 
-.loginContainer {
-  margin-top: 2vh;
-  background-color: rgba(254, 241, 203, 0.23);
-  padding: 4%;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 400px;
+.brandingSection::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.brandingSection::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.logoContainer {
+  margin-bottom: 3rem;
+  z-index: 1;
+}
+
+.logo {
+  width: 300px;
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.welcomeContent {
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  max-width: 500px;
 }
 
-.loginForm h2 {
-  font-size: 1.5em;
-  margin-bottom: 1em;
+.welcomeTitle {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.welcomeSubtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+/* Form Section */
+.formSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--cor-texto-claro);
+}
+
+.loginForm {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  background-color: var(--card_login);
+  border:1px solid var(--cor-borda);
+}
+
+.formTitle {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--cor-primaria);
+  text-align: center;
 }
 
 .formGroup {
-  margin-bottom: 1.2em;
-  text-align: left;
+  margin-bottom: 1.5rem;
 }
 
-.formGroup label {
+.inputLabel {
   display: block;
-  margin-bottom: 0.5em;
-  font-weight: bold;
-  font-size: 1em;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--cor-texto);
+  width: 40vw;
 }
 
-.formGroup input {
-  width: 100%;
-  padding: 0.8em;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1em;
-  box-sizing: border-box;
+.formInput {
+  width: 90%;
+  padding: 1rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  background-color: transparent;
+  color: var(--cor-texto);
 }
 
-.formButtons {
+.formInput:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(168, 116, 83, 0.2);
+}
+
+.formOptions {
   display: flex;
   justify-content: space-between;
-  gap: 1em;
-  margin-bottom: 1.5em;
-  flex-wrap: nowrap; /* Botões permanecem lado a lado */
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
-.formButtons button {
-  flex: 1;
-  padding: 0.8em 0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  font-family: 'Comfortaa', sans-serif;
+.rememberMe {
+  display: flex;
+  align-items: center;
 }
 
-.formButtons button:first-child {
-  background-color: #f0f0f0;
+.checkbox {
+  margin-right: 0.5rem;
 }
 
-.formButtons button:last-child {
-  background-color: #A87453;
-  color: white;
+.forgotPassword {
+  color: var(--cor-link);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
 }
 
-.formButtons button:hover {
-  opacity: 0.8;
+.forgotPassword:hover {
+  text-decoration: underline;
 }
 
 .loginButton {
   width: 100%;
-  padding: 0.8em;
-  border: none;
-  border-radius: 5px;
-  background-color: #A87453;
+  padding: 1rem;
+  background-color: var(--cor-primaria);
   color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 1em;
-  font-family: 'Comfortaa', sans-serif;
+  transition: all 0.3s;
+  margin-bottom: 1.5rem;
 }
 
 .loginButton:hover {
-  opacity: 0.8;
+  background-color: var(--cor-secundaria);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.forgotPassword {
-  color: #0000FF;
+.registerPrompt {
+  text-align: center;
+  color: var(--cor-texto);
+}
+
+.registerLink {
+  color: var(--cor-link);
+  font-weight: 600;
   text-decoration: none;
-  font-size: 0.9em;
-  display: block;
-  margin-top: 1em;
-  text-align: left;
-  width: 100%;
-  padding: 1px;
-  margin-bottom: 1em;
+  transition: color 0.3s;
 }
 
-/* Responsividade adicional para telas muito pequenas */
-@media (max-width: 360px) {
-  .formButtons {
+.registerLink:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .loginPage {
     flex-direction: column;
   }
+  
+  .brandingSection {
+    padding: 2rem 1rem;
+  }
+  
+  .welcomeTitle {
+    font-size: 2rem;
+  }
+  
+  .formSection {
+    padding: 2rem 1rem;
+  }
+  
+  .loginForm {
+    padding: 1.5rem;
+  }
+}
 
-  .formButtons button {
-    width: 100%;
+@media (max-width: 480px) {
+  .welcomeTitle {
+    font-size: 1.8rem;
+  }
+  
+  .formTitle {
+    font-size: 1.5rem;
+  }
+  
+  .formInput {
+    padding: 0.8rem;
+  }
+  
+  .loginButton {
+    padding: 0.8rem;
   }
 }

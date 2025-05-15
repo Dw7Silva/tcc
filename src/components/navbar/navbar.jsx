@@ -1,49 +1,40 @@
 "use client";
-import styles from "./navbar.module.css";
 import { GoHomeFill } from "react-icons/go";
 import { FaSearch, FaUser } from "react-icons/fa";
 import { IoChatbox } from "react-icons/io5";
 import { MdSupportAgent } from "react-icons/md";
 import { HiOutlineMenu } from "react-icons/hi";
-import { useState, useEffect, useRef } from "react";
-
-// Custom hook moved to the top
-
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import styles from "./navbar.module.css";
 
 export default function BarraNvg() {
-
   const [menuAberto, setMenuAberto] = useState(false);
-  const isSmallScreen = useMediaQuery("(max-width: 600px)");
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  // Hook personalizado para detectar tamanho de tela
-  function useMediaQuery(query) {
-    const [matches, setMatches] = useState(false);
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth <= 600);
+    };
     
-    useEffect(() => {
-      const media = window.matchMedia(query);
-      if (media.matches !== matches) setMatches(media.matches);
-      
-      const listener = () => setMatches(media.matches);
-      media.addListener(listener);
-      
-      return () => media.removeListener(listener);
-    }, [matches, query]);
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
     
-    return matches;
-  }
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   const toggleMenu = () => setMenuAberto(!menuAberto);
 
   const menuItems = [
-    { label: "Demandas", href: "#" },
-    { label: "Ofertas", href: "#" },
-    { label: "Minhas O/D", href: "#" },
-    { label: "Config", href: "#" },
+    { label: "Demandas", href: "/demandas" },
+    { label: "Ofertas", href: "/ofertas" },
+    { label: "Minhas O/D", href: "/minhas-od" },
+    { label: "Config", href: "/config" },
     ...(isSmallScreen ? [
-      { label: "Início", href: "#" },
-      { label: "Chat", href: "#" },
-      { label: "Suporte", href: "#" },
-      { label: "Perfil", href: "#" }
+      { label: "Início", href: "/" },
+      { label: "Chat", href: "/chat" },
+      { label: "Suporte", href: "/suporte" },
+      { label: "Perfil", href: "/perfil" }
     ] : [])
   ];
 
@@ -51,42 +42,49 @@ export default function BarraNvg() {
 
   return (
     <nav className={styles.navbar}>
-          <div className={styles.logoContainer}>
-            <img src={Logo} alt="Logo" className={styles.logo} />
-          </div>
+      <div className={styles.logoContainer}>
+        <img src={Logo} alt="Logo" className={styles.logo} />
+      </div>
 
-          <div className={styles.searchBar}>
-            <input type="text" placeholder="Pesquisar..." />
-            <button>
-              <FaSearch />
-            </button>
-          </div>
-        
-          <div className={styles.navIcons}>
-            {!isSmallScreen && (
-              <>
-                <GoHomeFill />
-                <IoChatbox />
-                <MdSupportAgent />
-                <FaUser />
-              </>
-            )}
-            <HiOutlineMenu 
-              onClick={toggleMenu} 
-              className={styles.menuIcon} 
-            />
-          </div>
+      <div className={styles.searchBar}>
+        <input type="text" placeholder="Pesquisar..." />
+        <button>
+          <FaSearch />
+        </button>
+      </div>
+    
+      <div className={styles.navIcons}>
+        {!isSmallScreen && (
+          <>
+            <Link href="/" className={styles.navIcon}>
+              <GoHomeFill />
+            </Link>
+            <Link href="/chat" className={styles.navIcon}>
+              <IoChatbox />
+            </Link>
+            <Link href="/suporte" className={styles.navIcon}>
+              <MdSupportAgent />
+            </Link>
+            <Link href="/perfil" className={styles.navIcon}>
+              <FaUser />
+            </Link>
+          </>
+        )}
+        <HiOutlineMenu 
+          onClick={toggleMenu} 
+          className={styles.menuIcon} 
+        />
+      </div>
 
-          {menuAberto && (
-            <div className={styles.menuMobile}>
-              {menuItems.map((item, index) => (
-                <a key={index} href={item.href} onClick={toggleMenu}>
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          )}
-        </nav>
-
+      {menuAberto && (
+        <div className={styles.menuMobile}>
+          {menuItems.map((item, index) => (
+            <Link key={index} href={item.href} onClick={toggleMenu} className={styles.menuLink}>
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </nav>
   );
 }
