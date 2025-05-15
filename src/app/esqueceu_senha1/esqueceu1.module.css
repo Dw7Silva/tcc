@@ -89,6 +89,7 @@
   text-align: center;
   margin: 0%;
   padding: 0%;
+  margin-top: -100px; /* Novo - reduz o espaçamento acima */
 }
 
 .welcomeTitle {
@@ -98,8 +99,8 @@
 
 .welcomeText {
   font-size: 1.1rem;
-  margin-bottom: 1rem;
   color: var(--cor-primaria);
+   margin-top: -20px; /* Novo - ajusta o espaçamento para cima */
 }
 
 .iconContainer {

@@ -19,7 +19,7 @@ export default function dev() {
 
   return (
 
-    <EsqueceuSenha></EsqueceuSenha>
+    <Proposta></Proposta>
 
 
   );
