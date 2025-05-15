@@ -6,7 +6,7 @@ import Perfil from "./perfil/page";
 import Demandas from "./demanda/demandas.page";
 import Contrato from "./contrato/page";
 import Login from "./login/page";
-
+import EsqueceuSenha from "./esqueceu_senha1/page";
 
 
 export default function dev() {
@@ -19,7 +19,7 @@ export default function dev() {
 
   return (
 
-    <Perfil></Perfil>
+    <EsqueceuSenha></EsqueceuSenha>
 
 
   );

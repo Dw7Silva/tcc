@@ -4,7 +4,7 @@
   /* Light Theme */
   --cor-primaria: #A87453;
   --cor-secundaria: #5c3b28;
-  --cor-fundo: rgba(157, 96, 53, 0.72);
+  --cor-fundo-criarOferta: rgba(157, 96, 53, 0.72);
   --cor-card: #ffffff;
   --cor-texto: #333;
   --cor-texto-secundario: #666;
@@ -23,7 +23,7 @@
   :root {
     --cor-primaria: #F8DCA5;
     --cor-secundaria: #F8DCA5;
-    --cor-fundo: #313030;
+    --cor-fundo-criarOferta: #313030;
     --cor-navbar: #3a2a21;
     --cor-card: #1e1e1e;
     --cor-texto: #f0f0f0;
@@ -43,12 +43,12 @@ body {
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
   color: var(--cor-texto);
-  background-color: var(--cor-fundo);
+  background-color: var(--cor-fundo-criarOferta);
   transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
-  background-color: var(--cor-fundo);
+  background-color: var(--cor-fundo-criarOferta);
   display: flex;
   flex-direction: column;
   align-items: center;

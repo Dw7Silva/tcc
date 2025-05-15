@@ -181,19 +181,14 @@ body {
 }
 
 @media (max-width: 768px) {
-  .searchBar {
-    display: none;
-  }
-  
+ 
   .navIcons {
     gap: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .navbar {
-    padding: 0 0.5rem;
-  }
+ 
   
   .logo {
     height: 40px;

@@ -4,7 +4,7 @@
   /* Tema Claro (default) */
   --cor-primaria: #A87453;
   --cor-secundaria: #5c3b28;
-  --cor-fundo: #e2dad2;
+  --cor-fundo-demanda: #e2dad2;
   --cor-texto: #333;
   --cor-texto-secundario: #666;
   --cor-borda: #A46434;
@@ -25,7 +25,7 @@
     --cor-primaria: #F8DCA5; /* Inverso de #A87453 */
     --cor-secundaria: #F8DCA5; /* Inverso de #5c3b28 */
     /* Escala de cinza invertida */
-    --cor-fundo: #313030; /* Cinza muito escuro */
+    --cor-fundo-demanda: #313030; /* Cinza muito escuro */
     --cor-texto: #f0f0f0; /* Quase branco */
     --cor-texto-secundario: #b3b3b3; 
     /* Elementos de UI */
@@ -42,12 +42,12 @@ body {
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
   color: var(--cor-texto);
-  background-color: var(--cor-fundo);
+  background-color: var(--cor-fundo-demanda);
   transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
-  background-color: var(--cor-fundo);
+  background-color: var(--cor-fundo-demanda);
   padding: 2rem var(--padding-lateral);
   margin-top: var(--altura-navbar);
   min-height: calc(100vh - var(--altura-navbar));
