@@ -2,9 +2,9 @@
 
 :root {
   /* Light Theme */
-  --cor-primaria: #A87453;
-  --cor-secundaria: #5c3b28;
-  --cor-fundo: rgba(157, 96, 53, 0.72);
+  --cor-primaria-navbr: #A87453;
+  --cor-secundaria-navbr: #5c3b28;
+  --cor-fundo-navbr: rgba(157, 96, 53, 0.72);
   --cor-navbar: #311e04;
   --cor-navbar-text: #ffffff;
   --cor-navbar-bg: transparent;
@@ -15,7 +15,7 @@
   --altura-logo: clamp(40px, 8vh, 60px);
   --padding-lateral: clamp(10px, 2vw, 20px);
   --color-icon: #5c3b28;
-  --cor-borda: #A87453;
+  --cor-borda-navbr: #4d3629;
   --cor-search-bg: #ffffff;
   --cor-search-text: #333333;
 }
@@ -32,7 +32,7 @@
     --cor-menu-mobile-bg: #1e1e1e;
     --cor-menu-mobile-text: #d9b08c;
     --color-icon: #ffffff;
-    --cor-borda: #c78a6a;
+    --cor-borda-navbr: #ffffff;
     --cor-search-bg: #1a1005;
     --cor-search-text: #f0f0f0;
   }
@@ -54,7 +54,6 @@ body {
   left: 0;
   right: 0;
   background-color: transparent;
-  color: var(--cor-navbar-text);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -83,7 +82,7 @@ body {
   background: transparent;
   border-radius: 20px;
   padding: 0.4rem 0.6rem;
-  border: 2px solid var(--cor-borda);
+  border:2px solid var(--cor-borda-navbr) ;
   margin: 0 1rem;
   justify-content: center;
   transition: all 0.3s;
@@ -100,6 +99,7 @@ body {
   background: transparent;
   min-width: 100px;
   color: var(--cor-search-text);
+
 }
 
 .searchBar button {
