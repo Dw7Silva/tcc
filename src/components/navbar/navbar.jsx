@@ -56,7 +56,7 @@ export default function BarraNvg() {
       <div className={styles.navIcons}>
         {!isSmallScreen && (
           <>
-            <Link href="/" className={styles.navIcon}>
+            <Link href="/inicio" className={styles.navIcon}>
               <GoHomeFill />
             </Link>
             <Link href="/chat" className={styles.navIcon}>

@@ -17,7 +17,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --cor-primaria-login: #F8DCA5;
-    --cor-secundaria-login: #F8DCA5;
+    --cor-secundaria-login: #5c3b28;;
     --cor-fundo-login: #313030;
     --cor-texto-login: #f0f0f0;
     --cor-texto-login-claro: #2a2a2a;
@@ -189,7 +189,7 @@
 .loginButton {
   width: 100%;
   padding: 1rem;
-  background-color: var(--cor-primaria-login);
+  background-color: var(--cor-secundaria-login);
   color: white;
   border: none;
   border-radius: 8px;
@@ -201,9 +201,10 @@
 }
 
 .loginButton:hover {
-  background-color: var(--cor-secundaria-login);
+  background-color: var(--cor-primaria-login);
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #1e1e1e;
 }
 
 .registerPrompt {

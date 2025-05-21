@@ -23,9 +23,9 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark Theme */
-    --cor-primaria: #c78a6a;
-    --cor-secundaria: #d9b08c;
-    --cor-fundo: #2a1e17;
+    --cor-primaria-navbr: #c78a6a;
+    --cor-secundaria-navbr: #d9b08c;
+    --cor-fundo-navbr: #2a1e17;
     --cor-navbar: #1a1005;
     --cor-navbar-text: #f0f0f0;
     --cor-navbar-bg: rgba(26, 16, 5, 0.9);
@@ -44,7 +44,7 @@ body {
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
   color: var(--cor-texto);
-  background-color: var(--cor-fundo);
+
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -105,7 +105,7 @@ body {
 .searchBar button {
   width: 25%;
   border: none;
-  color: var(--cor-primaria);
+  color: var(--color-icon);
   font-size: 1em;
   padding: 0.2rem 0.2rem;
   border-radius: 15px;
@@ -154,7 +154,7 @@ body {
   top: var(--altura-navbar);
   right: 2%;
   background-color: var(--cor-menu-mobile-bg);
-  border: 2px solid var(--cor-borda);
+  border: 2px solid var(--cor-borda-navbr);
   border-radius: 8px;
   padding: 1rem;
   display: flex;
@@ -176,8 +176,8 @@ body {
 }
 
 .menuLink:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  color: var(--cor-secundaria);
+  background-color: var(--cor-primaria);
+  color: black;
 }
 
 @media (max-width: 768px) {

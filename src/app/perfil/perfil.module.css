@@ -1,39 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
-:root {
-  /* Tema Claro */
-  --cor-primaria: #A87453;
-  --cor-secundaria: #5c3b28;
-  --cor-fundo-perfil: #ffffff; /* Alterado para branco */
-  --cor-texto: #333;
-  --cor-texto-secundario: #666;
-  --cor-borda: #A46434;
-  --cor-card: #ffffff;
-  --cor-sombra: rgba(0, 0, 0, 0.1);
-  --cor-navbar: #311e04;
-  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-  --altura-navbar: clamp(60px, 10vh, 80px);
-  --altura-logo: clamp(40px, 8vh, 60px);
-  --padding-lateral: clamp(10px, 2vw, 20px);
-
-}
-
-
-/* Dark Theme */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --cor-primaria: #F8DCA5;
-    --cor-secundaria: #F8DCA5;
-    --cor-fundo-perfil: #313030;
-    --cor-card: #2a2a2a;
-    --cor-texto: #f0f0f0;
-    --cor-texto-claro: #2a2a2a;
-    --cor-borda: #A46434;
-    --cor-sombra: rgba(0, 0, 0, 0.5);
-    --cor-erro: #e57373;
-    --cor-sucesso: #81c784;
-  }
-}
 
 /* Base Styles */
 body {
@@ -65,10 +30,10 @@ body {
 
 /* Profile Card */
 .profileCard {
+  width: 80vw;
   background-color: var(--cor-card);
   padding: 2rem;
   border-radius: 16px;
-  width: 100%;
   max-width: 800px;
   margin: 0;
   box-shadow: 0 8px 20px var(--cor-sombra);
@@ -90,7 +55,7 @@ body {
 }
 
 .editButton {
-  background-color: var(--cor-primaria);
+  background-color: var(--cor-primaria-geral);
   color: white;
   border: none;
   border-radius: 8px;
@@ -102,8 +67,9 @@ body {
 }
 
 .editButton:hover {
-  background-color: var(--cor-secundaria);
+  background-color: var(--cor-secundaria-geral);
   transform: translateY(-2px);
+  color: black;
 }
 
 .profileContent {
@@ -173,7 +139,7 @@ body {
 
 .infoInput {
   width: 90%;
-  padding: 0.8rem 1rem;
+  padding: 0.8rem;
   border: 1px solid var(--cor-borda);
   border-radius: 8px;
   font-family: 'Comfortaa', sans-serif;
@@ -205,7 +171,7 @@ body {
 }
 
 .description {
-  width: 100%;
+  width: 90%;
   min-height: 100px;
   padding: 1rem;
   border: 1px solid var(--cor-borda);

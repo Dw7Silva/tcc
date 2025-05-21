@@ -2,19 +2,17 @@
 
 :root {
   /* Tema Claro (default) */
-  --cor-primaria: #A87453;
-  --cor-secundaria: #5c3b28;
-  --cor-fundo: #fcfaf9;
-  --cor-texto: #333;
-  --cor-texto-secundario: #666;
-  --cor-borda: #A46434;
+  --cor-primaria-inicio: #A87453;
+  --cor-secundaria-inicio: #5c3b28;
+  --cor-fundo-inicio: #e2dad2;
+  --cor-texto-inicio: #333;
+  --cor-texto-inicio-secundario: #666;
+  --cor-borda-inicio: #A46434;
   --cor-card: #c70000;
   --cor-sombra: rgba(0, 0, 0, 0.1);
-  --cor-navbar: #311e04;
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
-  --altura-logo: clamp(40px, 8vh, 60px);
-  --padding-lateral: clamp(10px, 2vw, 20px);
+
 
 }
 
@@ -22,14 +20,14 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Cores principais invertidas */
-    --cor-primaria: #F8DCA5;
-    --cor-secundaria: #F8DCA5;
+    --cor-primaria-inicio: #F8DCA5;
+    --cor-secundaria-inicio: #F8DCA5;
     /* Escala de cinza invertida */
-    --cor-fundo: #313030;
-    --cor-texto: #f0f0f0;
-    --cor-texto-secundario: #b3b3b3;
+    --cor-fundo-inicio: #313030;
+    --cor-texto-inicio: #f0f0f0;
+    --cor-texto-inicio-secundario: #b3b3b3;
     /* Elementos de UI */
-    --cor-borda: #A46434;
+    --cor-borda-inicio: #A46434;
     --cor-card: #1e1e1e;
     --cor-sombra: rgba(0, 0, 0, 0.5);
     --cor-navbar: #311e04;
@@ -44,13 +42,14 @@ body {
   font-family: 'Comfortaa', sans-serif;
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
-  color: var(--cor-texto);
-  background-color: var(--cor-fundo);
+  color: var(--cor-texto-inicio);
+  background-color: var(--cor-fundo-inicio);
   transition: background-color 0.3s, color 0.3s;
+  overflow-x: hidden;
 }
-
-.container {
-  background-color: var(--cor-fundo);
+ 
+.container { 
+  background-color: var(--cor-fundo-inicio); 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,13 +61,13 @@ body {
 /* Componentes de conteúdo */
 .destaquescontainer, .produtoscontainer {
   width: 100%;
-  padding: 1rem 0;
+  padding: 0.25rem 0;
   margin-left: 10vw;
-  color: var(--cor-texto);
+
 }
 
 .textdestaques, .textprodutos {
-  color: var(--cor-secundaria);
+  color: var(--cor-secundaria-inicio);
 }
 
 .produtosGrid {
@@ -99,11 +98,11 @@ body {
   height: min(150px, 20vw);
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--cor-borda);
+  border: 2px solid var(--cor-borda-inicio);
 }
 
 .produtoTitulo {
-  color: var(--cor-texto);
+  color: var(--cor-texto-inicio);
   font-size: 1.1rem;
   text-align: center;
   margin-top: 0.5rem;
