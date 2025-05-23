@@ -1,3 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+
+:root {
+  /* Tema Claro (default) */
+  --cor-primaria-geral: #A87453;
+  --cor-secundaria-geral: ;
+  --cor-texto-geral: #333;
+  --cor-texto-secundario-geral: #666;
+  --cor-borda-geral: #A46434;
+  --cor-card-geral: #ffffff;
+  --cor-sombra-geral: rgba(0, 0, 0, 0.1);
+
+  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
+  --altura-navbar: clamp(60px, 10vh, 80px);
+  --altura-logo: clamp(40px, 8vh, 60px);
+  --padding-lateral: clamp(10px, 2vw, 20px);
+    --cor-fundo-inicio: #e2dad2;
+}
+
+/* Tema Escuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Cores principais invertidas */
+    --cor-primaria-geral: #5c3b28; /* Inverso de #A87453 */
+    --cor-secundaria-geral: #F8DCA5; /* Inverso de #5c3b28 */
+    /* Escala de cinza invertida */
+    --cor-texto: #f0f0f0; /* Quase branco */
+    --cor-texto-secundario-geral: #b3b3b3; 
+    /* Elementos de UI */
+    --cor-borda-geral: #A46434;
+    --cor-card-geral: #1e1e1e; 
+    --cor-sombra-geral: rgba(0, 0, 0, 0.5);
+    --cor-destaque: #F8DCA5; 
+     --cor-fundo-inicio: #313030;
+  }
+}
 
 
 /* Base Styles */
@@ -8,14 +44,14 @@ body {
   min-height: 100vh;
   color: var(--cor-texto);
   transition: all 0.3s ease;
-  background-color: var(--cor-fundo-perfil);
+  background-color: var(--cor-fundo-inicio);
 }
 
 .pageContainer {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-   background-color: var(--cor-fundo-perfil);
+   background-color: var(--cor-fundo-incio);
 }
 
 .container {
@@ -31,13 +67,13 @@ body {
 /* Profile Card */
 .profileCard {
   width: 80vw;
-  background-color: var(--cor-card);
+  background-color: var(--cor-card-geral);
   padding: 2rem;
   border-radius: 16px;
   max-width: 800px;
   margin: 0;
-  box-shadow: 0 8px 20px var(--cor-sombra);
-  border: 1px solid var(--cor-borda);
+  box-shadow: 0 8px 20px var(--cor-sombra-geral);
+  border: 1px solid var(--cor-borda-geral);
   transition: all 0.3s ease;
 }
 
@@ -49,7 +85,7 @@ body {
 }
 
 .profileHeader h2 {
-  color: var(--cor-primaria);
+  color: var(--cor-primaria-geral);
   font-size: 1.8rem;
   margin: 0;
 }
@@ -94,7 +130,7 @@ body {
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 3px solid var(--cor-primaria);
+  border: 3px solid var(--cor-primaria-geral);
 }
 
 .profileImage:hover {
@@ -134,24 +170,24 @@ body {
 
 .formGroup label {
   font-weight: 600;
-  color: var(--cor-texto);
+  color: var(--cor-texto-geral);
 }
 
 .infoInput {
   width: 90%;
   padding: 0.8rem;
-  border: 1px solid var(--cor-borda);
+  border: 1px solid var(--cor-borda-geral);
   border-radius: 8px;
   font-family: 'Comfortaa', sans-serif;
   font-size: 1rem;
-  background-color: var(--cor-card);
-  color: var(--cor-texto);
+  background-color: var(--cor-card-geral);
+  color: var(--cor-texto-geral);
   transition: all 0.3s ease;
 }
 
 .infoInput:focus {
   outline: none;
-  border-color: var(--cor-primaria);
+  border-color: var(--cor-primaria-geral);
   box-shadow: 0 0 0 3px rgba(168, 116, 83, 0.2);
 }
 
@@ -174,19 +210,19 @@ body {
   width: 90%;
   min-height: 100px;
   padding: 1rem;
-  border: 1px solid var(--cor-borda);
+  border: 1px solid var(--cor-borda-geral);
   border-radius: 8px;
   font-family: 'Comfortaa', sans-serif;
   font-size: 1rem;
   resize: vertical;
-  background-color: var(--cor-card);
-  color: var(--cor-texto);
+  background-color: var(--cor-card-geral);
+  color: var(--cor-texto-geral);
   transition: all 0.3s ease;
 }
 
 .description:focus {
   outline: none;
-  border-color: var(--cor-primaria);
+  border-color: var(--cor-primaria-geral);
 }
 
 /* Responsive Design */
