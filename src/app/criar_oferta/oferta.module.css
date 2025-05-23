@@ -14,6 +14,12 @@
   --altura-navbar: clamp(60px, 10vh, 80px);
   --altura-logo: clamp(40px, 8vh, 60px);
   --padding-lateral: clamp(10px, 2vw, 20px);
+
+  /* Cores de feedback */
+  --cor-sucesso: #28a745; /* Verde */
+  --cor-erro: #dc3545; /* Vermelho */
+  --cor-sucesso-bg: rgba(40, 167, 69, 0.1); /* Verde com transparência */
+  --cor-erro-bg: rgba(220, 53, 69, 0.1); /* Vermelho com transparência */
   
 }
 
@@ -24,7 +30,7 @@
     --cor-primaria-geral: #5c3b28; /* Inverso de #A87453 */
     --cor-secundaria-geral: #F8DCA5; /* Inverso de #5c3b28 */
     /* Escala de cinza invertida */
-    --cor-texto: #f0f0f0; /* Quase branco */
+    --cor-texto-geral: #f0f0f0; /* Quase branco */
     --cor-texto-secundario-geral: #b3b3b3; 
     /* Elementos de UI */
     --cor-borda-geral: #A46434;
@@ -32,17 +38,19 @@
     --cor-sombra-geral: rgba(0, 0, 0, 0.5);
     --cor-destaque: #F8DCA5; 
     --cor-fundo-inicio: #313030;
+
+      /* Cores de feedback (ajustadas para o tema escuro) */
+      --cor-sucesso: #4caf50; /* Verde mais claro */
+      --cor-erro: #f44336; /* Vermelho mais vibrante */
+      --cor-sucesso-bg: rgba(76, 175, 80, 0.2);
+      --cor-erro-bg: rgba(244, 67, 54, 0.2);
   }
 }
 /* Base Styles */
 body {
-  margin: 0;
-  font-family: 'Comfortaa', sans-serif;
-  font-size: var(--tamanho-fonte-base);
-  min-height: 100vh;
-  color: var(--cor-texto);
+
+  margin: 0%;
   background-color: var(--cor-fundo-inicio);
-  transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
@@ -62,16 +70,16 @@ body {
   padding: 20px;
   background-color: var(--cor-card-geral);
   border-radius: 8px;
-  box-shadow: 0 4px 8px var(--cor-sombra);
+  box-shadow: 0 4px 8px var(--cor-sombra-geral);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   min-width: 400px;
   margin: 2vw;
-  border: 1px solid var(--cor-borda);
+  border: 1px solid var(--cor-borda-geral);
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px var(--cor-sombra);
+  box-shadow: 0 6px 12px var(--cor-sombra-geral);
 }
 
 /* Form Styles */
@@ -81,7 +89,7 @@ body {
   align-items: flex-start;
   width: 100%;
   margin-bottom: 20px;
-  color: var(--cor-texto);
+  color: var(--cor-texto-geral);
 }
 
 .formContent {
@@ -101,13 +109,13 @@ body {
   max-width: 320px;
   height: 200px;
   justify-content: center;
-  border: 2px dashed var(--cor-borda);
+  border: 2px dashed var(--cor-borda-geral);
   border-radius: 10px;
 }
 
 .imageInput label, .imageInputLarge label {
   cursor: pointer;
-  color: var(--cor-texto);
+  color: var(--cor-texto-geral);
 }
 
 .imageInput input, .imageInputLarge input {
@@ -120,7 +128,7 @@ body {
   object-fit: cover;
   border-radius: 10px;
   margin-top: 10px;
-  border: 2px solid var(--cor-borda);
+  border: 2px solid var(--cor-borda-geral);
 }
 
 .formFields {
@@ -137,11 +145,11 @@ body {
   margin-bottom: 5px;
   font-weight: 500;
   width: 100%;
-  color: var(--cor-texto);
+  color: var(--cor-texto-geral);
 }
 
 .formGroup input, .formGroup select {
-  border: 1px solid var(--cor-borda);
+  border: 1px solid var(--cor-borda-geral);
   width: 100%;
   padding: 10px;
   border-radius: 4px;
@@ -149,11 +157,11 @@ body {
   font-size: 1rem;
   box-sizing: border-box;
   background-color: var(--cor-card-geral);
-  color: var(--cor-texto);
+  color: var(--cor-texto-geral);
 }
 
 .formGroup input:focus, .formGroup select:focus {
-  border-color: var(--cor-primaria);
+  border-color: var(--cor-primaria-geral);
   outline: none;
 }
 
@@ -172,14 +180,15 @@ body {
 }
 
 .criarOferta:hover {
-  background-color: var(--cor-secundaria);
+  background-color: var(--cor-secundaria-geral);
   transform: translateY(-2px);  
+  color: #1e1e1e;
 }
 
 /* Feedback Messages */
 .feedback {
-  padding: 1.5vh;
-  margin-top: 2vh;
+  padding: 1rem;
+  margin: 1rem 0;
   border-radius: 8px;
   text-align: center;
   font-weight: bold;
@@ -187,19 +196,21 @@ body {
 }
 
 .sucesso {
-  background-color: rgba(40, 167, 69, 0.2);
+  background-color: var(--cor-sucesso-bg);
   color: var(--cor-sucesso);
   border: 1px solid var(--cor-sucesso);
-  width: 100%;
 }
 
 .erro {
-  background-color: rgba(220, 53, 69, 0.2);
+  background-color: var(--cor-erro-bg);
   color: var(--cor-erro);
   border: 1px solid var(--cor-erro);
 }
 
+
 /* Form Validation */
+
+
 .inputField:invalid, .textareaField:invalid {
   border-color: var(--cor-erro);
 }
