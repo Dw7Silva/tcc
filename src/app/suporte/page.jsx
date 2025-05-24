@@ -2,12 +2,7 @@
 
 import React, { useState } from "react";
 import styles from "./suporte.module.css"; // Importa os estilos do CSS
-import { GoHomeFill } from "react-icons/go"; // Importa ícone de home
-import { FaSearch } from "react-icons/fa"; // Importa ícone de busca
-import { IoChatbox } from "react-icons/io5"; // Importa ícone de chat
 import { MdSupportAgent } from "react-icons/md"; // Importa ícone de suporte
-import { FaUser } from "react-icons/fa"; // Importa ícone de usuário
-import { HiOutlineMenu } from "react-icons/hi"; // Importa ícone de menu
 import BarraNvg from "@/components/navbar/navbar";
 
 
@@ -36,9 +31,11 @@ const Suporte = () => {
     };
 
     return (
+      <>
+              <BarraNvg></BarraNvg>
         <div className={styles.container}>
             {/* Navbar */}
-            <BarraNvg></BarraNvg>
+      
 
             {/* Container do Chat */}
             <div className={styles.chatContainer}>
@@ -57,7 +54,7 @@ const Suporte = () => {
                                 msg.sender === "support" ? styles.supportMessage : styles.userMessage
                             }`}
                         >
-                            {msg.text} /* Exibe o texto da mensagem */
+                            {msg.text} 
                         </div>
                     ))}
                 </div>
@@ -75,7 +72,10 @@ const Suporte = () => {
                 </div>
             </div>
         </div>
+
+      </>  
     );
 };
+
 
 export default Suporte; // Exporta o componente Suporte
