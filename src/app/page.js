@@ -3,6 +3,8 @@ import CriarOferta from "./criar_oferta/page";
 import Inicio from "./inicio/page";
 import Suporte from "./suporte/page";
 import MinhasDemandas from "./minhas_demandas/page";
+import Chat from "./chat/page";
+
 
 export default function dev() {
 
@@ -14,7 +16,7 @@ export default function dev() {
 
   return (
 
-    <Suporte></Suporte>
+    <Chat></Chat>
 
 
   );

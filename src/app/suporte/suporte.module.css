@@ -141,7 +141,7 @@ body {
 }
 
 .chatInput button {
-  background: var(--cor-secundaria-geral-1);
+  background:#F8DCA5;
   border: none;
   padding: 10px;
   color: var(--cor-card-geral);
@@ -152,7 +152,8 @@ body {
 }
 
 .chatInput button:hover { 
-  background: var(--cor-primaria-geral);
+  background:var(--cor-secundaria-geral-1) ;
+  color: #f0f0f0;
 }
 
 @media (max-width: 700px) {

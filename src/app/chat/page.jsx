@@ -7,11 +7,28 @@ export default function Chat() {
   const [conversaAtiva, setConversaAtiva] = useState(0);
   const [novaMensagem, setNovaMensagem] = useState("");
   const mensagemCorpoRef = useRef(null);
-  
-  // ... (mantenha o mesmo estado de conversas e mensagensPorConversa)
+
+  const conversas = [
+    { nome: "Empresa A", msg: "Olá, tudo certo com o envio?" },
+    { nome: "Empresa B", msg: "Precisamos revisar o contrato." },
+    { nome: "Empresa C", msg: "Agradecemos o contato." },
+  ];
+
+  const [mensagensPorConversa, setMensagensPorConversa] = useState([
+    [
+      { texto: "Oi! Enviamos ontem.", lado: "esquerda" },
+      { texto: "Ah sim, obrigado!", lado: "direita" },
+    ],
+    [
+      { texto: "Podemos ajustar o prazo?", lado: "esquerda" },
+      { texto: "Claro, sem problemas.", lado: "direita" },
+    ],
+    [
+      { texto: "Estamos disponíveis para novos pedidos.", lado: "esquerda" },
+    ],
+  ]);
 
   useEffect(() => {
-    // Rolagem automática para a última mensagem
     if (mensagemCorpoRef.current) {
       mensagemCorpoRef.current.scrollTop = mensagemCorpoRef.current.scrollHeight;
     }
@@ -23,7 +40,7 @@ export default function Chat() {
 
     const novaMensagemObj = { texto: novaMensagem, lado: "direita" };
     const novasMensagens = [...mensagensPorConversa[conversaAtiva], novaMensagemObj];
-    
+
     const novasMensagensPorConversa = [...mensagensPorConversa];
     novasMensagensPorConversa[conversaAtiva] = novasMensagens;
 
@@ -31,33 +48,28 @@ export default function Chat() {
     setNovaMensagem("");
   };
 
-  const alternarConversa = (index) => {
-    setConversaAtiva(index);
-  };
-
   return (
     <div className={styles.chatContainer}>
+      {/* Sidebar */}
       <aside className={styles.sidebar}>
         <div className={styles.sidebarHeader}>
           <h2>Conversas</h2>
-          <div className={styles.searchBox}>
-            <input type="text" placeholder="Buscar conversa..." />
-          </div>
+          <input className={styles.searchBox} type="text" placeholder="Buscar conversa..." />
         </div>
-        
+
         <div className={styles.conversasList}>
           {conversas.map((conversa, index) => (
-            <div 
-              key={index} 
-              className={`${styles.conversaItem} ${conversaAtiva === index ? styles.ativo : ''}`} 
-              onClick={() => alternarConversa(index)}
+            <div
+              key={index}
+              className={`${styles.conversaItem} ${conversaAtiva === index ? styles.ativo : ""}`}
+              onClick={() => setConversaAtiva(index)}
             >
               <div className={styles.userAvatar}>
                 <FaUser />
               </div>
               <div className={styles.conversaInfo}>
                 <strong>{conversa.nome}</strong>
-                <p>{conversa.msg.length > 30 ? conversa.msg.substring(0, 30) + '...' : conversa.msg}</p>
+                <p>{conversa.msg.length > 30 ? conversa.msg.substring(0, 30) + "..." : conversa.msg}</p>
               </div>
               {index === 1 && <span className={styles.unreadBadge}>3</span>}
             </div>
@@ -65,6 +77,7 @@ export default function Chat() {
         </div>
       </aside>
 
+      {/* Área Principal do Chat */}
       <main className={styles.mensagemArea}>
         <header className={styles.mensagemHeader}>
           <div className={styles.userAvatar}>
@@ -72,7 +85,7 @@ export default function Chat() {
           </div>
           <div className={styles.userInfo}>
             <strong>{conversas[conversaAtiva].nome}</strong>
-            <span>Online</span>
+            <span className={styles.statusOnline}>Online</span>
           </div>
         </header>
 
@@ -80,8 +93,8 @@ export default function Chat() {
           <div className={styles.mensagensContainer}>
             {mensagensPorConversa[conversaAtiva].map((msg, i) => (
               <div key={i} className={`${styles.mensagem} ${styles[msg.lado]}`}>
-                {msg.texto}
-                <span className={styles.mensagemHora}>10:30 AM</span>
+                <span>{msg.texto}</span>
+                <span className={styles.mensagemHora}>10:30</span>
               </div>
             ))}
           </div>
@@ -93,9 +106,9 @@ export default function Chat() {
             <button type="button"><FaFileAlt /></button>
           </div>
           <form onSubmit={enviarMensagem} className={styles.mensagemForm}>
-            <input 
-              type="text" 
-              placeholder="Digite sua mensagem..." 
+            <input
+              type="text"
+              placeholder="Digite sua mensagem..."
               value={novaMensagem}
               onChange={(e) => setNovaMensagem(e.target.value)}
             />
