@@ -4,7 +4,7 @@ import styles from "./demandas.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
 
-export default function Demandas() {
+export default function Ofertas() {
   // Estado para gerenciar múltiplas linhas de carrossel
   const [linhas, setLinhas] = useState([
     {

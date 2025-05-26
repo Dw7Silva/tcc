@@ -14,7 +14,7 @@ export default function dev() {
 
   return (
 
-    <MinhasDemandas></MinhasDemandas>
+    <Suporte></Suporte>
 
 
   );

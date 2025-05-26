@@ -2,9 +2,9 @@
 
 :root {
   /* Tema Claro (default) */
-  --cor-primaria-geral: #A87453;
-  --cor-secundaria-geral: #5c3b28;
-  --cor-texto-geral: #333;
+  --cor-primaria-geral: #F8DCA5;
+  --cor-secundaria-geral-1: #5c3b28;
+  --cor-texto-1: #333;
   --cor-texto-secundario-geral: #666;
   --cor-borda-geral: #A46434;
   --cor-card-geral: #ffffff;
@@ -24,8 +24,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --cor-primaria-geral: #F8DCA5;
-    --cor-secundaria-geral: #5c3b28;
-    --cor-texto-geral: #f0f0f0;
+    --cor-secundaria-geral-1: #5c3b28;
+    --cor-texto-1: #f0f0f0;
     --cor-texto-secundario-geral: #b3b3b3;
     --cor-borda-geral: #A46434;
     --cor-card-geral: #1e1e1e;
@@ -42,7 +42,7 @@ body {
   font-family: 'Comfortaa', sans-serif;
   font-weight: 400;
   background-color: var(--cor-fundo-inicio);
-  color: var(--cor-texto-geral);
+  color: var(--cor-texto-1);
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -84,7 +84,7 @@ body {
   background: color-mix(in srgb, var(--cor-primaria-geral) 10%, transparent);
   padding: 10px;
   border-radius: 10px;
-  color: var(--cor-texto-geral);
+  color: var(--cor-texto-1);
 }
 
 .chatHeader img {
@@ -109,7 +109,7 @@ body {
   padding: 10px;
   border-radius: 10px;
   font-size: 0.9em;
-  color: var(--cor-texto-geral);
+  color: var(--cor-texto-1);
 }
 
 .supportMessage {
@@ -119,7 +119,7 @@ body {
 
 .userMessage {
   align-self: flex-end;
-  background-color: var(--cor-destaque-geral);
+  background-color: var(--cor-card-geral);
 }
 
 /* Caixa de entrada */
@@ -137,22 +137,22 @@ body {
   outline: none;
   border-radius: 10px;
   background-color: var(--cor-input-geral);
-  color: var(--cor-texto-geral);
+  color: var(--cor-texto-1);
 }
 
 .chatInput button {
-  background: var(--cor-primaria-geral);
+  background: var(--cor-secundaria-geral-1);
   border: none;
   padding: 10px;
   color: var(--cor-card-geral);
   cursor: pointer;
   border-radius: 10px;
   margin-left: 10px;
-  transition: background-color 0.3s;
+
 }
 
-.chatInput button:hover {
-  background: var(--cor-secundaria-geral);
+.chatInput button:hover { 
+  background: var(--cor-primaria-geral);
 }
 
 @media (max-width: 700px) {
