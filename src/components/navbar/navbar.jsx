@@ -26,9 +26,10 @@ export default function BarraNvg() {
   const toggleMenu = () => setMenuAberto(!menuAberto);
 
   const menuItems = [
-    { label: "Demandas", href: "/demandas" },
+    { label: "Demandas",href: "/demanda" }, // Corrigido
     { label: "Ofertas", href: "/ofertas" },
-    { label: "Minhas O/D", href: "/minhas-od" },
+    { label: "Minhas Demandas", href: "/minhas_demandas" },
+    { label: "Minhas Ofertas", href: "/minhas_ofertas" },
     { label: "Config", href: "/config" },
     ...(isSmallScreen ? [
       { label: "Início", href: "/" },
@@ -56,7 +57,7 @@ export default function BarraNvg() {
       <div className={styles.navIcons}>
         {!isSmallScreen && (
           <>
-            <Link href="/inicio" className={styles.navIcon}>
+            <Link href="/" className={styles.navIcon}>
               <GoHomeFill />
             </Link>
             <Link href="/chat" className={styles.navIcon}>
@@ -68,9 +69,11 @@ export default function BarraNvg() {
             <Link href="/perfil" className={styles.navIcon}>
               <FaUser />
             </Link>
+         
+            
           </>
         )}
-        <HiOutlineMenu 
+       <HiOutlineMenu 
           onClick={toggleMenu} 
           className={styles.menuIcon} 
         />
