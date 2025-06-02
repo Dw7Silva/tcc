@@ -3,13 +3,14 @@ import React, { useRef, useState, useEffect } from "react";
 import styles from "./demandas.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
+import Link from "next/link";
 
 export default function Ofertas() {
   // Estado para gerenciar múltiplas linhas de carrossel
   const [linhas, setLinhas] = useState([
     {
       id: 1,
-      titulo: "Demandas em Destaque",
+      titulo: "Oferas Recentes",
       demandas: [
         { id: 1, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "50 saca", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
         { id: 2, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "50 saca", imagem: "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg" },
@@ -23,12 +24,13 @@ export default function Ofertas() {
     },
     {
       id: 2,
-      titulo: "Demandas Recentes",
+      
+      titulo: "Oferta em Destaque",
       demandas: [
         { id: 6, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "60 saca", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
         { id: 7, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "50 saca", imagem: "https://image.tuasaude.com/media/article/wg/xp/beneficios-do-amendoim_17802.jpg" },
-        { id: 8, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "45 saca", imagem: "https://example.com/amendoim8.jpg" },
-        { id: 9, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "52 saca", imagem: "https://example.com/amendoim9.jpg" },
+        { id: 8, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "45 saca", imagem: "https://feed.continente.pt/media/aaeoih2v/amendoim-beneficios.jpg?center=0.43958293115759167,0.45275669909355631&mode=crop&width=1090&height=467&rnd=133298540351630000&format=webp" },
+        { id: 9, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "52 saca", imagem: "https://feed.continente.pt/media/aaeoih2v/amendoim-beneficios.jpg?center=0.43958293115759167,0.45275669909355631&mode=crop&width=1090&height=467&rnd=133298540351630000&format=webp" },
       ],
       currentIndex: 0,
       cardWidth: 0,
@@ -115,7 +117,7 @@ export default function Ofertas() {
         <div className={styles.content}>
           <div className={styles.header}>
             <div className={styles.headerTitle}>
-              <h2>Demandas</h2>
+              <h2>Ofertas</h2>
               <div className={styles.filtro}>
                 <label htmlFor="filtro">Filtrar:</label>
                 <select id="filtro">
@@ -175,7 +177,9 @@ export default function Ofertas() {
             </div>
           ))}
        
-          <button className={styles.criarOferta}>Criar Demanda</button>
+          <button className={styles.criarOferta}>
+            
+            Criar OFerta</button>
         </div>
       </div>
     </>

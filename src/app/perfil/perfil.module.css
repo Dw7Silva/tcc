@@ -24,13 +24,13 @@
     --cor-primaria-geral: #5c3b28; /* Inverso de #A87453 */
     --cor-secundaria-geral: #F8DCA5; /* Inverso de #5c3b28 */
     /* Escala de cinza invertida */
-    --cor-texto: #f0f0f0; /* Quase branco */
-    --cor-texto-secundario-geral: #b3b3b3; 
+    --cor-texto-geral: #dbd9d9; /* Quase branco */
+    --cor-texto-secundario-geral: #ffffff; 
     /* Elementos de UI */
     --cor-borda-geral: #A46434;
     --cor-card-geral: #1e1e1e; 
     --cor-sombra-geral: rgba(0, 0, 0, 0.5);
-    --cor-destaque: #F8DCA5; 
+
      --cor-fundo-inicio: #313030;
   }
 }
@@ -85,7 +85,7 @@ body {
 }
 
 .profileHeader h2 {
-  color: var(--cor-primaria-geral);
+  color: var(--cor-texto-geral);
   font-size: 1.8rem;
   margin: 0;
 }

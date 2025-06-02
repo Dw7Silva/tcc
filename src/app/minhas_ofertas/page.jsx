@@ -24,7 +24,7 @@ export default function MinhasOfertas() {
         <div className={styles.content}>
           <div className={styles.header}>
             <div className={styles.headerTitle}>
-              <h2>Minhas Demandas</h2>
+              <h2>Minhas Ofertas</h2>
             </div>
           </div>
 
@@ -42,7 +42,7 @@ export default function MinhasOfertas() {
                 </div>
               ))
             ) : (
-              <p>Você ainda não possui nenhuma demanda cadastrada.</p>
+              <p>Você ainda não possui nenhuma oferta cadastrada.</p>
             )}
           </div>
         </div>
