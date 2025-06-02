@@ -18,7 +18,7 @@ export default function dev() {
 
   return (
 
-    <DemandaDescricao></DemandaDescricao>
+    <Chat></Chat>
 
 
   );

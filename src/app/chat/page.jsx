@@ -2,6 +2,8 @@
 import styles from "./chat.module.css";
 import { FaUser, FaImage, FaFileAlt, FaPaperPlane } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
+import BarraNvg from "@/components/navbar/navbar";
+
 
 export default function Chat() {
   const [conversaAtiva, setConversaAtiva] = useState(0);
@@ -49,6 +51,9 @@ export default function Chat() {
   };
 
   return (
+  <>
+    <BarraNvg> </BarraNvg>
+    <div className={styles.container}>  
     <div className={styles.chatContainer}>
       {/* Sidebar */}
       <aside className={styles.sidebar}>
@@ -119,5 +124,7 @@ export default function Chat() {
         </footer>
       </main>
     </div>
+    </div>
+    </>
   );
 }

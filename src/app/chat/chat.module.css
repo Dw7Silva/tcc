@@ -8,18 +8,33 @@
   --cor-online: #4caf50;
 }
 
-html, body {
+body {
   margin: 0;
-  padding: 0;
-  height: 100%;
   font-family: 'Comfortaa', sans-serif;
+  font-size: var(--tamanho-fonte-base);
+  min-height: 100vh;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo-inicio);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .chatContainer {
   display: flex;
-  height: 100vh;
   background-color: var(--cor-secundaria);
   overflow: hidden;
+  width: 90vw;
+  height: 900px;
+  border-radius: 15px;
+}
+
+
+.container {
+  background-color: var(--cor-fundo-demanda);
+  min-height: calc(100vh - var(--altura-navbar));
+  display: flex; /* Certifique-se de que os filhos sejam centralizados */
+  align-items: center;
+  justify-content: center;
+
 }
 
 /* Sidebar */
@@ -163,13 +178,13 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  max-width: 800px;
+  max-width: 95%;
   margin: 0 auto;
   width: 100%;
 }
 
 .mensagem {
-  max-width: 70%;
+  max-width: 90%;
   padding: 0.8rem 1rem;
   border-radius: 15px;
   font-size: 0.95rem;
@@ -179,13 +194,13 @@ html, body {
 }
 
 .esquerda {
-  align-self: flex-start;
+  align-self: start;
   background: #fff;
   border-top-left-radius: 5px;
 }
 
 .direita {
-  align-self: flex-end;
+  align-self: end;
   background: var(--cor-secundaria);
   color: var(--cor-primaria);
   border-top-right-radius: 5px;
