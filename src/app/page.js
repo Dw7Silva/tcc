@@ -6,7 +6,8 @@ import MinhasDemandas from "./minhas_demandas/page";
 import Chat from "./chat/page";
 import EsqueceuSenha from "./esqueceu_senha1/page";
 import DemandaDescricao from "./descricao_demanda/page";
-
+import OfertaDescricao from "./descricao_demanda/page";
+import Demandas from "./demanda/page";
 
 export default function dev() {
 
@@ -18,7 +19,7 @@ export default function dev() {
 
   return (
 
-    <Chat></Chat>
+    <Demandas></Demandas>
 
 
   );

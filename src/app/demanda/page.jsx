@@ -3,19 +3,35 @@ import React, { useRef, useState, useEffect } from "react";
 import styles from "./demandas.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
+import Link from "next/link";
 
 export default function Demandas() {
   // Estado para gerenciar múltiplas linhas de carrossel
+
+  let demandas_imagem = {
+
+    Amendoim_1 : "https://img.olx.com.br/images/35/354519630978865.webp" ,
+    Amendoim_2 :"https://img.olx.com.br/images/21/212434617469791.webp",
+    Amendoim_3 : "https://thumbs.dreamstime.com/b/dep%C3%B3sito-de-armazenamento-em-sacos-amendoim-no-brasil-visto-baixo-dos-206695366.jpg",
+    Amendoim_4 :  "https://img.mfrural.com.br/api/image?url=https://s3.amazonaws.com/mfrural-produtos-us/224488-366748-2000954-amendoim.webp&width=480&height=288&mode=4" ,
+    Amendoim_5 :"https://thumbs.dreamstime.com/z/um-saco-de-amendoim-47927630.jpg",
+    Amendoim_6 :   "https://blogmarcosfrahm.com/wp-content/uploads/2016/06/Amendoim.jpg" ,
+    Amendoim_7 :  "https://img.mfrural.com.br/api/image?url=https://s3.amazonaws.com/mfrural-produtos-us/120353-247626-79940346-amendoim-em-casca.webp&width=289&height=220&mode=4" ,
+    Amendoim_8 : "https://img.mfrural.com.br/api/image?url=https://s3.amazonaws.com/mfrural-produtos-us/55518-443952-2351855-pelets-de-casca-de-amendoim.webp&width=289&height=220&mode=4", 
+    Amendoim_9 : "https://www.embtec.com.br/media/resize/1110x1500/pasta/1/5dbb2d455571d.jpg",
+  } 
+
+  
   const [linhas, setLinhas] = useState([
     {
       id: 1,
       titulo: "Demandas em Destaque",
       demandas: [
-        { id: 1, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "50 saca", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
-        { id: 2, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "50 saca", imagem: "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg" },
-        { id: 3, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "50 saca", imagem: "https://image.tuasaude.com/media/article/wg/xp/beneficios-do-amendoim_17802.jpg" },
-        { id: 4, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "40 saca", imagem: "https://feed.continente.pt/media/aaeoih2v/amendoim-beneficios.jpg?center=0.43958293115759167,0.45275669909355631&mode=crop&width=1090&height=467&rnd=133298540351630000&format=webp" },
-        { id: 5, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "55 saca", imagem: "https://s2-ge.glbimg.com/fJ1Qo8xVlmVQH5cGcNq16UBgoqk=/0x0:1273x824/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2022/K/z/2SS07CSRe6kf6XQhBjtw/amendoim.jpg" },
+        { id: 1, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "50 saca", imagem: demandas_imagem.Amendoim_1 },
+        { id: 2, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "50 saca", imagem:  demandas_imagem.Amendoim_2 },
+        { id: 3, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "50 saca", imagem:  demandas_imagem.Amendoim_3 },
+        { id: 4, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "40 saca", imagem:  demandas_imagem.Amendoim_4 },
+        { id: 5, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "55 saca", imagem:  demandas_imagem.Amendoim_5},
       ],
       currentIndex: 0,
       cardWidth: 0,
@@ -25,10 +41,11 @@ export default function Demandas() {
       id: 2,
       titulo: "Demandas Recentes",
       demandas: [
-        { id: 6, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "60 saca", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
-        { id: 7, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "50 saca", imagem: "https://image.tuasaude.com/media/article/wg/xp/beneficios-do-amendoim_17802.jpg" },
-        { id: 8, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "45 saca", imagem: "https://example.com/amendoim8.jpg" },
-        { id: 9, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "52 saca", imagem: "https://example.com/amendoim9.jpg" },
+        { id: 6, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "60 saca", imagem:  demandas_imagem.Amendoim_6 },
+        { id: 7, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "50 saca", imagem:  demandas_imagem.Amendoim_7},
+        { id: 8, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "45 saca", imagem:  demandas_imagem.Amendoim_8 },
+        { id: 9, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "52 saca", imagem:  demandas_imagem.Amendoim_9 },
+        { id: 10, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "52 saca", imagem:  demandas_imagem.Amendoim_9 },
       ],
       currentIndex: 0,
       cardWidth: 0,
@@ -157,7 +174,9 @@ export default function Demandas() {
                       </div>
                       <h3>{demanda.tipo}</h3>
                       <p className={styles.quantidade}>{demanda.quantidade}</p>
+                      <Link href="/descricao_demanda" >
                       <button className={styles.detalhes}>Ver detalhes</button>
+                      </Link>
                     </div>
                   ))}
                 </div>
