@@ -1,5 +1,5 @@
 "use client";
-import styles from "./home.module.css";
+import styles from "./inicio.module.css";
 import Carousel from "./carrosel";
 import { useState, useEffect } from "react";
 import BarraNvg from "@/components/navbar/navbar";

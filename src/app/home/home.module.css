@@ -1,0 +1,13 @@
+.container {
+    text-align: center;
+    background-color: blueviolet;
+}
+.navbr{
+    width: 100vw;
+    height: 150px;
+    background-color: blue;
+}
+.logo{
+    height: 175px;
+    width: 150px;
+}
