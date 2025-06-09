@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import styles from './oferta.module.css';
+import styles from './criar_demanda.module.css';
 import { FaImage } from 'react-icons/fa';
 import BarraNvg from '@/components/navbar/navbar';
 
