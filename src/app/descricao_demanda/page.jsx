@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './descdemanda.module.css';
 import BarraNvg from '@/components/navbar/navbar';
+import Link from 'next/link';
 
 const DemandaDescricao = () => {
  
@@ -75,7 +76,9 @@ const DemandaDescricao = () => {
           </div>
 
           <div className={styles.actionButtons}>
+            <Link href="/proposta" >
             <button className={styles.secondaryButton}>Enviar proposta</button>
+            </Link>
           </div>
         </div>
       </div>

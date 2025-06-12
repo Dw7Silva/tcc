@@ -3,7 +3,7 @@
 :root {
   /* Tema Claro (default) */
   --cor-primaria-geral: #A87453;
-  --cor-secundaria-geral: ;
+  --cor-secundaria-geral: #ffff ;
   --cor-texto-geral: #333;
   --cor-texto-secundario-geral: #666;
   --cor-borda-geral: #A46434;

@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+
+:root {
+  /* Tema Claro (default) */
+  --cor-primaria-geral: #F8DCA5;
+  --cor-secundaria-geral-1: #5c3b28;
+  --cor-texto-1: #333;
+  --cor-texto-secundario-geral: #666;
+  --cor-borda-geral: #A46434;
+  --cor-card-geral: #ffffff;
+  --cor-sombra-geral: rgba(0, 0, 0, 0.1);
+  --cor-fundo-inicio: #e2dad2;
+  --cor-destaque-geral: #F8DCA5;
+  --cor-chat-geral: #d9d9d9;
+  --cor-input-geral: #ffffff;
+
+  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
+  --altura-navbar: clamp(60px, 10vh, 80px);
+  --altura-logo: clamp(40px, 8vh, 60px);
+  --padding-lateral: clamp(10px, 2vw, 20px);
+}
+
+/* Tema Escuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria-geral: #F8DCA5;
+    --cor-secundaria-geral-1: #ffffff;
+    --cor-texto-1: #f0f0f0;
+    --cor-texto-secundario-geral: #b3b3b3;
+    --cor-borda-geral: #A46434;
+    --cor-card-geral: #1e1e1e;
+    --cor-sombra-geral: rgba(0, 0, 0, 0.5);
+    --cor-fundo-inicio: #313030;
+    --cor-destaque-geral: #A87453;
+    --cor-chat-geral: #2a2a2a;
+    --cor-input-geral: #3a3a3a;
+  }
+}
+.container {
+  padding: 2rem;
+  background-color: var(--cor-fundo-inicio);
+  font-family: 'Comfortaa', cursive;
+}
+
+.demandaContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--cor-card-geral);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px var(--cor-sombra-geral);
+  color: var(--cor-texto-1);
+}
+
+.demandaHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.productTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--cor-secundaria-geral-1);
+  margin-bottom: 1rem;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.productImage {
+  max-width: 400px;
+  height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px var(--cor-sombra-geral);
+}
+
+.demandaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.infoBox {
+  background: var(--cor-card-geral);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--cor-borda-geral);
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+  margin-top: 1rem;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--tamanho-fonte-base);
+}
+
+.infoLabel {
+  font-weight: 600;
+  color: var(--cor-secundaria-geral-1);
+}
+
+.infoValue {
+  color: var(--cor-texto-secundario-geral);
+}
+
+.editorSection {
+  background: var(--cor-card-geral);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--cor-borda-geral);
+}
+
+.editorPlaceholder {
+  padding: 1rem;
+  background-color: var(--cor-chat-geral);
+  border-radius: 8px;
+  min-height: 100px;
+  color: var(--cor-texto-1);
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: 600;
+  font-family: 'Comfortaa', cursive;
+}
+
+.primaryButton {
+  background-color: var(--cor-secundaria-geral-1);
+  color: white;
+}
+
+.secondaryButton {
+  background-color: var(--cor-destaque-geral);
+  color: var(--cor-texto-1);
+}
+
+.primaryButton:hover {
+  background-color: #3f2719;
+}
+
+.secondaryButton:hover {
+  background-color: #f5c66e;
+}

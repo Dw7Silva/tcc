@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import styles from "./demandas.module.css";
+import styles from "./oferta.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
 import Link from "next/link";
@@ -10,7 +10,7 @@ export default function Ofertas() {
   const [linhas, setLinhas] = useState([
     {
       id: 1,
-      titulo: "Oferas Recentes",
+      titulo: "Ofertas Recentes",
       demandas: [
         { id: 1, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "50 saca", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
         { id: 2, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "50 saca", imagem: "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg" },
@@ -159,7 +159,9 @@ export default function Ofertas() {
                       </div>
                       <h3>{demanda.tipo}</h3>
                       <p className={styles.quantidade}>{demanda.quantidade}</p>
+                      <Link href="/descricao_oferta">
                       <button className={styles.detalhes}>Ver detalhes</button>
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -176,10 +178,10 @@ export default function Ofertas() {
               </div>
             </div>
           ))}
-       
-          <button className={styles.criarOferta}>
-            
-            Criar OFerta</button>
+         <Link href="/criar_oferta">
+          <button className={styles.criarOferta} >Criar Oferta</button>
+          </Link>
+
         </div>
       </div>
     </>

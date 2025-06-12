@@ -193,8 +193,9 @@ export default function Demandas() {
               </div>
             </div>
           ))}
-       
+         <Link href="/criar_oferta">
           <button className={styles.criarOferta}>Criar Demanda</button>
+          </Link>
         </div>
       </div>
     </>
