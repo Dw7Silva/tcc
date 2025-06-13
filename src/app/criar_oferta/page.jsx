@@ -5,7 +5,7 @@ import styles from './criar_oferta.module.css';
 import { FaImage } from 'react-icons/fa';
 import BarraNvg from '@/components/navbar/navbar';
 
-export default function CriarOferta() {
+export default function criarOferta() {
   // Estados para o formulário
   const [selectedImage, setSelectedImage] = useState(null);
   const [isImageInputLarge, setIsImageInputLarge] = useState(true);

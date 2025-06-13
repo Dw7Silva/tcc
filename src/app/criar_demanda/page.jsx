@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './criar_demanda.module.css';
-import { FaImage } from 'react-icons/fa';
+import { FaImage, FaCheckCircle } from 'react-icons/fa';
 import BarraNvg from '@/components/navbar/navbar';
 
 export default function CriarDemanda() {
-  // Estados para o formulário
   const [selectedImage, setSelectedImage] = useState(null);
   const [isImageInputLarge, setIsImageInputLarge] = useState(true);
   const [preco, setPreco] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState('');
 
   const formatarParaBRL = (valor) => {
     const numero = Number(valor.replace(/\D/g, '')) / 100;
@@ -24,11 +25,11 @@ export default function CriarDemanda() {
     setPreco(valorFormatado);
   };
 
-
   const handleImageChange = ({ target: { files } }) => {
     if (files && files[0]) {
       setSelectedImage(URL.createObjectURL(files[0]));
       setIsImageInputLarge(false);
+      setError('');
     }
   };
 
@@ -44,18 +45,32 @@ export default function CriarDemanda() {
     e.preventDefault();
 
     if (!selectedImage) {
-      alert("Por favor, selecione uma imagem!");
+      setError('Por favor, selecione uma imagem!');
       return;
     }
 
-    alert("Oferta criada com sucesso!");
+    setShowSuccess(true);
+    setError('');
+    
+    // Esconde a mensagem após 3 segundos
+    setTimeout(() => {
+      setShowSuccess(false);
+    }, 3000);
   };
-
-  const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
 
   return (
     <>
-       <BarraNvg></BarraNvg>
+      <BarraNvg />
+      
+      {/* Overlay de sucesso */}
+      {showSuccess && (
+        <div className={styles.successOverlay}>
+          <div className={styles.successMessage}>
+            <FaCheckCircle className={styles.successIcon} />
+            <p>Demanda criada com sucesso!</p>
+          </div>
+        </div>
+      )}
 
       <div className={styles.container}>
         <div className={styles.card}>
@@ -63,10 +78,17 @@ export default function CriarDemanda() {
             <h2>Criar Demanda</h2>
           </div>
 
+          {error && (
+            <div className={`${styles.feedback} ${styles.erro}`}>
+              {error}
+            </div>
+          )}
+
           <form className={styles.formContent} onSubmit={handleSubmit}>
             <div className={`${styles.imageInput} ${isImageInputLarge ? styles.imageInputLarge : ''}`}>
               <label htmlFor="imageUpload" onClick={toggleImageInputSize}>
                 <FaImage size={isImageInputLarge ? 100 : 30} />
+                {isImageInputLarge && <p>Clique para adicionar uma imagem</p>}
               </label>
               <input
                 type="file"
@@ -99,9 +121,8 @@ export default function CriarDemanda() {
                 <label htmlFor="precoEstimado">Preço estimado ex: por saca</label>
                 <input type="number " id="precoEstimado" value={preco}   onChange={handleChange} required />
               </div>
-
               <div className={styles.formGroup}>
-                <label htmlFor="métrica"> Métrica ex:kilo, saca</label>
+                <label htmlFor="metrica">Métrica (ex: kilo, saca)</label>
                 <select id="metrica" required>
                   <option value="">Selecione</option>
                   <option value="kilo">Kilo</option>

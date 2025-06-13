@@ -180,50 +180,57 @@ body {
 }
 
 .criarOferta:hover {
-  background-color: var(--cor-secundaria-geral);
+
   transform: translateY(-2px);  
   color: #1e1e1e;
 }
 
-/* Feedback Messages */
-.feedback {
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 8px;
+/* Estilos para a mensagem de sucesso */
+.successOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.successMessage {
+  background-color: var(--cor-card-geral);
+  padding: 2rem;
+  border-radius: 10px;
   text-align: center;
-  font-weight: bold;
-  animation: fadeIn 0.3s ease-in-out;
+  box-shadow: 0 4px 12px var(--cor-sombra-geral);
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.sucesso {
-  background-color: var(--cor-sucesso-bg);
+.successIcon {
   color: var(--cor-sucesso);
-  border: 1px solid var(--cor-sucesso);
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
-.erro {
-  background-color: var(--cor-erro-bg);
-  color: var(--cor-erro);
-  border: 1px solid var(--cor-erro);
+.successMessage p {
+  font-size: 1.2rem;
+  color: var(--cor-texto-geral);
+  margin: 0;
+}
+
+/* Melhorias para o input de imagem */
+.imageInputLarge p {
+  margin-top: 10px;
+  color: var(--cor-texto-secundario-geral);
+  font-size: 0.9rem;
 }
 
 
-/* Form Validation */
-
-
-.inputField:invalid, .textareaField:invalid {
-  border-color: var(--cor-erro);
-}
-
-.inputField:valid, .textareaField:valid {
-  border-color: var(--cor-sucesso);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {

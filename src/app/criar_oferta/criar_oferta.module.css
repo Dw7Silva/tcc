@@ -180,7 +180,7 @@ body {
 }
 
 .criarOferta:hover {
-  background-color: var(--cor-secundaria-geral);
+
   transform: translateY(-2px);  
   color: #1e1e1e;
 }

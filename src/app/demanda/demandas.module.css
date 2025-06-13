@@ -4,8 +4,8 @@
   /* Tema Claro (default) */
   --cor-primaria-geral: #A87453;
   --cor-secundaria-geral: #ffff ;
-  --cor-texto-geral: #333;
-  --cor-texto-secundario-geral: #666;
+  --cor-texto-geral: #ffffff;
+  --cor-texto-secundario-geral: #ffffff;
   --cor-borda-geral: #A46434;
   --cor-card-geral: #ffffff;
   --cor-sombra-geral: rgba(0, 0, 0, 0.1);
@@ -24,7 +24,7 @@
     --cor-primaria-geral: #5c3b28; /* Inverso de #A87453 */
     --cor-secundaria-geral: #F8DCA5; /* Inverso de #5c3b28 */
     /* Escala de cinza invertida */
-    --cor-texto: #f0f0f0; /* Quase branco */
+    --cor-texto-geral: #f0f0f0; /* Quase branco */
     --cor-texto-secundario-geral: #b3b3b3; 
     /* Elementos de UI */
     --cor-borda-geral: #A46434;
@@ -99,7 +99,7 @@ body {
   border-radius: 8px;
   border: 1px solid var(--cor-borda-geral-);
   background-color: var(--cor-card-geral);
-  color: var(--cor-texto);
+  color: var(--cor-texto-geral);
   font-family: inherit;
   min-width: 150px;
   width: 100%;
@@ -178,7 +178,7 @@ body {
 .demandaCard h3 {
   margin: 0.8rem 0;
   font-size: 1.2rem;
-  color: var(--cor-texto);
+  color: var(--cor-texto-geral);
 }
 
 .quantidade {
