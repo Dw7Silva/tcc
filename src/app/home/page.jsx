@@ -8,7 +8,7 @@ export default function Home () {
         <div className={styles.navbr}>
             <div>
                 <img src={Logo}  className={styles.logo}></img>
-                <div>
+                <div className={styles.info}>
                     <span>Início</span>
                     <span>Como Funciona</span>
                     <span>Sobre Nós</span>

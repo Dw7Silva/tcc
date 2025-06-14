@@ -1,17 +1,27 @@
-.container {
-    text-align: center;
-    background-color: blueviolet;
-}
+
 .navbr{
     width: 100vw;
     height: 150px;
     background-color: rgb(72, 72, 77);
-    display:inline-flex;
-    text-align: center;
+    
     
 }
 .logo{
     height: 175px;
     width: 150px;
-    position:relative
+    position:fixed; 
+}
+.info{
+
+
+    flex: 1;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    left: 50%;
+    top: 9%;
+   
+
 }
