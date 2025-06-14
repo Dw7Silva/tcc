@@ -5,9 +5,13 @@
 .navbr{
     width: 100vw;
     height: 150px;
-    background-color: blue;
+    background-color: rgb(72, 72, 77);
+    display:inline-flex;
+    text-align: center;
+    
 }
 .logo{
     height: 175px;
     width: 150px;
+    position:relative
 }

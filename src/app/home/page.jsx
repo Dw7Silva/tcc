@@ -8,12 +8,16 @@ export default function Home () {
         <div className={styles.navbr}>
             <div>
                 <img src={Logo}  className={styles.logo}></img>
+                <div>
+                    <span>Início</span>
+                    <span>Como Funciona</span>
+                    <span>Sobre Nós</span>
+                    <span>Contato</span>
+                </div>
             </div>
         </div>
 
-       <div className={styles.container}>
-            <h1>0000</h1>
-        </div>
+     
     </div>
     )
 }
