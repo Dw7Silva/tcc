@@ -14,6 +14,11 @@ export default function Home () {
                     <span>Sobre Nós</span>
                     <span>Contato</span>
                 </div>
+
+                <div className={styles.ec}>
+                    <span>Entrar</span>
+                    <span>Cadastrar</span>
+                </div>
             </div>
         </div>
 
