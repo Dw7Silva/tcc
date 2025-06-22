@@ -20,18 +20,24 @@ export default function Home () {
                     <span className={styles.cadastrar}>Cadastrar</span>
                 </div>
             </div>
-
-           
-
         </div>
 
-     
             <div className={styles.teste}>
                 <h1 className={styles.des}>Conectando Produtores de Amendoim e Empresas</h1>
                 <span className={styles.sub} >Facilitamos a conexão entre agricultores e empresas para a compra e venda de amendoins, garantindo negociações rápidas e seguras.</span>
-
-
             </div>
+
+        <div>
+            <div className={styles.ajuda}>
+                <h1 > Como podemos ajudar  </h1>
+            </div>
+
+            <div className={styles.agr}>
+              <h3>Agricultor</h3>
+              <span></span>
+            </div>
+        </div>
+            
     </div>
     )
 }

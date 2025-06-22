@@ -63,13 +63,14 @@
 
 .teste {
     display: flex;
-    flex-direction: column;       /* Organiza os filhos em coluna */
-    align-items: center;          /* Centraliza horizontalmente */
-    justify-content: center;     /* Centraliza verticalmente (opcional) */
+    flex-direction: column;      
+    align-items: center;       
+    justify-content: center;    
     background-color: #f8f7f2;
     width: 100%;
     height: 400px;
     margin: 0;
+    
 }
 
 .des {
@@ -86,9 +87,21 @@
 }
 
 .sub {
-    width: 60%; /* Largura diferente */
+    width: 60%; 
     text-align: center;
     font-size:15px
 }
 
+.ajuda{
+display:flex;
+justify-content: center;
+text-align: center;
+}
+
+.agr{
+    height:300px;
+    width:350px;
+    border:1px solid #C49E7C;
+    background-color: #ebd1bbd5;
+}
    
