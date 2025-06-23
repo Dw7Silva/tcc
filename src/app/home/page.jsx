@@ -27,14 +27,26 @@ export default function Home () {
                 <span className={styles.sub} >Facilitamos a conexão entre agricultores e empresas para a compra e venda de amendoins, garantindo negociações rápidas e seguras.</span>
             </div>
 
-        <div>
+          {/* Como podemos Ajudar */}
+
             <div className={styles.ajuda}>
                 <h1 > Como podemos ajudar  </h1>
             </div>
-
+      
+        <div className={styles.card}>
             <div className={styles.agr}>
               <h3>Agricultor</h3>
-              <span></span>
+              <span>Acesso direto a compradores, melhores preços e visibilidade para sua produção de amendoim.</span>
+            </div>
+
+             <div className={styles.empre}>
+              <h3>Empresa</h3>
+              <span>Encontre produtores confiáveis, negocie diretamente e garanta amendoim de qualidade para seu negócio.</span>
+            </div>
+
+             <div className={styles.ts}>
+              <h3>Transações Seguras</h3>
+              <span>Garantimos a segurança das negociações, com verificação de qualidade e pagamentos protegidos.</span>
             </div>
         </div>
             
