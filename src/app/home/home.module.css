@@ -104,27 +104,67 @@
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    padding: 20px; /* Espaçamento ao redor dos cards */
+    margin-bottom:100px
 }
 
 .agr, .empre, .ts {
     height: 300px;
     width: 500px;
-    border: 1px solid #C49E7C;
-    background-color: #ebd1bbd5;
+    border: 1px solid #C49E7C; /* Cor das bordas */
+    border-radius: 15px; /* Bordas arredondadas */
+    background-color: #ffffff; /* Cor de fundo mais suave */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação */
+}
+
+.agr:hover, .empre:hover, .ts:hover {
+    transform: translateY(-10px); /* Efeito de flutuação ao passar o mouse */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
 }
 
 .agr h3, .empre h3, .ts h3 {
     margin: 0;
-    align-self: flex-start;
-    margin-top: 10px;
-    padding-left: 20px;
+    margin-top: 20px;
+    font-size: 1.5rem; /* Tamanho da fonte */
+    color: #b18e6b; /* Cor da fonte */
+    text-align: center;
+    font-family: 'Arial', sans-serif; /* Fonte estilizada */
 }
 
 .agr span, .empre span, .ts span {
     margin: auto;
+    font-size: 1.2rem; /* Tamanho da fonte do span */
+    color: #a78769; /* Cor suave */
+    font-weight: bold; /* Destaque */
+}
+
+
+.rev{
+    background-color: #7c7976 ;
+    height:416px;
+    width:100%;
+   
+    
+}
+
+.rev h1{
+    text-align: center;
+    padding-top:4rem;
+    padding-bottom:4rem;
+}
+
+.passo{
+    border-radius:75px;
+    height: 125px;
+    width:125px;
+    background-color: white;
+    text-align: center;
+    
+
 }

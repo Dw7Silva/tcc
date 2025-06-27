@@ -49,7 +49,14 @@ export default function Home () {
               <span>Garantimos a segurança das negociações, com verificação de qualidade e pagamentos protegidos.</span>
             </div>
         </div>
-            
+         
+
+         {/* Como Funciona*/}
+
+        <div className={styles.rev}>
+           <h1>Como Funciona</h1>     
+           <div className={styles.passo}><h1>1</h1></div>
+        </div> 
     </div>
     )
 }
