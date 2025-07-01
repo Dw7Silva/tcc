@@ -159,12 +159,18 @@
     padding-bottom:4rem;
 }
 
-.passo{
-    border-radius:75px;
+.passo {
+    display: flex; /* Torna o elemento um contêiner flex */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    border-radius: 75px;
     height: 125px;
-    width:125px;
+    width: 125px;
     background-color: white;
-    text-align: center;
-    
-
 }
+
+.passo h1 {
+    text-align: center; /* Garante que o texto esteja centralizado */
+    margin: 0; /* Remove margens extras */
+}
+
