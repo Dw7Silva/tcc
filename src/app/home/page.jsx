@@ -54,9 +54,12 @@ export default function Home () {
          {/* Como Funciona*/}
 
         <div className={styles.rev}>
-           <h1>Como Funciona</h1>     
-           <div className={styles.passo}><h1>1</h1></div>
-        </div> 
+           <h1>Como Funciona</h1> 
+           <div className={styles.espaço}> 
+                <div className={styles.passo}><h1>1</h1></div>
+                <div className={styles.fazer}> <h1>Cadastre-se</h1></div>
+           </div> 
+        </div>   
     </div>
     )
 }
