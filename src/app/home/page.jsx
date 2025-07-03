@@ -18,6 +18,10 @@ export default function Home () {
                 <div className={styles.ec}>
                     <span className={styles.login}>Entrar</span>
                     <span className={styles.cadastrar}>Cadastrar</span>
+                  
+        
+                    
+                
                 </div>
             </div>
         </div>
@@ -25,6 +29,7 @@ export default function Home () {
             <div className={styles.teste}>
                 <h1 className={styles.des}>Conectando Produtores de Amendoim e Empresas</h1>
                 <span className={styles.sub} >Facilitamos a conexão entre agricultores e empresas para a compra e venda de amendoins, garantindo negociações rápidas e seguras.</span>
+                <img src="https://imgur.com/etVCFjJ.png" alt=""  className={styles.imagemHero} />
             </div>
 
           {/* Como podemos Ajudar */}

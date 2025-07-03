@@ -60,34 +60,55 @@
 }
 
 .teste {
+    position: relative;
+    width: 100%;
+    height: 400px; /* altura fixa que você quer */
+    background-color: #f8f7f2;
+    overflow: hidden;
+}
+
+.imagemHero {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* ou 'cover' se preferir que corte um pouco */
+    border-radius: 12px;
+    z-index: 1;
+}
+
+.des, .sub {
+    position: relative;
+    z-index: 2;
+    color: #000; /* ou outra cor que fique visível */
+    text-align: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.teste > div {  /* cria um wrapper para centralizar texto verticalmente */
+    position: relative;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    background-color: #f8f7f2;
-    width: 100%;
-    height: 400px;
-    margin: 0;
+    align-items: center;
+    z-index: 2;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .des {
-    display: inline-flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
     font-size: 40px;
-    width: 90%;
-    height: 50px;
-    margin: 0;
     margin-bottom: 10px;
 }
 
 .sub {
-    width: 60%;
-    text-align: center;
     font-size: 15px;
 }
+
 
 .ajuda {
     display: flex;
