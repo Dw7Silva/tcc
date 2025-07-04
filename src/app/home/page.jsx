@@ -25,12 +25,18 @@ export default function Home () {
                 </div>
             </div>
         </div>
+            {/* Banner*/}
 
-            <div className={styles.teste}>
+          <div className={styles.teste}>
+           
+               
+            <div className={styles.texto}>
                 <h1 className={styles.des}>Conectando Produtores de Amendoim e Empresas</h1>
-                <span className={styles.sub} >Facilitamos a conexão entre agricultores e empresas para a compra e venda de amendoins, garantindo negociações rápidas e seguras.</span>
-                <img src="https://imgur.com/etVCFjJ.png" alt=""  className={styles.imagemHero} />
+                <span className={styles.sub}> Facilitamos a conexão entre agricultores e empresas para a compra e venda de amendoins, garantindo negociações rápidas e seguras.</span>
             </div>
+         <img src="https://imgur.com/etVCFjJ.png" alt="fundo" className={styles.fundoRepetido}/>
+     </div>
+
 
           {/* Como podemos Ajudar */}
 
