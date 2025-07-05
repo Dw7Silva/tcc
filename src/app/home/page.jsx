@@ -34,7 +34,7 @@ export default function Home () {
                 <h1 className={styles.des}>Conectando Produtores de Amendoim e Empresas</h1>
                 <span className={styles.sub}> Facilitamos a conexão entre agricultores e empresas para a compra e venda de amendoins, garantindo negociações rápidas e seguras.</span>
             </div>
-         <img src="https://imgur.com/etVCFjJ.png" alt="fundo" className={styles.fundoRepetido}/>
+         <img src="https://imgur.com/etVCFjJ.png" alt="fundo" className={styles.imagem}/>
      </div>
 
 
@@ -66,11 +66,19 @@ export default function Home () {
 
         <div className={styles.rev}>
            <h1>Como Funciona</h1> 
-           <div className={styles.espaço}> 
-                <div className={styles.passo}><h1>1</h1></div>
-                <div className={styles.fazer}> <h1>Cadastre-se</h1></div>
-           </div> 
+            <div className={styles.containerPassos}>
+                <div className={styles.espaço}> 
+                    <div className={styles.passo}><h1>1</h1></div>
+                    <div className={styles.fazer}><h1>Cadastre-se</h1></div>
+                    <div className={styles.conta}><p>Crie sua conta como produtor ou empresa compradora.</p></div> 
+                </div>  
+                <div className={styles.espaço2}>
+                    <div className={styles.passo2}><h1>2</h1></div>
+               
+
+                </div>
+            </div>
         </div>   
     </div>
     )
-}
+} 
