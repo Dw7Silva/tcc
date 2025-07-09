@@ -73,10 +73,10 @@ export default function Home() {
       </div>
 
       {/* Como Funciona */}
-      <div className={styles.rev}>
+      <div className={styles.comofun}>
         <h1>Como Funciona</h1>
         <div className={styles.containerPassos}>
-          {/* Passo 1 */}
+       
           <div className={styles.espaço}>
             <div className={styles.passo}>
               <h1>1</h1>
@@ -89,7 +89,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Passo 2 */}
           <div className={styles.espaço2}>
             <div className={styles.passo2}>
               <h1>2</h1>
@@ -102,32 +101,34 @@ export default function Home() {
             </div>
           </div>
 
-          
-          <div className={styles.espaço}>
-            <div className={styles.passo}>
+          <div className={styles.espaço3}>
+            <div className={styles.passo3}>
               <h1>3</h1>
             </div>
-            <div className={styles.fazer}>
+            <div className={styles.fazer3}>
               <h1>Negocie</h1>
             </div>
-            <div className={styles.conta}>
-              <p>Converse diretamente com produtores ou empresas interessadas.</p>
+            <div className={styles.conta3}>
+              <p>Converse diretamente e estabeleça os melhores termos.</p>
             </div>
           </div>
 
-          {/* Passo 4 */}
-          <div className={styles.espaço}>
-            <div className={styles.passo}>
+          <div className={styles.espaço4}>
+            <div className={styles.passo4}>
               <h1>4</h1>
             </div>
-            <div className={styles.fazer}>
-              <h1>Finalize</h1>
+            <div className={styles.fazer4}>
+              <h1>Conclua</h1>
             </div>
-            <div className={styles.conta}>
-              <p>Conclua a transação com segurança e agilidade pela plataforma.</p>
+            <div className={styles.conta4}>
+              <p>Finalize a transação com segurança através da nossa plataforma.</p>
             </div>
           </div>
         </div>
+      </div>
+      <div className={styles.rev}>
+        <h1>Pronto para Revolucionar seu Negócio de Amendoim?</h1>
+        <p>Junte-se a centenas de agricultores e empresas que já estão economizando tempo e aumentando seus lucros com nossa plataforma.</p>
       </div>
     </div>
   );
