@@ -42,6 +42,8 @@
 }
 
 .login {
+    display:flex;
+    align-items: center;
     border: 2px solid #c69c62;
     color: #d4a76a;
     border-radius: 5px;
@@ -50,6 +52,8 @@
 }
 
 .cadastrar {
+    display:flex;
+    align-items: center;
     color: white;
     background-color: #c69c62;
     text-align: center;
@@ -374,12 +378,65 @@
     display:flex;
     text-align:center;
     justify-content: center;
-    margin-top:60px
+    margin-top:60px;
+    margin-bottom:35px;
 }
 
 .rev p{
     display: flex;
     justify-content: center;
     white-space: normal; /* Permite a quebra normal de linha */
-    
+    margin-top:0
 }
+
+.botao{
+  display:flex;
+  gap:40px;
+  margin:25px;
+
+}
+
+.faleconos{
+    display:flex;
+    color: white;
+    background-color: #c69c62;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 45px; 
+    align-items: center;
+    border: 2px solid #c69c62;
+}
+
+.cadasgra{
+    display:flex;
+    border: 2px solid #c69c62;
+    color: #d4a76a;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    height:45px;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+    width: 170;
+}
+
+.footer {
+    background-color: #20201f;
+    height: 500px;
+    width: 100%;
+}
+
+.logo2{
+    
+    height: 175px;
+    width: auto;
+}
+
+.penauth1{
+
+ display:inline;
+}
+

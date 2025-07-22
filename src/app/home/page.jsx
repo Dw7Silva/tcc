@@ -128,7 +128,19 @@ export default function Home() {
       </div>
       <div className={styles.rev}>
         <h1>Pronto para Revolucionar seu Negócio de Amendoim?</h1>
-        <p>Junte-se a centenas de agricultores e empresas que já estão economizando tempo e aumentando seus lucros com nossa plataforma.</p>
+        <p>Junte-se a centenas de agricultores e empresas que já estão </p> 
+        <p>economizando tempo e aumentando seus lucros com nossa plataforma.</p>
+        <div className={styles.botao}>
+        <span className={styles.faleconos}>Cadastra-se Gratuitamente</span>
+        <span className={styles.cadasgra}>Fale Conosco</span>
+        </div>
+      </div>
+      <div className={styles.footer}>
+        <div>
+          <img src={Logo} className={styles.logo2} alt="Logo" />
+          <h1 className={styles.penauth1}>PeanutDrop</h1>
+          <h3>Conectando o campo à indústria, simplificando o comércio de amendoim em todo o Brasil.</h3>
+        </div>
       </div>
     </div>
   );
