@@ -136,10 +136,10 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.footer}>
-        <div>
+        <div className={styles.peanuth}>
           <img src={Logo} className={styles.logo2} alt="Logo" />
-          <h1 className={styles.penauth1}>PeanutDrop</h1>
-          <h3>Conectando o campo à indústria, simplificando o comércio de amendoim em todo o Brasil.</h3>
+          <h1 className={styles.peanuth1}>PeanutDrop</h1>
+          <h3 className={styles.peanuth3}>Conectando o campo à indústria, simplificando o comércio de amendoim em todo o Brasil.</h3>
         </div>
       </div>
     </div>

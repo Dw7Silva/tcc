@@ -429,14 +429,31 @@
     width: 100%;
 }
 
+.peanuth{
+   display:flex;
+   width:300px
+}
+
 .logo2{
-    
-    height: 175px;
+    height: 150px;
     width: auto;
+    
+    
 }
 
-.penauth1{
-
- display:inline;
+.peanuth1{
+  font-size:30px ;
+  display:flex;
+  align-items:center;
+  margin:0
 }
+.peanuth3{
+  font-size:15px;
+  text-align: center;
+
+  
+
+
+}
+
 
