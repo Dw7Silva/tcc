@@ -131,15 +131,17 @@ export default function Home() {
         <p>Junte-se a centenas de agricultores e empresas que já estão </p> 
         <p>economizando tempo e aumentando seus lucros com nossa plataforma.</p>
         <div className={styles.botao}>
-        <span className={styles.faleconos}>Cadastra-se Gratuitamente</span>
-        <span className={styles.cadasgra}>Fale Conosco</span>
+          <span className={styles.faleconos}>Cadastra-se Gratuitamente</span>
+          <span className={styles.cadasgra}>Fale Conosco</span>
         </div>
       </div>
       <div className={styles.footer}>
         <div className={styles.peanuth}>
           <img src={Logo} className={styles.logo2} alt="Logo" />
-          <h1 className={styles.peanuth1}>PeanutDrop</h1>
-          <h3 className={styles.peanuth3}>Conectando o campo à indústria, simplificando o comércio de amendoim em todo o Brasil.</h3>
+          <div className={styles.textopeanut}>
+            <h1 className={styles.peanuth1}>PeanutDrop</h1>
+            <h3 className={styles.peanuth3}>Conectando o campo à indústria, simplificando o comércio de amendoim em todo o Brasil.</h3>
+         </div>
         </div>
       </div>
     </div>
