@@ -145,6 +145,13 @@ export default function Home() {
            <h3 >Conectando o campo à indústria, simplificando o comércio de amendoim em todo o Brasil.</h3>
          </div>
         </div>
+        <div className={styles.linkra}> 
+        <h1>Links Rapido</h1>
+        <h3>Inicio</h3>
+        <h3>Como Funciona</h3>
+        <h3>Para Agricultores</h3>
+        <h3>Para Eempresas</h3>
+       </div>
       </div>
     </div>
   );

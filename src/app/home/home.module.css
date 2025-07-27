@@ -336,13 +336,19 @@
     background-color: #20201f;
     height: 500px;
     width: 100%;
+    display:flex;
+    align-items: center;
+    
 }
 
 .peanuth {
     display: flex;
     align-items: center;
-    height: 100%;
+    justify-content: center;
+    height: 300px;
     width: 300px;
+    margin-left:60px
+    
 }
 
 .logo2 {
@@ -360,9 +366,7 @@
 
 .textopeanut h1 {
     font-size: 25px;
-   
-    
-    
+
 }
 
 .texth3 {
@@ -371,11 +375,28 @@
     position:absolute;
     margin-top:175px;
     width:250px;
-    left: 25px;
-    
    
+}
 
+.linkra{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 300px;
+    width: 300px;
+    margin-left:60px;
+    margin-top:100px
     
-    
+
+}
+.linkra h1{
  
+}
+
+
+
+
+.linkra h3{
+ margin:0;
+
 }
