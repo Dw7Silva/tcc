@@ -139,8 +139,10 @@ export default function Home() {
         <div className={styles.peanuth}>
           <img src={Logo} className={styles.logo2} alt="Logo" />
           <div className={styles.textopeanut}>
-            <h1 className={styles.peanuth1}>PeanutDrop</h1>
-            <h3 className={styles.peanuth3}>Conectando o campo à indústria, simplificando o comércio de amendoim em todo o Brasil.</h3>
+            <h1 >PeanutDrop</h1>
+         </div>
+         <div className={styles.texth3}>
+           <h3 >Conectando o campo à indústria, simplificando o comércio de amendoim em todo o Brasil.</h3>
          </div>
         </div>
       </div>

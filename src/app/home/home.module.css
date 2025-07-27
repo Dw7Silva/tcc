@@ -341,7 +341,6 @@
 .peanuth {
     display: flex;
     align-items: center;
-    gap: 20px;
     height: 100%;
     width: 300px;
 }
@@ -351,22 +350,32 @@
     width: auto;
 }
 
-.textopeanut {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
+.textopeanut{
+    width: 300px;
+    display:flex;
+    margin-top:15px
+
 }
 
-.peanuth1 {
-    font-size: 30px;
-    display: flex;
-    align-items: center;
-    margin: 0;
+
+.textopeanut h1 {
+    font-size: 25px;
+   
+    
+    
 }
 
-.peanuth3 {
-    font-size: 15px;
-    margin: 10px 0 0 0;
-    align-self: center;
+.texth3 {
+    display:flex;
+    font-size: 16px;
+    position:absolute;
+    margin-top:175px;
+    width:250px;
+    left: 25px;
+    
+   
+
+    
+    
+ 
 }
