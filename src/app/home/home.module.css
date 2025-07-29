@@ -1,6 +1,6 @@
 .navbr {
     width: 100vw;
-    height: 150px;
+    height: 100px;
     background-color: rgb(209, 200, 200);
     display: flex;
     justify-content: center;
@@ -34,9 +34,9 @@
 .ec {
     display: flex;
     color: rgb(72, 72, 77);
-    gap: 40px;
+    gap: 20px;
     position: absolute;
-    right: 20px;
+    right: 100px;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -44,7 +44,7 @@
 .login {
     display: flex;
     align-items: center;
-    border: 2px solid #c69c62;
+    border: 3px solid #c69c62;
     color: #d4a76a;
     border-radius: 5px;
     padding: 5px;
@@ -60,7 +60,7 @@
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
-    height: 23px;
+    height: 40px;
 }
 
 /* BANNER */
@@ -333,7 +333,7 @@
 /* FOOTER AJUSTADO */
 
 .footer {
-    background-color: #20201f;
+    background-color: #35353369;
     height: 500px;
     width: 100%;
     display:flex;
