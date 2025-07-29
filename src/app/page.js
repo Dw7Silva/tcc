@@ -5,7 +5,7 @@ import Inicio from "./inicio/page";
 import Ofertas from "./ofertas/page";
 export default function dev() {
   return (
-    <Home></Home>
+    <Inicio></Inicio>
   );
 }
 
