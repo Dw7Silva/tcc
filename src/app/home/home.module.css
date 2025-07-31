@@ -1,7 +1,8 @@
+
 .navbr {
     width: 100vw;
     height: 100px;
-    background-color: rgb(209, 200, 200);
+    background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,7 +26,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: rgb(72, 72, 77);
+
     text-align: center;
     width: 100%;
     gap: 30px;
@@ -33,7 +34,6 @@
 
 .ec {
     display: flex;
-    color: rgb(72, 72, 77);
     gap: 20px;
     position: absolute;
     right: 100px;
@@ -44,8 +44,8 @@
 .login {
     display: flex;
     align-items: center;
-    border: 3px solid #c69c62;
-    color: #d4a76a;
+    border: 3px solid #a87453;
+    color: #a87453;
     border-radius: 5px;
     padding: 5px;
     cursor: pointer;
@@ -55,7 +55,7 @@
     display: flex;
     align-items: center;
     color: white;
-    background-color: #c69c62;
+    background-color: #6b4c3a;
     text-align: center;
     padding: 5px;
     border-radius: 5px;
@@ -116,9 +116,10 @@
     text-align: center;
     align-items: center;
     margin: 30px;
+    color: #5c3b28;
 }
 
-/* CARDS */
+
 
 .card {
     display: flex;
@@ -158,7 +159,7 @@
     margin: 0;
     margin-top: 20px;
     font-size: 1.5rem;
-    color: #b18e6b;
+    color:  #5c3b28;
     text-align: center;
     font-family: 'Arial', sans-serif;
 }
@@ -166,14 +167,14 @@
 .agr span, .empre span, .ts span {
     margin: auto;
     font-size: 1.2rem;
-    color: #a78769;
+    color: #8a7057;
     font-weight: bold;
 }
 
 /* COMO FUNCIONA */
 
 .comofun {
-    background-color: #7c7976;
+
     height: 500px;
     width: 100%;
 }
@@ -279,7 +280,8 @@
     height: 332px;
     flex-direction: column;
     align-items: center;
-    background-color: #474343;
+   
+    border-top: 3px rgb(0, 0, 0);
 }
 
 .rev h1 {
