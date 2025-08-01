@@ -1,4 +1,6 @@
-
+body{
+    background-color: #ffffff;
+}
 .navbr {
     width: 100vw;
     height: 100px;
@@ -26,7 +28,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
+    color:#5c3b28;
     text-align: center;
     width: 100%;
     gap: 30px;
@@ -234,6 +236,7 @@
     font-size: 20px;
     margin: 0;
     word-break: break-word;
+    
 }
 
 .espaço2, .espaço3, .espaço4 {
@@ -286,8 +289,9 @@
     height: 332px;
     flex-direction: column;
     align-items: center;
+    border-top: 3px solid rgb(0, 0, 0);
+    background-color: #ffffff;
    
-    border-top: 3px rgb(0, 0, 0);
 }
 
 .rev h1 {
@@ -296,6 +300,7 @@
     justify-content: center;
     margin-top: 60px;
     margin-bottom: 35px;
+    color: #5c3b28
 }
 
 .rev p {
