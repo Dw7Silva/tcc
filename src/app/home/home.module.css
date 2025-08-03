@@ -179,7 +179,7 @@ body{
 
     height: 500px;
     width: 100%;
-    background-color: #ffffff;
+    background-color:#b5b3b2;
 }
 
 .comofun h1 {
@@ -199,14 +199,7 @@ body{
 
 }
 
-.espaço {
-    display: flex;
-    flex-direction: column;
-    width: 274px;
-    height: 200px;
-    align-items: center;
-    gap: 10px;
-}
+
 
 .passo {
     display: flex;
@@ -219,12 +212,6 @@ body{
     border:2px solid black
 }
 
-.fazer h1 {
-    font-size: 30px;
-    margin: 0;
-    margin-top: -45px;
-    padding-bottom: 10px;
-}
 
 .conta {
     width: 425px;
@@ -236,17 +223,18 @@ body{
     font-size: 20px;
     margin: 0;
     word-break: break-word;
+    color:rgb(92, 59, 40);
     
 }
 
-.espaço2, .espaço3, .espaço4 {
+.espaço, .espaço2, .espaço3, .espaço4 {
     display: flex;
     flex-direction: column;
     width: 274px;
     height: 200px;
     align-items: center;
     gap: 10px;
-    margin-left: 150px;
+    margin-left: 100px;
 }
 
 .passo2, .passo3, .passo4 {
@@ -262,7 +250,7 @@ body{
     
 }
 
-.fazer2 h1, .fazer3 h1, .fazer4 h1 {
+.fazer h1, .fazer2 h1, .fazer3 h1, .fazer4 h1 {
     width: 500px;
     font-size: 30px;
     margin: 0;
@@ -279,6 +267,7 @@ body{
     font-size: 20px;
     margin: 0;
     word-break: break-word;
+    color:rgb(92, 59, 40);
 }
 
 /* REVOLUCIONAR */
@@ -308,6 +297,7 @@ body{
     justify-content: center;
     white-space: normal;
     margin-top: 0;
+    color:rgb(92, 59, 40);
 }
 
 .botao {
@@ -356,38 +346,34 @@ body{
 
 .peanuth {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 300px;
     width: 300px;
-    margin-left:60px
+    margin-left:60px;
+    text-align: center;
     
 }
 
-.logo2 {
-    height: 150px;
-    width: auto;
-}
+
 
 .textopeanut{
     width: 300px;
     display:flex;
-    margin-top:15px;
+    align-items: center;
+    justify-content: center;
 
 }
 
 
 .textopeanut h1 {
     font-size: 25px;
-
 }
 
 .texth3 {
-    display:flex;
     font-size: 16px;
-    position:absolute;
-    margin-top:175px;
-    width:250px;
+   
    
 }
 
@@ -398,21 +384,15 @@ body{
     height: 300px;
     width: 300px;
     text-align: center;
-
-    
-    
-
 }
-.linkra h1{
- display:block;
- font-size: 25px;
+.rapido h1 {
+    display:block;
+    font-size: 25px;
+    margin-top:-10px
  
 }
 
-
-
-
 .linkra h3{
- margin:0;
+margin:0
 
 }
