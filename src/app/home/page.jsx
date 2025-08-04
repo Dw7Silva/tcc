@@ -138,7 +138,6 @@ export default function Home() {
       </div>
       <div className={styles.footer}>
         <div className={styles.peanuth}>
-          <img src={Logo} className={styles.logo2} alt="Logo" />
           <div className={styles.textopeanut}>
             <h1 >PeanutDrop</h1>
          </div>
@@ -147,7 +146,7 @@ export default function Home() {
          </div>
         </div>
         <div className={styles.linkra}> 
-        <h1>Links Rapido</h1>
+        <div className={styles.rapido}><h1>Links Rapido</h1></div>
         <h3>Inicio</h3>
         <h3>Como Funciona</h3>
         <h3>Para Agricultores</h3>
