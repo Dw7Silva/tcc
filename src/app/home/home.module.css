@@ -1,6 +1,4 @@
-body{
-    background-color: #ffffff;
-}
+/* NAVBAR */
 .navbr {
     width: 100vw;
     height: 100px;
@@ -66,7 +64,6 @@ body{
 }
 
 /* BANNER */
-
 .teste {
     display: flex;
     align-items: center;
@@ -103,16 +100,17 @@ body{
 
 .imagem {
     flex: 1;
-    max-width: 750px;
-    height: 100%;
+    max-width: 400px;
+    height: 200px;
     object-fit: cover;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 /* AJUDA */
-
 .ajuda {
+    max-height: 25vh;
+    min-width: 100vw;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -121,8 +119,7 @@ body{
     color: #5c3b28;
 }
 
-
-
+/* CARDS */
 .card {
     display: flex;
     width: 100%;
@@ -174,9 +171,7 @@ body{
 }
 
 /* COMO FUNCIONA */
-
 .comofun {
-
     height: 500px;
     width: 100%;
     background-color:#b5b3b2;
@@ -196,10 +191,7 @@ body{
     align-items: flex-start;
     padding-left: 75px;
     gap: 60px;
-
 }
-
-
 
 .passo {
     display: flex;
@@ -212,7 +204,6 @@ body{
     border:2px solid black
 }
 
-
 .conta {
     width: 425px;
     margin-left: 25px;
@@ -224,7 +215,6 @@ body{
     margin: 0;
     word-break: break-word;
     color:rgb(92, 59, 40);
-    
 }
 
 .espaço, .espaço2, .espaço3, .espaço4 {
@@ -247,7 +237,6 @@ body{
     width: 100px;
     background-color: white;
     border:2px solid black;
-    
 }
 
 .fazer h1, .fazer2 h1, .fazer3 h1, .fazer4 h1 {
@@ -270,8 +259,68 @@ body{
     color:rgb(92, 59, 40);
 }
 
-/* REVOLUCIONAR */
+/* CARROSSEL DEPOIMENTOS */
+.carouselContainer {
+    background-color: #f8f7f2;
+    padding: 60px 20px;
+    text-align: center;
+}
 
+.carouselTitle {
+    font-size: 2.5rem;
+    color: #5c3b28;
+    margin-bottom: 40px;
+}
+
+.swiperCustom {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    color:#5c3b28;
+}
+
+.slideContent {
+    background-color: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slideContent h3 {
+    font-size: 1.5rem;
+    color: #5c3b28;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.slideContent p {
+    font-size: 1.1rem;
+    color: #8a7057;
+    margin: 0;
+}
+
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
+  color: #5c3b28;
+  font-weight: bold;
+}
+
+:global(.swiper-pagination-bullet) {
+  background-color: #5c3b28;
+  opacity: 0.5;
+}
+
+:global(.swiper-pagination-bullet-active) {
+  background-color: #5c3b28;
+  opacity: 1;
+}
+
+
+/* REVOLUCIONAR */
 .rev {
     display: flex;
     width: 100%;
@@ -280,7 +329,6 @@ body{
     align-items: center;
     border-top: 3px solid rgb(0, 0, 0);
     background-color: #ffffff;
-   
 }
 
 .rev h1 {
@@ -289,7 +337,7 @@ body{
     justify-content: center;
     margin-top: 60px;
     margin-bottom: 35px;
-    color: #5c3b28
+    color: #5c3b28;
 }
 
 .rev p {
@@ -330,18 +378,16 @@ body{
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 170;
+    width: 170px;
 }
 
-/* FOOTER AJUSTADO */
-
+/* FOOTER */
 .footer {
     background-color: #35353369;
     height: 500px;
     width: 100%;
     display:flex;
     align-items: center;
-    
 }
 
 .peanuth {
@@ -353,19 +399,14 @@ body{
     width: 300px;
     margin-left:60px;
     text-align: center;
-    
 }
 
-
-
-.textopeanut{
+.textopeanut {
     width: 300px;
     display:flex;
     align-items: center;
     justify-content: center;
-
 }
-
 
 .textopeanut h1 {
     font-size: 25px;
@@ -373,11 +414,9 @@ body{
 
 .texth3 {
     font-size: 16px;
-   
-   
 }
 
-.linkra{
+.linkra {
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -385,14 +424,13 @@ body{
     width: 300px;
     text-align: center;
 }
+
 .rapido h1 {
     display:block;
     font-size: 25px;
-    margin-top:-10px
- 
+    margin-top:-10px;
 }
 
-.linkra h3{
-margin:0
-
+.linkra h3 {
+    margin:0;
 }

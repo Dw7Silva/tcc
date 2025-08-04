@@ -1,12 +1,17 @@
 "use client";
 import styles from "./home.module.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
 
 export default function Home() {
   return (
     <div>
-      
+      {/* NAVBAR */}
       <div className={styles.navbr}>
         <div>
           <img src={Logo} className={styles.logo} alt="Logo" />
@@ -24,24 +29,56 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Banner */}
-      <div className={styles.teste}>
-        <div className={styles.texto}>
-          <h1 className={styles.des}>
-            Conectando Produtores de Amendoim e Empresas
-          </h1>
-          <span className={styles.sub}>
-            Facilitamos a conexão entre agricultores e empresas para a compra
-            e venda de amendoins, garantindo negociações rápidas e seguras.
-          </span>
-        </div>
-        <img
+      {/* CARROSSEL DEPOIMENTOS */}
+      <div className={styles.carouselContainer}>
+        
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView={1}
+         
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 2000}}
+          loop={true}
+          className={styles.swiperCustom}
+        >
+          <SwiperSlide>
+            <div className={styles.slideContent}>
+           <img
           src="https://imgur.com/etVCFjJ.png"
           alt="fundo"
           className={styles.imagem}
         />
+              <h3>"Consegui vender toda minha safra em dias!"</h3>
+              <p>- João, Agricultor</p>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className={styles.slideContent}>
+              <img
+          src="https://imgur.com/etVCFjJ.png"
+          alt="fundo"
+          className={styles.imagem}
+        />
+              <h3>"A plataforma simplificou nossa compra de matéria-prima."</h3>
+              <p>- Maria, Compradora</p>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className={styles.slideContent}>
+                  <img
+                   src="https://imgur.com/etVCFjJ.png"
+                  alt="fundo"
+                  className={styles.imagem}
+                 />
+              <h3>"Transações seguras e suporte excelente!"</h3>
+              <p>- Pedro, Produtor</p>
+            </div>
+          </SwiperSlide>
+        </Swiper>
       </div>
 
+      
       {/* Como podemos Ajudar */}
       <div className={styles.ajuda}>
         <h1> Como podemos ajudar </h1>
@@ -77,7 +114,6 @@ export default function Home() {
       <div className={styles.comofun}>
         <h1>Como Funciona</h1>
         <div className={styles.containerPassos}>
-       
           <div className={styles.espaço}>
             <div className={styles.passo}>
               <h1>1</h1>
@@ -127,6 +163,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       <div className={styles.rev}>
         <h1>Pronto para Revolucionar seu Negócio de Amendoim?</h1>
         <p>Junte-se a centenas de agricultores e empresas que já estão </p> 
@@ -136,22 +173,23 @@ export default function Home() {
           <span className={styles.cadasgra}>Fale Conosco</span>
         </div>
       </div>
+
       <div className={styles.footer}>
         <div className={styles.peanuth}>
           <div className={styles.textopeanut}>
-            <h1 >PeanutDrop</h1>
-         </div>
-         <div className={styles.texth3}>
-           <h3 >Conectando o campo à indústria, simplificando o comércio de amendoim em todo o Brasil.</h3>
-         </div>
+            <h1>PeanutDrop</h1>
+          </div>
+          <div className={styles.texth3}>
+            <h3>Conectando o campo à indústria, simplificando o comércio de amendoim em todo o Brasil.</h3>
+          </div>
         </div>
         <div className={styles.linkra}> 
-        <div className={styles.rapido}><h1>Links Rapido</h1></div>
-        <h3>Inicio</h3>
-        <h3>Como Funciona</h3>
-        <h3>Para Agricultores</h3>
-        <h3>Para Eempresas</h3>
-       </div>
+          <div className={styles.rapido}><h1>Links Rápidos</h1></div>
+          <h3>Início</h3>
+          <h3>Como Funciona</h3>
+          <h3>Para Agricultores</h3>
+          <h3>Para Empresas</h3>
+        </div>
       </div>
     </div>
   );
