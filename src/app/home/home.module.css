@@ -186,11 +186,13 @@
     height: 500px;
     width: 100%;
     background-color: #f8f7f2;
+    
+    
 }
 
 .comofun h1 {
     text-align: center;
-     margin:0;
+    margin:0;
     color:#5c3b28;
 }
 
@@ -232,6 +234,7 @@
     flex-direction: column;
     width: 274px;
     height: 200px;
+    
     align-items: center;
     gap: 10px;
     margin-left: 100px;
@@ -242,7 +245,7 @@
     justify-content: center;
     align-items: center;
     margin: 0;
-    border-radius: 75px;
+    border-radius: 50%;
     height: 100px;
     width: 100px;
     background-color: white;
@@ -253,7 +256,7 @@
     width: 500px;
     font-size: 30px;
     margin: 0;
-    margin-top: -45px;
+    
     padding-bottom: 10px;
 }
 
