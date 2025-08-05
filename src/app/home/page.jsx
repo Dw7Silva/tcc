@@ -49,8 +49,8 @@ export default function Home() {
           alt="fundo"
           className={styles.imagem}
         />
-              <h3>"Consegui vender toda minha safra em dias!"</h3>
-              <p>- João, Agricultor</p>
+              <h3>"Conectando o agro com as empresas!"</h3>
+              <p>Ajudando o seu negocio!</p>
             </div>
           </SwiperSlide>
           <SwiperSlide>
@@ -80,33 +80,35 @@ export default function Home() {
 
       
       {/* Como podemos Ajudar */}
-      <div className={styles.ajuda}>
-        <h1> Como podemos ajudar </h1>
-      </div>
-
-      <div className={styles.card}>
-        <div className={styles.agr}>
-          <h3>Agricultor</h3>
-          <span>
-            Acesso direto a compradores, melhores preços e visibilidade para sua
-            produção de amendoim.
-          </span>
+      <div className={styles.fundocpa}>
+        <div className={styles.ajuda}>
+          <h1> Como podemos ajudar </h1>
         </div>
 
-        <div className={styles.empre}>
-          <h3>Empresa</h3>
-          <span>
-            Encontre produtores confiáveis, negocie diretamente e garanta
-            amendoim de qualidade para seu negócio.
-          </span>
-        </div>
+        <div className={styles.card}>
+          <div className={styles.agr}>
+            <h3>Agricultor</h3>
+            <span>
+              Acesso direto a compradores, melhores preços e visibilidade para sua
+              produção de amendoim.
+            </span>
+          </div>
 
-        <div className={styles.ts}>
-          <h3>Transações Seguras</h3>
-          <span>
-            Garantimos a segurança das negociações, com verificação de qualidade
-            e pagamentos protegidos.
-          </span>
+          <div className={styles.empre}>
+            <h3>Empresa</h3>
+            <span>
+              Encontre produtores confiáveis, negocie diretamente e garanta
+              amendoim de qualidade para seu negócio.
+            </span>
+          </div>
+
+          <div className={styles.ts}>
+            <h3>Transações Seguras</h3>
+            <span>
+              Garantimos a segurança das negociações, com verificação de qualidade
+              e pagamentos protegidos.
+            </span>
+          </div>
         </div>
       </div>
 
