@@ -10,7 +10,7 @@ const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
 
 export default function Home() {
   return (
-    <div>
+    <div className={styles.body}>
       {/* NAVBAR */}
       <div className={styles.navbr}>
         <div>
@@ -130,7 +130,7 @@ export default function Home() {
 
           <div className={styles.espaço2}>
             <div className={styles.passo2}>
-              <h1>2</h1>
+              <h1>2</h1>  
             </div>
             <div className={styles.fazer2}>
               <h1>Anuncie ou Busque</h1>

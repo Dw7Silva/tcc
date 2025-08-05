@@ -9,9 +9,9 @@ export default function dev() {
 
 
   return (
-    <body>
+    
     <Home></Home>
-    </body>
+    
   );
 }
 
