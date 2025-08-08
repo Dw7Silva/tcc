@@ -84,12 +84,12 @@ export default function CriarDemanda() {
             </div>
           )}
 
-          <form className={styles.formContent} onSubmit={handleSubmit}>
+        <form className={styles.formContent} onSubmit={handleSubmit}>
             <div className={`${styles.imageInput} ${isImageInputLarge ? styles.imageInputLarge : ''}`}>
               <label htmlFor="imageUpload" onClick={toggleImageInputSize}>
                 <FaImage size={isImageInputLarge ? 100 : 30} />
-                {isImageInputLarge && <p>Clique para adicionar uma imagem</p>}
               </label>
+                 <p>clique para adicionar a imagem</p>
               <input
                 type="file"
                 id="imageUpload"
