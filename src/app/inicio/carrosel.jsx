@@ -34,15 +34,17 @@ const Carousel = ({ images }) => {
     >
       <Splide
         options={{
+          type: "loop",
           perPage: 1,
           autoplay: true,
           interval: 5000,
           loop: true,
           pagination: true,
           paginationKeyboard:true,
-          width: "90%",
-          height: "600px",
+          width: "70%",
+          height: "550px",
           keyboard: true,
+          arrows:false,
           breakpoints: {
             1200: {
               height: "450px",
