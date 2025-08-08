@@ -114,7 +114,7 @@ export default function Home() {
 
       {/* Como Funciona */}
       <div className={styles.comofun}>
-        <h1 className={styles.comoh1}>Como Funciona</h1>
+        <div className={styles.comoh1}><h1>Como Funciona</h1></div>
         <div className={styles.containerPassos}>
           <div className={styles.espaço}>
             <div className={styles.passo}>
