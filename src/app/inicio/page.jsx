@@ -3,7 +3,7 @@ import styles from "./inicio.module.css";
 import Carousel from "./carrosel";
 import { useState, useEffect } from "react";
 import BarraNvg from "@/components/navbar/navbar";
-
+import Footer from "@/components/footer/footer";
 
 export default function Inicio() {
 
@@ -62,6 +62,7 @@ export default function Inicio() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
