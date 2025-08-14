@@ -5,6 +5,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Footer from '@/components/footer/footer';
 
 const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
 
@@ -175,24 +176,7 @@ export default function Home() {
           <span className={styles.cadasgra}>Fale Conosco</span>
         </div>
       </div>
-
-      <div className={styles.footer}>
-        <div className={styles.peanuth}>
-          <div className={styles.textopeanut}>
-            <h1>PeanutDrop</h1>
-          </div>
-          <div className={styles.texth3}>
-            <h3>Conectando o campo à indústria, simplificando o comércio de amendoim em todo o Brasil.</h3>
-          </div>
-        </div>
-        <div className={styles.linkra}> 
-          <div className={styles.rapido}><h1>Links Rápidos</h1></div>
-          <h3>Início</h3>
-          <h3>Como Funciona</h3>
-          <h3>Para Agricultores</h3>
-          <h3>Para Empresas</h3>
-        </div>
-      </div>
+      <Footer/>
     </div>
   );
 }
