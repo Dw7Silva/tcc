@@ -127,7 +127,7 @@
     background-color: #f8f7f2;
     margin:0;
     padding:0
-     
+
 }
 
 /* CARDS */
@@ -183,8 +183,6 @@
 
 /* COMO FUNCIONA */
 .comofun {
-    display:flex;
-    justify-content: center;
     height: 500px;
     width: 100%;
     background-color: #f8f7f2;
@@ -192,28 +190,35 @@
     
 }
 .comoh1{
-  display: inline;
-  justify-content: center;
-  
+margin-bottom:100px;
+
 }
 .comofun h1 {
-    display:flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
     margin:0;
     color:#5c3b28;
+    
 }
 
 .containerPassos {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 75px;
     gap: 60px;
-    height:350px
 }
 
-
+.passo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 75px;
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    border:2px solid black
+}
 
 .conta {
     width: 425px;
@@ -239,7 +244,7 @@
     margin-left: 100px;
 }
 
-.passo, .passo2, .passo3, .passo4 {
+.passo2, .passo3, .passo4 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -273,7 +278,6 @@
 
 /* CARROSSEL DEPOIMENTOS */
 .carouselContainer {
-    display:flex;
     background-color: #f8f7f2;
     padding: 60px 20px;
     text-align: center;
