@@ -16,6 +16,14 @@
     box-shadow: 0 0 1px 0 #000;
 }
 
+.menuIcon {
+  cursor: pointer;
+  font-size:clamp(24px, 2.5vw, 30px);
+  color: var(--color-icon);
+  transition: transform 0.2s;
+  
+}
+
 .logo {
     height: 175px;
     width: auto;
@@ -270,6 +278,7 @@ margin-bottom:100px;
     background-color: #f8f7f2;
     padding: 60px 20px;
     text-align: center;
+     
 }
 
 .carouselTitle {

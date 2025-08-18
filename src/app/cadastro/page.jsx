@@ -1,7 +1,7 @@
 "use client"; // Indica que este componente é um componente de cliente
 import React, { useState } from 'react';
 import styles from './Cadastro.module.css'; // Importa o CSS do módulo
-import Footer from '@/components/footer/footer';
+
 
 function Cadastro() {
   // Estados para armazenar os dados do formulário

@@ -11,8 +11,9 @@ export default function dev() {
 
   return (
     
-    <Home></Home>
+    <Home/>
     
   );
 }
+
 
