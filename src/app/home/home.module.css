@@ -74,6 +74,16 @@
     cursor: pointer;
     height: 40px;
 }
+@media (max-width: 768px) {
+  .links {
+    display: none; /* Esconde os links escritos */
+  }
+
+  .menuIcon {
+    display: block; /* Mostra o ícone */
+  }
+}
+
 
 /* BANNER */
 .teste {
