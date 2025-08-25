@@ -53,10 +53,10 @@ export default function Home() {
         <img src={Logo} className={styles.logo} alt="Logo" />
 
         <div className={styles.info}>
-          <span>Início</span>
-          <span>Como Funciona</span>
-          <span>Sobre Nós</span>
-          <span>Contato</span>
+          <span className={styles.span}>Início</span>
+          <span className={styles.span}>Como Funciona</span>
+          <span className={styles.span}>Sobre Nós</span>
+          <span className={styles.span}>Contato</span>
         </div>
 
         {/* Entrar e Cadastrar SEMPRE visíveis */}
