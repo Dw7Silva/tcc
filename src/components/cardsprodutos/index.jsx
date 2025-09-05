@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import styles from "./CardDemanda.module.css"; // ⬅️ importa o css modularizado
+import styles from "./page.module.css"; // ⬅️ importa o css modularizado
 
 export default function CardDemanda({ demanda }) {
   return (

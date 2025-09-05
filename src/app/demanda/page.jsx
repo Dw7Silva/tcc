@@ -1,124 +1,181 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import styles from "./demandas.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
 import Link from "next/link";
+import demandasMock from "@/mockup/demandas";
+import CardDemanda from "@/components/cardsprodutos";
 
 export default function Demandas() {
-  // Estado para gerenciar múltiplas linhas de carrossel
+  // Mapas auxiliares (coerentes com INSERT.SQL)
+  const empresasMap = useMemo(
+    () => ({
+      1: "Empresa Exemplo Ltda",
+      2: "AgroNutri SA",
+      3: "NutriFoods Ltda",
+    }),
+    []
+  );
 
-  let demandas_imagem = {
+  const variedadesMap = useMemo(
+    () => ({
+      1: "Amendoim Runner",
+      2: "Amendoim Valência",
+      3: "Amendoim Virginia",
+      4: "Amendoim Español",
+      5: "Amendoim Florunner",
+    }),
+    []
+  );
 
-    Amendoim_1 : "https://img.olx.com.br/images/35/354519630978865.webp" ,
-    Amendoim_2 :"https://img.olx.com.br/images/21/212434617469791.webp",
-    Amendoim_3 : "https://thumbs.dreamstime.com/b/dep%C3%B3sito-de-armazenamento-em-sacos-amendoim-no-brasil-visto-baixo-dos-206695366.jpg",
-    Amendoim_4 :  "https://img.mfrural.com.br/api/image?url=https://s3.amazonaws.com/mfrural-produtos-us/224488-366748-2000954-amendoim.webp&width=480&height=288&mode=4" ,
-    Amendoim_5 :"https://thumbs.dreamstime.com/z/um-saco-de-amendoim-47927630.jpg",
-    Amendoim_6 :   "https://blogmarcosfrahm.com/wp-content/uploads/2016/06/Amendoim.jpg" ,
-    Amendoim_7 :  "https://img.mfrural.com.br/api/image?url=https://s3.amazonaws.com/mfrural-produtos-us/120353-247626-79940346-amendoim-em-casca.webp&width=289&height=220&mode=4" ,
-    Amendoim_8 : "https://img.mfrural.com.br/api/image?url=https://s3.amazonaws.com/mfrural-produtos-us/55518-443952-2351855-pelets-de-casca-de-amendoim.webp&width=289&height=220&mode=4", 
-    Amendoim_9 : "https://www.embtec.com.br/media/resize/1110x1500/pasta/1/5dbb2d455571d.jpg",
-  } 
+  const imagensPorAmenId = useMemo(
+    () => ({
+      1: "https://img.olx.com.br/images/35/354519630978865.webp",
+      2: "https://img.olx.com.br/images/21/212434617469791.webp",
+      3: "https://thumbs.dreamstime.com/b/dep%C3%B3sito-de-armazenamento-em-sacos-amendoim-no-brasil-visto-baixo-dos-206695366.jpg",
+      4: "https://img.mfrural.com.br/api/image?url=https://s3.amazonaws.com/mfrural-produtos-us/224488-366748-2000954-amendoim.webp&width=480&height=288&mode=4",
+      5: "https://thumbs.dreamstime.com/z/um-saco-de-amendoim-47927630.jpg",
+      default:
+        "https://blogmarcosfrahm.com/wp-content/uploads/2016/06/Amendoim.jpg",
+    }),
+    []
+  );
 
-  
-  const [linhas, setLinhas] = useState([
-    {
-      id: 1,
-      titulo: "Demandas em Destaque",
-      demandas: [
-        { id: 1, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "50 saca", imagem: demandas_imagem.Amendoim_1 },
-        { id: 2, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "50 saca", imagem:  demandas_imagem.Amendoim_2 },
-        { id: 3, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "50 saca", imagem:  demandas_imagem.Amendoim_3 },
-        { id: 4, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "40 saca", imagem:  demandas_imagem.Amendoim_4 },
-        { id: 5, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "55 saca", imagem:  demandas_imagem.Amendoim_5},
-      ],
-      currentIndex: 0,
-      cardWidth: 0,
-      maxVisibleCards: 0
-    },
-    {
-      id: 2,
-      titulo: "Demandas Recentes",
-      demandas: [
-        { id: 6, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "60 saca", imagem:  demandas_imagem.Amendoim_6 },
-        { id: 7, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "50 saca", imagem:  demandas_imagem.Amendoim_7},
-        { id: 8, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "45 saca", imagem:  demandas_imagem.Amendoim_8 },
-        { id: 9, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "52 saca", imagem:  demandas_imagem.Amendoim_9 },
-        { id: 10, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "52 saca", imagem:  demandas_imagem.Amendoim_9 },
-      ],
-      currentIndex: 0,
-      cardWidth: 0,
-      maxVisibleCards: 0
+  // Normaliza mock para o card
+  const itensNormalizados = useMemo(() => {
+    const ativos = (demandasMock || [])
+      .filter((d) => !!d.demanda_ativa)
+      .sort(
+        (a, b) =>
+          new Date(b.demanda_data_publicacao) -
+          new Date(a.demanda_data_publicacao)
+      );
+
+    return ativos.map((d) => ({
+      id: d.demanda_id,
+      nome_empresa: empresasMap[d.emp_id] || `Empresa #${d.emp_id}`,
+      tipo: variedadesMap[d.amen_id] || `Amendoim #${d.amen_id}`,
+      quantidade: `${d.demanda_quantidade} kg`,
+      imagem: imagensPorAmenId[d.amen_id] || imagensPorAmenId.default,
+      data_publicacao: d.demanda_data_publicacao,
+    }));
+  }, [empresasMap, variedadesMap, imagensPorAmenId]);
+
+  // Quebra em linhas (destaque/recentes)
+  const linhasIniciais = useMemo(() => {
+    const destaque = itensNormalizados.slice(0, 5);
+    const recentes = itensNormalizados.slice(5);
+
+    const base = { currentIndex: 0, cardWidth: 0, maxVisibleCards: 0 };
+    const linhas = [];
+
+    if (destaque.length) {
+      linhas.push({
+        id: 1,
+        titulo: "Demandas em Destaque",
+        demandas: destaque,
+        ...base,
+      });
     }
-    // Adicione mais linhas conforme necessário
-  ]);
+    if (recentes.length) {
+      linhas.push({
+        id: 2,
+        titulo: "Demandas Recentes",
+        demandas: recentes,
+        ...base,
+      });
+    }
+    if (!linhas.length) {
+      linhas.push({
+        id: 1,
+        titulo: "Demandas",
+        demandas: itensNormalizados,
+        ...base,
+      });
+    }
+    return linhas;
+  }, [itensNormalizados]);
 
-  // Refs para cada container de carrossel
+  const [linhas, setLinhas] = useState(linhasIniciais);
   const containerRefs = useRef([]);
 
-  // Funções de navegação para cada linha
   const handlePrev = (linhaId) => {
-    setLinhas(prev => prev.map(linha => 
-      linha.id === linhaId 
-        ? {...linha, currentIndex: Math.max(0, linha.currentIndex - 1)}
-        : linha
-    ));
+    setLinhas((prev) =>
+      prev.map((linha) =>
+        linha.id === linhaId
+          ? { ...linha, currentIndex: Math.max(0, linha.currentIndex - 1) }
+          : linha
+      )
+    );
   };
 
   const handleNext = (linhaId) => {
-    setLinhas(prev => prev.map(linha => 
-      linha.id === linhaId
-        ? {...linha, currentIndex: Math.min(linha.demandas.length - linha.maxVisibleCards, linha.currentIndex + 1)}
-        : linha
-    ));
+    setLinhas((prev) =>
+      prev.map((linha) =>
+        linha.id === linhaId
+          ? {
+              ...linha,
+              currentIndex: Math.min(
+                Math.max(0, linha.demandas.length - linha.maxVisibleCards),
+                linha.currentIndex + 1
+              ),
+            }
+          : linha
+      )
+    );
   };
 
-  // Atualiza as métricas dos cards
+  // Mede card e calcula quantos cabem
   useEffect(() => {
     const updateCardMetrics = () => {
-      setLinhas(prev => prev.map((linha, index) => {
-        const container = containerRefs.current[index];
-        if (container) {
+      setLinhas((prev) =>
+        prev.map((linha, index) => {
+          const container = containerRefs.current[index];
+          if (!container) return linha;
+
           const card = container.querySelector(`.${styles.demandaCard}`);
-          if (card) {
-            const cardStyle = window.getComputedStyle(card);
-            const cardWidthWithMargin = card.offsetWidth + 
-              parseFloat(cardStyle.marginRight) + 
-              parseFloat(cardStyle.marginLeft);
-            
-            const containerWidth = container.offsetWidth;
-            const cardsThatFit = Math.floor(containerWidth / cardWidthWithMargin);
-            
-            return {
-              ...linha,
-              cardWidth: cardWidthWithMargin,
-              maxVisibleCards: cardsThatFit
-            };
-          }
-        }
-        return linha;
-      }));
+          if (!card) return linha;
+
+          const cardStyle = window.getComputedStyle(card);
+          const cardWidthWithMargin =
+            card.offsetWidth +
+            parseFloat(cardStyle.marginRight) +
+            parseFloat(cardStyle.marginLeft);
+
+          const containerWidth = container.offsetWidth;
+          const cardsThatFit = Math.max(
+            1,
+            Math.floor(containerWidth / cardWidthWithMargin)
+          );
+
+          return {
+            ...linha,
+            cardWidth: cardWidthWithMargin,
+            maxVisibleCards: cardsThatFit,
+            currentIndex: Math.min(
+              linha.currentIndex,
+              Math.max(0, linha.demandas.length - cardsThatFit)
+            ),
+          };
+        })
+      );
     };
 
     updateCardMetrics();
-    const resizeObserver = new ResizeObserver(updateCardMetrics);
-    
-    containerRefs.current.forEach(container => {
-      if (container) resizeObserver.observe(container);
-    });
-
-    return () => resizeObserver.disconnect();
+    const ro = new ResizeObserver(updateCardMetrics);
+    containerRefs.current.forEach((c) => c && ro.observe(c));
+    return () => ro.disconnect();
   }, []);
 
-  // Efeito para scroll suave
+  // Scroll suave
   useEffect(() => {
-    linhas.forEach((linha, index) => {
-      const container = containerRefs.current[index];
+    linhas.forEach((linha, i) => {
+      const container = containerRefs.current[i];
       if (container && linha.cardWidth > 0) {
         container.scrollTo({
           left: linha.currentIndex * linha.cardWidth,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
       }
     });
@@ -127,7 +184,7 @@ export default function Demandas() {
   return (
     <>
       <BarraNvg />
-  
+
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.header}>
@@ -145,47 +202,59 @@ export default function Demandas() {
             </div>
           </div>
 
-          {/* Renderiza cada linha de carrossel */}
           {linhas.map((linha, index) => (
             <div key={linha.id} className={styles.linhaContainer}>
               <h3 className={styles.tituloLinha}>{linha.titulo}</h3>
-              
+
               <div className={styles.scrollWrapper}>
                 {linha.demandas.length > linha.maxVisibleCards && (
-                  <button 
+                  <button
                     className={`${styles.arrow} ${styles.arrowLeft}`}
                     onClick={() => handlePrev(linha.id)}
                     disabled={linha.currentIndex === 0}
+                    aria-label="Anterior"
                   >
                     <IoIosArrowBack />
                   </button>
                 )}
 
-                <div 
-                  className={styles.demandasGrid} 
-                  ref={el => containerRefs.current[index] = el}
+                <div
+                  className={styles.demandasGrid}
+                  ref={(el) => (containerRefs.current[index] = el)}
                   id={`carrossel-${linha.id}`}
                 >
                   {linha.demandas.map((demanda) => (
                     <div key={demanda.id} className={styles.demandaCard}>
                       <p className={styles.empresa}>{demanda.nome_empresa}</p>
+
                       <div className={styles.imageContainer}>
-                        <img src={demanda.imagem} alt={demanda.tipo} loading="lazy" />
+                        <img
+                          src={demanda.imagem}
+                          alt={demanda.tipo}
+                          loading="lazy"
+                        />
                       </div>
+
                       <h3>{demanda.tipo}</h3>
                       <p className={styles.quantidade}>{demanda.quantidade}</p>
-                      <Link href="/descricao_demanda" >
-                      <button className={styles.detalhes}>Ver detalhes</button>
+
+                      {/* rota detalhada: tua pasta é 'demanda' (singular) */}
+                      <Link href={`/demanda/${demanda.id}`}>
+                        <button className={styles.detalhes}>Ver detalhes</button>
                       </Link>
                     </div>
                   ))}
                 </div>
 
                 {linha.demandas.length > linha.maxVisibleCards && (
-                  <button 
+                  <button
                     className={`${styles.arrow} ${styles.arrowRight}`}
                     onClick={() => handleNext(linha.id)}
-                    disabled={linha.currentIndex >= linha.demandas.length - linha.maxVisibleCards}
+                    disabled={
+                      linha.currentIndex >=
+                      Math.max(0, linha.demandas.length - linha.maxVisibleCards)
+                    }
+                    aria-label="Próximo"
                   >
                     <IoIosArrowForward />
                   </button>
@@ -193,8 +262,9 @@ export default function Demandas() {
               </div>
             </div>
           ))}
-         <Link href="/criar_demanda">
-          <button className={styles.criarOferta}>Criar Demanda</button>
+
+          <Link href="/criar_demanda">
+            <button className={styles.criarOferta}>Criar Demanda</button>
           </Link>
         </div>
       </div>

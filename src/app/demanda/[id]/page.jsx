@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import demandas from '@/mockup/demandas'
+import demandasMock from '@/mockup/demandas'
 
 export default function DemandaRota({ params }) {
   const { id } = params
-  const demanda = demandas.find((d) => d.demanda_id === Number(id))
+  const demanda = demandasMock.find((d) => d.demanda_id === Number(id))
 
   if (!demanda) {
     return notFound()
