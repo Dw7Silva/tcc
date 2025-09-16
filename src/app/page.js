@@ -6,13 +6,13 @@ import Ofertas from "./ofertas/page";
 import Footer from "@/components/footer/footer";
 import EsqueceuSenha from "./esqueceu_senha1/page";
 import Login from "./login/page";
+import Proposta from "./proposta/page";
 export default function dev() {
 
 
   return (
     
-    <Inicio/>
-    
+    <Proposta/>
   );
 }
 
