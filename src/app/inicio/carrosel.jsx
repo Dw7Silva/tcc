@@ -41,8 +41,8 @@ const Carousel = ({ images }) => {
           loop: true,
           pagination: true,
           paginationKeyboard:true,
-          width: "70%",
-          height: "550px",
+          width: "80%",
+          height: "650px",
           keyboard: true,
           arrows:false,
           breakpoints: {
