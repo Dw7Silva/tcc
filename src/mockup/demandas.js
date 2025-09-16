@@ -41,6 +41,48 @@ const demandasMock = [
     empresa_nome: "NutriFoods Ltda",
     amendoim_tipo: "Virginia (sem pele)",
     imagem: "https://thumbs.dreamstime.com/b/dep%C3%B3sito-de-armazenamento-em-sacos-amendoim-no-brasil-visto-baixo-dos-206695366.jpg"
+  },
+  {
+    demanda_id: 4,
+    emp_id: 3,
+    amen_id: 3,
+    demanda_quantidade: 2000,
+    demanda_preco_maximo: 5.80,
+    demanda_data_entrega: "2025-05-05",
+    demanda_outras_informacoes: "Frete incluso",
+    demanda_data_publicacao: "2025-03-17",
+    demanda_ativa: 1,
+    empresa_nome: "NutriFoods Ltda",
+    amendoim_tipo: "Virginia (sem pele)",
+    imagem: "https://thumbs.dreamstime.com/b/dep%C3%B3sito-de-armazenamento-em-sacos-amendoim-no-brasil-visto-baixo-dos-206695366.jpg"
+  },
+  {
+    demanda_id: 5,
+    emp_id: 3,
+    amen_id: 3,
+    demanda_quantidade: 2000,
+    demanda_preco_maximo: 5.80,
+    demanda_data_entrega: "2025-05-05",
+    demanda_outras_informacoes: "Frete incluso",
+    demanda_data_publicacao: "2025-03-17",
+    demanda_ativa: 1,
+    empresa_nome: "NutriFoods Ltda",
+    amendoim_tipo: "Virginia (sem pele)",
+    imagem: "https://thumbs.dreamstime.com/b/dep%C3%B3sito-de-armazenamento-em-sacos-amendoim-no-brasil-visto-baixo-dos-206695366.jpg"
+  },
+  {
+    demanda_id: 6,
+    emp_id: 3,
+    amen_id: 3,
+    demanda_quantidade: 2000,
+    demanda_preco_maximo: 5.80,
+    demanda_data_entrega: "2025-05-05",
+    demanda_outras_informacoes: "Frete incluso",
+    demanda_data_publicacao: "2025-03-17",
+    demanda_ativa: 1,
+    empresa_nome: "NutriFoods Ltda",
+    amendoim_tipo: "Virginia (sem pele)",
+    imagem: "https://thumbs.dreamstime.com/b/dep%C3%B3sito-de-armazenamento-em-sacos-amendoim-no-brasil-visto-baixo-dos-206695366.jpg"
   }
 ]
 

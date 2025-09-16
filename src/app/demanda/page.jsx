@@ -1,66 +1,36 @@
 "use client";
-import React, { useRef, useState, useEffect, useMemo } from "react";
+import React, { useRef, useState, useLayoutEffect, useMemo } from "react";
 import styles from "./demandas.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
 import Link from "next/link";
 import demandasMock from "@/mockup/demandas";
-import CardDemanda from "@/components/cardsprodutos";
 
 export default function Demandas() {
-  // Mapas auxiliares (coerentes com INSERT.SQL)
-  const empresasMap = useMemo(
-    () => ({
-      1: "Empresa Exemplo Ltda",
-      2: "AgroNutri SA",
-      3: "NutriFoods Ltda",
-    }),
-    []
-  );
-
-  const variedadesMap = useMemo(
-    () => ({
-      1: "Amendoim Runner",
-      2: "Amendoim Valência",
-      3: "Amendoim Virginia",
-      4: "Amendoim Español",
-      5: "Amendoim Florunner",
-    }),
-    []
-  );
-
-  const imagensPorAmenId = useMemo(
-    () => ({
-      1: "https://img.olx.com.br/images/35/354519630978865.webp",
-      2: "https://img.olx.com.br/images/21/212434617469791.webp",
-      3: "https://thumbs.dreamstime.com/b/dep%C3%B3sito-de-armazenamento-em-sacos-amendoim-no-brasil-visto-baixo-dos-206695366.jpg",
-      4: "https://img.mfrural.com.br/api/image?url=https://s3.amazonaws.com/mfrural-produtos-us/224488-366748-2000954-amendoim.webp&width=480&height=288&mode=4",
-      5: "https://thumbs.dreamstime.com/z/um-saco-de-amendoim-47927630.jpg",
-      default:
-        "https://blogmarcosfrahm.com/wp-content/uploads/2016/06/Amendoim.jpg",
-    }),
-    []
-  );
-
-  // Normaliza mock para o card
+  // Normaliza mock para o card (usa somente campos do mock, com fallbacks)
   const itensNormalizados = useMemo(() => {
     const ativos = (demandasMock || [])
-      .filter((d) => !!d.demanda_ativa)
+      .filter((d) => !!d.demanda_ativa) // aceita 1 ou true
       .sort(
         (a, b) =>
-          new Date(b.demanda_data_publicacao) -
-          new Date(a.demanda_data_publicacao)
+          new Date(b.demanda_data_publicacao) - new Date(a.demanda_data_publicacao)
       );
 
     return ativos.map((d) => ({
       id: d.demanda_id,
-      nome_empresa: empresasMap[d.emp_id] || `Empresa #${d.emp_id}`,
-      tipo: variedadesMap[d.amen_id] || `Amendoim #${d.amen_id}`,
-      quantidade: `${d.demanda_quantidade} kg`,
-      imagem: imagensPorAmenId[d.amen_id] || imagensPorAmenId.default,
+      nome_empresa: d.empresa_nome || `Empresa #${d.emp_id ?? "?"}`,
+      tipo: d.amendoim_tipo || `Amendoim #${d.amen_id ?? "?"}`,
+      quantidade: `${d.demanda_quantidade ?? 0} kg`,
+      imagem:
+        d.imagem ||
+        d.imagem_url ||
+        // fallback genérico se nem imagem nem campo conhecido existir
+        "https://blogmarcosfrahm.com/wp-content/uploads/2016/06/Amendoim.jpg",
       data_publicacao: d.demanda_data_publicacao,
+      raw: d,
     }));
-  }, [empresasMap, variedadesMap, imagensPorAmenId]);
+  }, [demandasMock]);
+  
 
   // Quebra em linhas (destaque/recentes)
   const linhasIniciais = useMemo(() => {
@@ -97,7 +67,7 @@ export default function Demandas() {
     return linhas;
   }, [itensNormalizados]);
 
-  const [linhas, setLinhas] = useState(linhasIniciais);
+  const [linhas, setLinhas] = useState(() => linhasIniciais);
   const containerRefs = useRef([]);
 
   const handlePrev = (linhaId) => {
@@ -126,8 +96,9 @@ export default function Demandas() {
     );
   };
 
-  // Mede card e calcula quantos cabem
-  useEffect(() => {
+  // Mede card e calcula quantos cabem -> useLayoutEffect para medir antes do paint
+  useLayoutEffect(() => {
+    let ro = null;
     const updateCardMetrics = () => {
       setLinhas((prev) =>
         prev.map((linha, index) => {
@@ -138,38 +109,44 @@ export default function Demandas() {
           if (!card) return linha;
 
           const cardStyle = window.getComputedStyle(card);
-          const cardWidthWithMargin =
-            card.offsetWidth +
-            parseFloat(cardStyle.marginRight) +
-            parseFloat(cardStyle.marginLeft);
+          const marginRight = parseFloat(cardStyle.marginRight) || 0;
+          const marginLeft = parseFloat(cardStyle.marginLeft) || 0;
+          const cardWidthWithMargin = card.offsetWidth + marginRight + marginLeft;
 
-          const containerWidth = container.offsetWidth;
-          const cardsThatFit = Math.max(
-            1,
-            Math.floor(containerWidth / cardWidthWithMargin)
-          );
+          const containerWidth = container.clientWidth || container.offsetWidth || 0;
+          const cardsThatFit = Math.max(1, Math.floor(containerWidth / (cardWidthWithMargin || 1)));
+
+          const maxIndex = Math.max(0, linha.demandas.length - cardsThatFit);
+          const currentIndex = Math.min(linha.currentIndex, maxIndex);
 
           return {
             ...linha,
             cardWidth: cardWidthWithMargin,
             maxVisibleCards: cardsThatFit,
-            currentIndex: Math.min(
-              linha.currentIndex,
-              Math.max(0, linha.demandas.length - cardsThatFit)
-            ),
+            currentIndex,
           };
         })
       );
     };
 
     updateCardMetrics();
-    const ro = new ResizeObserver(updateCardMetrics);
-    containerRefs.current.forEach((c) => c && ro.observe(c));
-    return () => ro.disconnect();
-  }, []);
+
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(updateCardMetrics);
+      containerRefs.current.forEach((c) => c && ro.observe(c));
+    } else {
+      window.addEventListener("resize", updateCardMetrics);
+    }
+
+    return () => {
+      if (ro) ro.disconnect();
+      else window.removeEventListener("resize", updateCardMetrics);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [linhasIniciais.length]);
 
   // Scroll suave
-  useEffect(() => {
+  useLayoutEffect(() => {
     linhas.forEach((linha, i) => {
       const container = containerRefs.current[i];
       if (container && linha.cardWidth > 0) {
@@ -228,17 +205,12 @@ export default function Demandas() {
                       <p className={styles.empresa}>{demanda.nome_empresa}</p>
 
                       <div className={styles.imageContainer}>
-                        <img
-                          src={demanda.imagem}
-                          alt={demanda.tipo}
-                          loading="lazy"
-                        />
+                        <img src={demanda.imagem} alt={demanda.tipo} loading="lazy" />
                       </div>
 
                       <h3>{demanda.tipo}</h3>
                       <p className={styles.quantidade}>{demanda.quantidade}</p>
 
-                      {/* rota detalhada: tua pasta é 'demanda' (singular) */}
                       <Link href={`/demanda/${demanda.id}`}>
                         <button className={styles.detalhes}>Ver detalhes</button>
                       </Link>
