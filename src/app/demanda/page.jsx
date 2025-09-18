@@ -11,14 +11,13 @@ export default function Demandas() {
   const itensNormalizados = useMemo(() => {
     const ativos = (demandasMock || [])
       .filter((d) => !!d.demanda_ativa) // aceita 1 ou true
-      .sort(
-        (a, b) =>
+      .sort((a, b) =>
           new Date(b.demanda_data_publicacao) - new Date(a.demanda_data_publicacao)
       );
 
     return ativos.map((d) => ({
       id: d.demanda_id,
-      nome_empresa: d.empresa_nome || `Empresa #${d.emp_id ?? "?"}`,
+      nome_empresa: d.empresa_nome ||` Empresa #${d.emp_id ?? "?"}`,
       tipo: d.amendoim_tipo || `Amendoim #${d.amen_id ?? "?"}`,
       quantidade: `${d.demanda_quantidade ?? 0} kg`,
       imagem:
@@ -30,6 +29,8 @@ export default function Demandas() {
       raw: d,
     }));
   }, [demandasMock]);
+
+  const nome_empresa = d.empresa_id
   
 
   // Quebra em linhas (destaque/recentes)
