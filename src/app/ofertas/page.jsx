@@ -1,43 +1,37 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useMemo} from "react";
 import styles from "./oferta.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
+import ofertasMock from "@/mockup/ofertas";
 import Link from "next/link";
 
 export default function Ofertas() {
+  // Normaliza mock para o card (usa somente campos do mock, com fallbacks)
+  const itensNormalizados = useMemo(() => {
+    const ativos = (ofertasMock || [])
+      .filter((d) => !!d.oferta_ativa) // aceita 1 ou true
+      .sort((a, b) =>
+          new Date(b.oferta_data_publicacao) - new Date(a.oferta_data_publicacao)
+      );
+    return ativos.map((d) => ({
+      id: d.oferta_id,
+      agricultor_nome: d.agricultor_nome ||` Agricutlro#${d.agri_id ?? "?"}`,
+      tipo: d.amendoim_tipo || `Amendoim #${d.amen_id ?? "?"}`,
+      quantidade: `${d.oferta_quantidade ?? 0} kg`,
+      imagem:
+        d.imagem ||
+        d.imagem_url ||
+        // fallback genérico se nem imagem nem campo conhecido existir
+        "https://blogmarcosfrahm.com/wp-content/uploads/2016/06/Amendoim.jpg",
+      data_publicacao: d.oferta_data_publicacao,
+      raw: d,
+    }));
+  }, [ofertasMock]);
+  
   // Estado para gerenciar múltiplas linhas de carrossel
-  const [linhas, setLinhas] = useState([
-    {
-      id: 1,
-      titulo: "Ofertas Recentes",
-      demandas: [
-        { id: 1, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "50 saca", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
-        { id: 2, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "50 saca", imagem: "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg" },
-        { id: 3, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "50 saca", imagem: "https://image.tuasaude.com/media/article/wg/xp/beneficios-do-amendoim_17802.jpg" },
-        { id: 4, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "40 saca", imagem: "https://feed.continente.pt/media/aaeoih2v/amendoim-beneficios.jpg?center=0.43958293115759167,0.45275669909355631&mode=crop&width=1090&height=467&rnd=133298540351630000&format=webp" },
-        { id: 5, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "55 saca", imagem: "https://s2-ge.glbimg.com/fJ1Qo8xVlmVQH5cGcNq16UBgoqk=/0x0:1273x824/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2022/K/z/2SS07CSRe6kf6XQhBjtw/amendoim.jpg" },
-      ],
-      currentIndex: 0,
-      cardWidth: 0,
-      maxVisibleCards: 0
-    },
-    {
-      id: 2,
-      
-      titulo: "Oferta em Destaque",
-      demandas: [
-        { id: 6, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "60 saca", imagem: "https://kuky.com.br/uploads/images/2023/05/beneficios-do-amendoim-descubra-como-ele-pode-ajudar-sua-saude-1684956829.jpg" },
-        { id: 7, nome_empresa: "Beatrix", tipo: "Amendoim s/pele", quantidade: "50 saca", imagem: "https://image.tuasaude.com/media/article/wg/xp/beneficios-do-amendoim_17802.jpg" },
-        { id: 8, nome_empresa: "Amenco", tipo: "Amendoim c/casca", quantidade: "45 saca", imagem: "https://feed.continente.pt/media/aaeoih2v/amendoim-beneficios.jpg?center=0.43958293115759167,0.45275669909355631&mode=crop&width=1090&height=467&rnd=133298540351630000&format=webp" },
-        { id: 9, nome_empresa: "Amentupã", tipo: "Amendoim c/pele", quantidade: "52 saca", imagem: "https://feed.continente.pt/media/aaeoih2v/amendoim-beneficios.jpg?center=0.43958293115759167,0.45275669909355631&mode=crop&width=1090&height=467&rnd=133298540351630000&format=webp" },
-      ],
-      currentIndex: 0,
-      cardWidth: 0,
-      maxVisibleCards: 0
-    }
-    // Adicione mais linhas conforme necessário
-  ]);
+  const [linhas, setLinhas] = useState([]);
+ 
 
   // Refs para cada container de carrossel
   const containerRefs = useRef([]);
