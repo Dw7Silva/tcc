@@ -31,9 +31,9 @@ export default function Home() {
   const toggleMenu = () => setMenuAberto(!menuAberto);
 
   const menuItems = [
-    { label: "Demandas", href: "/demanda" },
-    { label: "Ofertas", href: "/ofertas" },
-    { label: "Minhas Demandas", href: "/minhas_demandas" },
+    { label: "Inicio", href: "/demanda" },
+    { label: "Como Funciona", href: "/ofertas" },
+    { label: "Sobre Nós", href: "/minhas_demandas" },
     { label: "Minhas Ofertas", href: "/minhas_ofertas" },
     { label: "Config", href: "/config" },
     ...(isSmallScreen
