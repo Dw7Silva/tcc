@@ -14,7 +14,9 @@ export default function dev() {
     
 
 
-    <Home/>
+
+    <Inicio/>
+
     
 
   );

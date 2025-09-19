@@ -1,5 +1,5 @@
 // mockup/ofertas.js
-const ofertas = [
+const ofertasMock = [
   {
     oferta_id: 1,
     agri_id: 1,
@@ -30,4 +30,4 @@ const ofertas = [
   }
 ]
 
-export default ofertas
+export default ofertasMock ; 
