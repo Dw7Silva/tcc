@@ -30,7 +30,6 @@ export default function Demandas() {
     }));
   }, [demandasMock]);
 
-  const nome_empresa = d.empresa_id
   
 
   // Quebra em linhas (destaque/recentes)
@@ -67,6 +66,8 @@ export default function Demandas() {
     }
     return linhas;
   }, [itensNormalizados]);
+
+  
 
   const [linhas, setLinhas] = useState(() => linhasIniciais);
   const containerRefs = useRef([]);

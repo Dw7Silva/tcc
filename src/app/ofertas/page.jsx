@@ -29,10 +29,44 @@ export default function Ofertas() {
     }));
   }, [ofertasMock]);
   
+  // Quebra em linhas (destaque/recentes)
+  const linhasIniciais = useMemo(() => {
+    const destaque = itensNormalizados.slice(0, 5);
+    const recentes = itensNormalizados.slice(5);
+    const base = { currentIndex: 0, cardWidth: 0, maxVisibleCards: 0 };
+    const linhas = [];
+    if (destaque.length) {
+      linhas.push({
+        id: 1,
+        titulo: "Ofertas em Destaque",
+        demandas: destaque,
+        ...base,
+      });
+    }
+    if (recentes.length) {
+      linhas.push({
+        id: 2,
+        titulo: "Ofertas Recentes",
+        demandas: recentes,
+        ...base,
+      });
+    }
+    if (!linhas.length) {
+      linhas.push({
+        id: 1,
+        titulo: "Ofertas",
+        demandas: itensNormalizados,
+        ...base,
+      });
+    }
+    return linhas;
+  }, [itensNormalizados]);
+
   // Estado para gerenciar múltiplas linhas de carrossel
-  const [linhas, setLinhas] = useState([]);
+  const [linhas, setLinhas] = useState(() => linhasIniciais);
  
 
+  
   // Refs para cada container de carrossel
   const containerRefs = useRef([]);
 
@@ -145,16 +179,16 @@ export default function Ofertas() {
                   ref={el => containerRefs.current[index] = el}
                   id={`carrossel-${linha.id}`}
                 >
-                  {linha.demandas.map((demanda) => (
-                    <div key={demanda.id} className={styles.demandaCard}>
-                      <p className={styles.empresa}>{demanda.nome_empresa}</p>
+                  {linha.demandas.map((oferta) => (
+                    <div key={oferta.id} className={styles.demandaCard}>
+                      <p className={styles.empresa}>{oferta.agricultor_nome}</p>
                       <div className={styles.imageContainer}>
-                        <img src={demanda.imagem} alt={demanda.tipo} loading="lazy" />
+                        <img src={oferta.imagem} alt={oferta.tipo} loading="lazy" />
                       </div>
-                      <h3>{demanda.tipo}</h3>
-                      <p className={styles.quantidade}>{demanda.quantidade}</p>
+                      <h3>{oferta.tipo}</h3>
+                      <p className={styles.quantidade}>{oferta.quantidade}</p>
                       <Link href="/descricao_oferta">
-                      <button className={styles.detalhes}>Ver detalhes</button>
+                        <button className={styles.detalhes}>Ver detalhes</button>
                       </Link>
                     </div>
                   ))}
