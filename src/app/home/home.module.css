@@ -27,10 +27,9 @@
 .logo {
   height: 150px;
   width: auto;
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  display:flex;
+  justify-content:flex-start;
+  align-items: flex-start; 
 }
 
 .info {
@@ -100,12 +99,20 @@
   .ec {
     margin-left: 0;
   }
+  .logo{
+    position: absolute; /* ou relative, se preferir */
+    left: 5px;          /* ajusta a distância da esquerda */
+    height: 150px;      /* opcional: ajustar tamanho no mobile */
+    width: auto;
+    margin:0
+
+  }
 }
 .menuMobile {
   position: fixed;
   top: var(--altura-navbar);
   right: 2%;
-  background-color:transparent;
+  background-color:#dbd6d6;
   border: 2px solid black;
   border-radius: 8px;
   padding: 1rem;
@@ -155,8 +162,8 @@
 
 .imagem {
   flex: 1;
-  max-width: 600px;
-  height: 300px;
+  max-width: 900px;
+  height: 400px;
   object-fit: cover;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -170,7 +177,7 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-  margin: 0;
+  margin-bottom:100px;
   color: #5c3b28;
 }
 
@@ -178,6 +185,7 @@
   background-color: #f8f7f2;
   margin: 0;
   padding: 0;
+  height:700px
 }
 
 /* CARDS */
@@ -186,7 +194,7 @@
   width: 90vw;
   align-items: center;
   text-align: center;
-  margin: 10vw;
+  margin:0 auto;
   gap: 10vw;
 }
 
@@ -194,7 +202,7 @@
 .empre,
 .ts {
   height: 300px;
-  width: 20vw;
+  width: 50vw;
   border: 1px solid #c49e7c;
   border-radius: 15px;
   background-color: #ffffff;
@@ -258,9 +266,8 @@
 .containerPassos {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-left: 75px;
+  justify-content: center;
+  align-items: center;
   gap: 60px;
 }
 
