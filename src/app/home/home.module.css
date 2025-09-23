@@ -62,16 +62,20 @@
 }
 
 .login {
+
   display: flex;
   align-items: center;
-  border: 2px solid #a87453;
-  color: #a87453;
+  color: white;
+  background-color: #ffffff;
+  text-align: center;
+  padding: 5px 15px;
   border-radius: 5px;
-  padding: 5px 10px;
   cursor: pointer;
+  height: 40px;
 }
 
 .cadastrar {
+  text-decoration:none ;
   display: flex;
   align-items: center;
   color: white;
@@ -81,6 +85,9 @@
   border-radius: 5px;
   cursor: pointer;
   height: 40px;
+}
+.tirar{
+ text-decoration:none ;
 }
 
 /* MOBILE */

@@ -61,8 +61,17 @@ export default function Home() {
 
         {/* Entrar e Cadastrar SEMPRE visíveis */}
         <div className={styles.ec}>
+        <div className={styles.entrar}>
+          <Link href={"/login"}  className={styles.tirar}>
           <span className={styles.login}>Entrar</span>
+          </Link>
+          </div>
+
+           <div className={styles.cadastrar}>
+           <Link href={"/cadastro"} className={styles.tirar}>    
           <span className={styles.cadastrar}>Cadastrar</span>
+          </Link>  
+        </div>
         </div>
 
         {/* Menu Hamburguer */}

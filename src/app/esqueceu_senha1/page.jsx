@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styles from "./esqueceu1.module.css";
 import BarraNvg from "@/components/navbar/navbar";
 
-const EsqueceuSenha = () => {
+export default function EsqueceuSenh()  {
   const [email, setEmail] = useState("");
   const [codigo, setCodigo] = useState("");
   const [novaSenha, setNovaSenha] = useState("");
@@ -193,4 +193,3 @@ const EsqueceuSenha = () => {
   );
 };
 
-export default EsqueceuSenha;

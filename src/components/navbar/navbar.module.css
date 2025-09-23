@@ -143,6 +143,7 @@ body {
   font-size:clamp(24px, 2.5vw, 30px);
   color: var(--color-icon);
   transition: transform 0.2s;
+  
 }
 
 .menuIcon:hover {
