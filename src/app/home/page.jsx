@@ -225,12 +225,12 @@ export default function Home() {
 
       {/* Chamada final */}
       <div className={styles.rev}>
-        <h1>Pronto para Revolucionar seu Negócio de Amendoim?</h1>
+        <h1>A ponte entre agricultores e empresas compradoras de amendoim.</h1>
         <p>
-          Junte-se a centenas de agricultores e empresas que já estão
+          Facilitamos toda a negociação, conectando produtores diretamente a empresas interessadas,garantindo segurança,
         </p>
         <p>
-          economizando tempo e aumentando seus lucros com nossa plataforma.
+           transparência e agilidade em cada etapa da compra e venda de amendoim."
         </p>
         <div className={styles.botao}>
           <span className={styles.faleconos}>Cadastre-se Gratuitamente</span>
