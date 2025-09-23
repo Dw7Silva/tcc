@@ -1,191 +1,248 @@
-"use client"; // Indica que este componente é um componente de cliente
+"use client";
 import React, { useState } from 'react';
-import styles from './Cadastro.module.css'; // Importa o CSS do módulo
-
+import styles from './Cadastro.module.css';
 
 function Cadastro() {
-  // Estados para armazenar os dados do formulário
   const [cpfCnpj, setCpfCnpj] = useState('');
-  const [userType, setUserType] = useState('Agricultor'); // Estado para armazenar o tipo de usuário
+  const [userType, setUserType] = useState('Agricultor');
+  const [loading, setLoading] = useState(false);
+  const [mensagem, setMensagem] = useState({ texto: "", tipo: "" });
 
-  // Função para formatar CPF/CNPJ
   const formatCpfCnpj = (value) => {
-    let formattedValue = value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    let formattedValue = value.replace(/\D/g, '');
 
-    // Formata CPF
     if (formattedValue.length <= 11) {
       formattedValue = formattedValue.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-    } else { // Formata CNPJ
+    } else {
       formattedValue = formattedValue.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
     }
 
-    return formattedValue; // Retorna o valor formatado
+    return formattedValue;
   };
 
-  // Função chamada ao enviar o formulário
-  const validar_formulario = (event) => {
-    event.preventDefault(); // Prevê o comportamento padrão do envio do formulário
+  const validar_formulario = async (event) => {
+    event.preventDefault();
+    setLoading(true);
 
-    // Obtém os valores dos campos do formulário
     const email = event.target.email.value;
     const endereco = event.target.endereco.value;
     const telefone = event.target.telefone.value;
     const senha = event.target.senha.value;
     const confirmarSenha = event.target.confirmarSenha.value;
 
-    // Remove classes de erro e oculta mensagens de erro
-    const inputs = event.target.querySelectorAll('input, select');
-    inputs.forEach((input) => {
-      input.classList.remove(styles['error-input']);
-      input.nextSibling.textContent = ''; // Limpa mensagens de erro
-    });
+    // Limpa mensagens anteriores
+    setMensagem({ texto: "", tipo: "" });
 
-    let hasErrors = false; // Flag para verificar se há erros
+    // Validações
+    let hasErrors = false;
 
-    // Valida os campos do formulário
     if (!email) {
-      event.target.email.classList.add(styles['error-input']); // Adiciona classe de erro
-      event.target.email.nextSibling.textContent = 'Campo obrigatório'; // Mensagem de erro
+      setMensagem({ texto: "Email é obrigatório", tipo: "erro" });
       hasErrors = true;
     }
 
     if (!cpfCnpj) {
-      event.target.cpfCnpj.classList.add(styles['error-input']);
-      event.target.cpfCnpj.nextSibling.textContent = 'Campo obrigatório';
+      setMensagem({ texto: "CPF/CNPJ é obrigatório", tipo: "erro" });
       hasErrors = true;
     }
 
     if (!endereco) {
-      event.target.endereco.classList.add(styles['error-input']);
-      event.target.endereco.nextSibling.textContent = 'Campo obrigatório';
+      setMensagem({ texto: "Endereço é obrigatório", tipo: "erro" });
       hasErrors = true;
     }
 
     if (!telefone) {
-      event.target.telefone.classList.add(styles['error-input']);
-      event.target.telefone.nextSibling.textContent = 'Campo obrigatório';
+      setMensagem({ texto: "Telefone é obrigatório", tipo: "erro" });
       hasErrors = true;
     }
 
     if (!senha) {
-      event.target.senha.classList.add(styles['error-input']);
-      event.target.senha.nextSibling.textContent = 'Campo obrigatório';
+      setMensagem({ texto: "Senha é obrigatória", tipo: "erro" });
       hasErrors = true;
     }
 
     if (!confirmarSenha) {
-      event.target.confirmarSenha.classList.add(styles['error-input']);
-      event.target.confirmarSenha.nextSibling.textContent = 'Campo obrigatório';
+      setMensagem({ texto: "Confirmação de senha é obrigatória", tipo: "erro" });
       hasErrors = true;
     }
 
-    // Verifica se as senhas coincidem
     if (senha !== confirmarSenha) {
-      event.target.senha.classList.add(styles['error-input']);
-      event.target.confirmarSenha.classList.add(styles['error-input']);
-      event.target.senha.nextSibling.textContent = 'As senhas não coincidem';
+      setMensagem({ texto: "As senhas não coincidem", tipo: "erro" });
       hasErrors = true;
     }
 
-    // Verifica se o telefone contém apenas números
     if (!/^\d+$/.test(telefone)) {
-      event.target.telefone.classList.add(styles['error-input']);
-      event.target.telefone.nextSibling.textContent = 'Apenas números são permitidos';
+      setMensagem({ texto: "Apenas números são permitidos no telefone", tipo: "erro" });
       hasErrors = true;
     }
 
-    // Se houver erros, foca no primeiro campo com erro
-    if (hasErrors) {
-      const firstErrorInput = event.target.querySelector('.error-input');
-      if (firstErrorInput) {
-        firstErrorInput.focus();
-      }
-      return; // Sai da função se houver erros
+    if (senha.length < 6) {
+      setMensagem({ texto: "A senha deve ter pelo menos 6 caracteres", tipo: "erro" });
+      hasErrors = true;
     }
 
-    // Se tudo estiver correto, exibe os dados no console
-    console.log('Formulário enviado com sucesso!');
-    console.log('Tipo de Usuário:', userType); // Exibe o tipo de usuário selecionado
+    if (hasErrors) {
+      setLoading(false);
+      return;
+    }
+
+    // Simulação de cadastro
+    setTimeout(() => {
+      console.log('Formulário enviado com sucesso!');
+      console.log('Tipo de Usuário:', userType);
+      setMensagem({ texto: "Cadastro realizado com sucesso!", tipo: "sucesso" });
+      setLoading(false);
+    }, 1500);
   };
 
-  return (
-    <div className={styles.cadastroContainer}>
-      <form className={styles.cadastroForm} onSubmit={validar_formulario}>
-        <h2>Cadastro</h2>
+  const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
 
-        <div className={styles.formGroup}>
-          <label>Tipo de Usuário</label>
-          <div className={styles.radioGroup}>
-            {/* Botão para selecionar Agricultor */}
-            <button
-              type="button"
-              className={`${styles.userTypeButton} ${userType === 'Agricultor' ? styles.selected : ''}`}
-              onClick={() => setUserType('Agricultor')}
-            >
-              Agricultor
-            </button>
-            {/* Botão para selecionar Empresa */}
-            <button
-              type="button"
-              className={`${styles.userTypeButton} ${userType === 'Empresa' ? styles.selected : ''}`}
-              onClick={() => setUserType('Empresa')}
-            >
-              Empresa
-            </button>
+  return (
+    <div className={styles.pageContainer}>
+      <div className={styles.container}>
+        <div className={styles.twoColumnLayout}>
+          
+          {/* Coluna Esquerda - Ilustração */}
+          <div className={styles.leftColumn}>
+            <div className={styles.logoContainer}>
+              <img src={Logo} className={styles.logo} alt="Logo" />
+            </div>
+            <div className={styles.illustrationContainer}>
+              <h2 className={styles.welcomeTitle}>Crie sua Conta</h2>
+              <p className={styles.welcomeText}>
+                Junte-se à nossa comunidade agrícola. Cadastre-se para acessar recursos exclusivos 
+                e conectar-se com outros profissionais do setor.
+              </p>
+              <div className={styles.illustration}>
+                <div className={styles.iconContainer}>
+                  <span className={styles.icon}>🌱</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Coluna Direita - Formulário */}
+          <div className={styles.rightColumn}>
+            <div className={styles.formCard}>
+              {mensagem.texto && (
+                <div className={`${styles.mensagem} ${styles[mensagem.tipo]}`}>
+                  {mensagem.texto}
+                </div>
+              )}
+              
+              <form onSubmit={validar_formulario} className={styles.formContainer}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="userType" className={styles.formLabel}>Tipo de Usuário</label>
+                  <div className={styles.radioGroup}>
+                    <button
+                      type="button"
+                      className={`${styles.userTypeButton} ${userType === 'Agricultor' ? styles.selected : ''}`}
+                      onClick={() => setUserType('Agricultor')}
+                    >
+                      Agricultor
+                    </button>
+                    <button
+                      type="button"
+                      className={`${styles.userTypeButton} ${userType === 'Empresa' ? styles.selected : ''}`}
+                      onClick={() => setUserType('Empresa')}
+                    >
+                      Empresa
+                    </button>
+                  </div>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="email" className={styles.formLabel}>Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="seu@email.com"
+                    className={styles.formInput}
+                    required
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="cpfCnpj" className={styles.formLabel}>CPF/CNPJ</label>
+                  <input
+                    type="text"
+                    id="cpfCnpj"
+                    name="cpfCnpj"
+                    placeholder={userType === 'Agricultor' ? '000.000.000-00' : '00.000.000/0000-00'}
+                    className={styles.formInput}
+                    value={cpfCnpj}
+                    onChange={(e) => setCpfCnpj(formatCpfCnpj(e.target.value))}
+                    maxLength={userType === 'Agricultor' ? 14 : 18}
+                    required
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="endereco" className={styles.formLabel}>Endereço</label>
+                  <input
+                    type="text"
+                    id="endereco"
+                    name="endereco"
+                    placeholder="Digite seu endereço completo"
+                    className={styles.formInput}
+                    required
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="telefone" className={styles.formLabel}>Telefone</label>
+                  <input
+                    type="tel"
+                    id="telefone"
+                    name="telefone"
+                    placeholder="(00) 00000-0000"
+                    className={styles.formInput}
+                    pattern="[0-9]*"
+                    required
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="senha" className={styles.formLabel}>Senha</label>
+                  <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    placeholder="Mínimo 6 caracteres"
+                    className={styles.formInput}
+                    minLength={6}
+                    required
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="confirmarSenha" className={styles.formLabel}>Confirmar Senha</label>
+                  <input
+                    type="password"
+                    id="confirmarSenha"
+                    name="confirmarSenha"
+                    placeholder="Digite novamente a senha"
+                    className={styles.formInput}
+                    minLength={6}
+                    required
+                  />
+                </div>
+
+                <button 
+                  type="submit" 
+                  className={styles.submitButton}
+                  disabled={loading}
+                >
+                  {loading ? 'Cadastrando...' : 'Criar Conta'}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
-
-        {/* Campos do formulário */}
-        <div className={styles.formGroup}>
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" />
-          <p className={styles['error-message']}></p>
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="cpfCnpj">CPF/CNPJ</label>
-          <input
-            maxLength={15}
-            type="text"
-            id="cpfCnpj"
-            name="cpfCnpj"
-            value={cpfCnpj}
-            onChange={(e) => setCpfCnpj(formatCpfCnpj(e.target.value))} // Formata CPF/CNPJ ao digitar
-          />
-          <p className={styles['error-message']}></p>
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="endereco">Endereço</label>
-          <input type="text" id="endereco" name="endereco" />
-          <p className={styles['error-message']}></p>
-        </div>
-        
-        <div className={styles.formGroup}>
-          <label htmlFor="telefone">Número de Telefone</label>
-          <input type="number" id="telefone" name="telefone" pattern="[0-9]*" />
-          <p className={styles['error-message']}></p>
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="senha">Senha</label>
-          <input type="password" id="senha" name="senha" />
-          <p className={styles['error-message']}></p>
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="confirmarSenha">Confirmar Senha</label>
-          <input type="password" id="confirmarSenha" name="confirmarSenha" />
-          <p className={styles['error-message']}></p>
-        </div>
-
-        {/* Botão para enviar o formulário */}
-        <div className={styles.formButtons}>
-          <button type="submit" className={styles.criarContaButton}>Criar Conta</button>
-        </div>
-      </form>
-      
+      </div>
     </div>
   );
 }
 
-export default Cadastro; 
+export default Cadastro;
