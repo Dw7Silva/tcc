@@ -1,154 +1,271 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap');
+
+/* Variáveis de cores */
+:root {
+  --primary-color: #8B5A3C;
+  --secondary-color: #D4A574;
+  --accent-color: #6B8E23;
+  --light-bg: #FEF9F0;
+  --card-bg: rgba(255, 253, 245, 0.95);
+  --text-dark: #5D4037;
+  --text-light: #FFF;
+  --success-color: #4CAF50;
+  --error-color: #E57373;
+  --border-radius: 16px;
+  --shadow: 0 10px 30px rgba(139, 90, 60, 0.15);
+  --transition: all 0.3s ease;
+}
 
 /* Estilo global da página */
-body {
-  background-color: rgba(157, 96, 53, 0.72); /* Cor de fundo */
-  margin: 0; /* Remove margens padrão */
-  font-family: 'Comfortaa', sans-serif; /* Fonte da página */
-  font-weight: 400; /* Peso da fonte regular */
+.pageContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  font-family: 'Comfortaa', cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-/* Estilo do contêiner do formulário */
-.cadastroContainer {
-  display: flex; /* Usa flexbox para centralizar */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
-  min-height: 100vh; /* Altura mínima da tela */
-  padding: 2%; /* Espaçamento interno */
+.container {
+  width: 100%;
+  max-width: 1200px;
 }
 
-/* Estilo do formulário */
-.cadastroForm {
-  display: flex; /* Usa flexbox para organizar elementos */
-  flex-direction: column; /* Coloca os elementos em coluna */
-  background-color: rgba(254, 241, 203, 0.23); /* Cor de fundo do formulário */
-  padding: 2%; /* Espaçamento interno */
-  border-radius: 10px; /* Bordas arredondadas */
-  width: 550px; /* Largura do formulário */
-  max-height: 80%; /* Altura máxima */
-  max-width: 90%; /* Largura máxima */
-  min-height: 650px; /* Altura mínima */
+.twoColumnLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  min-height: 80vh;
 }
 
-/* Estilo do título do formulário */
-.cadastroForm h2 {
-  text-align: center; /* Centraliza o texto */
-  margin-bottom: 20px; /* Espaço abaixo do título */
+/* Coluna Esquerda */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--text-light);
+  padding: 40px;
 }
 
-/* Estilo dos grupos de formulário */
+.logoContainer {
+  margin-bottom: 40px;
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
+   animation: float 3s ease-in-out infinite;
+}
+
+.welcomeTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.welcomeText {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.iconContainer {
+  margin-top: 40px;
+
+}
+
+.icon {
+  font-size: 4rem;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Coluna Direita */
+.rightColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formCard {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 450px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.formContainer {
+  width: 100%;
+}
+
 .formGroup {
-  margin-bottom: 15px; /* Espaço abaixo de cada grupo */
+  margin-bottom: 25px;
 }
 
-/* Estilo dos rótulos dos campos */
-.formGroup label {
-  display: block; /* Cada rótulo ocupa uma linha */
-  margin-bottom: 5px; /* Espaço abaixo do rótulo */
+.formLabel {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 14px;
 }
 
-/* Estilo dos campos de entrada e seleção */
-.formGroup input,
-.formGroup select {
-  width: 100%; /* Largura total do campo */
-  padding: 10px; /* Espaçamento interno */
-  border: 1px solid #ccc; /* Borda padrão */
-  border-radius: 5px; /* Bordas arredondadas */
-  box-sizing: border-box; /* Inclui padding e borda no tamanho total */
+.formInput {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: 'Comfortaa', cursive;
+  font-size: 15px;
+  transition: var(--transition);
+  background: white;
+  box-sizing: border-box;
 }
 
-/* Estilo do grupo de botões de tipo de usuário */
+.formInput:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(107, 142, 35, 0.1);
+}
+
+.formInput::placeholder {
+  color: #a0a0a0;
+  font-size: 14px;
+}
+
+/* Grupo de botões de tipo de usuário */
 .radioGroup {
-  display: flex; /* Usa flexbox para organizar os botões */
-  justify-content: center; /* Centraliza os botões */
-  margin-bottom: 15px; /* Espaço abaixo do grupo */
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
 }
 
-/* Estilo dos botões de tipo de usuário */
 .userTypeButton {
-  background-color: #a87453; /* Cor de fundo padrão */
-  color: white; /* Cor do texto */
-  border: none; /* Remove bordas padrão */
-  border-radius: 5px; /* Bordas arredondadas */
-  padding: 10px 20px; /* Espaçamento interno */
-  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-  margin: 0 10px; /* Espaçamento horizontal entre os botões */
-  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+  flex: 1;
+  padding: 12px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: #f8f8f8;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Comfortaa', cursive;
+  font-weight: 600;
+  text-align: center;
 }
 
-/* Estilo ao passar o mouse sobre o botão */
 .userTypeButton:hover {
-  background-color: #8f5a3c; /* Cor de fundo ao passar o mouse */
+  background: #e8e8e8;
+  transform: translateY(-2px);
 }
 
-/* Estilo para o botão selecionado */
-.selected {
-  background-color: #6b4c3a; /* Cor de fundo quando selecionado */
+.userTypeButton.selected {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 8px rgba(107, 142, 35, 0.3);
 }
 
-/* Estilo do grupo de botões de envio */
-.formButtons {
-  display: flex; /* Usa flexbox para organizar */
-  justify-content: center; /* Centraliza o botão de envio */
-  margin-top: 20px; /* Espaço acima do botão */
+/* Botão de submit */
+.submitButton {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  font-family: 'Comfortaa', cursive;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 10px;
 }
 
-/* Estilo do botão de criar conta */
-.criarContaButton {
-  padding: 1.5%; /* Espaçamento interno */
-  border: none; /* Remove bordas padrão */
-  border-radius: 5px; /* Bordas arredondadas */
-  background-color: #a87453; /* Cor de fundo */
-  color: white; /* Cor do texto */
-  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-  font-size: larger; /* Aumenta o tamanho da fonte */
-  width: 100%; /* O botão ocupa toda a largura */
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 90, 60, 0.3);
 }
 
-/* Efeito ao passar o mouse sobre o botão de criar conta */
-.criarContaButton:hover {
-  opacity: 0.8; /* Diminui a opacidade ao passar o mouse */
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
-/* Estilo para campos com erro */
-.error-input {
-  border: 1px solid red; /* Borda vermelha para indicar erro */
+/* Mensagens */
+.mensagem {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
 }
 
-/* Estilo para mensagens de erro */
-.error-message {
-  color: red; /* Cor do texto da mensagem de erro */
-  font-size: 0.8em; /* Tamanho da fonte menor */
-  margin-top: 5px; /* Espaço acima da mensagem de erro */
+.mensagem.sucesso {
+  background: rgba(76, 175, 80, 0.1);
+  color: #2E7D32;
+  border: 1px solid #4CAF50;
 }
 
-/* Media queries para responsividade */
-@media (max-width: 768px) {
-  /* Ajustes para telas menores que 768px */
-  .cadastroForm {
-    padding: 5%; /* Aumenta o espaçamento interno para telas pequenas */
-    width: 90%; /* Largura do formulário reduzida */
+.mensagem.erro {
+  background: rgba(229, 115, 115, 0.1);
+  color: #C62828;
+  border: 1px solid var(--error-color);
+}
+
+/* Responsividade */
+@media (max-width: 968px) {
+  .twoColumnLayout {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
-
-  .userTypeButton {
-    padding: 8px 16px; /* Reduz o espaçamento interno dos botões */
-    font-size: 0.9em; /* Reduz o tamanho da fonte dos botões */
+  
+  .leftColumn {
+    padding: 20px;
   }
-
-  .criarContaButton {
-    padding: 1%; /* Ajusta o espaçamento interno do botão de criar conta */
-    font-size: 1em; /* Ajusta o tamanho da fonte do botão de criar conta */
+  
+  .welcomeTitle {
+    font-size: 2rem;
+  }
+  
+  .formCard {
+    padding: 30px 25px;
   }
 }
 
 @media (max-width: 480px) {
-  /* Ajustes para telas menores que 480px */
-  .cadastroForm {
-    width: 95%; /* Largura do formulário reduzida */
+  .pageContainer {
+    padding: 10px;
   }
-
-  .userTypeButton {
-    width: 100%; /* Botões ocupam toda a largura */
-    margin: 5px 0; /* Espaçamento vertical entre os botões */
+  
+  .formCard {
+    padding: 25px 20px;
+  }
+  
+  .radioGroup {
+    flex-direction: column;
+  }
+  
+  .welcomeTitle {
+    font-size: 1.8rem;
+  }
+  
+  .icon {
+    font-size: 3rem;
   }
 }
