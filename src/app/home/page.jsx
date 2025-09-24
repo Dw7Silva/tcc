@@ -1,13 +1,8 @@
 "use client";
-
+import Carousel from "./carrosel";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./home.module.css";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import Footer from "@/components/footer/footer";
 import { HiOutlineMenu } from "react-icons/hi";
 
@@ -27,6 +22,14 @@ export default function Home() {
 
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
+
+   const Carroselimages = [
+    "https://www.gestaosolution.com.br/wp-content/uploads/2023/05/maquinario-agricola.jpg",
+    "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg",
+    "https://image.tuasaude.com/media/article/wg/xp/beneficios-do-amendoim_17802.jpg",
+    "https://feed.continente.pt/media/aaeoih2v/amendoim-beneficios.jpg",
+    "https://s2-ge.glbimg.com/fJ1Qo8xVlmVQH5cGcNq16UBgoqk=/0x0:1273x824/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2022/K/z/2SS07CSRe6kf6XQhBjtw/amendoim.jpg",
+  ];
 
   const toggleMenu = () => setMenuAberto(!menuAberto);
 
@@ -93,54 +96,10 @@ export default function Home() {
           ))}
         </div>
       )}
-
-      {/* CARROSSEL DEPOIMENTOS */}
       <div className={styles.carouselContainer}>
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={30}
-          slidesPerView={1}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 2000 }}
-          loop={true}
-          className={styles.swiperCustom}
-        >
-          <SwiperSlide>
-            <div className={styles.slideContent}>
-              <img
-                src="https://imgur.com/etVCFjJ.png"
-                alt="fundo"
-                className={styles.imagem}
-              />
-              <h3>"Conectando o agro com as empresas!"</h3>
-              <p>Ajudando o seu negócio!</p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className={styles.slideContent}>
-              <img
-                src="https://imgur.com/etVCFjJ.png"
-                alt="fundo"
-                className={styles.imagem}
-              />
-              <h3>"A plataforma simplificou nossa compra de matéria-prima."</h3>
-              <p>- Maria, Compradora</p>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className={styles.slideContent}>
-              <img
-                src="https://imgur.com/etVCFjJ.png"
-                alt="fundo"
-                className={styles.imagem}
-              />
-              <h3>"Transações seguras e suporte excelente!"</h3>
-              <p>- Pedro, Produtor</p>
-            </div>
-          </SwiperSlide>
-        </Swiper>
+            <Carousel images={Carroselimages}></Carousel>
       </div>
-
+      
       {/* Como podemos Ajudar */}
       <div className={styles.fundocpa}>
         <div className={styles.ajuda}>
