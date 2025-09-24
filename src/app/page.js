@@ -7,6 +7,8 @@ import Footer from "@/components/footer/footer";
 import EsqueceuSenha from "./esqueceu_senha1/page";
 import Login from "./login/page";
 import Proposta from "./proposta/page";
+import Demandas from "./demanda/page";
+
 export default function dev() {
 
 
@@ -18,7 +20,7 @@ export default function dev() {
 
 
 
-    <Home/>
+    <Demandas/>
     
    </div>
     

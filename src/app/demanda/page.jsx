@@ -5,6 +5,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
 import Link from "next/link";
 import demandasMock from "@/mockup/demandas";
+import Cardsprodutos from "@/components/cardsdemands/cardsdemands";
 
 export default function Demandas() {
   // Normaliza mock para o card (usa somente campos do mock, com fallbacks)
@@ -202,22 +203,9 @@ export default function Demandas() {
                   ref={(el) => (containerRefs.current[index] = el)}
                   id={`carrossel-${linha.id}`}
                 >
-                  {linha.demandas.map((demanda) => (
-                    <div key={demanda.id} className={styles.demandaCard}>
-                      <p className={styles.empresa}>{demanda.nome_empresa}</p>
-
-                      <div className={styles.imageContainer}>
-                        <img src={demanda.imagem} alt={demanda.tipo} loading="lazy" />
-                      </div>
-
-                      <h3>{demanda.tipo}</h3>
-                      <p className={styles.quantidade}>{demanda.quantidade}</p>
-
-                      <Link href={`/demanda/${demanda.id}`}>
-                        <button className={styles.detalhes}>Ver detalhes</button>
-                      </Link>
-                    </div>
-                  ))}
+                 {linha.demandas.map((demanda) => (
+                      <Cardsprodutos key={`${linha.id}-${demanda.id}`} demanda={demanda} />
+                          ))}
                 </div>
 
                 {linha.demandas.length > linha.maxVisibleCards && (
