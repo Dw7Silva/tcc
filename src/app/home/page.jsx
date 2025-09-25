@@ -25,28 +25,24 @@ export default function Home() {
 
    const Carroselimages = [
     "https://www.gestaosolution.com.br/wp-content/uploads/2023/05/maquinario-agricola.jpg",
-    "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg",
-    "https://image.tuasaude.com/media/article/wg/xp/beneficios-do-amendoim_17802.jpg",
-    "https://feed.continente.pt/media/aaeoih2v/amendoim-beneficios.jpg",
-    "https://s2-ge.glbimg.com/fJ1Qo8xVlmVQH5cGcNq16UBgoqk=/0x0:1273x824/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2022/K/z/2SS07CSRe6kf6XQhBjtw/amendoim.jpg",
+    "https://www.myfarm.com.br/wp-content/uploads/2020/07/991159.jpeg",
+    "https://images.ecycle.com.br/wp-content/uploads/2022/06/17143248/james-baltz-jAt6cN6zl8M-unsplash-scaled.jpg.webp",
+    "https://www.cm-silves.pt/util/imgLoader.ashx?w=1280&img=/upload_files/client_id_1/website_id_1/Noticias/Ultimas/2021/agricultura.jpg",
+    "https://www.maxcrocante.com.br/imagens/categorias/fabrica-amendoim-japones-grande-sao-paulo-01.webp",
+    "https://www.maxcrocante.com.br/imagens/categorias/fabrica-amendoim-atacado-04.webp",
+    
   ];
 
   const toggleMenu = () => setMenuAberto(!menuAberto);
 
   const menuItems = [
-    { label: "Inicio", href: "/demanda" },
-    { label: "Como Funciona", href: "/ofertas" },
-    { label: "Sobre Nós", href: "/minhas_demandas" },
-    { label: "Minhas Ofertas", href: "/minhas_ofertas" },
-    { label: "Config", href: "/config" },
-    ...(isSmallScreen
-      ? [
-          { label: "Início", href: "/" },
-          { label: "Chat", href: "/chat" },
-          { label: "Suporte", href: "/suporte" },
-          { label: "Perfil", href: "/perfil" },
-        ]
-      : []),
+    { label: "Inicio", href: "#inicio" },
+    { label: "Como Ajudamos", href: "#Ajuda" },
+    { label: "Como Funciona", href: "#Como Funciona" },
+    { label: "Sobre Nos", href: "#Sobre Nos" },
+    { label: "Contato", href: "#Contato" },
+
+  
   ];
 
   return (
@@ -57,6 +53,7 @@ export default function Home() {
 
         <div className={styles.info}>
           <span className={styles.infospan}>Início</span>
+          <span className={styles.infospan}>Como Ajudamos</span>
           <span className={styles.infospan}>Como Funciona</span>
           <span className={styles.infospan}>Sobre Nós</span>
           <span className={styles.infospan}>Contato</span>
@@ -72,7 +69,7 @@ export default function Home() {
 
            <div className={styles.cadastrar}>
            <Link href={"/cadastro"} className={styles.tirar}>    
-          <span className={styles.cadastrar}>Cadastrar</span>
+          <span >Cadastrar</span>
           </Link>  
         </div>
         </div>
@@ -96,16 +93,19 @@ export default function Home() {
           ))}
         </div>
       )}
+      <selction id="inicio">
       <div className={styles.carouselContainer}>
             <Carousel images={Carroselimages}></Carousel>
       </div>
-      
+      </selction>
       {/* Como podemos Ajudar */}
+      <selection id="Ajuda">
       <div className={styles.fundocpa}>
+          
         <div className={styles.ajuda}>
           <h1> Como podemos ajudar </h1>
         </div>
-
+        
         <div className={styles.card}>
           <div className={styles.agr}>
             <h3>Agricultor</h3>
@@ -132,8 +132,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+    </selection>
       {/* Como Funciona */}
+      <selection id="Como Funciona">
       <div className={styles.comofun}>
         <div className={styles.comoh1}>
           <h1>Como Funciona</h1>
@@ -190,8 +191,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+    </selection>
+      
       {/* Chamada final */}
+      <selection id ="Sobre Nos">
       <div className={styles.rev}>
         <h1>A ponte entre agricultores e empresas compradoras de amendoim.</h1>
         <p>
@@ -205,8 +208,10 @@ export default function Home() {
           <span className={styles.cadasgra}>Fale Conosco</span>
         </div>
       </div>
-
+</selection>
+    <selection id="Contato">
       <Footer />
+      </selection>
     </div>
   );
 }
