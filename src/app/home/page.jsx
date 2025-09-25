@@ -69,7 +69,7 @@ export default function Home() {
 
            <div className={styles.cadastrar}>
            <Link href={"/cadastro"} className={styles.tirar}>    
-          <span className={styles.cadastrar}>Cadastrar</span>
+          <span >Cadastrar</span>
           </Link>  
         </div>
         </div>

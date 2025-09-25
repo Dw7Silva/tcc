@@ -22,6 +22,8 @@
   color: transparent;
   transition: transform 0.2s;
   display: none;
+ 
+  
 }
 
 .logo {
@@ -66,23 +68,26 @@
 }
 
 .login {
-
   display: flex;
   align-items: center;
-  color: white;
-  background-color: #6b4c3a;
+  color: #6b4c3a;
+  background-color:transparent;
   text-align: center;
   padding: 5px 15px;
   border-radius: 5px;
   cursor: pointer;
-  height: 40px;
+  height: 38px;
+  border:2px solid #6b4c3a;
+}
+  .login span{
+  text-decoration: none;
+  color: #6b4c3a;
 }
 
 .cadastrar {
   text-decoration:none ;
   display: flex;
   align-items: center;
-  color: white;
   background-color: #6b4c3a;
   text-align: center;
   padding: 5px 15px;
@@ -90,6 +95,12 @@
   cursor: pointer;
   height: 40px;
 }
+
+.cadastrar span{
+  text-decoration: none;
+  color: white;
+}
+
 .tirar{
  text-decoration:none ;
 }
@@ -452,10 +463,12 @@
 /* MOBILE */
 @media (max-width: 768px) {
   .menuIcon {
-    color: #000;
+    color:#5c3b28;
     display: block; /* mostra o ícone no mobile */
     position: absolute;
     right: 20px;
+    font-size: 35px;
+ 
   }
 
   .info {
