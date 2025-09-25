@@ -8,18 +8,38 @@
   import demandasMock from "@/mockup/demandas"; // <-- importe o mock
 
   export default function Demandas() {
-    // prepara as demandas ativas (usa o objeto cru do mock)
+
     const demandasAtivas = useMemo(() => {
       return (demandasMock || [])
         .filter((d) => !!d.demanda_ativa) // aceita 1 ou true
         .sort((a, b) => new Date(b.demanda_data_publicacao) - new Date(a.demanda_data_publicacao));
     }, []);
 
-    const DemandasGrandes = demandasMock
-      .filter((quantidade) => quantidade.demanda_quantidade > 1000)
-      .sort((maior, menor) => maior.demanda_quantidade - menor.demanda_quantidade);
 
-    return (  
+  const gridRef = React.useRef(null);
+
+    const arrowLeft = () => {
+      if (gridRef.current) {
+        gridRef.current.scrollBy({
+          left: -gridRef.current.offsetWidth,
+          behavior: "smooth"
+        });
+      }
+    };
+const arrowRight = () => {
+  if (gridRef.current) {
+    const card = gridRef.current.querySelector("[data-demanda-card]");
+    if (card) {
+      gridRef.current.scrollBy({
+        left: card.offsetWidth * 2,
+        behavior: "smooth"
+      });
+    }
+  }
+};
+
+
+    return (
       <>
         <BarraNvg />
 
@@ -41,30 +61,18 @@
             </div>
 
             <div className={styles.linhaContainer}>
-              <h3 className={styles.tituloLinha}>Demandas</h3>
-
+              <h3 className={styles.tituloLinha}></h3>
               <div className={styles.scrollWrapper}>
                 {/* setas apenas visuais — sem lógica de carrossel */}
-                <button className={`${styles.arrow} ${styles.arrowLeft}`} aria-label="Anterior">
+                <button onClick={arrowLeft} className={`${styles.arrow} ${styles.arrowLeft}`} aria-label="Anterior">
                   <IoIosArrowBack />
                 </button>
-            
-                <div className={styles.demandasGrid}>
-
-                  
+                <div className={styles.demandasGrid} ref={gridRef}>
                   {demandasAtivas.map((demanda) => (
-                    // use a chave do mock (demanda_id) — Cardsprodutos recebe o objeto cru
-                        <Cardsprodutos key={demanda.demanda_id} demanda={demanda} />
-                  ))}
-                </div>
-
-                <div className={styles.demandasGrid}>
-                  {DemandasGrandes.map((demanda) => (
                     <Cardsprodutos key={demanda.demanda_id} demanda={demanda} />
                   ))}
                 </div>
-
-                <button className={`${styles.arrow} ${styles.arrowRight}`} aria-label="Próximo">
+                <button onClick={arrowRight} className={`${styles.arrow} ${styles.arrowRight}`} aria-label="Próximo">
                   <IoIosArrowForward />
                 </button>
               </div>
