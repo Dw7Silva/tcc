@@ -42,7 +42,7 @@
   width: 80%;
   gap: 40px;
   margin: 0 auto;
-    opacity: 1;
+  opacity: 1;
   visibility: visible;
   transform: translateY(0);
   transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
@@ -94,34 +94,7 @@
  text-decoration:none ;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .menuIcon {
-    color: #000;
-    display: block; /* mostra o ícone no mobile */
-    position: absolute;
-    right: 20px;
-  }
 
-  .info {
-    display:none;
-  }
-
-  .ec {
-    margin-left: 0;
-  }
-  .logo{
-    position: absolute; /* ou relative, se preferir */
-    left: 5px;          /* ajusta a distância da esquerda */
-    height: 150px;      /* opcional: ajustar tamanho no mobile */
-    width: auto;
-    margin:0
-
-  }
- 
- 
-
-}
 
 .menuMobile {
   position: fixed;
@@ -138,6 +111,12 @@
   z-index: 1001;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
+ 
+}
+.menuMobile a{
+  text-decoration: none !important;
+  outline: none;
+  color:#5c3b28
 }
 
 /* BANNER */
@@ -208,6 +187,7 @@
 .agr,
 .empre,
 .ts {
+
   height: 300px;
   width: 50vw;
   border: 1px solid #c49e7c;
@@ -355,6 +335,7 @@
   flex-direction: column;
   align-items: center;
   background-color: #f8f7f2;
+  margin-bottom:50px;
 }
 
 .rev h1 {
@@ -392,6 +373,10 @@
   align-items: center;
   border: 2px solid #c69c62;
 }
+.faleconos:hover{
+  transform: translateY(-10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
 .cadasgra {
   display: flex;
@@ -405,6 +390,10 @@
   justify-content: center;
   text-align: center;
   width: 170px;
+}
+.cadasgra:hover{
+  transform: translateY(-10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* FOOTER */
@@ -459,4 +448,80 @@
 
 .linkra h3 {
   margin: 0;
+}
+/* MOBILE */
+@media (max-width: 768px) {
+  .menuIcon {
+    color: #000;
+    display: block; /* mostra o ícone no mobile */
+    position: absolute;
+    right: 20px;
+  }
+
+  .info {
+    display:none;
+  }
+
+  .ec {
+    margin-left: 0;
+  }
+  .logo{
+    position: absolute; 
+    left: 5px;
+    height: 150px;      
+    width: auto;
+    margin:0
+
+  }
+  .fundocpa{
+    margin-top:100px;
+  }
+ .card {
+  height: auto;
+    flex-direction: column;
+    gap: 20px;               
+    width: 100%;             
+    align-items: center;     
+    margin-bottom: 200px;     
+    justify-content: center;
+  }
+
+  .agr,
+  .empre,
+  .ts {
+    width: 90% ;  
+    max-width: 500px;
+  }
+   .ts{
+    margin:0 ;
+   }
+  .comofun{
+    height: auto;           /* deixa ajustar conforme o conteúdo */
+    padding: 50px 20px;     /* espaçamento interno */
+    margin-top: 500px;          /* remove margin gigante */
+    margin-bottom: 20px;    /* menor margem inferior */
+
+ 
+
+    
+  }
+  .containerPassos{
+   
+    width: 90%;            /* ocupa quase toda a tela */
+    flex-direction: column; 
+    align-items: center;   /* centraliza itens dentro do container */
+    margin: 0 auto;        /* centraliza o container horizontalmente */
+    gap: 40px; 
+
+  }
+  .espaço, .espaço2, .espaço3, .espaço4 {
+    margin-left: 0;           /* remove margens laterais */
+  }
+  .rev{
+    margin-bottom:70px;
+    text-align:center;
+  }
+
+
+
 }
