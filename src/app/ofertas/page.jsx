@@ -187,7 +187,7 @@ export default function Ofertas() {
                       </div>
                       <h3>{oferta.tipo}</h3>
                       <p className={styles.quantidade}>{oferta.quantidade}</p>
-                      <Link href="/descricao_oferta">
+                      <Link href={`/ofertas/${oferta.id}`}>
                         <button className={styles.detalhes}>Ver detalhes</button>
                       </Link>
                     </div>

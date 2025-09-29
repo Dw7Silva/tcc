@@ -26,8 +26,8 @@
         });
       }
     };
-const arrowRight = () => {
-  if (gridRef.current) {
+       const arrowRight = () => {
+   if (gridRef.current) {
     const card = gridRef.current.querySelector("[data-demanda-card]");
     if (card) {
       gridRef.current.scrollBy({
@@ -36,7 +36,7 @@ const arrowRight = () => {
       });
     }
   }
-};
+         };
 
 
     return (
@@ -78,9 +78,11 @@ const arrowRight = () => {
               </div>
             </div>
 
-            <Link href="/criar_demanda">
-              <button className={styles.criarOferta}>Criar Demanda</button>
-            </Link>
+          <Link href="/criar_demanda" passHref legacyBehavior>
+              <button className={styles.criarOferta}>
+                  <span className={styles.textcriar}>Criar oferta</span>
+                </button>
+                  </Link>
           </div>
         </div>
       </>
