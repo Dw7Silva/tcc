@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap');
 
-/* Variáveis de cores */
 :root {
+  /* Tema Claro (default) */
   --primary-color: #8B5A3C;
   --secondary-color: #D4A574;
   --accent-color: #6B8E23;
@@ -16,10 +16,27 @@
   --transition: all 0.3s ease;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #D4A574;
+    --secondary-color: #8B5A3C;
+    --accent-color: #6e8554;
+    --light-bg: #2B2320;
+    --card-bg: rgba(44, 36, 32, 0.95);
+    --text-dark: #FFF;
+    --text-light: #D4A574;
+    --success-color: #679e6a;
+    --error-color: #EF5350;
+    --border-radius: 16px;
+    --shadow: 0 10px 30px rgba(212, 165, 116, 0.15);
+    --transition: all 0.3s ease;
+  }
+}
+
 /* Estilo global da página */
 .pageContainer {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 60%);
   font-family: 'Comfortaa', cursive;
   display: flex;
   align-items: center;
@@ -160,7 +177,7 @@
   padding: 12px 20px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
-  background: #f8f8f8;
+  background: #c0bfbf;
   color: var(--text-dark);
   cursor: pointer;
   transition: var(--transition);
@@ -176,7 +193,7 @@
 
 .userTypeButton.selected {
   background: var(--accent-color);
-  color: white;
+  color: rgb(243, 211, 211);
   border-color: var(--accent-color);
   box-shadow: 0 4px 8px rgba(107, 142, 35, 0.3);
 }

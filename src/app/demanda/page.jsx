@@ -68,9 +68,11 @@
                   <IoIosArrowBack />
                 </button>
                 <div className={styles.demandasGrid} ref={gridRef}>
+
                   {demandasAtivas.map((demanda) => (
                     <Cardsprodutos key={demanda.demanda_id} demanda={demanda} />
                   ))}
+                  
                 </div>
                 <button onClick={arrowRight} className={`${styles.arrow} ${styles.arrowRight}`} aria-label="Próximo">
                   <IoIosArrowForward />
