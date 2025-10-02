@@ -15,7 +15,12 @@ export default function Home() {
   useEffect(() => {
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth <= 600);
-    };
+
+    if (!isSmallScreen) {
+      setMenuAberto(false);
+    } 
+  
+  };
 
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
