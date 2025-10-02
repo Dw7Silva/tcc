@@ -1,146 +1,45 @@
 "use client";
-import React, { useRef, useState, useEffect, useMemo} from "react";
+import React, { useMemo, useRef } from "react";
 import styles from "./oferta.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
-import ofertasMock from "@/mockup/ofertas";
 import Link from "next/link";
+import Cardsofertas from "@/components/cardsofertas";
+import ofertasMock from "@/mockup/ofertas";
 
 export default function Ofertas() {
-  // Normaliza mock para o card (usa somente campos do mock, com fallbacks)
-  const itensNormalizados = useMemo(() => {
-    const ativos = (ofertasMock || [])
-      .filter((d) => !!d.oferta_ativa) // aceita 1 ou true
-      .sort((a, b) =>
-          new Date(b.oferta_data_publicacao) - new Date(a.oferta_data_publicacao)
-      );
-    return ativos.map((d) => ({
-      id: d.oferta_id,
-      agricultor_nome: d.agricultor_nome ||` Agricutlro#${d.agri_id ?? "?"}`,
-      tipo: d.amendoim_tipo || `Amendoim #${d.amen_id ?? "?"}`,
-      quantidade: `${d.oferta_quantidade ?? 0} kg`,
-      imagem:
-        d.imagem ||
-        d.imagem_url ||
-        // fallback genérico se nem imagem nem campo conhecido existir
-        "https://blogmarcosfrahm.com/wp-content/uploads/2016/06/Amendoim.jpg",
-      data_publicacao: d.oferta_data_publicacao,
-      raw: d,
-    }));
-  }, [ofertasMock]);
-  
-  // Quebra em linhas (destaque/recentes)
-  const linhasIniciais = useMemo(() => {
-    const destaque = itensNormalizados.slice(0, 5);
-    const recentes = itensNormalizados.slice(5);
-    const base = { currentIndex: 0, cardWidth: 0, maxVisibleCards: 0 };
-    const linhas = [];
-    if (destaque.length) {
-      linhas.push({
-        id: 1,
-        titulo: "Ofertas em Destaque",
-        demandas: destaque,
-        ...base,
-      });
-    }
-    if (recentes.length) {
-      linhas.push({
-        id: 2,
-        titulo: "Ofertas Recentes",
-        demandas: recentes,
-        ...base,
-      });
-    }
-    if (!linhas.length) {
-      linhas.push({
-        id: 1,
-        titulo: "Ofertas",
-        demandas: itensNormalizados,
-        ...base,
-      });
-    }
-    return linhas;
-  }, [itensNormalizados]);
-
-  // Estado para gerenciar múltiplas linhas de carrossel
-  const [linhas, setLinhas] = useState(() => linhasIniciais);
- 
-
-  
-  // Refs para cada container de carrossel
-  const containerRefs = useRef([]);
-
-  // Funções de navegação para cada linha
-  const handlePrev = (linhaId) => {
-    setLinhas(prev => prev.map(linha => 
-      linha.id === linhaId 
-        ? {...linha, currentIndex: Math.max(0, linha.currentIndex - 1)}
-        : linha
-    ));
-  };
-
-  const handleNext = (linhaId) => {
-    setLinhas(prev => prev.map(linha => 
-      linha.id === linhaId
-        ? {...linha, currentIndex: Math.min(linha.demandas.length - linha.maxVisibleCards, linha.currentIndex + 1)}
-        : linha
-    ));
-  };
-
-  // Atualiza as métricas dos cards
-  useEffect(() => {
-    const updateCardMetrics = () => {
-      setLinhas(prev => prev.map((linha, index) => {
-        const container = containerRefs.current[index];
-        if (container) {
-          const card = container.querySelector(`.${styles.demandaCard}`);
-          if (card) {
-            const cardStyle = window.getComputedStyle(card);
-            const cardWidthWithMargin = card.offsetWidth + 
-              parseFloat(cardStyle.marginRight) + 
-              parseFloat(cardStyle.marginLeft);
-            
-            const containerWidth = container.offsetWidth;
-            const cardsThatFit = Math.floor(containerWidth / cardWidthWithMargin);
-            
-            return {
-              ...linha,
-              cardWidth: cardWidthWithMargin,
-              maxVisibleCards: cardsThatFit
-            };
-          }
-        }
-        return linha;
-      }));
-    };
-
-    updateCardMetrics();
-    const resizeObserver = new ResizeObserver(updateCardMetrics);
-    
-    containerRefs.current.forEach(container => {
-      if (container) resizeObserver.observe(container);
-    });
-
-    return () => resizeObserver.disconnect();
+  const ofertasAtivas = useMemo(() => {
+    return (ofertasMock || [])
+      .filter((d) => !!d.oferta_ativa)
+      .sort((a, b) => new Date(b.oferta_data_publicacao) - new Date(a.oferta_data_publicacao));
   }, []);
 
-  // Efeito para scroll suave
-  useEffect(() => {
-    linhas.forEach((linha, index) => {
-      const container = containerRefs.current[index];
-      if (container && linha.cardWidth > 0) {
-        container.scrollTo({
-          left: linha.currentIndex * linha.cardWidth,
-          behavior: 'smooth'
+  const gridRef = useRef(null);
+
+  const arrowLeft = () => {
+    if (gridRef.current) {
+      gridRef.current.scrollBy({
+        left: -gridRef.current.offsetWidth,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const arrowRight = () => {
+    if (gridRef.current) {
+      const card = gridRef.current.querySelector("[data-demanda-card]");
+      if (card) {
+        gridRef.current.scrollBy({
+          left: card.offsetWidth * 2,
+          behavior: "smooth"
         });
       }
-    });
-  }, [linhas]);
+    }
+  };
 
   return (
     <>
       <BarraNvg />
-  
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.header}>
@@ -158,58 +57,29 @@ export default function Ofertas() {
             </div>
           </div>
 
-          {/* Renderiza cada linha de carrossel */}
-          {linhas.map((linha, index) => (
-            <div key={linha.id} className={styles.linhaContainer}>
-              <h3 className={styles.tituloLinha}>{linha.titulo}</h3>
-              
-              <div className={styles.scrollWrapper}>
-                {linha.demandas.length > linha.maxVisibleCards && (
-                  <button 
-                    className={`${styles.arrow} ${styles.arrowLeft}`}
-                    onClick={() => handlePrev(linha.id)}
-                    disabled={linha.currentIndex === 0}
-                  >
-                    <IoIosArrowBack />
-                  </button>
-                )}
-
-                <div 
-                  className={styles.demandasGrid} 
-                  ref={el => containerRefs.current[index] = el}
-                  id={`carrossel-${linha.id}`}
-                >
-                  {linha.demandas.map((oferta) => (
-                    <div key={oferta.id} className={styles.demandaCard}>
-                      <p className={styles.empresa}>{oferta.agricultor_nome}</p>
-                      <div className={styles.imageContainer}>
-                        <img src={oferta.imagem} alt={oferta.tipo} loading="lazy" />
-                      </div>
-                      <h3>{oferta.tipo}</h3>
-                      <p className={styles.quantidade}>{oferta.quantidade}</p>
-                      <Link href="/descricao_oferta">
-                        <button className={styles.detalhes}>Ver detalhes</button>
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-
-                {linha.demandas.length > linha.maxVisibleCards && (
-                  <button 
-                    className={`${styles.arrow} ${styles.arrowRight}`}
-                    onClick={() => handleNext(linha.id)}
-                    disabled={linha.currentIndex >= linha.demandas.length - linha.maxVisibleCards}
-                  >
-                    <IoIosArrowForward />
-                  </button>
-                )}
+          <div className={styles.linhaContainer}>
+            <h3 className={styles.tituloLinha}></h3>
+            <div className={styles.scrollWrapper}>
+              {/* setas apenas visuais — sem lógica de carrossel */}
+              <button onClick={arrowLeft} className={`${styles.arrow} ${styles.arrowLeft}`} aria-label="Anterior">
+                <IoIosArrowBack />
+              </button>
+              <div className={styles.demandasGrid} ref={gridRef}>
+                {ofertasAtivas.map((oferta) => (
+                <Cardsofertas key={oferta.oferta_id} oferta={oferta} />
+                ))}
               </div>
+              <button onClick={arrowRight} className={`${styles.arrow} ${styles.arrowRight}`} aria-label="Próximo">
+                <IoIosArrowForward />
+              </button>
             </div>
-          ))}
-         <Link href="/criar_oferta">
-          <button className={styles.criarOferta} >Criar Oferta</button>
-          </Link>
+          </div>
 
+          <Link href="/criar_oferta" passHref legacyBehavior>
+            <button className={styles.criarOferta}>
+              <span className={styles.textcriar}>Criar oferta</span>
+            </button>
+          </Link>
         </div>
       </div>
     </>

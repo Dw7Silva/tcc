@@ -145,8 +145,8 @@ body {
   cursor: pointer;
   z-index: 10;
   box-shadow: 0 3px 8px var(--cor-sombra-geral);
-  color: black;
-  font-size: 1.8rem;
+  color: rgb(255, 255, 255);
+  font-size: 2rem;
   transition: all 0.2s;
 }
 
@@ -168,7 +168,7 @@ body {
   margin: 3rem auto 0;
   padding: 1rem 2rem;
   background-color: #e1ac74;
-  color: rgb(255, 255, 255);
+  color: #fff;
   border: none;
   border-radius: 8px;
   font-size: 1.1rem;
@@ -176,8 +176,16 @@ body {
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0 2px 8px var(--cor-sombra-geral);
+  text-decoration: none; /* aqui tira o underline do <a> */
+  width: 200px;
+  height: 90px;
 }
 
+.textcriar {
+  text-decoration: none; /* garante que nunca sublinha */
+  font-size: 1.3rem;
+}
+     
 .criarOferta:hover {
   background-color: var(--cor-primaria-geral);
   transform: translateY(-2px);
