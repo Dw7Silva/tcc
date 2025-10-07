@@ -6,6 +6,7 @@
   import Link from "next/link";
   import Cardsprodutos from "@/components/cardsdemands/cardsdemands";
   import demandasMock from "@/mockup/demandas"; // <-- importe o mock
+  import api from "@/services/api";
 
   export default function Demandas() {
 
@@ -37,7 +38,6 @@
     }
   }
          };
-
 
     return (
       <>
