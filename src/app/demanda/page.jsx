@@ -6,6 +6,7 @@
   import Link from "next/link";
   import Cardsprodutos from "@/components/cardsdemands/cardsdemands";
   import demandasMock from "@/mockup/demandas"; // <-- importe o mock
+  import api from "@/services/api";
 
   export default function Demandas() {
 
@@ -26,8 +27,8 @@
         });
       }
     };
-const arrowRight = () => {
-  if (gridRef.current) {
+       const arrowRight = () => {
+   if (gridRef.current) {
     const card = gridRef.current.querySelector("[data-demanda-card]");
     if (card) {
       gridRef.current.scrollBy({
@@ -36,8 +37,7 @@ const arrowRight = () => {
       });
     }
   }
-};
-
+         };
 
     return (
       <>
@@ -68,9 +68,11 @@ const arrowRight = () => {
                   <IoIosArrowBack />
                 </button>
                 <div className={styles.demandasGrid} ref={gridRef}>
+
                   {demandasAtivas.map((demanda) => (
                     <Cardsprodutos key={demanda.demanda_id} demanda={demanda} />
                   ))}
+                  
                 </div>
                 <button onClick={arrowRight} className={`${styles.arrow} ${styles.arrowRight}`} aria-label="Próximo">
                   <IoIosArrowForward />
@@ -78,9 +80,11 @@ const arrowRight = () => {
               </div>
             </div>
 
-            <Link href="/criar_demanda">
-              <button className={styles.criarOferta}>Criar Demanda</button>
-            </Link>
+          <Link href="/criar_demanda" passHref legacyBehavior>
+              <button className={styles.criarOferta}>
+                  <span className={styles.textcriar}>Criar oferta</span>
+                </button>
+                  </Link>
           </div>
         </div>
       </>

@@ -14,6 +14,7 @@
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 1px 0 #000;
+  
 }
 
 .menuIcon {
@@ -22,8 +23,6 @@
   color: transparent;
   transition: transform 0.2s;
   display: none;
- 
-  
 }
 
 .logo {
@@ -42,19 +41,21 @@
   color: #5c3b28;
   text-align: center;
   width: 80%;
-  gap: 40px;
+  gap: 10px;
   margin: 0 auto;
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
   transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+  margin:3px;
 }
 
 .info span {
-  font-size: 1.2rem; /* tamanho equilibrado */
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 300;
   cursor: pointer;
   transition: color 0.3s ease;
+  gap: 10px;
 }
 
 .info span:hover {
@@ -79,13 +80,13 @@
   height: 38px;
   border:2px solid #6b4c3a;
 }
-  .login span{
+.login span{
   text-decoration: none;
   color: #6b4c3a;
 }
 
 .cadastrar {
-  text-decoration:none ;
+  text-decoration:none;
   display: flex;
   align-items: center;
   background-color: #6b4c3a;
@@ -102,10 +103,8 @@
 }
 
 .tirar{
- text-decoration:none ;
+ text-decoration:none;
 }
-
-
 
 .menuMobile {
   position: fixed;
@@ -122,7 +121,6 @@
   z-index: 1001;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
- 
 }
 .menuMobile a{
   text-decoration: none !important;
@@ -165,7 +163,6 @@
   color: #333;
 }
 
-
 /* AJUDA */
 .ajuda {
   max-height: 25vh;
@@ -198,7 +195,6 @@
 .agr,
 .empre,
 .ts {
-
   height: 300px;
   width: 50vw;
   border: 1px solid #c49e7c;
@@ -336,8 +332,6 @@
   color: rgb(92, 59, 40);
 }
 
-/* CARROSSEL DEPOIMENTOS */
-
 /* REVOLUCIONAR */
 .rev {
   display: flex;
@@ -460,21 +454,48 @@
 .linkra h3 {
   margin: 0;
 }
+@media  (min-width: 769px) and (max-width: 1045px) {
+  .fundocpa{
+    height:700px;
+  }
+  .containerPassos {
+    display: grid;                          /* muda de flex para grid */
+    grid-template-columns: repeat(2, 1fr);  /* 2 colunas */
+    gap: 40px;                              /* espaço entre os itens */
+    width: 90%;
+    margin: 0 auto;
+ 
+  }
+
+  .espaço, .espaço2, .espaço3, .espaço4 {
+    
+    margin-left: 0;   /* garante que não empurre pro lado */
+    justify-self: center; /* centraliza cada "passo" na célula */
+  }
+
+   .rev{
+    margin-top:100px;
+    margin-bottom:70px;
+    text-align:center;
+  }
+
+}
+
 /* MOBILE */
-@media (max-width: 768px) {
+@media (max-width: 768px)  {
   .menuIcon {
     color:#5c3b28;
-    display: block; /* mostra o ícone no mobile */
+    display: block;
     position: absolute;
     right: 20px;
     font-size: 35px;
- 
   }
+
 
   .info {
     display:none;
   }
-
+  
   .ec {
     margin-left: 0;
   }
@@ -484,13 +505,12 @@
     height: 150px;      
     width: auto;
     margin:0
-
   }
   .fundocpa{
     margin-top:100px;
   }
- .card {
-  height: auto;
+  .card {
+    height: auto;
     flex-direction: column;
     gap: 20px;               
     width: 100%;             
@@ -505,36 +525,149 @@
     width: 90% ;  
     max-width: 500px;
   }
-   .ts{
+  .ts{
     margin:0 ;
-   }
+  }
   .comofun{
-    height: auto;           /* deixa ajustar conforme o conteúdo */
-    padding: 50px 20px;     /* espaçamento interno */
-    margin-top: 500px;          /* remove margin gigante */
-    margin-bottom: 20px;    /* menor margem inferior */
-
- 
-
-    
+    height: auto;
+    padding: 50px 20px;
+    margin-top: 500px;
+    margin-bottom: 20px;
   }
   .containerPassos{
-   
-    width: 90%;            /* ocupa quase toda a tela */
+    width: 90%;
     flex-direction: column; 
-    align-items: center;   /* centraliza itens dentro do container */
-    margin: 0 auto;        /* centraliza o container horizontalmente */
-    gap: 40px; 
-
+    align-items: center;
+    margin: 0 auto;
+    gap: 40px;
   }
   .espaço, .espaço2, .espaço3, .espaço4 {
-    margin-left: 0;           /* remove margens laterais */
+    margin-left: 0;
   }
   .rev{
     margin-bottom:70px;
     text-align:center;
   }
+}
 
+/* === DARK MODE AUTOMÁTICO === */
+@media (prefers-color-scheme: dark) {
+  body, .body {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+  }
 
+  .navbr {
+    background-color: #1e1e1e;
+    box-shadow: 0 0 2px 0 #555;
+  }
 
+  .info {
+    color: #ddd;
+  }
+
+  .info span:hover {
+    color: #c69c62;
+  }
+
+  .login {
+    color: #ddd;
+    border: 2px solid #ddd;
+  }
+
+  .login span {
+    color: #ddd;
+  }
+
+  .cadastrar {
+    background-color: #c69c62;
+  }
+
+  .cadastrar span {
+    color: #fff;
+  }
+
+  .menuMobile {
+    background-color: #1e1e1e;
+    border: 2px solid #555;
+  }
+
+  .menuMobile a {
+    color: #e0e0e0;
+  }
+  .menuIcon{
+    color:#c69c62;
+  }
+  .teste {
+    background-color: #1e1e1e;
+  }
+
+  .texto {
+    color: #e0e0e0;
+  }
+
+  .sub {
+    color: #aaa;
+  }
+
+  .fundocpa {
+    background-color: #1e1e1e;
+  }
+
+  .agr, .empre, .ts {
+    background-color: #222;
+    border: 1px solid #444;
+    color: #e0e0e0;
+  }
+
+  .agr h3, .empre h3, .ts h3 {
+    color: #c69c62;
+  }
+
+  .agr span, .empre span, .ts span {
+    color: #ddd;
+  }
+  .ajuda h1{
+    color:#c69c62;
+  }
+
+  .comofun {
+    background-color:#1e1e1e;
+    
+  }
+  .comofun h1{
+    background-color:#1e1e1e;
+    color:#c69c62;
+  }
+  .conta p, .publique p, .conta3 p, .conta4 p {
+    color: #ccc;
+  }
+
+  .passo, .passo2, .passo3, .passo4 {
+    background-color: #222;
+    border: 2px solid #666;
+  }
+
+  .rev {
+    background-color: #1e1e1e;
+  }
+
+  .rev h1 {
+    color: #c69c62;
+  }
+
+  .rev p {
+    color: #ddd;
+  }
+
+  .footer {
+    background-color: #111;
+  }
+
+  .textopeanut h1,
+  .texth3,
+  .rapido h1,
+  .linkra h3 {
+    color: #ddd;
+  }
 }

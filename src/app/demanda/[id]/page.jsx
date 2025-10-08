@@ -1,28 +1,19 @@
 // app/demanda/[id]/page.jsx
-import React from "react";
+import {use} from "react";
 import DemandaDescricao from "../descricao_demanda/page";
 import demandasMock from "@/mockup/demandas";
+import { notFound } from "next/navigation";
 
-export async function generateMetadata({ params }) {
-  // opcional: metadata dinâmico
-  const id = params.id;
-  const demanda = (demandasMock || []).find((d) => String(d.demanda_id) === String(id));
-  return {
-    title: demanda ? `${demanda.empresa_nome} • ${demanda.amendoim_tipo}` : "Demanda não encontrada",
-  };
-}
+
 
 export default function DemandaPage({ params }) {
-  const { id } = params;
-  const demanda = (demandasMock || []).find((d) => String(d.demanda_id) === String(id));
+  const id_demanda = use(Promise.resolve(params))
+  const { id } = id_demanda ;
+const demanda = demandasMock.find(demanda => demanda.demanda_id === parseInt(id))
 
   if (!demanda) {
-    return (
-      <div style={{ padding: 32 }}>
-        <h1>Demanda não encontrada</h1>
-        <p>Não encontramos a demanda com id {id}.</p>
-      </div>
-    );
+
+        notFound()
   }
 
   // passa o objeto completo para o componente client

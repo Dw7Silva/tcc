@@ -16,13 +16,14 @@ export default function dev() {
     
 
 
-   <div>
+  
 
 
 
-    <EsqueceuSenha/>
-    
-   </div>
+
+
+    <Inicio/>
+
     
 
     

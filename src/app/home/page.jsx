@@ -15,7 +15,12 @@ export default function Home() {
   useEffect(() => {
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth <= 600);
-    };
+
+    if (!isSmallScreen) {
+      setMenuAberto(false);
+    } 
+  
+  };
 
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
@@ -93,11 +98,11 @@ export default function Home() {
           ))}
         </div>
       )}
-      <selction id="inicio">
+      <selection id="inicio">
       <div className={styles.carouselContainer}>
             <Carousel images={Carroselimages}></Carousel>
       </div>
-      </selction>
+      </selection>
       {/* Como podemos Ajudar */}
       <selection id="Ajuda">
       <div className={styles.fundocpa}>
@@ -204,8 +209,12 @@ export default function Home() {
            transparência e agilidade em cada etapa da compra e venda de amendoim."
         </p>
         <div className={styles.botao}>
+           <Link href={"/cadastro"} className={styles.tirar}>    
           <span className={styles.faleconos}>Cadastre-se Gratuitamente</span>
-          <span className={styles.cadasgra}>Fale Conosco</span>
+          </Link>
+           <Link href={"/login"}  className={styles.tirar}>
+          <span className={styles.cadasgra}>Entrar</span>
+          </Link>
         </div>
       </div>
 </selection>
