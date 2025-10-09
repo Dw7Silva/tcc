@@ -8,6 +8,7 @@ import EsqueceuSenha from "./esqueceu_senha1/page";
 import Login from "./login/page";
 import Proposta from "./proposta/page";
 import Demandas from "./demanda/page";
+import api from "@/services/api";
 
 export default function dev() {
 
