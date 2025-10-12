@@ -23,7 +23,7 @@ export default function dev() {
 
 
 
-    <Inicio/>
+    <Home/>
 
     
 
