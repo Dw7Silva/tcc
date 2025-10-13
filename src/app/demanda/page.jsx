@@ -1,14 +1,32 @@
-  "use client";
-  import React, { useMemo } from "react";
-  import styles from "./demandas.module.css";
-  import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-  import BarraNvg from "@/components/navbar/navbar";
-  import Link from "next/link";
-  import Cardsprodutos from "@/components/cardsdemands/cardsdemands";
-  import demandasMock from "@/mockup/demandas"; // <-- importe o mock
-  import api from "@/services/api";
+"use client";
+import React, { useMemo } from "react";
+import styles from "./demandas.module.css";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import BarraNvg from "@/components/navbar/navbar";
+import Link from "next/link";
+import Cardsprodutos from "@/components/cardsdemands/cardsdemands";
+import demandasMock from "@/mockup/demandas"; // <-- importe o mock
+import api from "@/services/api";
+// import { al } from "react-router/dist/development/route-data-C12CLHiN";
 
-  export default function Demandas() {
+export default function Demandas() {
+
+  const [demandas, setDemandas] = React.useState([]); // Estado para armazenar as demandas
+
+  React.useEffect(() => {
+    fetchDemandas();
+  }, []); // Chama a função ao montar o componente
+
+  async function fetchDemandas() {
+    try {
+      const response = await api.get("/demandas");
+      if (response.status === 200) {
+        setDemandas(response.data);
+      }
+    } catch (error) {
+      alert("Erro ao buscar demandas: " + error.message);
+    }
+  }
 
     const demandasAtivas = useMemo(() => {
       return (demandasMock || [])
@@ -17,7 +35,7 @@
     }, []);
 
 
-  const gridRef = React.useRef(null);
+    const gridRef = React.useRef(null);
 
     const arrowLeft = () => {
       if (gridRef.current) {
@@ -27,17 +45,20 @@
         });
       }
     };
-       const arrowRight = () => {
-   if (gridRef.current) {
-    const card = gridRef.current.querySelector("[data-demanda-card]");
-    if (card) {
-      gridRef.current.scrollBy({
-        left: card.offsetWidth * 2,
-        behavior: "smooth"
-      });
-    }
-  }
-         };
+    const arrowRight = () => {
+      if (gridRef.current) {
+        const card = gridRef.current.querySelector("[data-demanda-card]");
+        if (card) {
+          gridRef.current.scrollBy({
+            left: card.offsetWidth * 2,
+            behavior: "smooth"
+          });
+        }
+      }
+    };
+
+    console.log(demandas);
+
 
     return (
       <>
@@ -72,7 +93,7 @@
                   {demandasAtivas.map((demanda) => (
                     <Cardsprodutos key={demanda.demanda_id} demanda={demanda} />
                   ))}
-                  
+
                 </div>
                 <button onClick={arrowRight} className={`${styles.arrow} ${styles.arrowRight}`} aria-label="Próximo">
                   <IoIosArrowForward />
@@ -80,11 +101,11 @@
               </div>
             </div>
 
-          <Link href="/criar_demanda" passHref legacyBehavior>
+            <Link href="/criar_demanda" passHref legacyBehavior>
               <button className={styles.criarOferta}>
-                  <span className={styles.textcriar}>Criar oferta</span>
-                </button>
-                  </Link>
+                <span className={styles.textcriar}>Criar oferta</span>
+              </button>
+            </Link>
           </div>
         </div>
       </>
