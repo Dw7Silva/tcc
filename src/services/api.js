@@ -9,5 +9,5 @@ const api = axios.create({
 });
 
 
-    // console.log("API URL:", api.getUri()); // Verifica a URL base configurada
+     console.log("API URL:", api.getUri()); // Verifica a URL base configurada
 export default api; 
