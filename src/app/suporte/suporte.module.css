@@ -6,7 +6,7 @@
   --cor-secundaria-geral-1: #5c3b28;
   --cor-texto-1: #333;
   --cor-texto-secundario-geral: #666;
-  --cor-borda-geral: #A46434;
+  --cor-borda-geral: #c49e7c;
   --cor-card-geral: #ffffff;
   --cor-sombra-geral: rgba(0, 0, 0, 0.1);
   --cor-fundo-inicio: #e2dad2;
@@ -27,7 +27,7 @@
     --cor-secundaria-geral-1: #5c3b28;
     --cor-texto-1: #f0f0f0;
     --cor-texto-secundario-geral: #b3b3b3;
-    --cor-borda-geral: #A46434;
+    --cor-borda-geral: #c49e7c;
     --cor-card-geral: #1e1e1e;
     --cor-sombra-geral: rgba(0, 0, 0, 0.5);
     --cor-fundo-inicio: #313030;
@@ -66,7 +66,7 @@ body {
 .chatContainer {
   width: 80%;
   max-width: 1900px;
-  background-color: var(--cor-chat-geral);
+  background-color:#666;
   border-radius: 10px;
   padding: 10px;
 
@@ -95,6 +95,7 @@ body {
 }
 
 .chatMessages {
+  background-color:#666;
   flex: 1;
   padding: 10px;
   overflow-y: auto;
@@ -113,11 +114,15 @@ body {
 }
 
 .supportMessage {
+  margin-top:20px;
+  margin-left:35px;
   align-self: flex-start;
   background-color: var(--cor-card-geral);
 }
 
 .userMessage {
+  margin-top:20px;
+  margin-right:35px;
   align-self: flex-end;
   background-color: var(--cor-card-geral);
 }
@@ -142,7 +147,7 @@ body {
 
 .chatInput button {
   background:#F8DCA5;
-  border: none;
+  border: 2px solid white;
   padding: 10px;
   color: var(--cor-card-geral);
   cursor: pointer;
