@@ -7,6 +7,8 @@
   --cor-fundo-inicio: #e2dad2;
   --cor-texto-inicio: #333;
   --cor-texto-inicio-secundario: #666;
+  --cor-fundo-mensagem:white;
+  --cor-fundo-perfil:#c49e7c;
   --cor-borda-inicio: #A46434;
   --cor-card: #c70000;
   --cor-sombra: rgba(0, 0, 0, 0.1);
@@ -222,12 +224,13 @@ body {
 .esquerda {
   align-self: start;
   background: #fff;
+  color:var(--cor-primaria);
   border-top-left-radius: 5px;
 }
 
 .direita {
   align-self: end;
-  background: var(--cor-secundaria);
+  background: var(--cor-fundo-mensagem);
   color: var(--cor-primaria);
   border-top-right-radius: 5px;
 }

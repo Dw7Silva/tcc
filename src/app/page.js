@@ -8,7 +8,9 @@ import EsqueceuSenha from "./esqueceu_senha1/page";
 import Login from "./login/page";
 import Proposta from "./proposta/page";
 import Demandas from "./demanda/page";
-import Suporte from "./suporte/page";
+import Suporte from "./suporte/page"; 
+import Chat from "./chat/page";
+
 export default function dev() {
 
 
@@ -22,7 +24,8 @@ export default function dev() {
 
 
 
-    <Suporte/>
+    <Chat/>
+
 
     
 

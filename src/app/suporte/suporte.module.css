@@ -24,6 +24,7 @@
     --cor-secundaria-geral-1: #9CB884;
     --cor-texto-1: #F0F0F0;
     --cor-texto-secundario-geral: #B3B3B3;
+    --cor-user-mensagem:#3A3A3A;
     --cor-borda-geral: rgba(191, 167, 127, 0.6);
     --cor-card-geral: #2A2A2A;
     --cor-sombra-geral: rgba(0, 0, 0, 0.4);
@@ -31,6 +32,7 @@
     --cor-destaque-geral: #BFA77F;
     --cor-chat-geral: #262524;
     --cor-input-geral: #333;
+    --cor-button:#bfa87fde;
   }
 }
 
@@ -120,7 +122,7 @@ body {
 
 .userMessage {
   align-self: flex-end;
-  background-color: var(--cor-card-geral);
+  background-color: var(--cor-user-mensagem);
 }
 
 .chatInput {
@@ -148,7 +150,7 @@ body {
 }
 
 .chatInput button {
-  background: var(--cor-primaria-geral);
+  background: var(--cor-button);
   border: none;
   padding: 12px 16px;
   color: #fff;
