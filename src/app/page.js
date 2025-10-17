@@ -24,7 +24,7 @@ export default function dev() {
 
 
 
-    <Chat/>
+    <Demandas/>
 
 
     

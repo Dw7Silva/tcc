@@ -1,75 +1,99 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
+/* =====================
+   Variáveis - Tema Claro
+===================== */
 :root {
-  /* Tema Claro (default) */
+  /* Cores principais */
   --cor-primaria-inicio: #A87453;
   --cor-secundaria-inicio: #5c3b28;
   --cor-fundo-inicio: #e2dad2;
   --cor-texto-inicio: #333;
   --cor-texto-inicio-secundario: #666;
-  --cor-fundo-mensagem:white;
-  --cor-fundo-perfil:#c49e7c;
+  --cor-fundo-mensagem: #ffffff;
+  --cor-fundo-perfil: #c49e7c;
   --cor-borda-inicio: #A46434;
   --cor-card: #c70000;
   --cor-sombra: rgba(0, 0, 0, 0.1);
+
+  /* Variáveis adicionais para cores fixas originais */
+  --cor-branco-base: #ffffff;
+  --cor-fundo-claro2: #f5f5f5;
+  --cor-fundo-claro3: #f0f0f0;
+  --cor-fundo-chat: #e9e9e9;
+  --cor-primaria-hover: #4a3020;
+  --cor-online: #4caf50;
+
+  /* Tipografia e dimensões */
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
+  --radius: 12px;
+  --transition: 0.3s ease-in-out;
 }
 
-/* Tema Escuro */
+/* =====================
+   Tema Escuro
+===================== */
 @media (prefers-color-scheme: dark) {
   :root {
     /* Cores principais invertidas */
-    --cor-primaria-inicio: #F8DCA5;
-    --cor-secundaria-inicio: #F8DCA5;
-    /* Escala de cinza invertida */
+    --cor-primaria-inicio: #E0CFA1;
+    --cor-secundaria-inicio: #ffffff;
     --cor-fundo-inicio: #313030;
     --cor-texto-inicio: #f0f0f0;
     --cor-texto-inicio-secundario: #b3b3b3;
-    /* Elementos de UI */
-    --cor-borda-inicio: #A46434;
+    --cor-fundo-mensagem: #3a3a3a;
+    --cor-fundo-perfil: #5c5a54;
+    --cor-borda-inicio: rgba(191, 167, 127, 0.6);
     --cor-card: #1e1e1e;
     --cor-sombra: rgba(0, 0, 0, 0.5);
-    --cor-navbar: #311e04;
-    /* Ajustes para melhor contraste */
-    --cor-destaque: #F8DCA5;
+
+    --cor-branco-base: #262524;
+    --cor-fundo-claro2: #2a2a2a;
+    --cor-fundo-claro3: #1c1b1a;
+    --cor-fundo-chat: #262524;
+    --cor-primaria-hover: #e7c89165;
+    --cor-online: #ffffff;
   }
 }
 
+/* =====================
+   Body e container
+===================== */
 body {
   margin: 0;
   font-family: 'Comfortaa', sans-serif;
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
-  color: var(--cor-texto);
+  color: var(--cor-texto-inicio);
   background-color: var(--cor-fundo-inicio);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.container {
+  background-color: var(--cor-fundo-inicio);
+  min-height: calc(100vh - var(--altura-navbar));
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chatContainer {
   display: flex;
-  background-color: var(--cor-secundaria);
+  background-color: var(--cor-secundaria-inicio);
   overflow: hidden;
   width: 90vw;
   height: 900px;
-  border-radius: 15px;
+  border-radius: var(--radius);
 }
 
-
-.container {
-  background-color: var(--cor-fundo-demanda);
-  min-height: calc(100vh - var(--altura-navbar));
-  display: flex; /* Certifique-se de que os filhos sejam centralizados */
-  align-items: center;
-  justify-content: center;
-
-}
-
-/* Sidebar */
+/* =====================
+   Sidebar
+===================== */
 .sidebar {
   width: 300px;
-  background: #fff;
-  border-right: 1px solid var(--cor-borda);
+  background-color: var(--cor-branco-base);
+  border-right: 1px solid var(--cor-borda-inicio);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -77,20 +101,20 @@ body {
 
 .sidebarHeader {
   padding: 1rem;
-  border-bottom: 1px solid var(--cor-borda);
+  border-bottom: 1px solid var(--cor-borda-inicio);
 }
 
 .sidebarHeader h2 {
   margin: 0 0 1rem 0;
-  color: var(--cor-primaria);
+  color: var(--cor-primaria-inicio);
   font-size: 1.3rem;
 }
 
-.searchBox input {
-  width: 100%;
+.searchBox  {
+  width:60%;
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  border: 1px solid var(--cor-borda);
+  border: 1px solid var(--cor-borda-inicio);
   outline: none;
 }
 
@@ -106,27 +130,27 @@ body {
   align-items: center;
   cursor: pointer;
   position: relative;
-  border-bottom: 1px solid var(--cor-borda);
+  border-bottom: 1px solid var(--cor-borda-inicio);
   transition: background 0.2s;
 }
 
 .conversaItem:hover {
-  background-color: #f5f5f5;
+  background-color: var(--cor-fundo-claro2);
 }
 
 .ativo {
-  background-color: #f0f0f0;
+  background-color: var(--cor-fundo-claro3);
 }
 
 .userAvatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: var(--cor-secundaria);
+  background-color: var(--cor-secundaria-inicio);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--cor-primaria);
+  color: var(--cor-primaria-inicio);
 }
 
 .conversaInfo {
@@ -136,13 +160,13 @@ body {
 
 .conversaInfo strong {
   display: block;
-  color: var(--cor-primaria);
+  color: var(--cor-primaria-inicio);
   font-size: 0.95rem;
 }
 
 .conversaInfo p {
   margin: 0.2rem 0 0 0;
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-inicio-secundario);
   font-size: 0.85rem;
   white-space: nowrap;
   overflow: hidden;
@@ -150,8 +174,8 @@ body {
 }
 
 .unreadBadge {
-  background-color: var(--cor-primaria);
-  color: white;
+  background-color: var(--cor-primaria-inicio);
+  color: var(--cor-branco-base);
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -161,21 +185,23 @@ body {
   font-size: 0.7rem;
 }
 
-/* Área de mensagens */
+/* =====================
+   Mensagens
+===================== */
 .mensagemArea {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: var(--cor-fundo);
+  background-color: var(--cor-fundo-chat);
 }
 
 .mensagemHeader {
-  background: #fff;
+  background-color: var(--cor-branco-base);
   padding: 0.8rem 1rem;
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  border-bottom: 1px solid var(--cor-borda);
+  border-bottom: 1px solid var(--cor-borda-inicio);
 }
 
 .userInfo {
@@ -184,7 +210,7 @@ body {
 
 .userInfo strong {
   display: block;
-  color: var(--cor-primaria);
+  color: var(--cor-primaria-inicio);
   font-size: 1rem;
 }
 
@@ -197,8 +223,8 @@ body {
   flex: 1;
   padding: 1rem;
   overflow-y: auto;
-  background-color: #e9e9e9;
-  background-image: linear-gradient(#f5f5f5 1px, transparent 1px);
+  background-color: var(--cor-fundo-chat);
+  background-image: linear-gradient(var(--cor-fundo-claro2) 1px, transparent 1px);
   background-size: 100% 2px;
 }
 
@@ -214,7 +240,7 @@ body {
 .mensagem {
   max-width: 90%;
   padding: 0.8rem 1rem;
-  border-radius: 15px;
+  border-radius: var(--radius);
   font-size: 0.95rem;
   position: relative;
   line-height: 1.4;
@@ -223,34 +249,36 @@ body {
 
 .esquerda {
   align-self: start;
-  background: #fff;
-  color:var(--cor-primaria);
+  background-color: var(--cor-branco-base);
+  color: var(--cor-primaria-inicio);
   border-top-left-radius: 5px;
 }
 
 .direita {
   align-self: end;
-  background: var(--cor-fundo-mensagem);
-  color: var(--cor-primaria);
+  background-color: var(--cor-fundo-mensagem);
+  color: var(--cor-primaria-inicio);
   border-top-right-radius: 5px;
 }
 
 .mensagemHora {
   display: block;
   font-size: 0.7rem;
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-inicio-secundario);
   text-align: right;
   margin-top: 0.3rem;
 }
 
-/* Input area */
+/* =====================
+   Input
+===================== */
 .mensagemInput {
-  background: #fff;
+  background-color: var(--cor-branco-base);
   padding: 0.8rem 1rem;
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  border-top: 1px solid var(--cor-borda);
+  border-top: 1px solid var(--cor-borda-inicio);
 }
 
 .iconesAnexo {
@@ -261,7 +289,7 @@ body {
 .iconesAnexo button {
   background: none;
   border: none;
-  color: var(--cor-primaria);
+  color: var(--cor-primaria-inicio);
   font-size: 1.2rem;
   cursor: pointer;
   padding: 0.5rem;
@@ -277,14 +305,14 @@ body {
   flex: 1;
   padding: 0.6rem 1rem;
   border-radius: 20px;
-  border: 1px solid var(--cor-borda);
+  border: 1px solid var(--cor-borda-inicio);
   outline: none;
   font-size: 0.95rem;
 }
 
 .enviarBtn {
-  background-color: var(--cor-primaria);
-  color: white;
+  background-color: var(--cor-primaria-inicio);
+  color: var(--cor-branco-base);
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -297,10 +325,12 @@ body {
 }
 
 .enviarBtn:hover {
-  background-color: #4a3020;
+  background-color: var(--cor-primaria-hover);
 }
 
-/* Responsivo */
+/* =====================
+   Responsivo
+===================== */
 @media (max-width: 768px) {
   .chatContainer {
     flex-direction: column;
@@ -308,17 +338,21 @@ body {
   
   .sidebar {
     width: 100%;
-    height: 40vh;
+    height: 10vh;
     border-right: none;
-    border-bottom: 1px solid var(--cor-borda);
+    border-bottom: 1px solid var(--cor-borda-inicio);
   }
   
   .mensagemArea {
     height: 60vh;
+   
   }
   
   .mensagem {
     max-width: 80%;
+  }
+   .conversasList{
+    display: none;
   }
 }
 
@@ -339,4 +373,5 @@ body {
   .mensagemInput {
     padding: 0.6rem 0.8rem;
   }
+ 
 }
