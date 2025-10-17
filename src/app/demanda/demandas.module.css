@@ -63,6 +63,7 @@ body {
 }
 
 .headerTitle {
+  color: #e2dad2;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -90,7 +91,7 @@ body {
 
 .filtro label {
   font-weight: 400;
-  color: var(--cor-secundaria-geral);
+  color: rgb(202, 200, 200) ;
   white-space: nowrap;
 }
 
@@ -98,8 +99,8 @@ body {
   padding: 0.6rem 1rem;
   border-radius: 8px;
   border: 1px solid var(--cor-borda-geral-);
-  background-color: var(--cor-card-geral);
-  color: var(--cor-texto-geral);
+  background-color: whitesmoke;
+  color: black;
   font-family: inherit;
   min-width: 150px;
   width: 100%;
