@@ -21,7 +21,7 @@ export default function Demandas() {
     try {
       const response = await api.get("/demandas");
       if (response.status === 200) {
-        setDemandas(response.data);
+        setDemandas(response.data.dados);
       }
     } catch (error) {
       alert("Erro ao buscar demandas: " + error.message);
