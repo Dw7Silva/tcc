@@ -9,13 +9,13 @@ export default function Cardsprodutos({ demanda }) {
 
   return (
     <div className={styles.demandaCard} data-demanda-card>
-      <p className={styles.empresa}>{demanda.empresa_nome}</p>
+      <p className={styles.empresa}>{demanda.emp_nome_fantasia}</p>
 
       <div className={styles.imageContainer}>
-        <img src={demanda.imagem} alt={demanda.amendoim_tipo} loading="lazy" />
+        <img src={demanda.demanda_imagem} alt={demanda.amendoim_tipo} loading="lazy" />
       </div>
 
-      <h3>{demanda.amendoim_tipo}</h3>
+      <h3>{demanda.amen_variedade}</h3>
       <p className={styles.quantidade}>{demanda.demanda_quantidade} kg</p>
 
       <Link href={`/demanda/${demanda.demanda_id}`}>
