@@ -13,8 +13,19 @@ import Chat from "./chat/page";
 
 export default function dev() {
 
-  return (
-    <Chat/>
+  return(
+
+
+
+
+    <Inicio/>
+
+
+    
+
+    
+
+
   );
 
 }
