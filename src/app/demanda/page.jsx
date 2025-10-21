@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import styles from "./demandas.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
@@ -11,7 +11,7 @@ import api from "@/services/api";
 
 export default function Demandas() {
 
-  const [demandas, setDemandas] = React.useState([]); // Estado para armazenar as demandas
+  const [demandas, setDemandas] = useState([]); // Estado para armazenar as demandas
 
   React.useEffect(() => {
     fetchDemandas();
@@ -19,7 +19,7 @@ export default function Demandas() {
 
   async function fetchDemandas() {
     try {
-      const response = await api.get("/demandas");
+      const response = await api.get("/demandas/filtro?limit=6");
       if (response.status === 200) {
         setDemandas(response.data.dados);
       }
@@ -90,7 +90,7 @@ export default function Demandas() {
                 </button>
                 <div className={styles.demandasGrid} ref={gridRef}>
 
-                  {demandasAtivas.map((demanda) => (
+                  {demandas.map((demanda) => (
                     <Cardsprodutos key={demanda.demanda_id} demanda={demanda} />
                   ))}
 
