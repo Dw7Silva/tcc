@@ -2,13 +2,13 @@
 
 :root {
   /* Tema Claro (default) */
-  --cor-primaria-geral: #A87453;
-  --cor-secundaria-geral: ;
-  --cor-texto-geral: #333;
-  --cor-texto-secundario-geral: #666;
-  --cor-borda-geral: #A46434;
-  --cor-card-geral: #ffffff;
-  --cor-sombra-geral: rgba(0, 0, 0, 0.1);
+  --cor-primaria-perfil: #A87453;
+  --cor-secundaria-perfil: ;
+  --cor-texto-perfil: #333;
+  --cor-texto-secundario-perfil: #666;
+  --cor-borda-perfil: #A46434;
+  --cor-card-perfil: #ffffff;
+  --cor-sombra-perfil: rgba(0, 0, 0, 0.1);
 
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
@@ -21,15 +21,15 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Cores principais invertidas */
-    --cor-primaria-geral: #5c3b28; /* Inverso de #A87453 */
-    --cor-secundaria-geral: #F8DCA5; /* Inverso de #5c3b28 */
+    --cor-primaria-perfil: #e0cfa183; /* /* Inverso de #A87453 */
+    --cor-secundaria-perfil: #F8DCA5;/* Inverso de #5c3b28 */
     /* Escala de cinza invertida */
-    --cor-texto-geral: #dbd9d9; /* Quase branco */
-    --cor-texto-secundario-geral: #ffffff; 
+    --cor-texto-perfil: #dbd9d9; /* Quase branco */
+    --cor-texto-secundario-perfil: #ffffff; 
     /* Elementos de UI */
-    --cor-borda-geral: #A46434;
-    --cor-card-geral: #1e1e1e; 
-    --cor-sombra-geral: rgba(0, 0, 0, 0.5);
+    --cor-borda-perfil:#F8DCA5;
+    --cor-card-perfil: #1e1e1e; 
+    --cor-sombra-perfil: rgba(0, 0, 0, 0.5);
 
      --cor-fundo-inicio: #313030;
   }
@@ -67,13 +67,13 @@ body {
 /* Profile Card */
 .profileCard {
   width: 80vw;
-  background-color: var(--cor-card-geral);
+  background-color: var(--cor-card-perfil);
   padding: 2rem;
   border-radius: 16px;
   max-width: 800px;
   margin: 0;
-  box-shadow: 0 8px 20px var(--cor-sombra-geral);
-  border: 1px solid var(--cor-borda-geral);
+  box-shadow: 0 8px 20px var(--cor-sombra-perfil);
+  border: 1px solid var(--cor-borda-perfil);
   transition: all 0.3s ease;
 }
 
@@ -85,13 +85,13 @@ body {
 }
 
 .profileHeader h2 {
-  color: var(--cor-texto-geral);
+  color: var(--cor-texto-perfil);
   font-size: 1.8rem;
   margin: 0;
 }
 
 .editButton {
-  background-color: var(--cor-primaria-geral);
+  background-color: var(--cor-primaria-perfil);
   color: white;
   border: none;
   border-radius: 8px;
@@ -103,7 +103,7 @@ body {
 }
 
 .editButton:hover {
-  background-color: var(--cor-secundaria-geral);
+  background-color: var(--cor-secundaria-perfil);
   transform: translateY(-2px);
   color: black;
 }
@@ -130,7 +130,7 @@ body {
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 3px solid var(--cor-primaria-geral);
+  border: 3px solid var(--cor-primaria-perfil);
 }
 
 .profileImage:hover {
@@ -170,24 +170,24 @@ body {
 
 .formGroup label {
   font-weight: 600;
-  color: var(--cor-texto-geral);
+  color: var(--cor-texto-perfil);
 }
 
 .infoInput {
   width: 90%;
   padding: 0.8rem;
-  border: 1px solid var(--cor-borda-geral);
+  border: 1px solid var(--cor-borda-perfil);
   border-radius: 8px;
   font-family: 'Comfortaa', sans-serif;
   font-size: 1rem;
-  background-color: var(--cor-card-geral);
-  color: var(--cor-texto-geral);
+  background-color: var(--cor-card-perfil);
+  color: var(--cor-texto-perfil);
   transition: all 0.3s ease;
 }
 
 .infoInput:focus {
   outline: none;
-  border-color: var(--cor-primaria-geral);
+  border-color: var(--cor-primaria-perfil);
   box-shadow: 0 0 0 3px rgba(168, 116, 83, 0.2);
 }
 
@@ -210,19 +210,19 @@ body {
   width: 90%;
   min-height: 100px;
   padding: 1rem;
-  border: 1px solid var(--cor-borda-geral);
+  border: 1px solid var(--cor-borda-perfil);
   border-radius: 8px;
   font-family: 'Comfortaa', sans-serif;
   font-size: 1rem;
   resize: vertical;
-  background-color: var(--cor-card-geral);
-  color: var(--cor-texto-geral);
+  background-color: var(--cor-card-perfil);
+  color: var(--cor-texto-perfil);
   transition: all 0.3s ease;
 }
 
 .description:focus {
   outline: none;
-  border-color: var(--cor-primaria-geral);
+  border-color: var(--cor-primaria-perfil);
 }
 
 /* Responsive Design */
