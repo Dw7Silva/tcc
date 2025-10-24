@@ -2,15 +2,15 @@
 
 :root {
   /* Tema Claro (default) */
-  --primary-color: #8B5A3C;
-  --secondary-color: #D4A574;
-  --accent-color: #6B8E23;
+  --cadastro-cor-primaria: #8B5A3C;
+  --cadastro-cor-segundaria: #D4A574;
+  --cadastro-cor-concluida: #6B8E23;
   --light-bg: #FEF9F0;
-  --card-bg: rgba(255, 253, 245, 0.95);
-  --text-dark: #5D4037;
-  --text-light: #FFF;
-  --success-color: #4CAF50;
-  --error-color: #E57373;
+  --cadastro-card: rgba(255, 253, 245, 0.95);
+  --cadastro-cor-dark: #5D4037;
+  --cadastro-cor-light: #FFF;
+  --cadastro-sucesso: #4CAF50;
+  --cadastro-error: #E57373;
   --border-radius: 16px;
   --shadow: 0 10px 30px rgba(139, 90, 60, 0.15);
   --transition: all 0.3s ease;
@@ -18,15 +18,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary-color: #D4A574;
-    --secondary-color: #8B5A3C;
-    --accent-color: #6e8554;
+    --cadastro-cor-primaria: #D4A574;
+    --cadastro-cor-segundaria: #8B5A3C;
+    --cadastro-cor-concluida: #6e8554;
     --light-bg: #2B2320;
-    --card-bg: rgba(44, 36, 32, 0.95);
-    --text-dark: #FFF;
-    --text-light: #D4A574;
-    --success-color: #679e6a;
-    --error-color: #EF5350;
+    --cadastro-card: rgba(44, 36, 32, 0.95);
+    --cadastro-cor-dark: #FFF;
+    --cadastro-cor-light: #D4A574;
+    --cadastro-sucesso: #679e6a;
+    --cadastro-error: #EF5350;
     --border-radius: 16px;
     --shadow: 0 10px 30px rgba(212, 165, 116, 0.15);
     --transition: all 0.3s ease;
@@ -36,7 +36,7 @@
 /* Estilo global da página */
 .pageContainer {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 60%);
+  background: linear-gradient(135deg, var(--cadastro-cor-primaria) 0%, var(--cadastro-cor-segundaria) 60%);
   font-family: 'Comfortaa', cursive;
   display: flex;
   align-items: center;
@@ -64,7 +64,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: var(--text-light);
+  color: var(--cadastro-cor-light);
   padding: 40px;
 }
 
@@ -83,6 +83,7 @@
   font-weight: 700;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: var(--cadastro-cor-dark)  ;
 }
 
 .welcomeText {
@@ -90,6 +91,7 @@
   line-height: 1.6;
   margin-bottom: 40px;
   opacity: 0.9;
+  color: var(--cadastro-cor-dark);
 }
 
 .iconContainer {
@@ -116,7 +118,7 @@
 }
 
 .formCard {
-  background: var(--card-bg);
+  background: var(--cadastro-card);
   backdrop-filter: blur(10px);
   padding: 40px;
   border-radius: var(--border-radius);
@@ -137,7 +139,7 @@
 .formLabel {
   display: block;
   margin-bottom: 8px;
-  color: var(--text-dark);
+  color: var(--cadastro-cor-dark);
   font-weight: 600;
   font-size: 14px;
 }
@@ -156,7 +158,7 @@
 
 .formInput:focus {
   outline: none;
-  border-color: var(--accent-color);
+  border-color: var(--cadastro-cor-concluida);
   box-shadow: 0 0 0 3px rgba(107, 142, 35, 0.1);
 }
 
@@ -178,7 +180,7 @@
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   background: #c0bfbf;
-  color: var(--text-dark);
+  color: var(--cadastro-cor-dark);
   cursor: pointer;
   transition: var(--transition);
   font-family: 'Comfortaa', cursive;
@@ -192,9 +194,9 @@
 }
 
 .userTypeButton.selected {
-  background: var(--accent-color);
+  background: var(--cadastro-cor-concluida);
   color: rgb(243, 211, 211);
-  border-color: var(--accent-color);
+  border-color: var(--cadastro-cor-concluida);
   box-shadow: 0 4px 8px rgba(107, 142, 35, 0.3);
 }
 
@@ -204,7 +206,7 @@
   padding: 16px;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: linear-gradient(135deg, var(--cadastro-cor-primaria) 0%, var(--cadastro-cor-segundaria) 100%);
   color: white;
   font-family: 'Comfortaa', cursive;
   font-size: 16px;
@@ -242,7 +244,7 @@
 .mensagem.erro {
   background: rgba(229, 115, 115, 0.1);
   color: #C62828;
-  border: 1px solid var(--error-color);
+  border: 1px solid var(--cadastro-error);
 }
 
 /* Responsividade */

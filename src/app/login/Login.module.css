@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
+
+
 :root {
   /* Light Theme */
   --cor-primaria-login: #A87453;
@@ -36,6 +38,7 @@
   background-color: var(--cor-fundo-login);
   color: var(--cor-texto-login);
   transition: all 0.3s ease;
+  overflow-x: hidden;
 }
 
 /* Branding Section */
@@ -102,7 +105,10 @@
   font-size: 1.25rem;
   opacity: 0.9;
 }
+.Link{
+  text-decoration: none;  
 
+}
 /* Form Section */
 .formSection {
   flex: 1;
@@ -183,7 +189,7 @@
 }
 
 .forgotPassword:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .loginButton {

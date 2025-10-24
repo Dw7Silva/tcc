@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import styles from './Login.module.css';
+import Link from 'next/link';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -69,7 +70,9 @@ const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
               <input type="checkbox" id="remember" className={styles.checkbox} />
               <label htmlFor="remember">Lembrar de mim</label>
             </div>
-            <a href="#" className={styles.forgotPassword}>Esqueceu a senha?</a>
+            <Link href="/esqueceu_senha" passHref legacyBehavior>
+            <p className={styles.forgotPassword}>Esqueceu a senha?</p>
+            </Link>
           </div>
           
           <button type="submit" className={styles.loginButton}>Entrar</button>

@@ -18,11 +18,13 @@ export default function DemandaDescricao({ demanda }) {
       </>
     );
   }
+  console.log(demanda); 
   
-  const empresa = demanda.empresa_nome_fantasia ;
-  const variedade = demanda.amen_variedade ;
+  const empresa = demanda.emp_nome_fantasia;
+  const variedade = demanda.amen_variedade;
   const quantidade = demanda.demanda_quantidade;
   const preco = demanda.demanda_preco_maximo ;
+
   const informacoes = demanda.demanda_outras_informacoes;
   const dataEntrega = demanda.demanda_data_entrega ;
   const data_publicacao = demanda.demanda_data_publicacao ; 
@@ -37,7 +39,8 @@ export default function DemandaDescricao({ demanda }) {
           <div className={styles.demandaHeader}>
             <div>
              
-              <p className={styles.subTitle}>{empresa}</p>
+              <p className={styles.productTitle}>{empresa}</p>
+                  
             </div>
 
             <div className={styles.imageContainer}>
@@ -55,7 +58,8 @@ export default function DemandaDescricao({ demanda }) {
 
               <div className={styles.infoGrid}>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Preço por kilo:</span>
+                  
+                  <span className={styles.infoLabel}>Preço maximo:</span>
                   <span className={styles.infoValue}>{preco}</span>
                 </div>
                 <div className={styles.infoRow}>
@@ -64,13 +68,19 @@ export default function DemandaDescricao({ demanda }) {
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Data de entrega:</span>
-                  <span className={styles.infoValue}>{dataEntrega}</span>
+                  <span className={styles.infoValue}>{new Date(dataEntrega).toLocaleDateString('pt-BR')}</span>
                 </div>
                 
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}> Variedade:</span>
                   <span className={styles.infoValue}>{variedade}</span>
                 </div>
+                 <div className={styles.infoRow}>
+                  <span>
+                    Publicado em :   {new Date(data_publicacao).toLocaleDateString('pt-BR')}
+                  </span>
+                </div>
+               
             
               </div>
             </div>
@@ -81,7 +91,7 @@ export default function DemandaDescricao({ demanda }) {
                
                 <p>{informacoes}</p>
               
-                <small>Publicado em: {data_publicacao}</small>
+             
               </div>
             </div>
           </div>
