@@ -5,14 +5,14 @@
 ===================== */
 :root {
   /* Cores principais */
-  --cor-primaria-inicio: #A87453;
-  --cor-secundaria-inicio: #5c3b28;
-  --cor-fundo-inicio: #e2dad2;
-  --cor-texto-inicio: #333;
-  --cor-texto-inicio-secundario: #666;
+  --cor-primaria-chat: #A87453;
+  --cor-secundaria-chat: #5c3b28;
+  --cor-fundo-chat: #e2dad2;
+  --cor-texto-chat: #333;
+  --cor-texto-chat-secundario: #666;
   --cor-fundo-mensagem: #ffffff;
   --cor-fundo-perfil: #c49e7c;
-  --cor-borda-inicio: #A46434;
+  --cor-borda-chat: #A46434;
   --cor-card: #c70000;
   --cor-sombra: rgba(0, 0, 0, 0.1);
 
@@ -37,21 +37,21 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Cores principais invertidas */
-    --cor-primaria-inicio: #E0CFA1;
-    --cor-secundaria-inicio: #ffffff;
-    --cor-fundo-inicio: #313030;
-    --cor-texto-inicio: #f0f0f0;
-    --cor-texto-inicio-secundario: #b3b3b3;
+    --cor-primaria-chat: #E0CFA1;
+    --cor-secundaria-chat: #ffffff;
+    --cor-fundo-chat: #313030;
+    --cor-texto-chat: #f0f0f0;
+    --cor-texto-chat-secundario: #b3b3b3;
     --cor-fundo-mensagem: #3a3a3a;
     --cor-fundo-perfil: #5c5a54;
-    --cor-borda-inicio: rgba(191, 167, 127, 0.6);
+    --cor-borda-chat: rgba(191, 167, 127, 0.6);
     --cor-card: #1e1e1e;
     --cor-sombra: rgba(0, 0, 0, 0.5);
 
     --cor-branco-base: #262524;
     --cor-fundo-claro2: #2a2a2a;
     --cor-fundo-claro3: #1c1b1a;
-    --cor-fundo-chat: #262524;
+   
     --cor-primaria-hover: #e7c89165;
     --cor-online: #ffffff;
   }
@@ -65,13 +65,13 @@ body {
   font-family: 'Comfortaa', sans-serif;
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
-  color: var(--cor-texto-inicio);
-  background-color: var(--cor-fundo-inicio);
+  color: var(--cor-texto-chat);
+  background-color: var(--cor-fundo-chat);
   transition: background-color var(--transition), color var(--transition);
 }
 
 .container {
-  background-color: var(--cor-fundo-inicio);
+  background-color: var(--cor-fundo-chat);
   min-height: calc(100vh - var(--altura-navbar));
   display: flex;
   align-items: center;
@@ -80,7 +80,7 @@ body {
 
 .chatContainer {
   display: flex;
-  background-color: var(--cor-secundaria-inicio);
+  background-color: var(--cor-secundaria-chat);
   overflow: hidden;
   width: 90vw;
   height: 900px;
@@ -93,7 +93,7 @@ body {
 .sidebar {
   width: 300px;
   background-color: var(--cor-branco-base);
-  border-right: 1px solid var(--cor-borda-inicio);
+  border-right: 1px solid var(--cor-borda-chat);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -101,12 +101,12 @@ body {
 
 .sidebarHeader {
   padding: 1rem;
-  border-bottom: 1px solid var(--cor-borda-inicio);
+  border-bottom: 1px solid var(--cor-borda-chat);
 }
 
 .sidebarHeader h2 {
   margin: 0 0 1rem 0;
-  color: var(--cor-primaria-inicio);
+  color: var(--cor-primaria-chat);
   font-size: 1.3rem;
 }
 
@@ -114,7 +114,7 @@ body {
   width:60%;
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  border: 1px solid var(--cor-borda-inicio);
+  border: 1px solid var(--cor-borda-chat);
   outline: none;
 }
 
@@ -130,7 +130,7 @@ body {
   align-items: center;
   cursor: pointer;
   position: relative;
-  border-bottom: 1px solid var(--cor-borda-inicio);
+  border-bottom: 1px solid var(--cor-borda-chat);
   transition: background 0.2s;
 }
 
@@ -146,11 +146,11 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: var(--cor-secundaria-inicio);
+  background-color: var(--cor-secundaria-chat);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--cor-primaria-inicio);
+  color: var(--cor-primaria-chat);
 }
 
 .conversaInfo {
@@ -160,13 +160,13 @@ body {
 
 .conversaInfo strong {
   display: block;
-  color: var(--cor-primaria-inicio);
+  color: var(--cor-primaria-chat);
   font-size: 0.95rem;
 }
 
 .conversaInfo p {
   margin: 0.2rem 0 0 0;
-  color: var(--cor-texto-inicio-secundario);
+  color: var(--cor-texto-chat-secundario);
   font-size: 0.85rem;
   white-space: nowrap;
   overflow: hidden;
@@ -174,7 +174,7 @@ body {
 }
 
 .unreadBadge {
-  background-color: var(--cor-primaria-inicio);
+  background-color: var(--cor-primaria-chat);
   color: var(--cor-branco-base);
   border-radius: 50%;
   width: 20px;
@@ -201,7 +201,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  border-bottom: 1px solid var(--cor-borda-inicio);
+  border-bottom: 1px solid var(--cor-borda-chat);
 }
 
 .userInfo {
@@ -210,7 +210,7 @@ body {
 
 .userInfo strong {
   display: block;
-  color: var(--cor-primaria-inicio);
+  color: var(--cor-primaria-chat);
   font-size: 1rem;
 }
 
@@ -250,21 +250,21 @@ body {
 .esquerda {
   align-self: start;
   background-color: var(--cor-branco-base);
-  color: var(--cor-primaria-inicio);
+  color: var(--cor-primaria-chat);
   border-top-left-radius: 5px;
 }
 
 .direita {
   align-self: end;
   background-color: var(--cor-fundo-mensagem);
-  color: var(--cor-primaria-inicio);
+  color: var(--cor-primaria-chat);
   border-top-right-radius: 5px;
 }
 
 .mensagemHora {
   display: block;
   font-size: 0.7rem;
-  color: var(--cor-texto-inicio-secundario);
+  color: var(--cor-texto-chat-secundario);
   text-align: right;
   margin-top: 0.3rem;
 }
@@ -278,7 +278,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  border-top: 1px solid var(--cor-borda-inicio);
+  border-top: 1px solid var(--cor-borda-chat);
 }
 
 .iconesAnexo {
@@ -289,7 +289,7 @@ body {
 .iconesAnexo button {
   background: none;
   border: none;
-  color: var(--cor-primaria-inicio);
+  color: var(--cor-primaria-chat);
   font-size: 1.2rem;
   cursor: pointer;
   padding: 0.5rem;
@@ -305,13 +305,13 @@ body {
   flex: 1;
   padding: 0.6rem 1rem;
   border-radius: 20px;
-  border: 1px solid var(--cor-borda-inicio);
+  border: 1px solid var(--cor-borda-chat);
   outline: none;
   font-size: 0.95rem;
 }
 
 .enviarBtn {
-  background-color: var(--cor-primaria-inicio);
+  background-color: var(--cor-primaria-chat);
   color: var(--cor-branco-base);
   border: none;
   border-radius: 50%;
@@ -340,7 +340,7 @@ body {
     width: 100%;
     height: 10vh;
     border-right: none;
-    border-bottom: 1px solid var(--cor-borda-inicio);
+    border-bottom: 1px solid var(--cor-borda-chat);
   }
   
   .mensagemArea {
