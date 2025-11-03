@@ -1,36 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 :root {
-  /* Tema Claro (default) */
-  --cor-primaria-inicio: #A87453;
-  --cor-secundaria-inicio: #5c3b28;
-  --cor-fundo-inicio: #e2dad2;
-  --cor-texto-inicio: #333;
-  --cor-texto-inicio-secundario: #666;
-  --cor-borda-inicio: #A46434;
+  /* Tema Claro (base fornecida pelo usuário) */
+  --cor-primaria-oferta: #A87453;
+  --cor-secundaria-oferta: #5c3b28;
+  --cor-fundo-oferta: #e2dad2;
+  --cor-texto-oferta: #333;
+  --cor-texto-oferta-secundario: #666;
+  --cor-borda-oferta: #A46434;
   --cor-card: #c70000;
   --cor-sombra: rgba(0, 0, 0, 0.1);
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
+
+
 }
 
 /* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Cores principais invertidas */
-    --cor-primaria-inicio: #F8DCA5;
-    --cor-secundaria-inicio: #F8DCA5;
-    /* Escala de cinza invertida */
-    --cor-fundo-inicio: #313030;
-    --cor-texto-inicio: #f0f0f0;
-    --cor-texto-inicio-secundario: #b3b3b3;
-    /* Elementos de UI */
-    --cor-borda-inicio: #A46434;
+    /* Tema Escuro (base fornecida) */
+    --cor-primaria-oferta: #F8DCA5;
+    --cor-secundaria-oferta: #F8DCA5;
+    --cor-fundo-oferta: #313030;
+    --cor-texto-oferta: #f0f0f0;
+    --cor-texto-oferta-secundario: #b3b3b3;
+    --cor-borda-oferta: #A46434;
     --cor-card: #1e1e1e;
     --cor-sombra: rgba(0, 0, 0, 0.5);
     --cor-navbar: #311e04;
-    /* Ajustes para melhor contraste */
-    --cor-destaque: #F8DCA5;
+    --cor-destaque: #F8DCA5;  
   }
 }
 
@@ -40,12 +39,12 @@ body {
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
   color: var(--cor-texto);
-  background-color: var(--cor-fundo-inicio);
+  background-color: var(--cor-fundo-oferta);
   transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
-  background-color: var(--cor-fundo-demanda);
+  background-color: var(--cor-fundo-oferta);
   padding: 2rem var(--padding-lateral);
   margin-top: var(--altura-navbar);
   min-height: calc(100vh - var(--altura-navbar));
@@ -74,7 +73,7 @@ body {
 .header h2 {
   margin: 0;
   font-size: clamp(1.5rem, 4vw, 2.2rem);
-  color: var(--cor-secundaria-geral);
+  color: var(--cor-secundaria-oferta);
   flex: 1;
   min-width: 150px;
 }
@@ -90,16 +89,16 @@ body {
 
 .filtro label {
   font-weight: 400;
-  color: var(--cor-secundaria-geral);
+  color: var(--cor-secundaria-oferta);
   white-space: nowrap;
 }
 
 .filtro select {
   padding: 0.6rem 1rem;
   border-radius: 8px;
-  border: 1px solid var(--cor-borda-geral-);
-  background-color: var(--cor-card-geral);
-  color: var(--cor-texto-geral);
+  border: 1px solid var(--cor-borda-oferta-);
+  background-color: var(--cor-card-oferta);
+  color: var(--cor-texto-oferta);
   font-family: inherit;
   min-width: 150px;
   width: 100%;
@@ -144,7 +143,7 @@ body {
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 3px 8px var(--cor-sombra-geral);
+  box-shadow: 0 3px 8px var(--cor-sombra-oferta);
   color: rgb(255, 255, 255);
   font-size: 2rem;
   transition: all 0.2s;
@@ -175,7 +174,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 8px var(--cor-sombra-geral);
+  box-shadow: 0 2px 8px var(--cor-sombra-oferta);
   text-decoration: none; /* aqui tira o underline do <a> */
   width: 200px;
   height: 90px;
@@ -187,9 +186,9 @@ body {
 }
      
 .criarOferta:hover {
-  background-color: var(--cor-primaria-geral);
+  background-color: var(--cor-primaria-oferta);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--cor-sombra-geral);
+  box-shadow: 0 4px 12px var(--cor-sombra-oferta);
 }
 
 @media (max-width: 768px) {
@@ -221,11 +220,6 @@ body {
 @media (max-width: 480px) {
   .container {
     padding: 1rem;
-  }
-  
-  .demandaCard {
-    width: 240px;
-    height: 340px;
   }
   
   .arrow {

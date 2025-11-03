@@ -1,36 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 :root {
-  /* Tema Claro (default) */
-  --cor-primaria-inicio: #A87453;
-  --cor-secundaria-inicio: #5c3b28;
-  --cor-fundo-inicio: #e2dad2;
-  --cor-texto-inicio: #333;
-  --cor-texto-inicio-secundario: #666;
-  --cor-borda-inicio: #A46434;
+  /* Tema Claro (default) - paleta para Minhas Ofertas */
+  --cor-primaria-minhasoff: #A87453;
+  --cor-secundaria-minhasoff: #5c3b28;
+  --cor-fundo-minhasoff: #e2dad2;
+  --cor-texto-minhasoff: #333;
+  --cor-texto-minhasoff-secundario: #666;
+  --cor-borda-minhasoff: #A46434;
   --cor-card: #c70000;
   --cor-sombra: rgba(0, 0, 0, 0.1);
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
+
+  /* Aliases para compatibilidade com classes que usam nomes genéricos */
+  --cor-primaria-geral: var(--cor-primaria-minhasoff);
+  --cor-secundaria-geral: var(--cor-secundaria-minhasoff);
+  --cor-fundo-geral: var(--cor-fundo-minhasoff);
+  --cor-texto: var(--cor-texto-minhasoff);
+  --cor-texto-secundario-geral: var(--cor-texto-minhasoff-secundario);
+  --cor-borda-geral: var(--cor-borda-minhasoff);
+  --cor-card-geral: var(--cor-card);
+  --cor-sombra-geral: var(--cor-sombra);
 }
 
 /* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Cores principais invertidas */
-    --cor-primaria-inicio: #F8DCA5;
-    --cor-secundaria-inicio: #F8DCA5;
+    /* Cores principais invertidas (modo escuro) */
+    --cor-primaria-minhasoff: #F8DCA5;
+    --cor-secundaria-minhasoff: #F8DCA5;
     /* Escala de cinza invertida */
-    --cor-fundo-inicio: #313030;
-    --cor-texto-inicio: #f0f0f0;
-    --cor-texto-inicio-secundario: #b3b3b3;
+    --cor-fundo-minhasoff: #313030;
+    --cor-texto-minhasoff: #f0f0f0;
+    --cor-texto-minhasoff-secundario: #b3b3b3;
     /* Elementos de UI */
-    --cor-borda-inicio: #A46434;
+    --cor-borda-minhasoff: #A46434;
     --cor-card: #1e1e1e;
     --cor-sombra: rgba(0, 0, 0, 0.5);
     --cor-navbar: #311e04;
     /* Ajustes para melhor contraste */
     --cor-destaque: #F8DCA5;
+
+    /* Reaplica aliases no modo escuro */
+    --cor-primaria-geral: var(--cor-primaria-minhasoff);
+    --cor-secundaria-geral: var(--cor-secundaria-minhasoff);
+    --cor-fundo-geral: var(--cor-fundo-minhasoff);
+    --cor-texto: var(--cor-texto-minhasoff);
+    --cor-texto-secundario-geral: var(--cor-texto-minhasoff-secundario);
+    --cor-borda-geral: var(--cor-borda-minhasoff);
+    --cor-card-geral: var(--cor-card);
+    --cor-sombra-geral: var(--cor-sombra);
   }
 }
 

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "./oferta.module.css"; // Reutilizando o CSS existente
+import styles from "./minhas_oferta.module.css"; // Reutilizando o CSS existente
 import BarraNvg from "@/components/navbar/navbar";
 
 export default function MinhasOfertas() {
