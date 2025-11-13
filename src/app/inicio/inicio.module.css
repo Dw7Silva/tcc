@@ -2,60 +2,58 @@
 
 :root {
   /* Tema Claro (default) */
-  --cor-primaria-inicio: #A87453;
-  --cor-secundaria-inicio: #5c3b28;
-  --cor-fundo-inicio: #e2dad2;
-  --cor-texto-inicio: #333;
-  --cor-texto-inicio-secundario: #666;
-  --cor-borda-inicio: #A46434;
-  --cor-card: #c70000;
-  --cor-sombra: rgba(0, 0, 0, 0.1);
-  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-  --altura-navbar: clamp(60px, 10vh, 80px);
-
-
+  --cor-primaria-inicio-s: #A87453;
+  --cor-secundaria-inicio-s: #5c3b28;
+  --cor-fundo-inicio-s: #e2dad2;
+  --cor-texto-inicio-s: #333;
+  --cor-texto-inicio-secundario-s: #666;
+  --cor-borda-inicio-s: #A46434;
+  --cor-card-s: #c70000;
+  --cor-sombra-s: rgba(0, 0, 0, 0.1);
+  --tamanho-fonte-base-s: clamp(14px, 2vw, 18px);
+  --altura-navbar-s: clamp(60px, 10vh, 80px);
 }
 
 /* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
     /* Cores principais invertidas */
-    --cor-primaria-inicio: #F8DCA5;
-    --cor-secundaria-inicio: #F8DCA5;
+    --cor-primaria-inicio-s: #F8DCA5;
+    --cor-secundaria-inicio-s: #F8DCA5;
     /* Escala de cinza invertida */
-    --cor-fundo-inicio: #313030;
-    --cor-texto-inicio: #f0f0f0;
-    --cor-texto-inicio-secundario: #b3b3b3;
+    --cor-fundo-inicio-s: #313030;
+    --cor-texto-inicio-s: #f0f0f0;
+    --cor-texto-inicio-secundario-s: #b3b3b3;
     /* Elementos de UI */
-    --cor-borda-inicio: #A46434;
-    --cor-card: #1e1e1e;
-    --cor-sombra: rgba(0, 0, 0, 0.5);
-    --cor-navbar: #311e04;
+    --cor-borda-inicio-s: #A46434;
+    --cor-card-s: #1e1e1e;
+    --cor-sombra-s: rgba(0, 0, 0, 0.5);
+    --cor-navbar-s: #311e04;
     /* Ajustes para melhor contraste */
-    --cor-destaque: #F8DCA5;
-
+    --cor-destaque-s: #F8DCA5;
   }
 }
+
 
 body {
   margin: 0;
   font-family: 'Comfortaa', sans-serif;
-  font-size: var(--tamanho-fonte-base);
+  font-size: var(--tamanho-fonte-base-s);
   min-height: 100vh;
-  color: var(--cor-texto-inicio);
-  background-color: var(--cor-fundo-inicio);
+  color: var(--cor-texto-inicio-s);
+  background-color: var(--cor-fundo-inicio-s);
   transition: background-color 0.3s, color 0.3s;
   overflow-x: hidden;
 }
  
 .container { 
-  background-color: var(--cor-fundo-inicio); 
+  background-color: var(--cor-fundo-inicio-s); 
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 var(--padding-lateral);
-  margin-top: var(--altura-navbar);
-  min-height: calc(100vh - var(--altura-navbar));
+  padding: 0 var(--padding-lateral-s);
+  margin-top: var(--altura-navbar-s);
+  min-height: calc(100vh - var(--altura-navbar-s));
 }
 
 /* Componentes de conteúdo */
@@ -63,11 +61,10 @@ body {
   width: 100%;
   padding: 0.25rem 0;
   margin-left: 10vw;
-
 }
 
 .textdestaques, .textprodutos {
-  color: var(--cor-secundaria-inicio);
+  color: var(--cor-secundaria-inicio-s);
 }
 
 .produtosGrid {
@@ -98,11 +95,11 @@ body {
   height: min(150px, 20vw);
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--cor-borda-inicio);
+  border: 2px solid var(--cor-borda-inicio-s);
 }
 
 .produtoTitulo {
-  color: var(--cor-texto-inicio);
+  color: var(--cor-texto-inicio-s);
   font-size: 1.1rem;
   text-align: center;
   margin-top: 0.5rem;

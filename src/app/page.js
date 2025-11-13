@@ -18,7 +18,7 @@ export default function dev() {
 
 
 
-    <Inicio/>
+    <Ofertas/>
 
 
     
