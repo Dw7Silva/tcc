@@ -1,18 +1,37 @@
 "use client";
-import React, { useMemo, useRef } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import styles from "./oferta.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
 import Link from "next/link";
 import Cardsofertas from "@/components/cardsofertas";
-import ofertasMock from "@/mockup/ofertas";
+import api from "@/services/api";
 
 export default function Ofertas() {
+
+  const [ofertas, setOfertas] = useState([]);
+
+  
+  useEffect(() => {
+    fetchOfertas();
+  }, []); // Chama a função ao montar o componente
+
+  async function fetchOfertas() {
+    try {
+      const response = await api.get("/ofertas/filtro?limit=6");
+      if (response.status === 200) {
+        setOfertas(response.data.dados);
+      }
+    } catch (error) {
+      alert("Erro ao buscar ofertas: " + error.message);
+    }
+  }
+
   const ofertasAtivas = useMemo(() => {
-    return (ofertasMock || [])
+    return (ofertas || [])
       .filter((d) => !!d.oferta_ativa)
       .sort((a, b) => new Date(b.oferta_data_publicacao) - new Date(a.oferta_data_publicacao));
-  }, []);
+  }, [ofertas]);
 
   const gridRef = useRef(null);
 
@@ -27,7 +46,7 @@ export default function Ofertas() {
 
   const arrowRight = () => {
     if (gridRef.current) {
-      const card = gridRef.current.querySelector("[data-demanda-card]");
+      const card = gridRef.current.querySelector("[data-oferta-card]");
       if (card) {
         gridRef.current.scrollBy({
           left: card.offsetWidth * 2,
@@ -36,7 +55,7 @@ export default function Ofertas() {
       }
     }
   };
-
+   console.log(ofertas);
   return (
     <>
       <BarraNvg />

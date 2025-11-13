@@ -28,11 +28,6 @@ export default function Demandas() {
     }
   }
 
-    const demandasAtivas = useMemo(() => {
-      return (demandasMock || [])
-        .filter((d) => !!d.demanda_ativa) // aceita 1 ou true
-        .sort((a, b) => new Date(b.demanda_data_publicacao) - new Date(a.demanda_data_publicacao));
-    }, []);
 
 
     const gridRef = React.useRef(null);

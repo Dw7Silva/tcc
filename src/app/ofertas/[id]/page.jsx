@@ -1,21 +1,51 @@
-// app/demanda/[id]/page.jsx
-import React from "react";
+// src/app/demanda/[id]/page.jsx (ou onde está seu DemandaPage)
+"use client";
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import OfertaDescricao from "../descricao_oferta/page";
-import ofertasMock from "@/mockup/ofertas";
-import { notFound } from "next/navigation";
-import { use } from "react";  
+import api from "@/services/api";
 
-export default function Ofertapage({ params }) {
-  const id_oferta = use(Promise.resolve(params))  
-  const { id } = id_oferta;
-  const oferta = ofertasMock.find(oferta => oferta.oferta_id === parseInt(id)); 
+export default function DemandaPage() {
+  const { id } = useParams();
+  const [demanda,  SetOferta] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  if (!oferta) {
+  useEffect(() => {
+    if (!id) return;
+    const fetchDemanda = async () => {
+      setLoading(true);
+      try {
+        const res = await api.get(
+          `/demandas/filtro?demanda_id=${encodeURIComponent(id)}`
+        );
+        const dados = res?.data?.dados ?? null;
+        const d = Array.isArray(dados) ? dados[0] : dados;
+        if (!d) {
+          setError(true);
+          setDemanda(null);
+        } else {
+          setDemanda(d);
+        }
+      } catch (e) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchDemanda();
+  }, [id]);
+
+  if (loading) return null; // substituir por loader se quiser
+  if (error || !oferta)
     return (
-      notFound()  
+      <>
+        <div style={{ padding: 24, textAlign: "center" }}>
+          Demanda não encontrada
+        </div>
+      </>
     );
-  }
 
   return <OfertaDescricao oferta={oferta} />;
+
 }
- 
