@@ -16,7 +16,7 @@
   --cor-card: #c70000;
   --cor-sombra: rgba(0, 0, 0, 0.1);
 
-  /* Variáveis adicionais para cores fixas originais */
+  /* Variáveis adicionais */
   --cor-branco-base: #ffffff;
   --cor-fundo-claro2: #f5f5f5;
   --cor-fundo-claro3: #f0f0f0;
@@ -24,7 +24,7 @@
   --cor-primaria-hover: #4a3020;
   --cor-online: #4caf50;
 
-  /* Tipografia e dimensões */
+  /* Tipografia */
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
   --radius: 12px;
@@ -36,7 +36,6 @@
 ===================== */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Cores principais invertidas */
     --cor-primaria-chat: #E0CFA1;
     --cor-secundaria-chat: #ffffff;
     --cor-fundo-chat: #313030;
@@ -51,14 +50,13 @@
     --cor-branco-base: #262524;
     --cor-fundo-claro2: #2a2a2a;
     --cor-fundo-claro3: #1c1b1a;
-   
     --cor-primaria-hover: #e7c89165;
     --cor-online: #ffffff;
   }
 }
 
 /* =====================
-   Body e container
+   Estrutura
 ===================== */
 body {
   margin: 0;
@@ -121,6 +119,7 @@ body {
 .conversasList {
   flex: 1;
   overflow-y: auto;
+  /* agora exibida/oculta via .sidebar e .sidebar.ativo no mobile */
 }
 
 .conversaItem {
@@ -186,7 +185,7 @@ body {
 }
 
 /* =====================
-   Mensagens
+   Área de Mensagens
 ===================== */
 .mensagemArea {
   flex: 1;
@@ -336,23 +335,27 @@ body {
     flex-direction: column;
   }
   
+  /* padrão: sidebar escondida no mobile (para controlar por JS) */
   .sidebar {
+    display: none;
     width: 100%;
-    height: 10vh;
+    height: auto;
     border-right: none;
     border-bottom: 1px solid var(--cor-borda-chat);
   }
   
+  /* quando a sidebar tiver a classe .ativo, mostramos ela e a lista */
+  .sidebar.ativo {
+    display: block;
+  }
+
+  /* garantimos que a lista seja visível quando sidebar estiver ativa */
+  .sidebar.ativo .conversasList {
+    display: block;
+  }
+
   .mensagemArea {
-    height: 60vh;
-   
-  }
-  
-  .mensagem {
-    max-width: 80%;
-  }
-   .conversasList{
-    display: none;
+    height: calc(100vh - 200px);
   }
 }
 
@@ -360,18 +363,36 @@ body {
   .sidebarHeader h2 {
     font-size: 1.1rem;
   }
-  
+
   .conversaItem {
     padding: 0.6rem 0.8rem;
   }
-  
+
   .mensagem {
     max-width: 90%;
     padding: 0.6rem 0.8rem;
   }
-  
+
   .mensagemInput {
     padding: 0.6rem 0.8rem;
   }
- 
+}
+
+/* =====================================================
+   ⬅️ BOTÃO DE VOLTAR PARA LISTA DE CONVERSAS (MOBILE)
+===================================================== */
+.btnVoltar {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  margin-right: 10px;
+  cursor: pointer;
+  color: var(--cor-primaria-chat);
+}
+
+@media (max-width: 768px) {
+  .btnVoltar {
+    display: block;
+  }
 }
