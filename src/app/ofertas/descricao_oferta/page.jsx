@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './descdemanda.module.css';
+import styles from './descoferta.module.css';
 import BarraNvg from '@/components/navbar/navbar';
 import Link from 'next/link';
 

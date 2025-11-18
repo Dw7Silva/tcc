@@ -1,18 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
-
 :root {
   /* Tema Claro (default) */
-  --cor-primaria-geral: #F8DCA5;
-  --cor-secundaria-geral-1: #5c3b28;
-  --cor-texto-1: #333;
-  --cor-texto-secundario-geral: #666;
-  --cor-borda-geral: #A46434;
-  --cor-card-geral: #ffffff;
-  --cor-sombra-geral: rgba(0, 0, 0, 0.1);
+  --cor-primaria-descoferta: #F8DCA5;
+  --cor-secundaria-descoferta-1: #5c3b28;
+  --cor-texto-descoferta-1: #333;
+  --cor-texto-secundario-descoferta: #666;
+  --cor-borda-descoferta: #A46434;
+  --cor-card-descoferta: #ffffff;
+  --cor-sombra-descoferta: rgba(0, 0, 0, 0.1);
   --cor-fundo-inicio: #e2dad2;
-  --cor-destaque-geral: #F8DCA5;
-  --cor-chat-geral: #d9d9d9;
-  --cor-input-geral: #ffffff;
+  --cor-destaque-descoferta: #F8DCA5;
+  --cor-chat-descoferta: #d9d9d9;
+  --cor-input-descoferta: #ffffff;
 
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
@@ -23,19 +21,20 @@
 /* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    --cor-primaria-geral: #F8DCA5;
-    --cor-secundaria-geral-1: #ffffff;
-    --cor-texto-1: #f0f0f0;
-    --cor-texto-secundario-geral: #b3b3b3;
-    --cor-borda-geral: #A46434;
-    --cor-card-geral: #1e1e1e;
-    --cor-sombra-geral: rgba(0, 0, 0, 0.5);
+    --cor-primaria-descoferta: #F8DCA5;
+    --cor-secundaria-descoferta-1: #ffffff;
+    --cor-texto-descoferta-1: #f0f0f0;
+    --cor-texto-secundario-descoferta: #b3b3b3;
+    --cor-borda-descoferta: #A46434;
+    --cor-card-descoferta: #1e1e1e;
+    --cor-sombra-descoferta: rgba(0, 0, 0, 0.5);
     --cor-fundo-inicio: #313030;
-    --cor-destaque-geral: #A87453;
-    --cor-chat-geral: #2a2a2a;
-    --cor-input-geral: #3a3a3a;
+    --cor-destaque-descoferta: #A87453;
+    --cor-chat-descoferta: #2a2a2a;
+    --cor-input-descoferta: #3a3a3a;
   }
 }
+
 .container {
   padding: 2rem;
   background-color: var(--cor-fundo-inicio);
@@ -45,11 +44,11 @@
 .demandaContainer {
   max-width: 900px;
   margin: 0 auto;
-  background: var(--cor-card-geral);
+  background: var(--cor-card-descoferta);
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 4px 10px var(--cor-sombra-geral);
-  color: var(--cor-texto-1);
+  box-shadow: 0 4px 10px var(--cor-sombra-descoferta);
+  color: var(--cor-texto-descoferta-1);
 }
 
 .demandaHeader {
@@ -60,7 +59,7 @@
 .productTitle {
   font-size: 2rem;
   font-weight: 600;
-  color: var(--cor-secundaria-geral-1);
+  color: var(--cor-secundaria-descoferta-1);
   margin-bottom: 1rem;
 }
 
@@ -73,7 +72,7 @@
   max-width: 400px;
   height: 300px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px var(--cor-sombra-geral);
+  box-shadow: 0 2px 6px var(--cor-sombra-descoferta);
 }
 
 .demandaContent {
@@ -83,10 +82,10 @@
 }
 
 .infoBox {
-  background: var(--cor-card-geral);
+  background: var(--cor-card-descoferta);
   padding: 1.5rem;
   border-radius: 12px;
-  border: 1px solid var(--cor-borda-geral);
+  border: 1px solid var(--cor-borda-descoferta);
 }
 
 .infoGrid {
@@ -104,26 +103,26 @@
 
 .infoLabel {
   font-weight: 600;
-  color: var(--cor-secundaria-geral-1);
+  color: var(--cor-secundaria-descoferta-1);
 }
 
 .infoValue {
-  color: var(--cor-texto-secundario-geral);
+  color: var(--cor-texto-secundario-descoferta);
 }
 
 .editorSection {
-  background: var(--cor-card-geral);
+  background: var(--cor-card-descoferta);
   padding: 1.5rem;
   border-radius: 12px;
-  border: 1px solid var(--cor-borda-geral);
+  border: 1px solid var(--cor-borda-descoferta);
 }
 
 .editorPlaceholder {
   padding: 1rem;
-  background-color: var(--cor-chat-geral);
+  background-color: var(--cor-chat-descoferta);
   border-radius: 8px;
   min-height: 100px;
-  color: var(--cor-texto-1);
+  color: var(--cor-texto-descoferta-1);
 }
 
 .actionButtons {
@@ -146,19 +145,6 @@
 }
 
 .primaryButton {
-  background-color: var(--cor-secundaria-geral-1);
+  background-color: var(--cor-secundaria-descoferta-1);
   color: white;
-}
-
-.secondaryButton {
-  background-color: var(--cor-destaque-geral);
-  color: var(--cor-texto-1);
-}
-
-.primaryButton:hover {
-  background-color: #3f2719;
-}
-
-.secondaryButton:hover {
-  background-color: #f5c66e;
 }
