@@ -2,17 +2,17 @@
 
 :root {
   /* Tema Claro (default) */
-  --cor-primaria-geral: #F8DCA5;
-  --cor-secundaria-geral-1: #5c3b28;
-  --cor-texto-1: #333;
-  --cor-texto-secundario-geral: #666;
-  --cor-borda-geral: #A46434;
-  --cor-card-geral: #ffffff;
-  --cor-sombra-geral: rgba(0, 0, 0, 0.1);
-  --cor-fundo-inicio: #e2dad2;
-  --cor-destaque-geral: #F8DCA5;
-  --cor-chat-geral: #d9d9d9;
-  --cor-input-geral: #ffffff;
+  --cor-primaria-descdemanda: #F8DCA5;
+  --cor-secundaria-descdemanda: #5c3b28;
+  --cor-texto-descdemanda: #333;
+  --cor-texto-secundario-descdemanda: #666;
+  --cor-borda-descdemanda: #A46434;
+  --cor-card-descdemanda: #ffffff;
+  --cor-sombra-descdemanda: rgba(0, 0, 0, 0.1);
+  --cor-fundo-descdemanda: #e2dad2;
+  --cor-destaque-descdemanda: #F8DCA5;
+  --cor-chat-descdemanda: #d9d9d9;
+  --cor-input-descdemanda: #ffffff;
 
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
@@ -23,33 +23,34 @@
 /* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    --cor-primaria-geral: #F8DCA5;
-    --cor-secundaria-geral-1: #ffffff;
-    --cor-texto-1: #f0f0f0;
-    --cor-texto-secundario-geral: #b3b3b3;
-    --cor-borda-geral: #A46434;
-    --cor-card-geral: #1e1e1e;
-    --cor-sombra-geral: rgba(0, 0, 0, 0.5);
-    --cor-fundo-inicio: #313030;
-    --cor-destaque-geral: #A87453;
-    --cor-chat-geral: #2a2a2a;
-    --cor-input-geral: #3a3a3a;
+    --cor-primaria-descdemanda: #F8DCA5;
+    --cor-secundaria-descdemanda: #ffffff;
+    --cor-texto-descdemanda: #f0f0f0;
+    --cor-texto-secundario-descdemanda: #b3b3b3;
+    --cor-borda-descdemanda: #A46434;
+    --cor-card-descdemanda: #1e1e1e;
+    --cor-sombra-descdemanda: rgba(0, 0, 0, 0.5);
+    --cor-fundo-descdemanda: #313030;
+    --cor-destaque-descdemanda: #A87453;
+    --cor-chat-descdemanda: #2a2a2a;
+    --cor-input-descdemanda: #3a3a3a;
   }
 }
+
 .container {
   padding: 2rem;
-  background-color: var(--cor-fundo-inicio);
+  background-color: var(--cor-fundo-descdemanda);
   font-family: 'Comfortaa', cursive;
 }
 
 .demandaContainer {
   max-width: 900px;
   margin: 0 auto;
-  background: var(--cor-card-geral);
+  background: var(--cor-card-descdemanda);
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 4px 10px var(--cor-sombra-geral);
-  color: var(--cor-texto-1);
+  box-shadow: 0 4px 10px var(--cor-sombra-descdemanda);
+  color: var(--cor-texto-descdemanda);
 }
 
 .demandaHeader {
@@ -60,7 +61,7 @@
 .productTitle {
   font-size: 2rem;
   font-weight: 600;
-  color: var(--cor-secundaria-geral-1);
+  color: var(--cor-secundaria-descdemanda);
   margin-bottom: 1rem;
 }
 
@@ -73,7 +74,7 @@
   max-width: 400px;
   height: 300px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px var(--cor-sombra-geral);
+  box-shadow: 0 2px 6px var(--cor-sombra-descdemanda);
 }
 
 .demandaContent {
@@ -83,10 +84,10 @@
 }
 
 .infoBox {
-  background: var(--cor-card-geral);
+  background: var(--cor-card-descdemanda);
   padding: 1.5rem;
   border-radius: 12px;
-  border: 1px solid var(--cor-borda-geral);
+  border: 1px solid var(--cor-borda-descdemanda);
 }
 
 .infoGrid {
@@ -104,26 +105,26 @@
 
 .infoLabel {
   font-weight: 600;
-  color: var(--cor-secundaria-geral-1);
+  color: var(--cor-secundaria-descdemanda);
 }
 
 .infoValue {
-  color: var(--cor-texto-secundario-geral);
+  color: var(--cor-texto-secundario-descdemanda);
 }
 
 .editorSection {
-  background: var(--cor-card-geral);
+  background: var(--cor-card-descdemanda);
   padding: 1.5rem;
   border-radius: 12px;
-  border: 1px solid var(--cor-borda-geral);
+  border: 1px solid var(--cor-borda-descdemanda);
 }
 
 .editorPlaceholder {
   padding: 1rem;
-  background-color: var(--cor-chat-geral);
+  background-color: var(--cor-chat-descdemanda);
   border-radius: 8px;
   min-height: 100px;
-  color: var(--cor-texto-1);
+  color: var(--cor-texto-descdemanda);
 }
 
 .actionButtons {
@@ -146,13 +147,13 @@
 }
 
 .primaryButton {
-  background-color: var(--cor-secundaria-geral-1);
+  background-color: var(--cor-secundaria-descdemanda);
   color: white;
 }
 
 .secondaryButton {
-  background-color: var(--cor-destaque-geral);
-  color: var(--cor-texto-1);
+  background-color: var(--cor-destaque-descdemanda);
+  color: var(--cor-texto-descdemanda);
 }
 
 .primaryButton:hover {

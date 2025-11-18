@@ -7,25 +7,25 @@ import api from "@/services/api";
 
 export default function DemandaPage() {
   const { id } = useParams();
-  const [demanda,  SetOferta] = useState(null);
+  const [oferta,  SetOferta] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!id) return;
-    const fetchDemanda = async () => {
+    const fetchOferta = async () => {
       setLoading(true);
       try {
         const res = await api.get(
-          `/demandas/filtro?demanda_id=${encodeURIComponent(id)}`
+          `/ofertas/filtro?oferta_id=${encodeURIComponent(id)}`
         );
         const dados = res?.data?.dados ?? null;
         const d = Array.isArray(dados) ? dados[0] : dados;
         if (!d) {
           setError(true);
-          setDemanda(null);
+          SetOferta(null);
         } else {
-          setDemanda(d);
+          SetOferta(d);
         }
       } catch (e) {
         setError(true);
@@ -33,7 +33,7 @@ export default function DemandaPage() {
         setLoading(false);
       }
     };
-    fetchDemanda();
+    fetchOferta();
   }, [id]);
 
   if (loading) return null; // substituir por loader se quiser
@@ -41,7 +41,7 @@ export default function DemandaPage() {
     return (
       <>
         <div style={{ padding: 24, textAlign: "center" }}>
-          Demanda não encontrada
+          Oferta não encontrada
         </div>
       </>
     );

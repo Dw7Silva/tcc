@@ -9,11 +9,11 @@ export default function Cardsofertas({ oferta }) {
 
   return (
     <div className={styles.ofertaCard} data-oferta-card>
-      <p className={styles.ofertaEmpresa}>{oferta.agricultor_nome}</p>
+      <p className={styles.ofertaEmpresa}>{oferta.agri_nome}</p>
       <div className={styles.ofertaImageContainer}>
-        <img src={oferta.imagem} alt={oferta.amendoim_tipo} loading="lazy" />
+        <img src={oferta.oferta_img} alt={oferta.amendoim_tipo} loading="lazy" />
       </div>
-      <h3>{oferta.amendoim_tipo}</h3>
+      <h3>{oferta.amen_variedade}</h3>
       <p className={styles.ofertaQuantidade}>{oferta.oferta_quantidade} kg</p>
       <Link href={`/ofertas/${oferta.oferta_id}`}>
         <button className={styles.ofertaDetalhes}>Ver detalhes</button>
