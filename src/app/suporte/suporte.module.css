@@ -9,11 +9,12 @@
   --cor-borda-suporte: rgba(224, 207, 161, 0.6);
   --cor-card-suporte: #FFFFFF;
   --cor-sombra-suporte: rgba(0, 0, 0, 0.05);
-  --cor-fundo-suporte: #F9F7F3;
+  --cor-fundo-suporte: transparent;
   --cor-destaque-suporte: #E0CFA1;
   --cor-chat-suporte: #FFFFFF;
   --cor-input-suporte: #FFFFFF;
-
+   --cor-button-suporte: #A87453;
+   --cor-button-hover-suporte: #A88C66;
   --radius: 12px;
   --transition: 0.3s ease-in-out;
 }
@@ -159,7 +160,7 @@ body {
 }
 
 .chatInput button:hover {
-  background: #A88C66;
+  background: var(--cor-button-hover-suporte);
   transform: translateY(-1px) scale(1.03);
 }
 

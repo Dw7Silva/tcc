@@ -19,8 +19,9 @@ export default function Inicio() {
 
   return (
     <>
+     <BarraNvg></BarraNvg>
       <div className="tudo">
-       <BarraNvg></BarraNvg>
+      
         <div className={styles.container}>
           <div className={styles.destaquescontainer}>
             <h1 className={styles.textdestaques}>Nossos destaques</h1>

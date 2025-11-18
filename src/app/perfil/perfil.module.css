@@ -2,14 +2,14 @@
 
 :root {
   /* Tema Claro (default) */
-  --cor-primaria-perfil: #A87453;
+  --cor-primaria-perfil:#A87453;
   --cor-secundaria-perfil: ;
   --cor-texto-perfil: #333;
   --cor-texto-secundario-perfil: #666;
   --cor-borda-perfil: #A46434;
   --cor-card-perfil: #ffffff;
   --cor-sombra-perfil: rgba(0, 0, 0, 0.1);
-
+  --cor-button-houver-perfil: #A88C66;
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
   --altura-logo: clamp(40px, 8vh, 60px);
@@ -103,9 +103,10 @@ body {
 }
 
 .editButton:hover {
-  background-color: var(--cor-secundaria-perfil);
+  background-color: var(--cor-button-houver-perfil);
   transform: translateY(-2px);
   color: black;
+  border: 1px solid var(--cor-borda-perfil);
 }
 
 .profileContent {

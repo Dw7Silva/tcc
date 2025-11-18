@@ -11,7 +11,7 @@
   --cor-card-s: #c70000;
   --cor-sombra-s: rgba(0, 0, 0, 0.1);
   --tamanho-fonte-base-s: clamp(14px, 2vw, 18px);
-  --altura-navbar-s: clamp(60px, 10vh, 80px);
+ 
 }
 
 /* Tema Escuro */
@@ -28,7 +28,7 @@
     --cor-borda-inicio-s: #A46434;
     --cor-card-s: #1e1e1e;
     --cor-sombra-s: rgba(0, 0, 0, 0.5);
-    --cor-navbar-s: #311e04;
+   
     /* Ajustes para melhor contraste */
     --cor-destaque-s: #F8DCA5;
   }
