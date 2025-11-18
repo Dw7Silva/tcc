@@ -2,34 +2,31 @@
 
 :root {
   /* Tema Claro (default) */
-  --cor-primaria-geral: #A87453;
-  --cor-secundaria-geral: ;
-  --cor-texto-geral: #333;
-  --cor-texto-secundario-geral: #666;
-  --cor-borda-geral: #A46434;
-  --cor-card-geral: #ffffff;
-  --cor-sombra-geral: rgba(0, 0, 0, 0.1);
+  --cor-primaria-demandas: #A87453;
+  --cor-secundaria-demandas: ;
+  --cor-texto-demandas: #333;
+  --cor-texto-secundario-demandas: #666;
+  --cor-borda-demandas: #A46434;
+  --cor-card-demandas: #ffffff;
+  --cor-sombra-demandas: rgba(0, 0, 0, 0.1);
 
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
   --altura-logo: clamp(40px, 8vh, 60px);
   --padding-lateral: clamp(10px, 2vw, 20px);
-  
 }
 
 /* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Cores principais invertidas */
-    --cor-primaria-geral: #5c3b28; /* Inverso de #A87453 */
-    --cor-secundaria-geral: #F8DCA5; /* Inverso de #5c3b28 */
-    /* Escala de cinza invertida */
-    --cor-texto: #f0f0f0; /* Quase branco */
-    --cor-texto-secundario-geral: #b3b3b3; 
-    /* Elementos de UI */
-    --cor-borda-geral: #A46434;
-    --cor-card-geral: #1e1e1e; 
-    --cor-sombra-geral: rgba(0, 0, 0, 0.5);
+    --cor-primaria-demandas: #5c3b28;
+    --cor-secundaria-demandas: #F8DCA5;
+    --cor-texto-demandas: #f0f0f0;
+    --cor-texto-secundario-demandas: #b3b3b3; 
+    --cor-fundo-inicio: #313030;
+    --cor-borda-demandas: #A46434;
+    --cor-card-demandas: #1e1e1e; 
+    --cor-sombra-demandas: rgba(0, 0, 0, 0.5);
     --cor-destaque: #F8DCA5; 
   }
 }
@@ -39,7 +36,7 @@ body {
   font-family: 'Comfortaa', sans-serif;
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
-  color: var(--cor-texto);
+  color: var(--cor-texto-demandas);
   background-color: var(--cor-fundo-inicio);
   transition: background-color 0.3s, color 0.3s;
 }
@@ -74,7 +71,7 @@ body {
 .header h2 {
   margin: 0;
   font-size: clamp(1.5rem, 4vw, 2.2rem);
-  color: var(--cor-secundaria-geral);
+  color: var(--cor-secundaria-demandas);
   flex: 1;
   min-width: 150px;
 }
@@ -90,16 +87,16 @@ body {
 
 .filtro label {
   font-weight: 400;
-  color: var(--cor-secundaria-geral);
+  color: var(--cor-secundaria-demandas);
   white-space: nowrap;
 }
 
 .filtro select {
   padding: 0.6rem 1rem;
   border-radius: 8px;
-  border: 1px solid var(--cor-borda-geral-);
-  background-color: var(--cor-card-geral);
-  color: var(--cor-texto);
+  border: 1px solid var(--cor-borda-demandas);
+  background-color: var(--cor-card-demandas);
+  color: var(--cor-texto-demandas);
   font-family: inherit;
   min-width: 150px;
   width: 100%;
@@ -133,20 +130,20 @@ body {
   width: 320px;
   height: 320px;
   scroll-snap-align: start;
-  background-color: var(--cor-card-geral);
+  background-color: var(--cor-card-demandas);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 12px var(--cor-sombra-geral);
+  box-shadow: 0 4px 12px var(--cor-sombra-demandas);
   display: flex;
   flex-direction: column;
   transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid var(--cor-borda-geral);
+  border: 1px solid var(--cor-borda-demandas);
   margin: 0 5px;
 }
 
 .demandaCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px var(--cor-sombra-geral);
+  box-shadow: 0 6px 16px var(--cor-sombra-demandas);
 }
 
 .imageContainer {
@@ -170,7 +167,7 @@ body {
 
 .empresa {
   font-weight: 600;
-  color: var(--cor-secundaria-geral);
+  color: var(--cor-secundaria-demandas);
   margin: 0;
   font-size: 1.1rem;
 }
@@ -178,12 +175,12 @@ body {
 .demandaCard h3 {
   margin: 0.8rem 0;
   font-size: 1.2rem;
-  color: var(--cor-texto);
+  color: var(--cor-texto-demandas);
 }
 
 .quantidade {
   margin: 0.8rem 0;
-  color: var(--cor-texto-secundario-geral);
+  color: var(--cor-texto-secundario-demandas);
   font-size: 1rem;
 }
 
@@ -201,7 +198,7 @@ body {
 }
 
 .detalhes:hover {
-  background-color: var(--cor-primaria-geral);
+  background-color: var(--cor-primaria-demandas);
 }
 
 .arrow {
@@ -218,8 +215,8 @@ body {
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 3px 8px var(--cor-sombra-geral);
-  color: var(--cor-primaria-geral);
+  box-shadow: 0 3px 8px var(--cor-sombra-demandas);
+  color: var(--cor-primaria-demandas);
   font-size: 1.8rem;
   transition: all 0.2s;
 }
@@ -249,13 +246,13 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 8px var(--cor-sombra-geral);
+  box-shadow: 0 2px 8px var(--cor-sombra-demandas);
 }
 
 .criarOferta:hover {
-  background-color: var(--cor-primaria-geral);
+  background-color: var(--cor-primaria-demandas);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--cor-sombra-geral);
+  box-shadow: 0 4px 12px var(--cor-sombra-demandas);
 }
 
 @media (max-width: 768px) {

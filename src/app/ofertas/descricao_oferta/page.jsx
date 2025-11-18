@@ -1,33 +1,13 @@
-// src/components/OfertaDescricao.jsx
-"use client";
-import React from "react";
-import styles from "./descoferta.module.css";
-import BarraNvg from "@/components/navbar/navbar";
-import Link from "next/link";
+import React from 'react';
+import styles from './descoferta.module.css';
+import BarraNvg from '@/components/navbar/navbar';
+import Link from 'next/link';
 
-export default function OfertaDescricao({ oferta }) {
-  if (!oferta) {
-    return (
-      <>
-        <BarraNvg />
-        <div className={styles.container}>
-          <div className={styles.demandaContainer}>
-           
-          </div>
-        </div>
-      </>
-    );
-  }
-  console.log(oferta); 
+const OfertaDescricao = () => {
+ 
   
-  const agricultor = oferta.agri_nome;
-  const variedade = oferta.amen_variedade;
-  const quantidade = oferta.oferta_quantidade;
-  const preco = oferta.oferta_preco;
-  const informacoes = oferta.oferta_outras_informacoes;
-  const dataColheita = oferta.oferta_data_colheita;
-  const data_publicacao = oferta.oferta_data_publicacao; 
-  const imagemOferta = oferta.oferta_img;
+   
+  const imagemdemanda = "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg"
 
   return (
     <>

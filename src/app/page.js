@@ -10,6 +10,10 @@ import Proposta from "./proposta/page";
 import Demandas from "./demanda/page";
 import Suporte from "./suporte/page"; 
 import Chat from "./chat/page";
+import MinhasOfertas from "./minhas_ofertas/page";
+import OfertaDescricao from "./ofertas/descricao_oferta/page";
+import DemandaDescricao from "./demanda/descricao_demanda/page";
+
 
 export default function dev() {
 
@@ -18,15 +22,14 @@ export default function dev() {
 
 
 
-    <Ofertas/>
+    <DemandaDescricao/>
 
 
     
 
-    
+
 
 
   );
 
 }
-
