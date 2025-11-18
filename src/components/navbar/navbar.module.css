@@ -44,7 +44,7 @@ body {
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
   color: var(--cor-texto);
-
+  
   transition: background-color 0.3s, color 0.3s;
 }
 

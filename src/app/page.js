@@ -23,14 +23,7 @@ export default function dev() {
 
 
 
-    <Inicio/>
-
-
-
-    
-
-
-
+    <Cadastro/>
 
   );
 
