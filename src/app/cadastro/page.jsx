@@ -1,98 +1,179 @@
 "use client";
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './Cadastro.module.css';
 
 function Cadastro() {
+  const [etapa, setEtapa] = useState(1);
+  const [userType, setUserType] = useState('');
   const [cpfCnpj, setCpfCnpj] = useState('');
-  const [userType, setUserType] = useState('Agricultor');
   const [loading, setLoading] = useState(false);
   const [mensagem, setMensagem] = useState({ texto: "", tipo: "" });
+  const router = useRouter();
+  
+  const [formData, setFormData] = useState({
+    nome: '',
+    email: '',
+    endereco: '',
+    telefone: '',
+    senha: '',
+    confirmarSenha: '',
+    razaoSocial: '',
+    nomeFantasia: '',
+    tipoAtividade: '',
+    localizacaoPropriedade: '',
+    tiposAmendoim: '',
+    certificacoes: ''
+  });
 
   const formatCpfCnpj = (value) => {
     let formattedValue = value.replace(/\D/g, '');
 
-    if (formattedValue.length <= 11) {
-      formattedValue = formattedValue.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    if (userType === 'Agricultor') {
+      if (formattedValue.length <= 11) {
+        formattedValue = formattedValue
+          .replace(/(\d{3})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+      }
     } else {
-      formattedValue = formattedValue.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+      if (formattedValue.length <= 14) {
+        formattedValue = formattedValue
+          .replace(/(\d{2})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d)/, '$1.$2')
+          .replace(/(\d{3})(\d)/, '$1/$2')
+          .replace(/(\d{4})(\d{1,2})$/, '$1-$2');
+      }
     }
 
     return formattedValue;
   };
 
-  const validar_formulario = async (event) => {
-    event.preventDefault();
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const avancarEtapa = () => {
+    setEtapa(prev => prev + 1);
+  };
+
+  const voltarEtapa = () => {
+    setEtapa(prev => prev - 1);
+  };
+
+  const handleSubmitEtapa1 = (e) => {
+    e.preventDefault();
+    if (!userType) {
+      setMensagem({ texto: "Selecione um tipo de usuário", tipo: "erro" });
+      return;
+    }
+    avancarEtapa();
+  };
+
+  const handleSubmitEtapa2 = (e) => {
+    e.preventDefault();
+    if (!formData.nome || !formData.email || !cpfCnpj) {
+      setMensagem({ texto: "Preencha todos os campos obrigatórios", tipo: "erro" });
+      return;
+    }
+    avancarEtapa();
+  };
+
+  const handleSubmitEtapa3 = (e) => {
+    e.preventDefault();
+    avancarEtapa();
+  };
+
+  const handleSubmitEtapa4 = (e) => {
+    e.preventDefault();
+    if (!formData.endereco || !formData.telefone) {
+      setMensagem({ texto: "Preencha todos os campos obrigatórios", tipo: "erro" });
+      return;
+    }
+    avancarEtapa();
+  };
+
+  const handleSubmitFinal = async (e) => {
+    e.preventDefault();
     setLoading(true);
 
-    const email = event.target.email.value;
-    const endereco = event.target.endereco.value;
-    const telefone = event.target.telefone.value;
-    const senha = event.target.senha.value;
-    const confirmarSenha = event.target.confirmarSenha.value;
-
-    // Limpa mensagens anteriores
-    setMensagem({ texto: "", tipo: "" });
-
     // Validações
-    let hasErrors = false;
-
-    if (!email) {
-      setMensagem({ texto: "Email é obrigatório", tipo: "erro" });
-      hasErrors = true;
-    }
-
-    if (!cpfCnpj) {
-      setMensagem({ texto: "CPF/CNPJ é obrigatório", tipo: "erro" });
-      hasErrors = true;
-    }
-
-    if (!endereco) {
-      setMensagem({ texto: "Endereço é obrigatório", tipo: "erro" });
-      hasErrors = true;
-    }
-
-    if (!telefone) {
-      setMensagem({ texto: "Telefone é obrigatório", tipo: "erro" });
-      hasErrors = true;
-    }
-
-    if (!senha) {
-      setMensagem({ texto: "Senha é obrigatória", tipo: "erro" });
-      hasErrors = true;
-    }
-
-    if (!confirmarSenha) {
-      setMensagem({ texto: "Confirmação de senha é obrigatória", tipo: "erro" });
-      hasErrors = true;
-    }
-
-    if (senha !== confirmarSenha) {
+    if (formData.senha !== formData.confirmarSenha) {
       setMensagem({ texto: "As senhas não coincidem", tipo: "erro" });
-      hasErrors = true;
-    }
-
-    if (!/^\d+$/.test(telefone)) {
-      setMensagem({ texto: "Apenas números são permitidos no telefone", tipo: "erro" });
-      hasErrors = true;
-    }
-
-    if (senha.length < 6) {
-      setMensagem({ texto: "A senha deve ter pelo menos 6 caracteres", tipo: "erro" });
-      hasErrors = true;
-    }
-
-    if (hasErrors) {
       setLoading(false);
       return;
     }
 
-    // Simulação de cadastro
-    setTimeout(() => {
-      console.log('Formulário enviado com sucesso!');
-      console.log('Tipo de Usuário:', userType);
-      setMensagem({ texto: "Cadastro realizado com sucesso!", tipo: "sucesso" });
+    if (formData.senha.length < 6) {
+      setMensagem({ texto: "A senha deve ter pelo menos 6 caracteres", tipo: "erro" });
       setLoading(false);
-    }, 1500);
+      return;
+    }
+
+    try {
+      // PREPARAR DADOS PARA O BACKEND
+      const usuarioData = {
+        usu_tipo_usuario: userType === 'Agricultor' ? '1' : '2',
+        usu_nome: formData.nome,
+        usu_documento: cpfCnpj.replace(/\D/g, ''),
+        usu_email: formData.email,
+        usu_senha: formData.senha,
+        usu_endereco: formData.endereco,
+        usu_telefone: formData.telefone.replace(/\D/g, ''),
+        usu_data_cadastro: new Date().toISOString().split('T')[0],
+        
+        // Campos específicos
+        emp_razao_social: formData.razaoSocial || '',
+        emp_nome_fantasia: formData.nomeFantasia || '',
+        emp_tipo_atividade: formData.tipoAtividade || '',
+        agri_localizacao_propriedade: formData.localizacaoPropriedade || '',
+        agri_tipos_amendoim_cultivados: formData.tiposAmendoim || '',
+        agri_certificacoes: formData.certificacoes || ''
+      };
+
+      console.log('Enviando dados:', usuarioData);
+
+      const response = await fetch('http://localhost:3333/usuarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(usuarioData)
+      });
+
+      const resultado = await response.json();
+      console.log('Resposta do backend:', resultado);
+
+      if (response.ok && resultado.sucesso) {
+        setMensagem({ 
+          texto: "Cadastro realizado com sucesso! Redirecionando para login...", 
+          tipo: "sucesso" 
+        });
+        
+        // REDIRECIONAR PARA LOGIN APÓS 2 SEGUNDOS
+        setTimeout(() => {
+          router.push('/login');
+        }, 2000);
+        
+      } else {
+        setMensagem({ 
+          texto: resultado.mensagem || "Erro no cadastro. Verifique os dados.", 
+          tipo: "erro" 
+        });
+      }
+
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+      setMensagem({ 
+        texto: "Erro ao conectar com o servidor. Verifique se o backend está rodando.", 
+        tipo: "erro" 
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
@@ -108,14 +189,30 @@ function Cadastro() {
               <img src={Logo} className={styles.logo} alt="Logo" />
             </div>
             <div className={styles.illustrationContainer}>
-              <h2 className={styles.welcomeTitle}>Crie sua Conta</h2>
+              <h2 className={styles.welcomeTitle}>
+                {etapa === 1 && 'Comece sua jornada'}
+                {etapa === 2 && 'Dados pessoais'}
+                {etapa === 3 && (userType === 'Agricultor' ? 'Sua propriedade' : 'Sua empresa')}
+                {etapa === 4 && 'Localização'}
+                {etapa === 5 && 'Segurança'}
+              </h2>
               <p className={styles.welcomeText}>
-                Junte-se à nossa comunidade agrícola. Cadastre-se para acessar recursos exclusivos 
-                e conectar-se com outros profissionais do setor.
+                {etapa === 1 && "Selecione o tipo de conta que melhor representa você"}
+                {etapa === 2 && "Informe seus dados pessoais para criar sua conta"}
+                {etapa === 3 && (userType === 'Agricultor' 
+                  ? "Conte-nos mais sobre sua propriedade agrícola" 
+                  : "Informe os dados da sua empresa")}
+                {etapa === 4 && "Onde podemos encontrar você?"}
+                {etapa === 5 && "Crie uma senha segura para proteger sua conta"}
               </p>
               <div className={styles.illustration}>
                 <div className={styles.iconContainer}>
-                  <span className={styles.icon}>🌱</span>
+                  <span className={styles.icon}>
+                    {etapa === 1 ? '👋' : 
+                     etapa === 2 ? '👤' :
+                     etapa === 3 ? (userType === 'Agricultor' ? '🌱' : '🏢') :
+                     etapa === 4 ? '📍' : '🔒'}
+                  </span>
                 </div>
               </div>
             </div>
@@ -130,113 +227,278 @@ function Cadastro() {
                 </div>
               )}
               
-              <form onSubmit={validar_formulario} className={styles.formContainer}>
-                <div className={styles.formGroup}>
-                  <label htmlFor="userType" className={styles.formLabel}>Tipo de Usuário</label>
+              {/* ETAPA 1: Seleção do Tipo */}
+              {etapa === 1 && (
+                <form onSubmit={handleSubmitEtapa1} className={styles.formContainer}>
+                  <h2 className={styles.etapaTitulo}>Qual é o seu perfil?</h2>
+                  
                   <div className={styles.radioGroup}>
                     <button
                       type="button"
                       className={`${styles.userTypeButton} ${userType === 'Agricultor' ? styles.selected : ''}`}
                       onClick={() => setUserType('Agricultor')}
                     >
-                      Agricultor
+                      🌱 Agricultor
                     </button>
                     <button
                       type="button"
                       className={`${styles.userTypeButton} ${userType === 'Empresa' ? styles.selected : ''}`}
                       onClick={() => setUserType('Empresa')}
                     >
-                      Empresa
+                      🏢 Empresa
                     </button>
                   </div>
-                </div>
+                  
+                  <button 
+                    type="submit" 
+                    className={styles.submitButton}
+                  >
+                    Continuar
+                  </button>
+                </form>
+              )}
+              
+              {/* ETAPA 2: Dados Pessoais */}
+              {etapa === 2 && (
+                <form onSubmit={handleSubmitEtapa2} className={styles.formContainer}>
+                  <h2 className={styles.etapaTitulo}>Seus dados pessoais</h2>
+                  
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>
+                      {userType === 'Agricultor' ? 'Nome Completo' : 'Nome do Responsável'}
+                    </label>
+                    <input
+                      type="text"
+                      className={styles.formInput}
+                      value={formData.nome}
+                      onChange={(e) => handleInputChange('nome', e.target.value)}
+                      placeholder={userType === 'Agricultor' ? 'Seu nome completo' : 'Nome do responsável'}
+                      required
+                    />
+                  </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="email" className={styles.formLabel}>Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="seu@email.com"
-                    className={styles.formInput}
-                    required
-                  />
-                </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>Email</label>
+                    <input
+                      type="email"
+                      className={styles.formInput}
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      placeholder="seu@email.com"
+                      required
+                    />
+                  </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="cpfCnpj" className={styles.formLabel}>CPF/CNPJ</label>
-                  <input
-                    type="text"
-                    id="cpfCnpj"
-                    name="cpfCnpj"
-                    placeholder={userType === 'Agricultor' ? '000.000.000-00' : '00.000.000/0000-00'}
-                    className={styles.formInput}
-                    value={cpfCnpj}
-                    onChange={(e) => setCpfCnpj(formatCpfCnpj(e.target.value))}
-                    maxLength={userType === 'Agricultor' ? 14 : 18}
-                    required
-                  />
-                </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>
+                      {userType === 'Agricultor' ? 'CPF' : 'CNPJ'}
+                    </label>
+                    <input
+                      type="text"
+                      className={styles.formInput}
+                      value={cpfCnpj}
+                      onChange={(e) => setCpfCnpj(formatCpfCnpj(e.target.value))}
+                      placeholder={userType === 'Agricultor' ? '000.000.000-00' : '00.000.000/0000-00'}
+                      maxLength={userType === 'Agricultor' ? 14 : 18}
+                      required
+                    />
+                  </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="endereco" className={styles.formLabel}>Endereço</label>
-                  <input
-                    type="text"
-                    id="endereco"
-                    name="endereco"
-                    placeholder="Digite seu endereço completo"
-                    className={styles.formInput}
-                    required
-                  />
-                </div>
+                  <div className={styles.botoesNavegacao}>
+                    <button type="button" className={styles.botaoSecundario} onClick={voltarEtapa}>
+                      Voltar
+                    </button>
+                    <button 
+                      type="submit"
+                      className={styles.submitButton}
+                    >
+                      Continuar
+                    </button>
+                  </div>
+                </form>
+              )}
+              
+              {/* ETAPA 3: Dados Específicos */}
+              {etapa === 3 && (
+                <form onSubmit={handleSubmitEtapa3} className={styles.formContainer}>
+                  <h2 className={styles.etapaTitulo}>
+                    {userType === 'Agricultor' ? 'Sobre sua propriedade' : 'Sobre sua empresa'}
+                  </h2>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="telefone" className={styles.formLabel}>Telefone</label>
-                  <input
-                    type="tel"
-                    id="telefone"
-                    name="telefone"
-                    placeholder="(00) 00000-0000"
-                    className={styles.formInput}
-                    pattern="[0-9]*"
-                    required
-                  />
-                </div>
+                  {userType === 'Agricultor' ? (
+                    <>
+                      <div className={styles.formGroup}>
+                        <label className={styles.formLabel}>Localização da Propriedade</label>
+                        <input
+                          type="text"
+                          className={styles.formInput}
+                          value={formData.localizacaoPropriedade}
+                          onChange={(e) => handleInputChange('localizacaoPropriedade', e.target.value)}
+                          placeholder="Cidade, Estado da propriedade"
+                        />
+                      </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="senha" className={styles.formLabel}>Senha</label>
-                  <input
-                    type="password"
-                    id="senha"
-                    name="senha"
-                    placeholder="Mínimo 6 caracteres"
-                    className={styles.formInput}
-                    minLength={6}
-                    required
-                  />
-                </div>
+                      <div className={styles.formGroup}>
+                        <label className={styles.formLabel}>Tipos de Amendoim Cultivados</label>
+                        <input
+                          type="text"
+                          className={styles.formInput}
+                          value={formData.tiposAmendoim}
+                          onChange={(e) => handleInputChange('tiposAmendoim', e.target.value)}
+                          placeholder="Ex: Runner, Virginia, Valência"
+                        />
+                      </div>
 
-                <div className={styles.formGroup}>
-                  <label htmlFor="confirmarSenha" className={styles.formLabel}>Confirmar Senha</label>
-                  <input
-                    type="password"
-                    id="confirmarSenha"
-                    name="confirmarSenha"
-                    placeholder="Digite novamente a senha"
-                    className={styles.formInput}
-                    minLength={6}
-                    required
-                  />
-                </div>
+                      <div className={styles.formGroup}>
+                        <label className={styles.formLabel}>Certificações</label>
+                        <input
+                          type="text"
+                          className={styles.formInput}
+                          value={formData.certificacoes}
+                          onChange={(e) => handleInputChange('certificacoes', e.target.value)}
+                          placeholder="Ex: Orgânico, ISO, etc."
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className={styles.formGroup}>
+                        <label className={styles.formLabel}>Razão Social</label>
+                        <input
+                          type="text"
+                          className={styles.formInput}
+                          value={formData.razaoSocial}
+                          onChange={(e) => handleInputChange('razaoSocial', e.target.value)}
+                          placeholder="Razão social da empresa"
+                        />
+                      </div>
 
-                <button 
-                  type="submit" 
-                  className={styles.submitButton}
-                  disabled={loading}
-                >
-                  {loading ? 'Cadastrando...' : 'Criar Conta'}
-                </button>
-              </form>
+                      <div className={styles.formGroup}>
+                        <label className={styles.formLabel}>Nome Fantasia</label>
+                        <input
+                          type="text"
+                          className={styles.formInput}
+                          value={formData.nomeFantasia}
+                          onChange={(e) => handleInputChange('nomeFantasia', e.target.value)}
+                          placeholder="Nome fantasia da empresa"
+                        />
+                      </div>
+
+                      <div className={styles.formGroup}>
+                        <label className={styles.formLabel}>Tipo de Atividade</label>
+                        <input
+                          type="text"
+                          className={styles.formInput}
+                          value={formData.tipoAtividade}
+                          onChange={(e) => handleInputChange('tipoAtividade', e.target.value)}
+                          placeholder="Ex: Indústria alimentícia, Comércio, etc."
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  <div className={styles.botoesNavegacao}>
+                    <button type="button" className={styles.botaoSecundario} onClick={voltarEtapa}>
+                      Voltar
+                    </button>
+                    <button 
+                      type="submit"
+                      className={styles.submitButton}
+                    >
+                      Continuar
+                    </button>
+                  </div>
+                </form>
+              )}
+              
+              {/* ETAPA 4: Contato */}
+              {etapa === 4 && (
+                <form onSubmit={handleSubmitEtapa4} className={styles.formContainer}>
+                  <h2 className={styles.etapaTitulo}>Contato e localização</h2>
+
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>Endereço</label>
+                    <input
+                      type="text"
+                      className={styles.formInput}
+                      value={formData.endereco}
+                      onChange={(e) => handleInputChange('endereco', e.target.value)}
+                      placeholder="Digite seu endereço completo"
+                      required
+                    />
+                  </div>
+
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>Telefone</label>
+                    <input
+                      type="tel"
+                      className={styles.formInput}
+                      value={formData.telefone}
+                      onChange={(e) => handleInputChange('telefone', e.target.value)}
+                      placeholder="(00) 00000-0000"
+                      required
+                    />
+                  </div>
+
+                  <div className={styles.botoesNavegacao}>
+                    <button type="button" className={styles.botaoSecundario} onClick={voltarEtapa}>
+                      Voltar
+                    </button>
+                    <button 
+                      type="submit"
+                      className={styles.submitButton}
+                    >
+                      Continuar
+                    </button>
+                  </div>
+                </form>
+              )}
+              
+              {/* ETAPA 5: Senha */}
+              {etapa === 5 && (
+                <form onSubmit={handleSubmitFinal} className={styles.formContainer}>
+                  <h2 className={styles.etapaTitulo}>Crie sua senha</h2>
+
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>Senha</label>
+                    <input
+                      type="password"
+                      className={styles.formInput}
+                      value={formData.senha}
+                      onChange={(e) => handleInputChange('senha', e.target.value)}
+                      placeholder="Mínimo 6 caracteres"
+                      minLength={6}
+                      required
+                    />
+                  </div>
+
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>Confirmar Senha</label>
+                    <input
+                      type="password"
+                      className={styles.formInput}
+                      value={formData.confirmarSenha}
+                      onChange={(e) => handleInputChange('confirmarSenha', e.target.value)}
+                      placeholder="Digite novamente a senha"
+                      minLength={6}
+                      required
+                    />
+                  </div>
+
+                  <div className={styles.botoesNavegacao}>
+                    <button type="button" className={styles.botaoSecundario} onClick={voltarEtapa}>
+                      Voltar
+                    </button>
+                    <button 
+                      type="submit"
+                      className={styles.submitButton}
+                      disabled={loading}
+                    >
+                      {loading ? 'Cadastrando...' : 'Finalizar Cadastro'}
+                    </button>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>

@@ -229,6 +229,33 @@
   text-decoration: underline;
 }
 
+.formSelect {
+  width: 120px;
+  height: 25px;
+  padding: 0 10px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 5px;
+  background-color: transparent;
+  color: var(--cor-texto-login);
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.formSelect:focus 
+{
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(168, 116, 83, 0.3);
+}
+
+.formSelect option {
+  background-color: var(--card_login);
+  color: var(--cor-texto-login);
+  padding: 8px 12px;
+  font-family: 'Comfortaa', sans-serif;
+  border-radius: 5px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .loginPage {

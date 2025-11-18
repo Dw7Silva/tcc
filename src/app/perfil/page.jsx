@@ -2,14 +2,22 @@
 import styles from "./perfil.module.css";
 import { useState, useRef } from "react";
 import BarraNvg from "@/components/navbar/navbar";
+import InputsPerfil from "@/components/inputsperfil/page";
 
 export default function Perfil() {
   // States and refs
   const [selectedImage, setSelectedImage] = useState(null);
-  const [cpfCnpj, setCpfCnpj] = useState('');
-  const [cep, setCep] = useState('');
-  const [cidade, setCidade] = useState('');
-  const [estado, setEstado] = useState('');
+  const [valores, setValores] = useState({
+    cpfCnpj: '',
+    cep: '',
+    cidade: '',
+    estado: '',
+    email: '',
+    telefone: '',
+    propriedade: '',
+    descricao: ''
+  });
+  
   const [cepError, setCepError] = useState('');
   const [hasCepError, setHasCepError] = useState(false);
   const [editMode, setEditMode] = useState(false);
@@ -29,7 +37,7 @@ export default function Perfil() {
   // Fetch address by CEP
   const buscarEndereco = async (cepValue) => {
     if (!cepValue) { 
-      setCep(''); 
+      setValores(prev => ({ ...prev, cep: '' }));
       setCepError(''); 
       limparEndereco(); 
       setHasCepError(false); 
@@ -37,7 +45,7 @@ export default function Perfil() {
     }
     
     const cepLimpo = cepValue.replace(/\D/g, '');
-    setCep(cepLimpo);
+    setValores(prev => ({ ...prev, cep: cepLimpo }));
     
     if (cepLimpo.length !== 8) { 
       setCepError('CEP inválido'); 
@@ -57,8 +65,11 @@ export default function Perfil() {
         return; 
       }
       
-      setCidade(data.localidade); 
-      setEstado(data.uf); 
+      setValores(prev => ({ 
+        ...prev, 
+        cidade: data.localidade, 
+        estado: data.uf 
+      }));
       setCepError(''); 
       setHasCepError(false);
     } catch (error) { 
@@ -70,16 +81,22 @@ export default function Perfil() {
   };
 
   const limparEndereco = () => {
-    setCidade(''); 
-    setEstado('');
+    setValores(prev => ({ ...prev, cidade: '', estado: '' }));
   };
 
   const handleCepFocus = () => {
     if (hasCepError) { 
-      setCep(''); 
+      setValores(prev => ({ ...prev, cep: '' }));
       setCepError(''); 
       setHasCepError(false); 
     }
+  };
+
+  const handleInputChange = (campo, valor) => {
+    if (campo === 'cpfCnpj') {
+      valor = formatCpfCnpj(valor);
+    }
+    setValores(prev => ({ ...prev, [campo]: valor }));
   };
 
   const editar_foto_perfil = () => imageInputRef.current.click();
@@ -94,10 +111,18 @@ export default function Perfil() {
     setEditMode(!editMode);
   };
 
-  const usario =  [{id_usario: 1,nome: "Lucas",
-  }
-   ];
+  // Definição dos campos - FÁCIL DE MANTER!
+  const campos = [
+    { name: 'email', label: 'Email', tipo: 'email', placeholder: 'seu@email.com' },
+    { name: 'telefone', label: 'Telefone', tipo: 'tel', placeholder: '(00) 00000-0000' },
+    { name: 'cpfCnpj', label: 'CPF/CNPJ', tipo: 'cpfCnpj', placeholder: '000.000.000-00', readOnly: true },
+    { name: 'propriedade', label: 'Nome da Propriedade', tipo: 'text', placeholder: 'Sua propriedade' },
+    { name: 'cep', label: 'CEP', tipo: 'cep', placeholder: '00000-000' },
+    { name: 'cidade', label: 'Cidade', tipo: 'text', placeholder: 'Sua cidade', readOnly: true },
+    { name: 'estado', label: 'Estado', tipo: 'text', placeholder: 'UF', readOnly: true }
+  ];
 
+  const usuario = [{ id_usuario: 1, nome: "Lucas" }];
 
   return (
     <>
@@ -106,8 +131,8 @@ export default function Perfil() {
         
         <div className={styles.container}>
           <div className={styles.profileCard}>
-            <div className={styles.profileHeader} key={usario[0].id_usario}>
-              <h2> {usario[0].nome}</h2>
+            <div className={styles.profileHeader} key={usuario[0].id_usuario}>
+              <h2>{usuario[0].nome}</h2>
               <button 
                 onClick={toggleEditMode}
                 className={styles.editButton}
@@ -143,96 +168,17 @@ export default function Perfil() {
                 />
               </div>
               
-              <div className={styles.infoGrid}>
-                 <div className={styles.formGroup}>
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="seu@email.com"
-                    className={styles.infoInput}
-                    readOnly={!editMode}
-                  />
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="telefone">Telefone</label>
-                  <input
-                    type="tel"
-                    id="telefone"
-                    placeholder="(00) 00000-0000"
-                    className={styles.infoInput}
-                    readOnly={!editMode}
-                  />
-                </div>
-                
-               
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="cpfCnpj">CPF/CNPJ</label>
-                  <input
-                    id="cpfCnpj"
-                    name="cpfCnpj"
-                    value={cpfCnpj}
-                    onChange={(e) => setCpfCnpj(formatCpfCnpj(e.target.value))}
-                    className={styles.infoInput}
-                    placeholder="000.000.000-00"
-                    readOnly
-                  />
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="propriedade">Nome da Propriedade</label>
-                  <input
-                    type="text"
-                    id="propriedade"
-                    placeholder="Sua propriedade"
-                    className={styles.infoInput}
-                    readOnly={!editMode}
-                  />
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="cep">CEP</label>
-                  <input
-                    type="text"
-                    id="cep"
-                    placeholder="00000-000"
-                    className={`${styles.infoInput} ${hasCepError ? styles.inputError : ''}`}
-                    value={cep}
-                    onChange={(e) => setCep(e.target.value)}
-                    onBlur={(e) => buscarEndereco(e.target.value)}
-                    onFocus={handleCepFocus}
-                    maxLength={9}
-                    readOnly={!editMode}
-                  />
-                  {cepError && <span className={styles.errorMessage}>{cepError}</span>}
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="cidade">Cidade</label>
-                  <input
-                    type="text"
-                    id="cidade"
-                    placeholder="Sua cidade"
-                    className={styles.infoInput}
-                    value={cidade}
-                    readOnly
-                  />
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="estado">Estado</label>
-                  <input
-                    type="text"
-                    id="estado"
-                    placeholder="UF"
-                    className={styles.infoInput}
-                    value={estado}
-                    readOnly
-                  />
-                </div>
-              </div>
+              {/* USO DO COMPONENTE NOVO - MUITO MAIS LIMPO! */}
+              <InputsPerfil
+                campos={campos}
+                editMode={editMode}
+                onCepBlur={buscarEndereco}
+                onCepFocus={handleCepFocus}
+                cepError={cepError}
+                hasCepError={hasCepError}
+                valores={valores}
+                onChange={handleInputChange}
+              />
               
               <div className={styles.formGroup}>
                 <label htmlFor="descricao">Descrição (Opcional)</label>
@@ -241,6 +187,8 @@ export default function Perfil() {
                   className={styles.description}
                   placeholder="Conte um pouco sobre você ou sua propriedade..."
                   readOnly={!editMode}
+                  value={valores.descricao}
+                  onChange={(e) => handleInputChange('descricao', e.target.value)}
                 ></textarea>
               </div>
             </div>
