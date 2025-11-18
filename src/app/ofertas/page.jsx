@@ -18,7 +18,7 @@ export default function Ofertas() {
 
   async function fetchOfertas() {
     try {
-      const response = await api.get("/ofertas/filtro?limit=6");
+      const response = await api.get("/ofertas");
       if (response.status === 200) {
         setOfertas(response.data.dados);
       }
@@ -27,11 +27,6 @@ export default function Ofertas() {
     }
   }
 
-  const ofertasAtivas = useMemo(() => {
-    return (ofertas || [])
-      .filter((d) => !!d.oferta_ativa)
-      .sort((a, b) => new Date(b.oferta_data_publicacao) - new Date(a.oferta_data_publicacao));
-  }, [ofertas]);
 
   const gridRef = useRef(null);
 
@@ -84,7 +79,7 @@ export default function Ofertas() {
                 <IoIosArrowBack />
               </button>
               <div className={styles.demandasGrid} ref={gridRef}>
-                {ofertasAtivas.map((oferta) => (
+                {ofertas.map((oferta) => (
                 <Cardsofertas key={oferta.oferta_id} oferta={oferta} />
                 ))}
               </div>

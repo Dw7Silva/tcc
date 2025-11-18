@@ -1,13 +1,33 @@
-import React from 'react';
-import styles from './descdemanda.module.css';
-import BarraNvg from '@/components/navbar/navbar';
-import Link from 'next/link';
+// src/components/OfertaDescricao.jsx
+"use client";
+import React from "react";
+import styles from "./descoferta.module.css";
+import BarraNvg from "@/components/navbar/navbar";
+import Link from "next/link";
 
-const OfertaDescricao = () => {
- 
+export default function OfertaDescricao({ oferta }) {
+  if (!oferta) {
+    return (
+      <>
+        <BarraNvg />
+        <div className={styles.container}>
+          <div className={styles.demandaContainer}>
+           
+          </div>
+        </div>
+      </>
+    );
+  }
+  console.log(oferta); 
   
-   
-  const imagemdemanda = "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg"
+  const agricultor = oferta.agri_nome;
+  const variedade = oferta.amen_variedade;
+  const quantidade = oferta.oferta_quantidade;
+  const preco = oferta.oferta_preco;
+  const informacoes = oferta.oferta_outras_informacoes;
+  const dataColheita = oferta.oferta_data_colheita;
+  const data_publicacao = oferta.oferta_data_publicacao; 
+  const imagemOferta = oferta.oferta_img;
 
   return (
     <>
@@ -16,74 +36,65 @@ const OfertaDescricao = () => {
       <div className={styles.container}>
         <div className={styles.demandaContainer}>
           <div className={styles.demandaHeader}>
-            <h1 className={styles.productTitle}>Amendoim Torrado Tipo 1</h1>
+            <div>
+              <p className={styles.productTitle}>{agricultor}</p>
+            </div>
 
             <div className={styles.imageContainer}>
               <img
-                src={imagemdemanda}
-                alt="Imagem do produto"
+                src={imagemOferta}
                 className={styles.productImage}
+                loading="lazy"
+                alt={`Oferta de ${variedade}`}
               />
             </div>
           </div>
 
           <div className={styles.demandaContent}>
             <div className={styles.infoBox}>
-              <h2>Prévia do Produto</h2>
+              <h2>Detalhes da Oferta</h2>
 
               <div className={styles.infoGrid}>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Preço por kilo:</span>
-                  <span className={styles.infoValue}>R$220,00</span>
+                  <span className={styles.infoLabel}>Preço:</span>
+                  <span className={styles.infoValue}>R$ {preco}</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Disponibilidade:</span>
-                  <span className={styles.infoValue}>Disponível</span>
+                  <span className={styles.infoLabel}>Quantidade:</span>
+                  <span className={styles.infoValue}>{quantidade} kg</span>
                 </div>
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Quantidade KG:</span>
-                  <span className={styles.infoValue}>1000 kg</span>
+                  <span className={styles.infoLabel}>Data de colheita:</span>
+                  <span className={styles.infoValue}>{new Date(dataColheita).toLocaleDateString('pt-BR')}</span>
                 </div>
+                
                 <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>empresa:</span>
-                  <span className={styles.infoValue}>Amenco</span>
+                  <span className={styles.infoLabel}>Variedade:</span>
+                  <span className={styles.infoValue}>{variedade}</span>
                 </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Localização:</span>
-                  <span className={styles.infoValue}>Normal do Paraná</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>tipo:</span>
-                  <span className={styles.infoValue}>sem pele</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>espécie:</span>
-                  <span className={styles.infoValue}>valencia</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>CEP:</span>
-                  <span className={styles.infoValue}>15455-800</span>
+                 <div className={styles.infoRow}>
+                  <span>
+                    Publicado em: {new Date(data_publicacao).toLocaleDateString('pt-BR')}
+                  </span>
                 </div>
               </div>
             </div>
 
             <div className={styles.editorSection}>
-              <h2>Editor</h2>
+              <h2>Observações</h2>
               <div className={styles.editorPlaceholder}>
-                <p>Área para edição de detalhes adicionais do produto...</p>
+                <p>{informacoes}</p>
               </div>
             </div>
           </div>
 
           <div className={styles.actionButtons}>
-            <Link href="/proposta" >
-            <button className={styles.secondaryButton}>Enviar proposta</button>
+            <Link href="/negociacao">
+              <button className={styles.secondaryButton}>Iniciar negociação</button>
             </Link>
           </div>
         </div>
       </div>
     </>
   );
-};
-
-export default OfertaDescricao;
+}
