@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [tipoUsuario, setTipoUsuario] = useState('1'); // 1 = Agricultor, 2 = Empresa
+  const [tipoUsuario, setTipoUsuario] = useState('1');
   const [loading, setLoading] = useState(false);
   const [mensagem, setMensagem] = useState({ texto: "", tipo: "" });
   const router = useRouter();
@@ -17,7 +17,6 @@ function Login() {
     setLoading(true);
     setMensagem({ texto: "", tipo: "" });
 
-    // Validações básicas
     if (!email || !senha) {
       setMensagem({ texto: "Preencha todos os campos", tipo: "erro" });
       setLoading(false);
@@ -25,16 +24,14 @@ function Login() {
     }
 
     try {
-      // Dados para enviar ao backend
       const loginData = {
         email: email,
         senha: senha,
-        tipo: tipoUsuario // 1 ou 2
+        tipo: tipoUsuario
       };
 
       console.log('Enviando dados de login:', loginData);
 
-      // Chamada para a API de login
       const response = await fetch('http://localhost:3333/usuarios/login', {
         method: 'POST',
         headers: {
@@ -48,15 +45,13 @@ function Login() {
       if (resultado.sucesso) {
         setMensagem({ texto: "Login realizado com sucesso!", tipo: "sucesso" });
         
-        // Salvar dados do usuário no localStorage
         localStorage.setItem('usuario', JSON.stringify(resultado.dados));
-        localStorage.setItem('token', Date.now().toString()); // Simulação de token
+        localStorage.setItem('token', Date.now().toString());
         
         console.log('Usuário logado:', resultado.dados);
         
-        // Redirecionar para a tela "inicio"
         setTimeout(() => {
-          router.push('/inicio'); // ✅ Redireciona para a tela inicio
+          router.push('/inicio');
         }, 1000);
         
       } else {
@@ -75,7 +70,6 @@ function Login() {
 
   return (
     <div className={styles.loginPage}>
-      {/* Left Side - Branding */}
       <div className={styles.brandingSection}>
         <div className={styles.logoContainer}>
           <img 
@@ -90,7 +84,6 @@ function Login() {
         </div>
       </div>
 
-      {/* Right Side - Login Form */}
       <div className={styles.formSection}>
         <form className={styles.loginForm} onSubmit={handleSubmit}>
           <h2 className={styles.formTitle}>Login</h2>
