@@ -168,18 +168,22 @@
 }
 
 .botaoSecundario {
-  background: #6c757d;
+  margin-top:10px;
+  background:#A87453;
   color: white;
   border: none;
   padding: 12px 24px;
+  height:50px;
   border-radius: 8px;
   cursor: pointer;
   flex: 1;
   font-family: 'Comfortaa', cursive;
+  transition: var(--transition);
 }
 
 .botaoSecundario:hover {
-  background: #5a6268;
+  background: #6b4c3a;
+ transform: translateY(-2px);
 }
 
 .progressoContainer {
@@ -251,8 +255,8 @@
   padding: 12px 20px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
-  background: #c0bfbf;
-  color: var(--cadastro-cor-dark);
+  background:#A87453;
+  color: var(--cadastro-cor-light);
   cursor: pointer;
   transition: var(--transition);
   font-family: 'Comfortaa', cursive;
@@ -261,17 +265,19 @@
 }
 
 .userTypeButton:hover {
-  background: #e8e8e8;
+  background:  #6b4c3a;
   transform: translateY(-2px);
 }
 
 .userTypeButton.selected {
-  background: var(--cadastro-cor-concluida);
-  color: rgb(243, 211, 211);
-  border-color: var(--cadastro-cor-concluida);
+  background:  #6b4c3a;
+  color: rgb(247, 247, 247);
+  
   box-shadow: 0 4px 8px rgba(107, 142, 35, 0.3);
 }
-
+.userTypeButton.selected:hover{
+  background-color:#A87453; 
+}
 /* Botão de submit */
 .submitButton {
   width: 100%;
@@ -291,6 +297,7 @@
 .submitButton:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(139, 90, 60, 0.3);
+  
 }
 
 .submitButton:disabled {
