@@ -328,13 +328,13 @@ function Cadastro() {
                   {userType === 'Agricultor' ? (
                     <>
                       <div className={styles.formGroup}>
-                        <label className={styles.formLabel}>Localização da Propriedade</label>
+                        <label className={styles.formLabel}>Nome da propriedade</label>
                         <input
                           type="text"
                           className={styles.formInput}
                           value={formData.localizacaoPropriedade}
                           onChange={(e) => handleInputChange('localizacaoPropriedade', e.target.value)}
-                          placeholder="Cidade, Estado da propriedade"
+                          placeholder="Fazendo São João"
                         />
                       </div>
 

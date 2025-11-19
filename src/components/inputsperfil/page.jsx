@@ -1,5 +1,5 @@
 "use client";
-import styles from "./InputsPerfil.module.css";
+import styles from "./InputsPerfil.module.css"
 
 export default function InputsPerfil({
   campos = [],

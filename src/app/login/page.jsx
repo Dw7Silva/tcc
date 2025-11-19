@@ -45,6 +45,14 @@ function Login() {
       if (resultado.sucesso) {
         setMensagem({ texto: "Login realizado com sucesso!", tipo: "sucesso" });
         
+        // SALVAR COM A CHAVE CORRETA para o perfil
+        localStorage.setItem('usuarioLogado', JSON.stringify({
+          id: resultado.dados.id,
+          nome: resultado.dados.nome,
+          tipo: resultado.dados.tipo
+        }));
+        
+        // Manter compatibilidade com outras partes do sistema
         localStorage.setItem('usuario', JSON.stringify(resultado.dados));
         localStorage.setItem('token', Date.now().toString());
         
