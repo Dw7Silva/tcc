@@ -10,14 +10,14 @@ export default function Perfil() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [valores, setValores] = useState({
     cpfCnpj: '',
-    cep: '',
-    cidade: '',
-    estado: '',
     email: '',
     telefone: '',
     propriedade: '',
     descricao: '',
-    endereco: ''
+    cep: '',
+    endereco: '',
+    cidade: '',
+    estado: ''
   });
   
   const [cepError, setCepError] = useState('');
@@ -25,27 +25,39 @@ export default function Perfil() {
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const [usuario, setUsuario] = useState(null);
+  const [mensagem, setMensagem] = useState({ texto: "", tipo: "" });
+  const [salvando, setSalvando] = useState(false);
   const imageInputRef = useRef(null);
 
-  // Default profile image
-  const fotoPerfil = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
+  // Função para normalizar a URL da imagem
+  const normalizarUrlImagem = (urlOuNome) => {
+    if (!urlOuNome) return null;
+    
+    if (urlOuNome.includes('://')) {
+      if (urlOuNome.includes('/public/usuarios/')) {
+        const nomeArquivo = urlOuNome.split('/').pop();
+        return `http://localhost:3333/uploads/usuarios/${nomeArquivo}`;
+      }
+      return urlOuNome;
+    }
+    
+    return `http://localhost:3333/uploads/usuarios/${urlOuNome}`;
+  };
 
-  // Buscar dados do usuário ao carregar a página
+  // Função para adicionar timestamp e evitar cache
+  const adicionarTimestamp = (url) => {
+    return url ? `${url}?t=${Date.now()}` : null;
+  };
+
   useEffect(() => {
-    console.log('Dados do localStorage:', {
-      usuarioLogado: localStorage.getItem('usuarioLogado'),
-      usuario: localStorage.getItem('usuario')
-    });
     buscarDadosUsuario();
   }, []);
 
   const buscarDadosUsuario = async () => {
     try {
-      // Buscar de forma flexível - tenta 'usuarioLogado' primeiro, depois 'usuario'
       let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
       
       if (!usuarioLogado) {
-        // Fallback para a chave 'usuario'
         const usuarioData = JSON.parse(localStorage.getItem('usuario'));
         if (usuarioData) {
           usuarioLogado = {
@@ -53,23 +65,22 @@ export default function Perfil() {
             nome: usuarioData.nome,
             tipo: usuarioData.tipo
           };
-          // Salva também como 'usuarioLogado' para futuras requisições
           localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
         }
       }
 
-      if (!usuarioLogado || !usuarioLogado.id) {
-        console.error('Usuário não está logado');
+      if (!usuarioLogado?.id) {
         router.push('/login');
         return;
       }
 
-      console.log('Buscando dados do usuário ID:', usuarioLogado.id);
-
       const response = await fetch(`http://localhost:3333/usuarios/${usuarioLogado.id}`);
-      const resultado = await response.json();
+      
+      if (!response.ok) {
+        throw new Error('Erro na resposta do servidor');
+      }
 
-      console.log('Resposta do backend:', resultado);
+      const resultado = await response.json();
 
       if (resultado.sucesso && resultado.dados) {
         const dados = resultado.dados;
@@ -81,42 +92,36 @@ export default function Perfil() {
           dados.documento ? 
           dados.documento.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5') : '';
 
-        // Preencher os valores dos campos
         setValores({
           cpfCnpj: documentoFormatado,
           email: dados.email || '',
           telefone: dados.telefone || '',
           propriedade: dados.nomeFantasia || dados.localizacaoPropriedade || dados.nome || '',
-          endereco: dados.endereco || '',
           descricao: dados.outrasInformacoes || '',
-          cep: '',
-          cidade: '',
-          estado: ''
+          cep: dados.cep || '',
+          endereco: dados.endereco || '',
+          cidade: dados.cidade || '',
+          estado: dados.estado || ''
         });
 
+        // Atualizar imagem
         if (dados.imagem) {
-          setSelectedImage(dados.imagem);
-        }
-
-        // Extrair CEP do endereço (se existir)
-        if (dados.endereco) {
-          const cepMatch = dados.endereco.match(/\d{5}-?\d{3}/);
-          if (cepMatch) {
-            buscarEndereco(cepMatch[0]);
-          }
+          const urlNormalizada = normalizarUrlImagem(dados.imagem);
+          setSelectedImage(adicionarTimestamp(urlNormalizada));
+        } else {
+          setSelectedImage(null);
         }
 
       } else {
-        console.error('Erro ao buscar dados:', resultado.mensagem);
+        setMensagem({ texto: resultado.mensagem || "Erro ao carregar dados", tipo: "erro" });
       }
     } catch (error) {
-      console.error('Erro na requisição:', error);
+      setMensagem({ texto: "Erro ao conectar com o servidor", tipo: "erro" });
     } finally {
       setLoading(false);
     }
   };
 
-  // Format CPF/CNPJ
   const formatCpfCnpj = (value) => {
     const formattedValue = value.replace(/\D/g, '');
     return formattedValue.length <= 11 ? 
@@ -124,23 +129,19 @@ export default function Perfil() {
       formattedValue.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
   };
 
-  // Fetch address by CEP
   const buscarEndereco = async (cepValue) => {
     if (!cepValue) { 
       setValores(prev => ({ ...prev, cep: '' }));
       setCepError(''); 
-      limparEndereco(); 
       setHasCepError(false); 
       return; 
     }
     
     const cepLimpo = cepValue.replace(/\D/g, '');
-    setValores(prev => ({ ...prev, cep: cepLimpo }));
     
     if (cepLimpo.length !== 8) { 
       setCepError('CEP inválido'); 
       setHasCepError(true); 
-      limparEndereco(); 
       return; 
     }
     
@@ -151,12 +152,12 @@ export default function Perfil() {
       if (data.erro) { 
         setCepError('CEP não encontrado'); 
         setHasCepError(true); 
-        limparEndereco(); 
         return; 
       }
       
       setValores(prev => ({ 
         ...prev, 
+        cep: cepLimpo,
         cidade: data.localidade, 
         estado: data.uf 
       }));
@@ -165,13 +166,7 @@ export default function Perfil() {
     } catch (error) { 
       setCepError('Erro ao buscar CEP'); 
       setHasCepError(true); 
-      limparEndereco(); 
-      console.error(error); 
     }
-  };
-
-  const limparEndereco = () => {
-    setValores(prev => ({ ...prev, cidade: '', estado: '' }));
   };
 
   const handleCepFocus = () => {
@@ -189,78 +184,109 @@ export default function Perfil() {
     setValores(prev => ({ ...prev, [campo]: valor }));
   };
 
-  const editar_foto_perfil = () => imageInputRef.current.click();
+  const editar_foto_perfil = () => {
+    if (editMode) {
+      imageInputRef.current.click();
+    }
+  };
 
   const mudar_foto_perfil = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      setSelectedImage(URL.createObjectURL(event.target.files[0]));
+    const file = event.target.files?.[0];
+    
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      setMensagem({ texto: "A imagem deve ter no máximo 5MB", tipo: "erro" });
+      return;
     }
+    
+    if (!file.type.startsWith('image/')) {
+      setMensagem({ texto: "Por favor, selecione uma imagem válida", tipo: "erro" });
+      return;
+    }
+    
+    const imageUrl = URL.createObjectURL(file);
+    setSelectedImage(imageUrl);
+    setMensagem({ texto: "Imagem selecionada. Clique em SALVAR para confirmar.", tipo: "sucesso" });
   };
 
   const toggleEditMode = () => {
     if (editMode) {
-      // Se estava editando e clicou em "Salvar"
       salvarAlteracoes();
+    } else {
+      setMensagem({ texto: "", tipo: "" });
     }
     setEditMode(!editMode);
   };
 
   const salvarAlteracoes = async () => {
-    try {
-      // Buscar ID do usuário de forma flexível
-      let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-      if (!usuarioLogado) {
-        const usuarioData = JSON.parse(localStorage.getItem('usuario'));
-        if (usuarioData) {
-          usuarioLogado = { id: usuarioData.id };
-        }
-      }
+    setSalvando(true);
+    setMensagem({ texto: "", tipo: "" });
 
-      if (!usuarioLogado) {
-        console.error('Usuário não identificado');
+    try {
+      const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+      if (!usuarioLogado?.id) {
+        setMensagem({ texto: "Usuário não identificado", tipo: "erro" });
         return;
       }
 
-      const dadosAtualizacao = {
-        nome: valores.propriedade || usuario?.nome,
-        email: valores.email,
-        telefone: valores.telefone,
-        endereco: valores.endereco,
-        outrasInformacoes: valores.descricao
-      };
+      const formData = new FormData();
+      
+      formData.append('nome', valores.propriedade || usuario?.nome);
+      formData.append('email', valores.email);
+      formData.append('telefone', valores.telefone);
+      formData.append('endereco', valores.endereco);
+      formData.append('outrasInformacoes', valores.descricao);
+      formData.append('cep', valores.cep);
+      formData.append('cidade', valores.cidade);
+      formData.append('estado', valores.estado);
 
-      console.log('Enviando atualização:', dadosAtualizacao);
+      if (imageInputRef.current?.files[0]) {
+        formData.append('imagem', imageInputRef.current.files[0]);
+      }
 
       const response = await fetch(`http://localhost:3333/usuarios/${usuarioLogado.id}`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dadosAtualizacao)
+        body: formData
       });
 
       const resultado = await response.json();
 
       if (resultado.sucesso) {
-        console.log('Dados atualizados com sucesso!');
-        // Atualizar também no localStorage se necessário
-        const usuarioAtualizado = JSON.parse(localStorage.getItem('usuarioLogado') || localStorage.getItem('usuario'));
-        if (usuarioAtualizado) {
-          usuarioAtualizado.nome = dadosAtualizacao.nome;
-          localStorage.setItem('usuarioLogado', JSON.stringify(usuarioAtualizado));
+        if (resultado.dados?.imagem) {
+          const novaUrlImagem = normalizarUrlImagem(resultado.dados.imagem);
+          setSelectedImage(adicionarTimestamp(novaUrlImagem));
         }
         
-        // Recarregar os dados
-        await buscarDadosUsuario();
+        setMensagem({ texto: "Dados atualizados com sucesso!", tipo: "sucesso" });
+        
+        const usuarioAtualizado = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
+        usuarioAtualizado.nome = valores.propriedade || usuario?.nome;
+        if (resultado.dados?.imagem) {
+          usuarioAtualizado.imagem = resultado.dados.imagem;
+        }
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioAtualizado));
+        
+        setUsuario(prev => prev ? { ...prev, ...resultado.dados } : null);
+        
+        setTimeout(() => setEditMode(false), 2000);
+        
       } else {
-        console.error('Erro ao atualizar:', resultado.mensagem);
+        setMensagem({ texto: resultado.mensagem || "Erro ao atualizar dados", tipo: "erro" });
       }
     } catch (error) {
-      console.error('Erro ao salvar alterações:', error);
+      setMensagem({ texto: "Erro de conexão com o servidor", tipo: "erro" });
+    } finally {
+      setSalvando(false);
     }
   };
 
-  // Definição dos campos
+  const cancelarEdicao = () => {
+    setEditMode(false);
+    setMensagem({ texto: "", tipo: "" });
+    buscarDadosUsuario();
+  };
+
   const campos = [
     { name: 'email', label: 'Email', tipo: 'email', placeholder: 'seu@email.com' },
     { name: 'telefone', label: 'Telefone', tipo: 'tel', placeholder: '(00) 00000-0000' },
@@ -295,77 +321,115 @@ export default function Perfil() {
   }
 
   return (
-    <>
-      <div className={styles.pageContainer}>
-        <BarraNvg />
-        
-        <div className={styles.container}>
-          <div className={styles.profileCard}>
-            <div className={styles.profileHeader}>
+    <div className={styles.pageContainer}>
+      <BarraNvg />
+      
+      <div className={styles.container}>
+        <div className={styles.profileCard}>
+          <div className={styles.profileHeader}>
+            {/* CORREÇÃO: Mostrar nome do usuário e propriedade separadamente */}
+            <div className={styles.nomeContainer}>
               <h2>{usuario.nome}</h2>
-              <button 
-                onClick={toggleEditMode}
-                className={styles.editButton}
+              {usuario.localizacaoPropriedade && (
+                <p className={styles.propriedadeNome}>{usuario.localizacaoPropriedade}</p>
+              )}
+            </div>
+            <div className={styles.botoesAcao}>
+              {editMode ? (
+                <>
+                  <button 
+                    onClick={cancelarEdicao}
+                    className={styles.cancelButton}
+                    disabled={salvando}
+                  >
+                    Cancelar
+                  </button>
+                  <button 
+                    onClick={toggleEditMode}
+                    className={styles.saveButton}
+                    disabled={salvando}
+                  >
+                    {salvando ? 'Salvando...' : 'Salvar'}
+                  </button>
+                </>
+              ) : (
+                <button 
+                  onClick={toggleEditMode}
+                  className={styles.editButton}
+                >
+                  Editar
+                </button>
+              )}
+            </div>
+          </div>
+          
+          <div className={styles.profileContent}>
+            {mensagem.texto && (
+              <div className={`${styles.mensagem} ${styles[mensagem.tipo]}`}>
+                {mensagem.texto}
+              </div>
+            )}
+            
+            <div className={styles.profileImageContainer}>
+              <div 
+                className={`${styles.profileImage} ${editMode ? styles.editable : ''}`}
+                onClick={editar_foto_perfil}
               >
-                {editMode ? 'Salvar' : 'Editar'}
-              </button>
+                <img
+                  src={selectedImage || "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik03NSA0M0M4Mi45NTU5IDQzIDg5LjM3NSA0OS40MTkxIDg5LjM3NSA1Ny4zNzVDODkuMzc1IDY1LjMzMDkgODIuOTU1OSA3MS43NSA3NSA3MS43NUM2Ny4wNDQxIDcxLjc1IDYwLjYyNSA2NS4zMzA5IDYwLjYyNSA1cy4zNzVDNjAuNjI1IDQ5LjQxOTEgNjcuMDQ0MSA0MyA3NSA0M1pNNzUgODcuNUM4OC44NDUyIDg3LjUgMTAwIDk5LjE2MDkgMTAwIDExMy41VjExNC4yNUMxMDAgMTE2LjU8L3N2Zz4K"}
+                  alt="Foto de Perfil"
+                  className={styles.perfilImg}
+                  key={selectedImage}
+                  onError={(e) => {
+                    e.target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNGM0Y0RjYiLz48L3N2Zz4=";
+                  }}
+                />
+                {editMode && (
+                  <div className={styles.editOverlay}>
+                    <span>Alterar Foto</span>
+                  </div>
+                )}
+              </div>
+              <input
+                type="file"
+                id="imageUpload"
+                accept="image/*"
+                onChange={mudar_foto_perfil}
+                ref={imageInputRef}
+                style={{ display: 'none' }}
+              />
+              {editMode && (
+                <p className={styles.imageHint}>Clique na imagem para alterar</p>
+              )}
             </div>
             
-            <div className={styles.profileContent}>
-              <div className={styles.profileImageContainer}>
-                <div 
-                  className={styles.profileImage} 
-                  onClick={editar_foto_perfil}
-                >
-                  <img
-                    src={selectedImage || usuario.imagem || fotoPerfil}
-                    alt="Foto de Perfil"
-                    className={styles.perfilImg}
-                  />
-                  {editMode && (
-                    <div className={styles.editOverlay}>
-                      <span>Alterar Foto</span>
-                    </div>
-                  )}
-                </div>
-                <input
-                  type="file"
-                  id="imageUpload"
-                  accept="image/*"
-                  onChange={mudar_foto_perfil}
-                  ref={imageInputRef}
-                  style={{ display: 'none' }}
-                />
-              </div>
-              
-              <InputsPerfil
-                campos={campos}
-                editMode={editMode}
-                onCepBlur={buscarEndereco}
-                onCepFocus={handleCepFocus}
-                cepError={cepError}
-                hasCepError={hasCepError}
-                valores={valores}
-                onChange={handleInputChange}
+            <InputsPerfil
+              campos={campos}
+              editMode={editMode}
+              onCepBlur={buscarEndereco}
+              onCepFocus={handleCepFocus}
+              cepError={cepError}
+              hasCepError={hasCepError}
+              valores={valores}
+              onChange={handleInputChange}
+            />
+            
+            <div className={styles.formGroup}>
+              <label htmlFor="descricao">
+                {usuario.tipo === 1 ? 'Sobre a Propriedade' : 'Sobre a Empresa'} (Opcional)
+              </label>
+              <textarea
+                id="descricao"
+                className={styles.description}
+                placeholder={usuario.tipo === 1 ? 'Conte um pouco sobre sua propriedade...' : 'Conte um pouco sobre sua empresa...'}
+                readOnly={!editMode}
+                value={valores.descricao}
+                onChange={(e) => handleInputChange('descricao', e.target.value)}
               />
-              
-              <div className={styles.formGroup}>
-                <label htmlFor="descricao">
-                  {usuario.tipo === 1 ? 'Sobre a Propriedade' : 'Sobre a Empresa'} (Opcional)
-                </label>
-                <textarea
-                  id="descricao"
-                  className={styles.description}
-                  placeholder={usuario.tipo === 1 ? 'Conte um pouco sobre sua propriedade...' : 'Conte um pouco sobre sua empresa...'}
-                  readOnly={!editMode}
-                  value={valores.descricao}
-                  onChange={(e) => handleInputChange('descricao', e.target.value)}
-                ></textarea>
-              </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
