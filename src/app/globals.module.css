@@ -1,14 +1,24 @@
-html, body {
-  height: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+
+:root {
+  /* Tema Claro */
+
+
+  --cor-fundo:#e2dad2;
+  
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-fundo: #313030;
+  }
+}
+
+
+
+body {
   margin: 0;
-}
-
-.page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.content {
-  flex: 1; /* empurra o footer para baixo */
+  font-family: 'Comfortaa', sans-serif;
+  background-color:var(--cor-fundo);
+  transition: var(--transition);
 }

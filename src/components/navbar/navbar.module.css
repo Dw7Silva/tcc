@@ -38,15 +38,7 @@
   }
 }
 
-body {
-  margin: 0;
-  font-family: 'Comfortaa', sans-serif;
-  font-size: var(--tamanho-fonte-base);
-  min-height: 100vh;
-  color: var(--cor-texto);
-  
-  transition: background-color 0.3s, color 0.3s;
-}
+
 
 .navbar {
   position: relative;
@@ -60,7 +52,7 @@ body {
   padding: 0 var(--padding-lateral);
   height: var(--altura-navbar);
   z-index: 1000;
-  transition: background-color 0.3s;
+
 }
 
 .logoContainer {

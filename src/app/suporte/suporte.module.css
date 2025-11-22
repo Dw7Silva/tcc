@@ -29,7 +29,7 @@
     --cor-borda-suporte: rgba(191, 167, 127, 0.6);
     --cor-card-suporte: #2A2A2A;
     --cor-sombra-suporte: rgba(0, 0, 0, 0.4);
-    --cor-fundo-suporte: #1C1B1A;
+    --cor-fundo-suporte: transparent;
     --cor-destaque-suporte: #BFA77F;
     --cor-chat-suporte: #262524;
     --cor-input-suporte: #333;
@@ -37,13 +37,7 @@
   }
 }
 
-body {
-  margin: 0;
-  font-family: 'Comfortaa', sans-serif;
-  background-color: var(--cor-fundo-suporte);
-  color: var(--cor-texto-suporte);
-  transition: var(--transition);
-}
+
 
 .container {
   overflow-x: hidden;
@@ -53,8 +47,7 @@ body {
   justify-content: flex-start;
   min-height: 100vh;
   padding: 2%;
-  margin-top: 10px;
-  border-radius: 16px;
+  background-color: var(--cor-fundo-suporte)  ;
  
 }
 

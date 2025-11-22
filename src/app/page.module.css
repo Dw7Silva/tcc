@@ -1,0 +1,7 @@
+body {
+  margin: 0;
+  font-family: 'Comfortaa', sans-serif;
+  background-color: transparent;
+  color: var(--cor-texto-suporte);
+  transition: var(--transition);
+}
