@@ -146,113 +146,63 @@ export default function CriarDemanda() {
   // -----------------------------
   // 🔥 SUBMIT FORM COMPLETO COM DEBUG
   // -----------------------------
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
+  setLoading(true);
 
-    try {
-      console.log('\n🚀 ========== INICIANDO ENVIO ==========');
-      
-      // 🔍 DEBUG DA IMAGEM NO STATE
-      console.log('📷 formData.imagem:', formData.imagem);
-      console.log('📷 Tipo:', typeof formData.imagem);
-      console.log('📷 É File?', formData.imagem instanceof File);
-      console.log('📷 É Blob?', formData.imagem instanceof Blob);
-      
-      if (formData.imagem) {
-        console.log('📷 Detalhes do arquivo:', {
-          name: formData.imagem.name,
-          type: formData.imagem.type,
-          size: formData.imagem.size,
-          lastModified: formData.imagem.lastModified
-        });
-      } else {
-        console.log('❌ IMAGEM É NULL/UNDEFINED NO STATE');
-      }
-
-      // Validações
-      if (!empresaId) {
-        setError("Erro: empresa não identificada. Faça login novamente.");
-        setLoading(false);
-        return;
-      }
-
-      if (!formData.amen_id || !formData.quantidade || !formData.preco_maximo || !formData.data_entrega) {
-        setError("Preencha todos os campos obrigatórios (*).");
-        setLoading(false);
-        return;
-      }
-
-      // 📦 MONTA FORMDATA
-      const fd = new FormData();
-      
-      // Campos normais
-      fd.append('emp_id', empresaId);
-      fd.append('amen_id', formData.amen_id);
-      fd.append('quantidade', formData.quantidade);
-      fd.append('preco_maximo', formData.preco_maximo);
-      fd.append('data_entrega', formData.data_entrega);
-      fd.append('informacoes', formData.informacoes || '');
-      fd.append('data_publi', formData.data_publi);
-      fd.append('ativa', '1');
-
-      // 📤 IMAGEM - CAMPO CRÍTICO
-      if (formData.imagem) {
-        console.log('📤 ANEXANDO IMAGEM AO FORMDATA...');
-        console.log('   Fieldname: "imagem"');
-        console.log('   Arquivo:', formData.imagem.name);
-        
-        fd.append('imagem', formData.imagem); // ← NOME DO CAMPO: "imagem"
-      } else {
-        console.log('⚠️  PULANDO IMAGEM - formData.imagem é null');
-      }
-
-      // 🔍 DEBUG FINAL DO FORMDATA
-      console.log('📦 CONTEÚDO FINAL DO FORMDATA:');
-      let temImagem = false;
-      for (let [key, value] of fd.entries()) {
-        if (value instanceof File) {
-          console.log(`  ✅ ${key}: [ARQUIVO] ${value.name} (${value.size} bytes)`);
-          temImagem = true;
-        } else {
-          console.log(`  📝 ${key}: ${value}`);
-        }
-      }
-      
-      if (!temImagem) {
-        console.log('❌ ATENÇÃO: FORMDATA NÃO CONTÉM NENHUM ARQUIVO!');
-      }
-
-      console.log('🌐 ENVIANDO PARA /Demandas...');
-      
-      // 🚀 ENVIA PARA BACKEND
-      const response = await api.post("/Demandas", fd);
-      
-      console.log('✅ RESPOSTA DO SERVIDOR:', response.data);
-      
-      if (response.data.sucesso) {
-        setShowSuccess(true);
-        console.log('🎉 DEMANDA CRIADA COM SUCESSO!');
-        setTimeout(() => router.push("/Demandas"), 2000);
-      } else {
-        setError(response.data.mensagem || "Erro ao criar demanda.");
-      }
-
-    } catch (err) {
-      console.error('💥 ERRO COMPLETO:', err);
-      console.error('💥 Status:', err.response?.status);
-      console.error('💥 Dados resposta:', err.response?.data);
-      console.error('💥 Mensagem:', err.message);
-      
-      if (err.response?.status === 500) {
-        setError("Erro interno do servidor. Verifique os logs do backend.");
-      } else {
-        setError(err.response?.data?.mensagem || "Erro ao conectar com o servidor.");
-      }
-    } finally {
-      setLoading(false);
+  try {
+    console.log('🔍 VERIFICANDO IMAGEM NO FRONTEND...');
+    
+    // Debug crítico
+    console.log('📷 formData.imagem:', formData.imagem);
+    console.log('📷 É File?', formData.imagem instanceof File);
+    
+    if (formData.imagem) {
+      console.log('📷 Detalhes:', formData.imagem.name, formData.imagem.type, formData.imagem.size);
     }
+
+    const fd = new FormData();
+    
+    // ✅ CAMPO CRÍTICO: deve ser "imagem"
+    if (formData.imagem) {
+      console.log('📤 ANEXANDO IMAGEM - Fieldname: "imagem"');
+      fd.append('imagem', formData.imagem);
+    }
+
+    // Outros campos
+    fd.append('emp_id', empresaId);
+    fd.append('amen_id', formData.amen_id);
+    fd.append('quantidade', formData.quantidade);
+    fd.append('preco_maximo', formData.preco_maximo);
+    fd.append('data_entrega', formData.data_entrega);
+    fd.append('informacoes', formData.informacoes || '');
+    fd.append('data_publi', formData.data_publi);
+    fd.append('ativa', '1');
+
+    // Debug final
+    console.log('📦 FORMDATA PRONTO - Campos:');
+    for (let [key, value] of fd.entries()) {
+      if (value instanceof File) {
+        console.log(`  ✅ ${key}: [ARQUIVO] ${value.name}`);
+      }
+    }
+
+    const response = await api.post("/Demandas", fd);
+    
+    if (response.data.sucesso) {
+      setShowSuccess(true);
+      setTimeout(() => router.push("/demanda"), 2000);
+    } else {
+      setError(response.data.mensagem || "Erro ao criar demanda.");
+    }
+
+  } catch (err) {
+    console.error('💥 Erro:', err);
+    setError("Erro ao conectar com o servidor.");
+  } finally {
+    setLoading(false);
+  }
   };
 
   // -----------------------------
@@ -276,7 +226,7 @@ export default function CriarDemanda() {
         <div className={styles.card}>
           <div className={styles.textcriar}>
             <h2>Criar Demanda</h2>
-            {empresaId && <p className={styles.empresaInfo}>Empresa ID: {empresaId}</p>}
+            {empresaId && <p className={styles.empresaInfo}></p>}
           </div>
 
           {error && (
