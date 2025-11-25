@@ -152,7 +152,7 @@ function Login() {
               <input type="checkbox" id="remember" className={styles.checkbox} />
               <label htmlFor="remember">Lembrar de mim</label>
             </div>
-            <Link href="/esqueceu_senha" passHref legacyBehavior>
+            <Link href="/esqueceu_senha" passHref >
               <p className={styles.forgotPassword}>Esqueceu a senha?</p>
             </Link>
           </div>
