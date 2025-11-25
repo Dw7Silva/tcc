@@ -15,10 +15,11 @@ export default function CriarDemanda() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
   const [tiposAmendoim, setTiposAmendoim] = useState([]);
 
-  // Dados do formulário
+  // -----------------------------
+  // 🔥 FORM DATA
+  // -----------------------------
   const [formData, setFormData] = useState({
     emp_id: "",
     amen_id: "",
@@ -31,65 +32,63 @@ export default function CriarDemanda() {
     imagem: null,
   });
 
-  // -----------------------------------------------------------------------------------------
-  // 🔥 Carrega usuário + tipos de amendoim ao abrir a página
-  // -----------------------------------------------------------------------------------------
+  // -----------------------------
+  // 🔥 CARREGAR USUÁRIO
+  // -----------------------------
   useEffect(() => {
-    carregarUsuario();
-    buscarTiposAmendoim();
-  }, []);
-
-  // -----------------------------------------------------------------------------------------
-  // 🔥 Carregar empresa do usuário logado
-  // -----------------------------------------------------------------------------------------
-  const carregarUsuario = () => {
     try {
       const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-      console.log("Usuário logado:", usuario);
-
       if (usuario?.emp_id) {
-        setFormData((prev) => ({ ...prev, emp_id: usuario.emp_id }));
+        setFormData((prev) => ({
+          ...prev,
+          emp_id: usuario.emp_id,
+        }));
       } else {
         setError("Não foi possível identificar sua empresa. Faça login novamente.");
       }
-    } catch {
-      setError("Erro ao carregar dados do usuário.");
+    } catch (e) {
+      setError("Erro ao carregar usuário.");
     }
-  };
 
-  // -----------------------------------------------------------------------------------------
-  // 🔥 Buscar tipos de amendoim no back-end
-  // -----------------------------------------------------------------------------------------
+    buscarTiposAmendoim();
+  }, []);
+
+  // -----------------------------
+  // 🔥 BUSCAR TIPOS DE AMENDOIM
+  // -----------------------------
   const buscarTiposAmendoim = async () => {
     try {
       const response = await api.get("/Amendoins");
-
-      console.log("Tipos de amendoim carregados:", response.data);
 
       if (response.data.sucesso) {
         setTiposAmendoim(response.data.dados);
       }
     } catch (error) {
-      console.error("Erro ao buscar tipos de amendoim:", error);
+      console.error("Erro ao carregar amendoins:", error);
     }
   };
 
-  // -----------------------------------------------------------------------------------------
-  // 🔥 Quando usuário seleciona imagem
-  // -----------------------------------------------------------------------------------------
-  const handleImageChange = ({ target: { files } }) => {
-    if (files && files[0]) {
-      setSelectedImage(URL.createObjectURL(files[0]));
+  // -----------------------------
+  // 🔥 HANDLER IMAGEM
+  // -----------------------------
+  const handleImageChange = (e) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      setSelectedImage(URL.createObjectURL(file));
       setIsImageInputLarge(false);
-      setError("");
+
       setFormData((prev) => ({
         ...prev,
-        imagem: files[0],
+        imagem: file,
       }));
     }
   };
 
+  // -----------------------------
+  // 🔥 INPUT CHANGE
+  // -----------------------------
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -99,62 +98,54 @@ export default function CriarDemanda() {
     }));
   };
 
-  // -----------------------------------------------------------------------------------------
-  // 🔥 ENVIAR FORMULÁRIO PARA O BACKEND
-  // -----------------------------------------------------------------------------------------
+  // -----------------------------
+  // 🔥 SUBMIT FORM
+  // -----------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError("");
+    setLoading(true);
 
     try {
-      // Validação básica
+      // validações
       if (!formData.emp_id) {
-        setError("Erro: empresa do usuário não identificada.");
-        setLoading(false);
+        setError("Erro: empresa não identificada. Faça login.");
         return;
       }
-
       if (!formData.amen_id || !formData.quantidade || !formData.preco_maximo || !formData.data_entrega) {
-        setError("Preencha todos os campos obrigatórios!");
-        setLoading(false);
+        setError("Preencha todos os campos obrigatórios.");
         return;
       }
 
-      // Criar FormData para envio
-      const formDataToSend = new FormData();
-      Object.keys(formData).forEach((key) => {
-        if (formData[key] !== null) {
-          formDataToSend.append(key, formData[key]);
-        }
+      // monta FormData
+      const fd = new FormData();
+
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value !== null) fd.append(key, value);
       });
 
-      const response = await api.post("/Demandas", formDataToSend, {
+      // envia ao backend
+      const response = await api.post("/Demandas", fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      const resultado = response.data;
-
-      if (resultado.sucesso) {
+      if (response.data.sucesso) {
         setShowSuccess(true);
-
-        setTimeout(() => {
-          router.push("/demandas");
-        }, 2000);
+        setTimeout(() => router.push("/Demandas"), 1500);
       } else {
-        setError(resultado.mensagem || "Erro ao criar demanda");
+        setError(response.data.mensagem || "Erro ao criar demanda.");
       }
-    } catch (error) {
-      console.error("Erro ao criar demanda:", error);
+    } catch (err) {
+      console.error("Erro ao criar demanda:", err);
       setError("Erro ao conectar com o servidor.");
     } finally {
       setLoading(false);
     }
   };
 
-  // -----------------------------------------------------------------------------------------
+  // -----------------------------
   // 🔥 HTML
-  // -----------------------------------------------------------------------------------------
+  // -----------------------------
   return (
     <>
       <BarraNvg />
@@ -177,11 +168,12 @@ export default function CriarDemanda() {
           {error && <div className={`${styles.feedback} ${styles.erro}`}>{error}</div>}
 
           <form className={styles.formContent} onSubmit={handleSubmit}>
+            {/* IMAGEM */}
             <div className={`${styles.imageInput} ${isImageInputLarge ? styles.imageInputLarge : ""}`}>
               <label htmlFor="imageUpload">
                 <FaImage size={isImageInputLarge ? 100 : 30} />
               </label>
-              <p>clique para adicionar a imagem</p>
+              <p>Clique para adicionar a imagem</p>
 
               <input
                 type="file"
@@ -194,42 +186,39 @@ export default function CriarDemanda() {
               {selectedImage && <img src={selectedImage} alt="Imagem selecionada" />}
             </div>
 
+            {/* CAMPOS */}
             <div className={styles.formFields}>
               <div className={styles.formGroup}>
                 <label htmlFor="amen_id">Tipo de amendoim *</label>
                 <select id="amen_id" name="amen_id" value={formData.amen_id} onChange={handleInputChange} required>
-                  <option value="">Selecione o tipo de amendoim</option>
+                  <option value="">Selecione o tipo</option>
 
-                  {tiposAmendoim.map((amendoim) => (
-                    <option key={amendoim.amen_id} value={amendoim.amen_id}>
-                      {amendoim.amen_variedade} {amendoim.amen_tamanho && `- ${amendoim.amen_tamanho}`}
+                  {tiposAmendoim.map((am) => (
+                    <option key={am.amen_id} value={am.amen_id}>
+                      {am.amen_variedade} {am.amen_tamanho && `- ${am.amen_tamanho}`}
                     </option>
                   ))}
                 </select>
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="quantidade">Quantidade em Kilos</label>
+                <label>Quantidade em Kg *</label>
                 <input
                   type="number"
-                  id="quantidade"
                   name="quantidade"
                   value={formData.quantidade}
                   onChange={handleInputChange}
-                  placeholder="Ex: 100"
                   required
                 />
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="preco_maximo">Preço máximo por kilos(R$) *</label>
+                <label>Preço máximo por Kg (R$) *</label>
                 <input
                   type="number"
-                  id="preco_maximo"
                   name="preco_maximo"
                   value={formData.preco_maximo}
                   onChange={handleInputChange}
-                  placeholder="Ex: 200.00"
                   step="0.01"
                   min="0"
                   required
@@ -237,10 +226,9 @@ export default function CriarDemanda() {
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="data_entrega">Para o prazo de até</label>
+                <label>Prazo máximo *</label>
                 <input
                   type="date"
-                  id="data_entrega"
                   name="data_entrega"
                   value={formData.data_entrega}
                   onChange={handleInputChange}
@@ -249,20 +237,18 @@ export default function CriarDemanda() {
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="informacoes">Informações adicionais</label>
+                <label>Informações adicionais</label>
                 <textarea
-                  id="informacoes"
                   name="informacoes"
                   value={formData.informacoes}
                   onChange={handleInputChange}
-                  placeholder="Detalhes sobre a demanda, condições especiais, etc."
                   rows="3"
                 />
               </div>
             </div>
 
             <button type="submit" className={styles.criarOferta} disabled={loading}>
-              {loading ? "Criando Demanda..." : "Criar Demanda"}
+              {loading ? "Criando..." : "Criar Demanda"}
             </button>
           </form>
         </div>
