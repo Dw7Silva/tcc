@@ -6,12 +6,12 @@
   --cor-secundaria-inicio: #5c3b28;
   --cor-fundo-inicio: #e2dad2;
   --cor-texto-inicio: #333;
-  --cor-texto-inicio-secundario: #666;
+  --cor-texto-inicio-secundario: #ffffff;
   --cor-borda-inicio: #A46434;
-  --cor-card: #c70000;
+  --cor-texto-h3:black;
   --cor-sombra: rgba(0, 0, 0, 0.1);
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-  --altura-navbar: clamp(60px, 10vh, 80px);
+
 }
 
 /* Tema Escuro */
@@ -23,12 +23,14 @@
     /* Escala de cinza invertida */
     --cor-fundo-inicio: #313030;
     --cor-texto-inicio: #f0f0f0;
-    --cor-texto-inicio-secundario: #8a8484;
+    --cor-texto-inicio-secundario: #1e1e1e;
     /* Elementos de UI */
-    --cor-borda-inicio: #A46434;
+    --cor-borda-inicio:#a46434;
     --cor-card: #1e1e1e;
     --cor-sombra: rgba(0, 0, 0, 0.5);
     --cor-navbar: #311e04;
+    --cor-texto-h3:white;
+    --cor-texto-p:#b3b3b3;
     /* Ajustes para melhor contraste */
     --cor-destaque: #F8DCA5;
   }
@@ -77,7 +79,7 @@
 
 .empresa {
   font-weight: 600;
-  color: var(--cor-secundaria-geral);
+  color: var(--cor-primaria-inicio);
   margin: 0;
   font-size: 1.1rem;
 }
@@ -85,19 +87,19 @@
 .demandaCard h3 {
   margin: 0.8rem 0;
   font-size: 1.2rem;
-  color: var(--cor-texto-geral);
+  color: var(--cor-texto-h3);
 }
 
 .quantidade {
   margin: 0.8rem 0;
-  color: var(--cor-texto-secundario-geral);
+  color: var(--cor-texto-p);
   font-size: 1rem;
 }
 
 .detalhes {
   margin-top: auto;
   padding: 0.8rem;
-  background-color: #e1ac74;
+  background-color: #a87453;
   color: rgb(255, 255, 255);
   border: none;
   border-radius: 8px;

@@ -37,7 +37,6 @@ body {
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
   color: var(--cor-texto-demandas);
-  background-color: var(--cor-fundo-inicio);
   transition: background-color 0.3s, color 0.3s;
 }
 
