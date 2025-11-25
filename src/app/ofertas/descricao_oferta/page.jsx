@@ -88,8 +88,8 @@ export default function OfertaDescricao({ oferta }) {
           </div>
 
           <div className={styles.actionButtons}>
-            <Link href="/negociacao">
-              <button className={styles.secondaryButton}>Iniciar negociação</button>
+            <Link href="/">
+              <button className={styles.secondaryButton}>enviar proposta</button>
             </Link>
           </div>
         </div>
