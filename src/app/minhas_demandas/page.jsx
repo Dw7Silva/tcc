@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "./minhasdemandas.module.css"; // Reutilizando o CSS existente
+import styles from "./minhasdemandas.module.css"; 
 import BarraNvg from "@/components/navbar/navbar";
 
 export default function MinhasDemandas() {

@@ -30,7 +30,7 @@ export default function BarraNvg() {
     { label: "Ofertas", href: "/ofertas" },
     { label: "Minhas Demandas", href: "/minhas_demandas" },
     { label: "Minhas Ofertas", href: "/minhas_ofertas" },
-    { label: "Config", href: "/config" },
+   
     ...(isSmallScreen ? [
       { label: "Início", href: "/" },
       { label: "Chat", href: "/chat" },
