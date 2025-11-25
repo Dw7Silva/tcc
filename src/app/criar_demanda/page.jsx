@@ -99,7 +99,7 @@ export default function CriarDemanda() {
   };
 
   // -----------------------------
-  // 🔥 SUBMIT FORM CORRIGIDO
+  // 🔥 SUBMIT FORM
   // -----------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,42 +110,24 @@ export default function CriarDemanda() {
       // validações
       if (!formData.emp_id) {
         setError("Erro: empresa não identificada. Faça login.");
-        setLoading(false);
         return;
       }
       if (!formData.amen_id || !formData.quantidade || !formData.preco_maximo || !formData.data_entrega) {
         setError("Preencha todos os campos obrigatórios.");
-        setLoading(false);
         return;
       }
 
-      // monta FormData CORRETAMENTE
+      // monta FormData
       const fd = new FormData();
 
-      // Adiciona campos individuais de forma explícita
-      fd.append('emp_id', formData.emp_id);
-      fd.append('amen_id', formData.amen_id);
-      fd.append('quantidade', formData.quantidade);
-      fd.append('preco_maximo', formData.preco_maximo);
-      fd.append('data_entrega', formData.data_entrega);
-      fd.append('informacoes', formData.informacoes || '');
-      fd.append('data_publi', formData.data_publi);
-      fd.append('ativa', formData.ativa);
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value !== null) fd.append(key, value);
+      });
 
-      // Adiciona arquivo se existir
-      if (formData.imagem) {
-        fd.append('imagem', formData.imagem);
-      }
-
-      // DEBUG: Verifique o que está sendo enviado
-      console.log('📤 Enviando FormData:');
-      for (let [key, value] of fd.entries()) {
-        console.log(`${key}:`, value);
-      }
-
-      // 🔥 CORREÇÃO: Envia SEM headers (o axios vai configurar automaticamente)
-      const response = await api.post("/Demandas", fd);
-      // ⚠️ REMOVIDO: headers: { "Content-Type": "multipart/form-data" }
+      // envia ao backend
+      const response = await api.post("/Demandas", fd, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
       if (response.data.sucesso) {
         setShowSuccess(true);
@@ -154,18 +136,8 @@ export default function CriarDemanda() {
         setError(response.data.mensagem || "Erro ao criar demanda.");
       }
     } catch (err) {
-      console.error("❌ Erro ao criar demanda:", err);
-      
-      // Mensagem de erro mais específica
-      if (err.response?.data?.mensagem) {
-        setError(err.response.data.mensagem);
-      } else if (err.code === 'ECONNABORTED') {
-        setError("Tempo de conexão esgotado. Tente novamente.");
-      } else if (err.message?.includes('Network Error')) {
-        setError("Erro de conexão. Verifique se o servidor está rodando.");
-      } else {
-        setError("Erro interno ao criar demanda.");
-      }
+      console.error("Erro ao criar demanda:", err);
+      setError("Erro ao conectar com o servidor.");
     } finally {
       setLoading(false);
     }
