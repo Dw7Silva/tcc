@@ -4,7 +4,7 @@
   /* Tema Claro (base fornecida pelo usuário) */
   --cor-primaria-oferta: #A87453;
   --cor-secundaria-oferta: #5c3b28;
-  --cor-fundo-oferta: #e2dad2;
+ 
   --cor-texto-oferta: #333;
   --cor-texto-oferta-secundario: #666;
   --cor-borda-oferta: #A46434;
@@ -39,7 +39,7 @@ body {
   font-size: var(--tamanho-fonte-base);
   min-height: 100vh;
   color: var(--cor-texto);
-  background-color: var(--cor-fundo-oferta);
+  
   transition: background-color 0.3s, color 0.3s;
 }
 
