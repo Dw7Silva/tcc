@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import OfertaDescricao from "../descricao_oferta/page";
 import api from "@/services/api";
 
-export default function DemandaPage() {
+export default function OfertaPage() {
   const { id } = useParams();
   const [oferta,  SetOferta] = useState(null);
   const [loading, setLoading] = useState(true);
