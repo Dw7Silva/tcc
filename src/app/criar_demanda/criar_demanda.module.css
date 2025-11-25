@@ -1,299 +1,238 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 :root {
-  /* Tema Claro (default) */
-  --cor-primaria-demanda: #A87453;
-  --cor-secundaria-demanda: ;
-  --cor-texto-demanda: #333;
-  --cor-texto-secundario-demanda: #666;
-  --cor-borda-demanda: #A46434;
-  --cor-card-demanda: #ffffff;
-  --cor-sombra-demanda: rgba(0, 0, 0, 0.1);
-  --cor-fundo-demanda: #e2dad2;
-
+  --cor-primaria-perfil:#A87453;
+  --cor-secundaria-perfil: #A88C66;
+  --cor-texto-perfil: #333;
+  --cor-texto-secundario-perfil: #666;
+  --cor-borda-perfil: #A46434;
+  --cor-card-perfil: #ffffff;
+  --cor-sombra-perfil: rgba(0, 0, 0, 0.1);
+  --cor-button-houver-perfil: #A88C66;
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-  --altura-navbar-base: clamp(60px, 10vh, 80px);
-  --altura-logo-base: clamp(40px, 8vh, 60px);
-  --padding-lateral-base: clamp(10px, 2vw, 20px);
-
-  /* Cores de feedback */
-  --cor-sucesso-demanda: #28a745;
-  --cor-erro-demanda: #dc3545;
-  --cor-sucesso-fundo-demanda: rgba(40, 167, 69, 0.1);
-  --cor-erro-fundo-demanda: rgba(220, 53, 69, 0.1);
+  --cor-fundo-perfil: #e2dad2;
 }
 
-/* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    --cor-primaria-demanda: #5c3b28;
-    --cor-secundaria-demanda: #F8DCA5;
-
-    --cor-texto-demanda: #f0f0f0;
-    --cor-texto-secundario-demanda: #b3b3b3;
-
-    --cor-borda-demanda: #A46434;
-    --cor-card-demanda: #1e1e1e;
-    --cor-sombra-demanda: rgba(0, 0, 0, 0.5);
-    --cor-destaque-demanda: #F8DCA5;
-
-    --cor-fundo-demanda: #313030;
-
-    --cor-sucesso-demanda: #4caf50;
-    --cor-erro-demanda: #f44336;
-    --cor-sucesso-fundo-demanda: rgba(76, 175, 80, 0.2);
-    --cor-erro-fundo-demanda: rgba(244, 67, 54, 0.2);
+    --cor-primaria-perfil: #e0cfa183;
+    --cor-secundaria-perfil: #F8DCA5;
+    --cor-texto-perfil: #dbd9d9;
+    --cor-texto-secundario-perfil: #ffffff;
+    --cor-borda-perfil:#F8DCA5;
+    --cor-card-perfil: #1e1e1e; 
+    --cor-sombra-perfil: rgba(0, 0, 0, 0.5);
+    --cor-fundo-perfil: #313030;
   }
 }
 
-/* Variáveis Padronizadas */
-:root {
-  --cor-primaria-demanda: #A87453;
-  --cor-secundaria-demanda: #5c3b28;
-  --cor-fundo-demanda: #e2dad2;
-
-  --cor-texto-demanda: #333;
-  --cor-texto-secundario-demanda: #666;
-
-  --cor-borda-demanda: #A46434;
-
-  --cor-card-demanda: #ffffff;
-  --cor-sombra-demanda: rgba(0, 0, 0, 0.1);
-
-  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-  --altura-navbar-base: clamp(60px, 10vh, 80px);
-}
-
-/* Tema Escuro */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --cor-primaria-demanda: #F8DCA5;
-    --cor-secundaria-demanda: #F8DCA5;
-
-    --cor-fundo-demanda: #313030;
-    --cor-texto-demanda: #f0f0f0;
-    --cor-texto-secundario-demanda: #b3b3b3;
-
-    --cor-borda-demanda: #A46434;
-    --cor-card-demanda: #1e1e1e;
-
-    --cor-sombra-demanda: rgba(0, 0, 0, 0.5);
-    --cor-navbar-demanda: #311e04;
-
-    --cor-destaque-demanda: #F8DCA5;
-  }
-}
-
-/* Base Styles */
-body {
-  margin: 0%;
-  background-color: var(--cor-fundo-demanda);
-}
+/* ------------------------ */
+/*   Layout Geral           */
+/* ------------------------ */
 
 .container {
-  background-color: var(--cor-fundo-demanda);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 var(--padding-lateral-base);
-  margin-top: var(--altura-navbar-base);
-  min-height: 100dvh;
-}
-
-/* Card Component */
-.card {
-  margin-top: 10vh;
-  width: 40vw;
+  max-width: 900px;
+  margin: 40px auto;
   padding: 20px;
-  background-color: var(--cor-card-demanda);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px var(--cor-sombra-demanda);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-width: 400px;
-  margin: 2vw;
-  border: 1px solid var(--cor-borda-demanda);
+  font-family: 'Comfortaa', sans-serif;
+  color: var(--cor-texto-perfil);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px var(--cor-sombra-demanda);
+.card {
+  background: var(--cor-card-perfil);
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px var(--cor-sombra-perfil);
+  border: 1px solid var(--cor-borda-perfil);
 }
 
-/* Form Styles */
-.textcriar {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  margin-bottom: 20px;
-  color: var(--cor-texto-demanda);
+.textcriar h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--cor-primaria-perfil);
+  text-align: center;
+  margin-bottom: 25px;
 }
 
-.formContent {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
+/* ------------------------ */
+/*   Feedback (erro/sucesso)*/
+/* ------------------------ */
 
-.imageInput, .imageInputLarge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.imageInputLarge {
-  width: 100%;
-  max-width: 320px;
-  height: 200px;
-  justify-content: center;
-  border: 2px dashed var(--cor-borda-demanda);
-  border-radius: 10px;
-}
-
-.imageInput label, .imageInputLarge label {
-  cursor: pointer;
-  color: var(--cor-texto-demanda);
-}
-
-.imageInput input, .imageInputLarge input {
-  display: none;
-}
-
-.imageInput img, .imageInputLarge img {
-  max-width: 320px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-top: 10px;
-  border: 2px solid var(--cor-borda-demanda);
-}
-
-.formFields {
-  flex: 1;
-  min-width: 250px;
-}
-
-.formGroup {
+.feedback {
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 15px;
   margin-bottom: 15px;
+  animation: fadeIn 0.3s ease;
 }
 
-.formGroup label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-  width: 100%;
-  color: var(--cor-texto-demanda);
+.erro {
+  background: rgba(200, 0, 0, 0.1);
+  color: #a30000;
+  border-left: 4px solid #a30000;
 }
 
-.formGroup input, .formGroup select {
-  border: 1px solid var(--cor-borda-demanda);
-  width: 100%;
-  padding: 10px;
-  border-radius: 4px;
-  transition: border-color 0.3s ease;
-  font-size: 1rem;
-  box-sizing: border-box;
-  background-color: var(--cor-card-demanda);
-  color: var(--cor-texto-demanda);
-}
+/* ------------------------ */
+/*   Overlay de sucesso     */
+/* ------------------------ */
 
-.formGroup input:focus, .formGroup select:focus {
-  border-color: var(--cor-primaria-demanda);
-  outline: none;
-}
-
-/* Button Styles */
-.criarOferta {
-  width: 100%;
-  padding: 12px;
-  background-color: #A46434;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  margin-top: 20px;
-}
-
-.criarOferta:hover {
-  transform: translateY(-2px);
-  color: #1e1e1e;
-}
-
-/* Estilos para a mensagem de sucesso */
 .successOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background: rgba(0,0,0,0.4);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  z-index: 999;
 }
 
 .successMessage {
-  background-color: var(--cor-card-demanda);
-  padding: 2rem;
-  border-radius: 10px;
+  background: var(--cor-card-perfil);
+  padding: 40px 50px;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 4px 12px var(--cor-sombra-demanda);
-  max-width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.successIcon {
-  color: var(--cor-sucesso-demanda);
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  border: 2px solid var(--cor-primaria-perfil);
+  box-shadow: 0 6px 20px var(--cor-sombra-perfil);
 }
 
 .successMessage p {
-  font-size: 1.2rem;
-  color: var(--cor-texto-demanda);
-  margin: 0;
-}
-
-.imageInputLarge p {
+  color: var(--cor-texto-perfil);
+  font-size: 20px;
   margin-top: 10px;
-  color: var(--cor-texto-secundario-demanda);
-  font-size: 0.9rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .formContent {
-    flex-direction: column;
-    align-items: center;
-  }
+.successIcon {
+  font-size: 60px;
+  color: var(--cor-primaria-perfil);
+}
 
-  .formFields {
-    width: 100%;
-  }
+/* ------------------------ */
+/*   Formulário             */
+/* ------------------------ */
 
-  .card {
-    width: 80vw;
-    min-width: unset;
-    padding: 15px;
-  }
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
 
-  .imageInputLarge, .imageInput {
-    max-width: 100%;
+.formFields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: var(--cor-primaria-perfil);
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: 12px 14px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid var(--cor-borda-perfil);
+  background: var(--cor-card-perfil);
+  color: var(--cor-texto-perfil);
+  transition: 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: var(--cor-primaria-perfil);
+  box-shadow: 0 0 5px var(--cor-primaria-perfil);
+  outline: none;
+}
+
+/* ------------------------ */
+/*   Upload de Imagem       */
+/* ------------------------ */
+
+.imageInput {
+  border: 2px dashed var(--cor-primaria-perfil);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--cor-texto-secundario-perfil);
+  transition: 0.3s ease;
+  background: var(--cor-card-perfil);
+}
+
+.imageInput:hover {
+  background: var(--cor-fundo-perfil);
+}
+
+.imageInputLarge {
+  padding: 60px;
+}
+
+.imageInput img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: 15px;
+  border: 2px solid var(--cor-primaria-perfil);
+}
+
+/* ------------------------ */
+/*   Botão principal        */
+/* ------------------------ */
+
+.criarOferta {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  background: var(--cor-primaria-perfil);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.criarOferta:hover {
+  background: var(--cor-button-houver-perfil);
+  transform: translateY(-2px);
+}
+
+.criarOferta:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 480px) {
-  .card {
-    margin-top: 5vh;
-    padding: 10px;
-  }
+.formGroup select {
+  background-color: var(--cor-card-perfil) !important;
+  color: var(--cor-texto-perfil) !important;
+}
 
-  .formGroup input, .formGroup select {
-    padding: 8px;
-  }
+.formGroup select option {
+  background-color: var(--cor-card-perfil) !important;
+  color: var(--cor-texto-perfil) !important;
 }
