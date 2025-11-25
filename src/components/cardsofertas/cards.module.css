@@ -4,12 +4,15 @@
   /* Tema Claro (default) - variáveis específicas para cardsofertas */
   --cor-primaria-card: #A87453;
   --cor-secundaria-card: #5c3b28;
-  --cor-fundo-card: #e2dad2;
+  --cor-fundo-card: #fcfaf8;
   --cor-texto-card: #333;
   --cor-texto-card-secundario: #666;
   --cor-borda-card: #A46434;
   --cor-accent-card: #c70000; /* cor de destaque se necessário */
   --cor-sombra-card: rgba(0, 0, 0, 0.1);
+  --cor-button: #a87453 ;
+  --cor-button-hover:#e1ac74;;
+  
 }
 
 /* Tema Escuro */
@@ -17,7 +20,7 @@
   :root {
     --cor-primaria-card: #F8DCA5;
     --cor-secundaria-card: #F8DCA5;
-    --cor-fundo-card: #313030;
+    --cor-fundo-card: #1e1e1e;
     --cor-texto-card: #f0f0f0;
     --cor-texto-card-secundario: #b3b3b3;
     --cor-borda-card: #A46434;
@@ -25,6 +28,8 @@
     --cor-sombra-card: rgba(0, 0, 0, 0.5);
     --cor-navbar: #311e04;
     --cor-destaque: #F8DCA5;
+    --cor-button:  #e1ac74;
+    --cor-button-hover:#5c3b28;;
   }
 }
 
@@ -41,7 +46,7 @@
   display: flex;
   flex-direction: column;
   transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid var(--cor-primaria-card);
+  border: 2px solid var(--cor-borda-card);
   margin: 0 5px;
 }
 
@@ -91,7 +96,7 @@
 .ofertaDetalhes {
   margin-top: auto;
   padding: 0.8rem;
-  background-color: var(--cor-primaria-card);
+  background-color: var(--cor-button);
   color: rgb(255, 255, 255);
   border: var(--cor-borda-card);
   border-radius: 8px;
@@ -102,6 +107,7 @@
 }
 
 .ofertaDetalhes:hover {
+  background-color:var(--cor-button-hover) ;
  transform: translateY(-4%);
 }
 
