@@ -21,4 +21,5 @@ body {
   font-family: 'Comfortaa', sans-serif;
   background-color:var(--cor-fundo);
   transition: var(--transition);
+  overflow-x: hidden;
 }
