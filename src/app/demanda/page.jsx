@@ -5,7 +5,6 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
 import Link from "next/link";
 import Cardsprodutos from "@/components/cardsdemands/cardsdemands";
-import demandasMock from "@/mockup/demandas"; // <-- importe o mock
 import api from "@/services/api";
 // import { al } from "react-router/dist/development/route-data-C12CLHiN";
 
@@ -96,9 +95,9 @@ export default function Demandas() {
               </div>
             </div>
 
-            <Link href="/criar_demanda" passHref legacyBehavior>
+            <Link href="/criar_demanda" className={styles.textcriar} >
               <button className={styles.criarOferta}>
-                <span className={styles.textcriar}>Criar oferta</span>
+                <span className={styles.textcriar}>Criar Demanda</span>
               </button>
             </Link>
           </div>

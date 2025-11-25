@@ -44,24 +44,26 @@ function Login() {
 
       if (resultado.sucesso) {
         setMensagem({ texto: "Login realizado com sucesso!", tipo: "sucesso" });
-        
-        // SALVAR COM A CHAVE CORRETA para o perfil
-        localStorage.setItem('usuarioLogado', JSON.stringify({
+
+        // 🔥 Correção definitiva: salvar tudo corretamente (sem sobrescrever)
+        const usuario = {
           id: resultado.dados.id,
           nome: resultado.dados.nome,
-          tipo: resultado.dados.tipo
-        }));
-        
-        // Manter compatibilidade com outras partes do sistema
-        localStorage.setItem('usuario', JSON.stringify(resultado.dados));
-        localStorage.setItem('token', Date.now().toString());
-        
-        console.log('Usuário logado:', resultado.dados);
-        
+          tipo: resultado.dados.tipo,
+          agri_id: resultado.dados.agri_id ?? null,
+          emp_id: resultado.dados.emp_id ?? null,
+          imagem: resultado.dados.imagem ?? null
+        };
+
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+        localStorage.setItem("token", Date.now().toString());
+
+        console.log("Usuário logado salvo no localStorage:", usuario);
+
         setTimeout(() => {
           router.push('/inicio');
         }, 1000);
-        
+
       } else {
         setMensagem({ texto: resultado.mensagem || "Erro no login", tipo: "erro" });
       }
