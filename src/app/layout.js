@@ -12,17 +12,24 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
+
 export const metadata = {
-  title: "Peanut Drop",
-  description: "Peanut Drop developed by Peanut Labs",
-};
+  title: 'Peanut Drop',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+    ],
+    apple: '/apple-touch-icon.png'
+  }
+}
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body> 
+              {children} </body>
     </html>
-  );
+  )
 }
