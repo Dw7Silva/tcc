@@ -28,10 +28,10 @@ export default function MinhasOfertas() {
             </div>
           </div>
 
-          <div className={styles.demandasGrid} style={{ overflowX: "unset", flexWrap: "wrap" }}>
+          <div className={styles.minhaofertaGrid} style={{ overflowX: "unset", flexWrap: "wrap" }}>
             {minhasDemandas.length > 0 ? (
               minhasDemandas.map((demanda) => (
-                <div key={demanda.id} className={styles.demandaCard}>
+                <div key={demanda.id} className={styles.minhaofertaCard}>
                   <h4 className={styles.empresa}>{demanda.nome_empresa}</h4>
                   <div className={styles.imageContainer}>
                     <img src={demanda.imagem} alt={demanda.tipo} />
