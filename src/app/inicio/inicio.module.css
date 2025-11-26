@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
-:root {
-  /* Tema Claro (default) */
+
+/* =============================
+   TEMA CLARO (DEFAULT)
+============================= */
+.lightTheme {
   --cor-primaria-inicio-s: #A87453;
   --cor-secundaria-inicio-s: #5c3b28;
   --cor-fundo-inicio-s: #e2dad2;
@@ -11,29 +13,42 @@
 
   --cor-sombra-s: rgba(0, 0, 0, 0.1);
   --tamanho-fonte-base-s: clamp(14px, 2vw, 18px);
- 
 }
 
-/* Tema Escuro */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Cores principais invertidas */
-    --cor-primaria-inicio-s: #F8DCA5;
-    --cor-secundaria-inicio-s: #F8DCA5;
-    /* Escala de cinza invertida */
-    --cor-fundo-inicio-s: #313030;
-    --cor-texto-inicio-s: #f0f0f0;
-    --cor-texto-inicio-secundario-s: #b3b3b3;
-    /* Elementos de UI */
-    --cor-borda-inicio-s: #A46434;
-    --cor-card-s: #1e1e1e;
-    --cor-sombra-s: rgba(0, 0, 0, 0.5);
-   
-    /* Ajustes para melhor contraste */
-    --cor-destaque-s: #F8DCA5;
-  }
+/* =============================
+   TEMA ESCURO
+============================= */
+.darkTheme {
+  --cor-primaria-inicio-s: #F8DCA5;
+  --cor-secundaria-inicio-s: #F8DCA5;
+
+  --cor-fundo-inicio-s: #313030;
+  --cor-texto-inicio-s: #f0f0f0;
+  --cor-texto-inicio-secundario-s: #b3b3b3;
+
+  --cor-borda-inicio-s: #A46434;
+  --cor-card-s: #1e1e1e;
+  --cor-sombra-s: rgba(0, 0, 0, 0.5);
+
+  --cor-destaque-s: #F8DCA5;
 }
- 
+
+
+/* =============================
+   ESTILOS GERAIS
+============================= */
+.wrapper {
+  margin: 0;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: var(--tamanho-fonte-base-s);
+  min-height: 100vh;
+  color: var(--cor-texto-inicio-s);
+  background-color: var(--cor-fundo-inicio-s);
+  transition: background-color 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+
+
 .container { 
   background-color: var(--cor-fundo-inicio-s); 
   display: flex;
@@ -44,7 +59,9 @@
   min-height: calc(100vh - var(--altura-navbar-s));
 }
 
-/* Componentes de conteúdo */
+/* =============================
+   CONTEÚDO
+============================= */
 .destaquescontainer, .produtoscontainer {
   width: 100%;
   padding: 0.25rem 0;
@@ -53,6 +70,8 @@
 
 .textdestaques, .textprodutos {
   color: var(--cor-secundaria-inicio-s);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 1rem;
 }
 
 .produtosGrid {
@@ -93,13 +112,9 @@
   margin-top: 0.5rem;
 }
 
-/* Adicione estas classes para os títulos */
-.textdestaques, .textprodutos {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  margin-bottom: 1rem;
-}
-
-/* Media Queries para responsividade */
+/* =============================
+   MEDIA QUERIES
+============================= */
 @media (max-width: 768px) {
   .destaquescontainer, .produtoscontainer {
     margin-left: 5vw;
