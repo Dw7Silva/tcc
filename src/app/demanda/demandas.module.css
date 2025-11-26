@@ -1,5 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
+:root {
+  /* Tema Claro (default) */
+  --cor-primaria-d: #A87453;
+  --cor-secundaria-d: #5c3b28;
+  --cor-texto-d-secundario: #ffffff;
+  --cor-borda-d: #A46434;
+  --cor-sombra: rgba(0, 0, 0, 0.1);
+  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
+  --altura-navbar: clamp(60px, 10vh, 80px);
+   --cor-destaque:  rgba(117, 90, 90, 0.95);
+}
 
+/* Tema Escuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Cores principais invertidas */
+    --cor-primaria-d: #F8DCA5;
+    --cor-secundaria-d: #F8DCA5;
+    /* Escala de cinza invertida */
+    --cor-fundo-d: #313030;
+    --cor-texto-d: #f0f0f0;
+    --cor-texto-inicio-secundario: #b3b3b3;
+    /* Elementos de UI */
+    --cor-borda-inicio: #A46434;
+    --cor-card: #1e1e1e;
+    --cor-sombra: rgba(0, 0, 0, 0.5);
+    --cor-navbar: #311e04;
+    /* Ajustes para melhor contraste */
+    --cor-destaque: #F8DCA5;
+    
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: var(--tamanho-fonte-base);
+  min-height: 100vh;
+  color: var(--cor-texto-d);
+  transition: background-color 0.3s, color 0.3s;
+}
 
 .container {
 

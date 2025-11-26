@@ -1,4 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
+:root {
+  --cor-primaria-perfil:#A87453;
+  --cor-secundaria-perfil: #A88C66;
+  --cor-texto-perfil: #333;
+  --cor-texto-secundario-perfil: #666;
+  --cor-borda-perfil: #A46434;
+  --cor-card-perfil: #ffffff;
+  --cor-sombra-perfil: rgba(0, 0, 0, 0.1);
+  --cor-button-houver-perfil: #A88C66;
+  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
+  --cor-fundo-perfil: #e2dad2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria-perfil: #e0cfa183;
+    --cor-secundaria-perfil: #F8DCA5;
+    --cor-texto-perfil: #dbd9d9;
+    --cor-texto-secundario-perfil: #ffffff;
+    --cor-borda-perfil:#F8DCA5;
+    --cor-card-perfil: #1e1e1e; 
+    --cor-sombra-perfil: rgba(0, 0, 0, 0.5);
+    --cor-fundo-perfil: #313030;
+  }
+}
+
+/* ------------------------ */
+/*   Layout Geral           */
+/* ------------------------ */
 
 .container {
   max-width: 900px;

@@ -1,5 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
+/* =====================
+   Variáveis - Tema Claro
+===================== */
+:root {
+  /* Cores principais */
+  --cor-primaria-chat: #A87453;
+  --cor-secundaria-chat: #5c3b28;
+  --cor-fundo-chat: #e2dad2;
+  --cor-texto-chat: #333;
+  --cor-texto-chat-secundario: #666;
+  --cor-fundo-mensagem: #ffffff;
+  --cor-fundo-perfil: #c49e7c;
+  --cor-borda-chat: #A46434;
+  --cor-card: #c70000;
+  --cor-sombra: rgba(0, 0, 0, 0.1);
 
+  /* Variáveis adicionais */
+  --cor-branco-base: #ffffff;
+  --cor-fundo-claro2: #f5f5f5;
+  --cor-fundo-claro3: #f0f0f0;
+  --cor-primaria-hover: #4a3020;
+  --cor-online: #4caf50;
+
+  /* Tipografia */
+  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
+  --altura-navbar: clamp(60px, 10vh, 80px);
+  --radius: 12px;
+  --transition: 0.3s ease-in-out;
+}
+
+/* =====================
+   Tema Escuro
+===================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria-chat: #E0CFA1;
+    --cor-secundaria-chat: #ffffff;
+    --cor-fundo-chat: #313030;
+    --cor-texto-chat: #f0f0f0;
+    --cor-texto-chat-secundario: #b3b3b3;
+    --cor-fundo-mensagem: #3a3a3a;
+    --cor-fundo-perfil: #5c5a54;
+    --cor-borda-chat: rgba(191, 167, 127, 0.6);
+    --cor-card: #1e1e1e;
+    --cor-sombra: rgba(0, 0, 0, 0.5);
+
+    --cor-branco-base: #262524;
+    --cor-fundo-claro2: #2a2a2a;
+    --cor-fundo-claro3: #1c1b1a;
+    --cor-primaria-hover: #e7c89165;
+    --cor-online: #ffffff;
+  }
+}
+
+/* =====================
+   Estrutura
+===================== */
+body {
+  margin: 0;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: var(--tamanho-fonte-base);
+  min-height: 100vh;
+  color: var(--cor-texto-chat);
+  background-color: var(--cor-fundo-chat);
+  transition: background-color var(--transition), color var(--transition);
+}
 
 .container {
   background-color: var(--cor-fundo-chat);

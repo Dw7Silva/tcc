@@ -1,4 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
+:root {
+  /* Tema Claro (default) */
+  --cor-primaria-perfil:#A87453;
+  --cor-secundaria-perfil: ;
+  --cor-texto-perfil: #333;
+  --cor-texto-secundario-perfil: #666;
+  --cor-borda-perfil: #A46434;
+  --cor-card-perfil: #ffffff;
+  --cor-sombra-perfil: rgba(0, 0, 0, 0.1);
+  --cor-button-houver-perfil: #A88C66;
+  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
+  --cor-fundo-perfil: #e2dad2;
+  --cor-label-perfil:#333333;
+}
+
+/* Tema Escuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Cores principais invertidas */
+    --cor-primaria-perfil: #e0cfa183; /* /* Inverso de #A87453 */
+    --cor-secundaria-perfil: #F8DCA5;/* Inverso de #5c3b28 */
+    /* Escala de cinza invertida */
+    --cor-texto-perfil: #ffffff; /* Quase branco */
+    --cor-texto-secundario-perfil: #ffffff; 
+    /* Elementos de UI */
+    --cor-borda-perfil:#F8DCA5;
+    --cor-card-perfil: #1e1e1e; 
+    --cor-sombra-perfil: rgba(0, 0, 0, 0.5);
+    --cor-fundo-perfil: #313030;
+    --cor-label-perfil:#ffffff;
+  }
+}
 
 
 /* Base Styles */

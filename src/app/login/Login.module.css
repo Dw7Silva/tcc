@@ -1,3 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
+
+
+
+:root {
+  /* Light Theme */
+  --cor-primaria-login: #A87453;
+  --cor-secundaria-login: #5c3b28;
+  --cor-fundo-login: rgba(157, 96, 53, 0.72);
+  --cor-texto-login: #333;
+  --cor-texto-login-claro: #f8f8f8;
+  --cor-borda: #A46434;
+  --cor-sombra: rgba(0, 0, 0, 0.1);
+  --cor-link: #A87453;
+  --card_login : #ffffff;
+}
+
+/* Dark Theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria-login: #F8DCA5;
+    --cor-secundaria-login: #5c3b28;;
+    --cor-fundo-login: #313030;
+    --cor-texto-login: #f0f0f0;
+    --cor-texto-login-claro: #2a2a2a;
+    --cor-borda: #A46434;
+    --cor-sombra: rgba(0, 0, 0, 0.5);
+    --cor-link: #F8DCA5;
+    --card_login :#1e1e1e;
+  }
+}
 
 /* Base Styles */
 .loginPage {

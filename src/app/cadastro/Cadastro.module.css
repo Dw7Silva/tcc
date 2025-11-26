@@ -1,3 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap');
+
+:root {
+  /* Tema Claro (default) */
+  --cadastro-cor-primaria: #8B5A3C;
+  --cadastro-cor-segundaria: #D4A574;
+  --cadastro-cor-concluida: #6B8E23;
+  --light-bg: #aaa8a4;
+  --cadastro-card: rgba(253, 248, 239, 0.95);
+  --cadastro-cor-dark: #5D4037;
+  --cadastro-cor-light: #181717;
+  --cadastro-sucesso: #4CAF50;
+  --cadastro-error: #E57373;
+  --border-radius: 16px;
+  --shadow: 0 10px 30px rgba(139, 90, 60, 0.15);
+  --transition: all 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cadastro-cor-primaria: #D4A574;
+    --cadastro-cor-segundaria: #8B5A3C;
+    --cadastro-cor-concluida: #6e8554;
+    --light-bg: #2B2320;
+    --cadastro-card: rgba(44, 36, 32, 0.95);
+    --cadastro-cor-dark: #FFF;
+    --cadastro-cor-light: #e6d8c9;
+    --cadastro-sucesso: #679e6a;
+    --cadastro-error: #EF5350;
+    --border-radius: 16px;
+    --shadow: 0 10px 30px rgba(212, 165, 116, 0.15);
+    --transition: all 0.3s ease;
+  }
+}
 
 /* Estilo global da página */
 .pageContainer {

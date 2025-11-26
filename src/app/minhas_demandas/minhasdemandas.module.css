@@ -1,4 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
+:root {
+  /* Tema Claro (default) */
+  --cor-primaria-demandas: #A87453;
+  --cor-secundaria-demandas: ;
+  --cor-texto-demandas: #333;
+  --cor-texto-secundario-demandas: #666;
+  --cor-borda-demandas: #A46434;
+  --cor-card-demandas: #ffffff;
+  --cor-sombra-demandas: rgba(0, 0, 0, 0.1);
+
+  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
+  --altura-navbar: clamp(60px, 10vh, 80px);
+  --altura-logo: clamp(40px, 8vh, 60px);
+  --padding-lateral: clamp(10px, 2vw, 20px);
+}
+
+/* Tema Escuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria-demandas: #5c3b28;
+    --cor-secundaria-demandas: #F8DCA5;
+    --cor-texto-demandas: #f0f0f0;
+    --cor-texto-secundario-demandas: #b3b3b3; 
+    --cor-fundo-inicio: #313030;
+    --cor-borda-demandas: #A46434;
+    --cor-card-demandas: #1e1e1e; 
+    --cor-sombra-demandas: rgba(0, 0, 0, 0.5);
+    --cor-destaque: #F8DCA5; 
+  }
+}
 
 body {
   margin: 0;
@@ -34,7 +65,6 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
-  color:var(--cor-texto-demandas)
 }
 
 .header h2 {

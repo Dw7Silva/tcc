@@ -1,4 +1,39 @@
+:root {
+  /* Tema Claro (default) */
+  --cor-primaria-descoferta: #F8DCA5;
+  --cor-secundaria-descoferta-1: #5c3b28;
+  --cor-texto-descoferta-1: #333;
+  --cor-texto-secundario-descoferta: #666;
+  --cor-borda-descoferta: #A46434;
+  --cor-card-descoferta: #ffffff;
+  --cor-sombra-descoferta: rgba(0, 0, 0, 0.1);
+  --cor-fundo-inicio: #e2dad2;
+  --cor-destaque-descoferta: #F8DCA5;
+  --cor-chat-descoferta: #d9d9d9;
+  --cor-input-descoferta: #ffffff;
 
+  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
+  --altura-navbar: clamp(60px, 10vh, 80px);
+  --altura-logo: clamp(40px, 8vh, 60px);
+  --padding-lateral: clamp(10px, 2vw, 20px);
+}
+
+/* Tema Escuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria-descoferta: #F8DCA5;
+    --cor-secundaria-descoferta-1: #ffffff;
+    --cor-texto-descoferta-1: #f0f0f0;
+    --cor-texto-secundario-descoferta: #b3b3b3;
+    --cor-borda-descoferta: #A46434;
+    --cor-card-descoferta: #1e1e1e;
+    --cor-sombra-descoferta: rgba(0, 0, 0, 0.5);
+    --cor-fundo-inicio: #313030;
+    --cor-destaque-descoferta: #A87453;
+    --cor-chat-descoferta: #2a2a2a;
+    --cor-input-descoferta: #3a3a3a;
+  }
+}
 
 .container {
   padding: 2rem;
