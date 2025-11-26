@@ -1,34 +1,4 @@
-/* esqueceu1.module.css */
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
-:root {
-  /* Tema Claro */
-  --esqueceu-cor-primaria: #A87453;
-  --esqueceu-cor-secundaria: #F8DCA5;
-  --esqueceu-cor-fundo: #d4d4d4;
-  --esqueceu-cor-card: #ffffff;
-  --esqueceu-cor-texto: #333;
-  --esqueceu-cor-texto-secundario: #666;
-  --esqueceu-cor-borda: #e0e0e0;
-  --esqueceu-cor-sombra: rgba(0, 0, 0, 0.1);
-  --esqueceu-cor-erro: #e57373;
-  --esqueceu-cor-sucesso: #81c784;
-  --esqueceu-cor-destaque: #F8DCA5;
-}
-
-/* Dark Theme */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --esqueceu-cor-primaria: #F8DCA5;
-    --esqueceu-cor-secundaria: #5c3b28;
-    --esqueceu-cor-fundo: #313030;
-    --esqueceu-cor-card: #2a2a2a;
-    --esqueceu-cor-texto: #f0f0f0;
-    --esqueceu-cor-texto-secundario: #b3b3b3;
-    --esqueceu-cor-borda: #444;
-    --esqueceu-cor-sombra: rgba(0, 0, 0, 0.3);
-  }
-}
 
 
 .logoContainer {

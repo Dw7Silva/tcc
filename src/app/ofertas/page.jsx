@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState, useEffect, useMemo } from "react";
+import React, { useRef, useState, useEffect,  } from "react";
 import styles from "./oferta.module.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import BarraNvg from "@/components/navbar/navbar";
@@ -78,7 +78,7 @@ export default function Ofertas() {
               <button onClick={arrowLeft} className={`${styles.arrow} ${styles.arrowLeft}`} aria-label="Anterior">
                 <IoIosArrowBack />
               </button>
-              <div className={styles.demandasGrid} ref={gridRef}>
+              <div className={styles.ofertasGrid} ref={gridRef}>
                 {ofertas.map((oferta) => (
                 <Cardsofertas key={oferta.oferta_id} oferta={oferta} />
                 ))}
