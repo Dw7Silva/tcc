@@ -1,4 +1,3 @@
-// src/app/demanda/[id]/page.jsx (ou onde está seu DemandaPage)
 "use client";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
@@ -15,9 +14,10 @@ export default function OfertaPage() {
     if (!id) return;
     const fetchOferta = async () => {
       setLoading(true);
+
       try {
         const res = await api.get(
-          `/ofertas/filtro?oferta_id=${encodeURIComponent(id)}`
+          `http://localhost:3333/Ofertas/${id}`
         );
         const dados = res?.data?.dados ?? null;
         const d = Array.isArray(dados) ? dados[0] : dados;
@@ -36,7 +36,7 @@ export default function OfertaPage() {
     fetchOferta();
   }, [id]);
 
-  if (loading) return null; // substituir por loader se quiser
+  if (loading) return null; 
   if (error || !oferta)
     return (
       <>

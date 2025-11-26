@@ -226,7 +226,7 @@ export default function CriarDemanda() {
         <div className={styles.card}>
           <div className={styles.textcriar}>
             <h2>Criar Demanda</h2>
-            {empresaId && <p className={styles.empresaInfo}></p>}
+      
           </div>
 
           {error && (
@@ -252,12 +252,14 @@ export default function CriarDemanda() {
                 style={{ display: "none" }}
               />
 
-              {selectedImage && (
-                <img 
-                  src={selectedImage} 
-                  alt="Imagem selecionada" 
-                  className={styles.imagePreview}
-                />
+            {selectedImage && (
+                <div className={styles.imagePreviewContainer}>
+                  <img 
+                    src={selectedImage} 
+                    alt="Imagem selecionada" 
+                    className={styles.imagePreview}
+                  />
+                  </div>
               )}
             </div>
 

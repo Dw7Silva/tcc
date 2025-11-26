@@ -1,19 +1,37 @@
-import React from 'react';
-import styles from './descoferta.module.css';
-import BarraNvg from '@/components/navbar/navbar';
-import Link from 'next/link';
+"use client";
+import React from "react";
+import styles from "./descoferta.module.css";
+import BarraNvg from "@/components/navbar/navbar";
+import Link from "next/link";
 
-const OfertaDescricao = () => {
- 
-  
-   
-  const imagemdemanda = "https://delikatessenbuffet.com.br/storage/app/uploads/w6mebc9mEmReLs043fhhP9TZLMiDc6NPfeIbHAPt.jpg"
+export default function OfertaDescricao({ oferta }) {
+  if (!oferta) {
+    return (
+      <>
+        <BarraNvg />
+        <div className={styles.container}>
+          <div className={styles.demandaContainer}>
+           
+          </div>
+        </div>
+      </>
+    );
+  }
+  console.log(oferta);
+
+  const agricultor = oferta.agri_nome;
+  const variedade = oferta.amen_variedade;
+  const quantidade = oferta.oferta_quantidade;
+  const preco = oferta.oferta_preco;
+  const informacoes = oferta.oferta_outras_informacoes;
+  const dataColheita = oferta.oferta_data_colheita;
+  const data_publicacao = oferta.oferta_data_publicacao; 
+  const imagemOferta = oferta.oferta_img;
+
 
   return (
     <>
-      <BarraNvg />
-
-      <div className={styles.container}>
+    <div className={styles.container}>
         <div className={styles.demandaContainer}>
           <div className={styles.demandaHeader}>
             <div>
@@ -23,6 +41,7 @@ const OfertaDescricao = () => {
             <div className={styles.imageContainer}>
               <img
                 src={imagemOferta}
+
                 className={styles.productImage}
                 loading="lazy"
                 alt={`Oferta de ${variedade}`}
@@ -56,7 +75,7 @@ const OfertaDescricao = () => {
                   <span>
                     Publicado em: {new Date(data_publicacao).toLocaleDateString('pt-BR')}
                   </span>
-                </div>
+                   </div>
               </div>
             </div>
 
@@ -69,8 +88,8 @@ const OfertaDescricao = () => {
           </div>
 
           <div className={styles.actionButtons}>
-            <Link href="/negociacao">
-              <button className={styles.secondaryButton}>Iniciar negociação</button>
+            <Link href="/">
+              <button className={styles.secondaryButton}>enviar proposta</button>
             </Link>
           </div>
         </div>
@@ -78,3 +97,4 @@ const OfertaDescricao = () => {
     </>
   );
 }
+  

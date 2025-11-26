@@ -1,245 +1,238 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 :root {
-  /* Tema Claro (default) */
-  --cor-primaria-oferta: #A87453;
-  --cor-secundaria-oferta: #5c3b28;
-  --cor-fundo-oferta: #e2dad2;
-  --cor-texto-oferta: #333;
-  --cor-texto-secundario-oferta: #666;
-  --cor-borda-oferta: #A46434;
-  --cor-card-oferta: #ffffff;
-  --cor-sombra-oferta: rgba(0, 0, 0, 0.1);
+  --cor-primaria-perfil:#A87453;
+  --cor-secundaria-perfil: #A88C66;
+  --cor-texto-perfil: #333;
+  --cor-texto-secundario-perfil: #666;
+  --cor-borda-perfil: #A46434;
+  --cor-card-perfil: #ffffff;
+  --cor-sombra-perfil: rgba(0, 0, 0, 0.1);
+  --cor-button-houver-perfil: #A88C66;
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-  --altura-navbar: clamp(60px, 10vh, 80px);
+  --cor-fundo-perfil: #e2dad2;
 }
 
-/* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Cores principais invertidas */
-    --cor-primaria-oferta: #F8DCA5;
-    --cor-secundaria-oferta: #F8DCA5;
-
-    /* Escala de cinza invertida */
-    --cor-fundo-oferta: #313030;
-    --cor-texto-oferta: #f0f0f0;
-    --cor-texto-secundario-oferta: #b3b3b3;
-
-    /* Elementos de UI */
-    --cor-borda-oferta: #A46434;
-    --cor-card-oferta: #1e1e1e;
-    --cor-sombra-oferta: rgba(0, 0, 0, 0.5);
-    --cor-navbar-oferta: #311e04;
-
-    /* Ajustes para melhor contraste */
-    --cor-destaque-oferta: #F8DCA5;
+    --cor-primaria-perfil: #e0cfa183;
+    --cor-secundaria-perfil: #F8DCA5;
+    --cor-texto-perfil: #dbd9d9;
+    --cor-texto-secundario-perfil: #ffffff;
+    --cor-borda-perfil:#F8DCA5;
+    --cor-card-perfil: #1e1e1e; 
+    --cor-sombra-perfil: rgba(0, 0, 0, 0.5);
+    --cor-fundo-perfil: #313030;
   }
 }
 
-/* Base Styles */
-body {
-  margin: 0%;
-  background-color: var(--cor-fundo-oferta);
-}
+/* ------------------------ */
+/*   Layout Geral           */
+/* ------------------------ */
 
 .container {
-  background-color: var(--cor-fundo-oferta);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 var(--padding-lateral);
-  margin-top: var(--altura-navbar);
-  min-height: 100dvh;
-}
-
-/* Card Component */
-.card {
-  margin-top: 10vh;
-  width: 40vw;
+  max-width: 900px;
+  margin: 40px auto;
   padding: 20px;
-  background-color: var(--cor-card-oferta);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px var(--cor-sombra-oferta);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-width: 400px;
-  margin: 2vw;
-  border: 1px solid var(--cor-borda-oferta);
+  font-family: 'Comfortaa', sans-serif;
+  color: var(--cor-texto-perfil);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px var(--cor-sombra-oferta);
+.card {
+  background: var(--cor-card-perfil);
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px var(--cor-sombra-perfil);
+  border: 1px solid var(--cor-borda-perfil);
 }
 
-/* Form Styles */
-.textcriar {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  margin-bottom: 20px;
-  color: var(--cor-texto-oferta);
-}
-
-.formContent {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.imageInput, .imageInputLarge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.imageInputLarge {
-  width: 100%;
-  max-width: 320px;
-  height: 200px;
-  justify-content: center;
-  border: 2px dashed var(--cor-borda-oferta);
-  border-radius: 10px;
-}
-
-.imageInput label, .imageInputLarge label {
-  cursor: pointer;
-  color: var(--cor-texto-oferta);
-}
-
-.imageInput input, .imageInputLarge input {
-  display: none;
-}
-
-.imageInput img, .imageInputLarge img {
-  max-width: 320px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-top: 10px;
-  border: 2px solid var(--cor-borda-oferta);
-}
-
-.formFields {
-  flex: 1;
-  min-width: 250px;
-}
-
-.formGroup {
-  margin-bottom: 15px;
-}
-
-.formGroup label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-  width: 100%;
-  color: var(--cor-texto-oferta);
-}
-
-.formGroup input, .formGroup select {
-  border: 1px solid var(--cor-borda-oferta);
-  width: 100%;
-  padding: 10px;
-  border-radius: 4px;
-  transition: border-color 0.3s ease;
-  font-size: 1rem;
-  box-sizing: border-box;
-  background-color: var(--cor-card-oferta);
-  color: var(--cor-texto-oferta);
-}
-
-.formGroup input:focus, .formGroup select:focus {
-  border-color: var(--cor-primaria-oferta);
-  outline: none;
-}
-
-/* Button Styles */
-.criarOferta {
-  width: 100%;
-  padding: 12px;
-  background-color: #A46434; 
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  margin-top: 20px;
-}
-
-.criarOferta:hover {
-  transform: translateY(-2px);  
-  color: #1e1e1e;
-}
-
-/* Feedback Messages */
-.feedback {
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 8px;
+.textcriar h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--cor-primaria-perfil);
   text-align: center;
-  font-weight: bold;
-  animation: fadeIn 0.3s ease-in-out;
+  margin-bottom: 25px;
 }
 
-.sucesso {
-  background-color: var(--cor-sucesso-bg-oferta);
-  color: var(--cor-sucesso-oferta);
-  border: 1px solid var(--cor-sucesso-oferta);
+/* ------------------------ */
+/*   Feedback (erro/sucesso)*/
+/* ------------------------ */
+
+.feedback {
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  margin-bottom: 15px;
+  animation: fadeIn 0.3s ease;
 }
 
 .erro {
-  background-color: var(--cor-erro-bg-oferta);
-  color: var(--cor-erro-oferta);
-  border: 1px solid var(--cor-erro-oferta);
+  background: rgba(200, 0, 0, 0.1);
+  color: #a30000;
+  border-left: 4px solid #a30000;
 }
 
-/* Form Validation */
-.inputField:invalid, .textareaField:invalid {
-  border-color: var(--cor-erro-oferta);
+/* ------------------------ */
+/*   Overlay de sucesso     */
+/* ------------------------ */
+
+.successOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+  z-index: 999;
 }
 
-.inputField:valid, .textareaField:valid {
-  border-color: var(--cor-sucesso-oferta);
+.successMessage {
+  background: var(--cor-card-perfil);
+  padding: 40px 50px;
+  border-radius: 20px;
+  text-align: center;
+  border: 2px solid var(--cor-primaria-perfil);
+  box-shadow: 0 6px 20px var(--cor-sombra-perfil);
 }
 
-/* Animations */
+.successMessage p {
+  color: var(--cor-texto-perfil);
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.successIcon {
+  font-size: 60px;
+  color: var(--cor-primaria-perfil);
+}
+
+/* ------------------------ */
+/*   Formulário             */
+/* ------------------------ */
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.formFields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: var(--cor-primaria-perfil);
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: 12px 14px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid var(--cor-borda-perfil);
+  background: var(--cor-card-perfil);
+  color: var(--cor-texto-perfil);
+  transition: 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: var(--cor-primaria-perfil);
+  box-shadow: 0 0 5px var(--cor-primaria-perfil);
+  outline: none;
+}
+
+/* ------------------------ */
+/*   Upload de Imagem       */
+/* ------------------------ */
+
+.imageInput {
+  border: 2px dashed var(--cor-primaria-perfil);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--cor-texto-secundario-perfil);
+  transition: 0.3s ease;
+  background: var(--cor-card-perfil);
+}
+
+.imageInput:hover {
+  background: var(--cor-fundo-perfil);
+}
+
+.imageInputLarge {
+  padding: 60px;
+}
+
+.imageInput img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: 15px;
+  border: 2px solid var(--cor-primaria-perfil);
+}
+
+/* ------------------------ */
+/*   Botão principal        */
+/* ------------------------ */
+
+.criarOferta {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  background: var(--cor-primaria-perfil);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.criarOferta:hover {
+  background: var(--cor-button-houver-perfil);
+  transform: translateY(-2px);
+}
+
+.criarOferta:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+
+
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .formContent {
-    flex-direction: column;
-    align-items: center;
+  from {
+    opacity: 0;
+    transform: translateY(5px);
   }
-
-  .formFields {
-    width: 100%;
-  }
-
-  .card {
-    width: 80vw;
-    min-width: unset;
-    padding: 15px;
-  }
-
-  .imageInputLarge, .imageInput {
-    max-width: 100%;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 480px) {
-  .card {
-    margin-top: 5vh;
-    padding: 10px;
-  }
+.formGroup select {
+  background-color: var(--cor-card-perfil) !important;
+  color: var(--cor-texto-perfil) !important;
+}
 
-  .formGroup input, .formGroup select {
-    padding: 8px;
-  }
+.formGroup select option {
+  background-color: var(--cor-card-perfil) !important;
+  color: var(--cor-texto-perfil) !important;
 }
