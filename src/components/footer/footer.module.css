@@ -15,7 +15,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --cor-primaria: #F8DCA5;
-    --cor-secundaria: #313030; /* fundo escuro */
+    --cor-secundaria: #805f4a;/* fundo escuro */
     --cor-fundo: #313030;
     --cor-texto: #f0f0f0;      /* texto claro */
     --cor-texto-secundario: #b3b3b3;

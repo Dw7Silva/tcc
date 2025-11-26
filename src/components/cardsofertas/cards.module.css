@@ -8,8 +8,8 @@
   --cor-texto-card: #333;
   --cor-texto-card-secundario: #666;
   --cor-borda-card: #A46434;
-  --cor-accent-card: #c70000; /* cor de destaque se necessário */
-  --cor-sombra-card: rgba(0, 0, 0, 0.1);
+  --cor-accent-card: #e7e2e2; /* cor de destaque se necessário */
+  --cor-sombra-card: rgba(255, 250, 250, 0.1);
   --cor-button: #a87453 ;
   --cor-button-hover:#e1ac74;;
   
