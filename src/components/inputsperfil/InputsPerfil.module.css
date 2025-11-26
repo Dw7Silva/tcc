@@ -1,3 +1,11 @@
+:root{
+  --cor-texto2-perfil:#333333;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+  --cor-texto2-perfil:white;
+  }
+}
 .inputsContainer {
   width: 100%;
 }
@@ -17,7 +25,7 @@
 .formGroup label {
   font-weight: 500;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: var(--cor-texto2-perfil);
 }
 
 .infoInput {

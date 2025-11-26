@@ -418,6 +418,7 @@ export default function Perfil() {
               <label htmlFor="descricao">
                 {usuario.tipo === 1 ? 'Sobre a Propriedade' : 'Sobre a Empresa'} (Opcional)
               </label>
+ 
               <textarea
                 id="descricao"
                 className={styles.description}

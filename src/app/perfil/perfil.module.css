@@ -11,7 +11,8 @@
   --cor-sombra-perfil: rgba(0, 0, 0, 0.1);
   --cor-button-houver-perfil: #A88C66;
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-    --cor-fundo-perfil: #e2dad2;
+  --cor-fundo-perfil: #e2dad2;
+  --cor-label-perfil:#333333;
 }
 
 /* Tema Escuro */
@@ -21,13 +22,14 @@
     --cor-primaria-perfil: #e0cfa183; /* /* Inverso de #A87453 */
     --cor-secundaria-perfil: #F8DCA5;/* Inverso de #5c3b28 */
     /* Escala de cinza invertida */
-    --cor-texto-perfil: #dbd9d9; /* Quase branco */
+    --cor-texto-perfil: #ffffff; /* Quase branco */
     --cor-texto-secundario-perfil: #ffffff; 
     /* Elementos de UI */
     --cor-borda-perfil:#F8DCA5;
     --cor-card-perfil: #1e1e1e; 
     --cor-sombra-perfil: rgba(0, 0, 0, 0.5);
     --cor-fundo-perfil: #313030;
+    --cor-label-perfil:#ffffff;
   }
 }
 
@@ -42,6 +44,7 @@ body {
   transition: all 0.3s ease;
   background-color: var(--cor-fundo-perfil);
 }
+
 
 .pageContainer {
   display: flex;
@@ -167,7 +170,7 @@ body {
 
 .formGroup label {
   font-weight: 600;
-  color: var(--cor-texto-perfil);
+  color: var(--cor-label-perfil);
 }
 
 .infoInput {
@@ -282,7 +285,7 @@ body {
 }
 
 .editButton {
-  background: #007bff;
+  background: #A88C66;
   color: white;
   border: none;
   padding: 10px 20px;
