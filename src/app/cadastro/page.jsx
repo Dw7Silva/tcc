@@ -26,6 +26,86 @@ function Cadastro() {
     certificacoes: ''
   });
 
+  // Função para limpar mensagens
+  const limparMensagem = () => {
+    setMensagem({ texto: "", tipo: "" });
+  };
+
+  // Função para validar CPF
+  const validarCPF = (cpf) => {
+    cpf = cpf.replace(/\D/g, '');
+    
+    if (cpf.length !== 11) return false;
+    
+    // Verifica se todos os dígitos são iguais
+    if (/^(\d)\1+$/.test(cpf)) return false;
+    
+    // Validação do primeiro dígito verificador
+    let soma = 0;
+    for (let i = 0; i < 9; i++) {
+      soma += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    let resto = 11 - (soma % 11);
+    let digitoVerificador1 = resto === 10 || resto === 11 ? 0 : resto;
+    
+    if (digitoVerificador1 !== parseInt(cpf.charAt(9))) return false;
+    
+    // Validação do segundo dígito verificador
+    soma = 0;
+    for (let i = 0; i < 10; i++) {
+      soma += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    resto = 11 - (soma % 11);
+    let digitoVerificador2 = resto === 10 || resto === 11 ? 0 : resto;
+    
+    return digitoVerificador2 === parseInt(cpf.charAt(10));
+  };
+
+  // Função para validar CNPJ
+  const validarCNPJ = (cnpj) => {
+    cnpj = cnpj.replace(/\D/g, '');
+    
+    if (cnpj.length !== 14) return false;
+    
+    // Verifica se todos os dígitos são iguais
+    if (/^(\d)\1+$/.test(cnpj)) return false;
+    
+    // Validação do primeiro dígito verificador
+    let tamanho = cnpj.length - 2;
+    let numeros = cnpj.substring(0, tamanho);
+    let digitos = cnpj.substring(tamanho);
+    let soma = 0;
+    let pos = tamanho - 7;
+    
+    for (let i = tamanho; i >= 1; i--) {
+      soma += numeros.charAt(tamanho - i) * pos--;
+      if (pos < 2) pos = 9;
+    }
+    
+    let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+    if (resultado !== parseInt(digitos.charAt(0))) return false;
+    
+    // Validação do segundo dígito verificador
+    tamanho = tamanho + 1;
+    numeros = cnpj.substring(0, tamanho);
+    soma = 0;
+    pos = tamanho - 7;
+    
+    for (let i = tamanho; i >= 1; i--) {
+      soma += numeros.charAt(tamanho - i) * pos--;
+      if (pos < 2) pos = 9;
+    }
+    
+    resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+    return resultado === parseInt(digitos.charAt(1));
+  };
+
+  // Função para validar email
+  const validarEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
   const formatCpfCnpj = (value) => {
     let formattedValue = value.replace(/\D/g, '');
 
@@ -49,18 +129,37 @@ function Cadastro() {
     return formattedValue;
   };
 
+  const formatTelefone = (value) => {
+    let formattedValue = value.replace(/\D/g, '');
+    
+    if (formattedValue.length <= 11) {
+      formattedValue = formattedValue
+        .replace(/(\d{2})(\d)/, '($1) $2')
+        .replace(/(\d{5})(\d{1,4})$/, '$1-$2')
+        .replace(/(\d{4})(\d{1,4})$/, '$1-$2');
+    }
+    
+    return formattedValue;
+  };
+
   const handleInputChange = (field, value) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
+    // Limpa mensagem quando o usuário começa a digitar
+    if (mensagem.texto) {
+      limparMensagem();
+    }
   };
 
   const avancarEtapa = () => {
+    limparMensagem(); // Limpa mensagem ao avançar
     setEtapa(prev => prev + 1);
   };
 
   const voltarEtapa = () => {
+    limparMensagem(); // Limpa mensagem ao voltar
     setEtapa(prev => prev - 1);
   };
 
@@ -75,15 +174,89 @@ function Cadastro() {
 
   const handleSubmitEtapa2 = (e) => {
     e.preventDefault();
+    
+    // Validações da etapa 2
     if (!formData.nome || !formData.email || !cpfCnpj) {
       setMensagem({ texto: "Preencha todos os campos obrigatórios", tipo: "erro" });
       return;
     }
+
+    // Validação do nome
+    if (formData.nome.length < 3) {
+      setMensagem({ texto: "O nome deve ter pelo menos 3 caracteres", tipo: "erro" });
+      return;
+    }
+
+    // Validação do email
+    if (!validarEmail(formData.email)) {
+      setMensagem({ texto: "Digite um email válido", tipo: "erro" });
+      return;
+    }
+
+    // Validação do CPF/CNPJ
+    const documentoLimpo = cpfCnpj.replace(/\D/g, '');
+    
+    if (userType === 'Agricultor') {
+      if (documentoLimpo.length !== 11) {
+        setMensagem({ texto: "CPF deve ter 11 dígitos", tipo: "erro" });
+        return;
+      }
+      if (!validarCPF(cpfCnpj)) {
+        setMensagem({ texto: "Digite um CPF válido", tipo: "erro" });
+        return;
+      }
+    } else {
+      if (documentoLimpo.length !== 14) {
+        setMensagem({ texto: "CNPJ deve ter 14 dígitos", tipo: "erro" });
+        return;
+      }
+      if (!validarCNPJ(cpfCnpj)) {
+        setMensagem({ texto: "Digite um CNPJ válido", tipo: "erro" });
+        return;
+      }
+    }
+
     avancarEtapa();
   };
 
   const handleSubmitEtapa3 = (e) => {
     e.preventDefault();
+    // Validação para Agricultor
+    if (userType === 'Agricultor') {
+      if (!formData.localizacaoPropriedade || !formData.tiposAmendoim || !formData.certificacoes) {
+        setMensagem({ texto: "Preencha todos os campos obrigatórios", tipo: "erro" });
+        return;
+      }
+      
+      // Validações específicas para agricultor
+      if (formData.localizacaoPropriedade.length < 3) {
+        setMensagem({ texto: "O nome da propriedade deve ter pelo menos 3 caracteres", tipo: "erro" });
+        return;
+      }
+      
+      if (formData.tiposAmendoim.length < 2) {
+        setMensagem({ texto: "Informe os tipos de amendoim cultivados", tipo: "erro" });
+        return;
+      }
+    } 
+    // Validação para Empresa
+    else {
+      if (!formData.razaoSocial || !formData.nomeFantasia || !formData.tipoAtividade) {
+        setMensagem({ texto: "Preencha todos os campos obrigatórios", tipo: "erro" });
+        return;
+      }
+      
+      // Validações específicas para empresa
+      if (formData.razaoSocial.length < 3) {
+        setMensagem({ texto: "A razão social deve ter pelo menos 3 caracteres", tipo: "erro" });
+        return;
+      }
+      
+      if (formData.nomeFantasia.length < 2) {
+        setMensagem({ texto: "O nome fantasia deve ter pelo menos 2 caracteres", tipo: "erro" });
+        return;
+      }
+    }
     avancarEtapa();
   };
 
@@ -93,14 +266,29 @@ function Cadastro() {
       setMensagem({ texto: "Preencha todos os campos obrigatórios", tipo: "erro" });
       return;
     }
+    
+    // Validação do endereço
+    if (formData.endereco.length < 10) {
+      setMensagem({ texto: "O endereço deve ter pelo menos 10 caracteres", tipo: "erro" });
+      return;
+    }
+    
+    // Validação do telefone
+    const telefoneLimpo = formData.telefone.replace(/\D/g, '');
+    if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
+      setMensagem({ texto: "Digite um telefone válido com DDD", tipo: "erro" });
+      return;
+    }
+    
     avancarEtapa();
   };
 
   const handleSubmitFinal = async (e) => {
     e.preventDefault();
     setLoading(true);
+    limparMensagem(); // Limpa mensagens anteriores
 
-    // Validações
+    // Validações da senha
     if (formData.senha !== formData.confirmarSenha) {
       setMensagem({ texto: "As senhas não coincidem", tipo: "erro" });
       setLoading(false);
@@ -109,6 +297,17 @@ function Cadastro() {
 
     if (formData.senha.length < 6) {
       setMensagem({ texto: "A senha deve ter pelo menos 6 caracteres", tipo: "erro" });
+      setLoading(false);
+      return;
+    }
+
+    // Validação de senha forte (opcional)
+    const senhaForteRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/;
+    if (!senhaForteRegex.test(formData.senha)) {
+      setMensagem({ 
+        texto: "A senha deve conter pelo menos uma letra maiúscula, uma minúscula e um número", 
+        tipo: "erro" 
+      });
       setLoading(false);
       return;
     }
@@ -236,14 +435,20 @@ function Cadastro() {
                     <button
                       type="button"
                       className={`${styles.userTypeButton} ${userType === 'Agricultor' ? styles.selected : ''}`}
-                      onClick={() => setUserType('Agricultor')}
+                      onClick={() => {
+                        setUserType('Agricultor');
+                        limparMensagem();
+                      }}
                     >
                       🌱 Agricultor
                     </button>
                     <button
                       type="button"
                       className={`${styles.userTypeButton} ${userType === 'Empresa' ? styles.selected : ''}`}
-                      onClick={() => setUserType('Empresa')}
+                      onClick={() => {
+                        setUserType('Empresa');
+                        limparMensagem();
+                      }}
                     >
                       🏢 Empresa
                     </button>
@@ -265,7 +470,7 @@ function Cadastro() {
                   
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>
-                      {userType === 'Agricultor' ? 'Nome Completo' : 'Nome do Responsável'}
+                      {userType === 'Agricultor' ? 'Nome Completo' : 'Nome do Responsável'} *
                     </label>
                     <input
                       type="text"
@@ -274,11 +479,12 @@ function Cadastro() {
                       onChange={(e) => handleInputChange('nome', e.target.value)}
                       placeholder={userType === 'Agricultor' ? 'Seu nome completo' : 'Nome do responsável'}
                       required
+                      minLength={3}
                     />
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Email</label>
+                    <label className={styles.formLabel}>Email *</label>
                     <input
                       type="email"
                       className={styles.formInput}
@@ -291,17 +497,21 @@ function Cadastro() {
 
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>
-                      {userType === 'Agricultor' ? 'CPF' : 'CNPJ'}
+                      {userType === 'Agricultor' ? 'CPF' : 'CNPJ'} *
                     </label>
                     <input
                       type="text"
                       className={styles.formInput}
                       value={cpfCnpj}
-                      onChange={(e) => setCpfCnpj(formatCpfCnpj(e.target.value))}
+                      onChange={(e) => {
+                        setCpfCnpj(formatCpfCnpj(e.target.value));
+                        if (mensagem.texto) limparMensagem();
+                      }}
                       placeholder={userType === 'Agricultor' ? '000.000.000-00' : '00.000.000/0000-00'}
                       maxLength={userType === 'Agricultor' ? 14 : 18}
                       required
                     />
+                   
                   </div>
 
                   <div className={styles.botoesNavegacao}>
@@ -328,70 +538,80 @@ function Cadastro() {
                   {userType === 'Agricultor' ? (
                     <>
                       <div className={styles.formGroup}>
-                        <label className={styles.formLabel}>Nome da propriedade</label>
+                        <label className={styles.formLabel}>Nome da propriedade *</label>
                         <input
                           type="text"
                           className={styles.formInput}
                           value={formData.localizacaoPropriedade}
                           onChange={(e) => handleInputChange('localizacaoPropriedade', e.target.value)}
-                          placeholder="Fazendo São João"
+                          placeholder="Fazenda São João"
+                          required
+                          minLength={3}
                         />
                       </div>
 
                       <div className={styles.formGroup}>
-                        <label className={styles.formLabel}>Tipos de Amendoim Cultivados</label>
+                        <label className={styles.formLabel}>Tipos de Amendoim Cultivados *</label>
                         <input
                           type="text"
                           className={styles.formInput}
                           value={formData.tiposAmendoim}
                           onChange={(e) => handleInputChange('tiposAmendoim', e.target.value)}
                           placeholder="Ex: Runner, Virginia, Valência"
+                          required
+                          minLength={2}
                         />
                       </div>
 
                       <div className={styles.formGroup}>
-                        <label className={styles.formLabel}>Certificações</label>
+                        <label className={styles.formLabel}>Certificações *</label>
                         <input
                           type="text"
                           className={styles.formInput}
                           value={formData.certificacoes}
                           onChange={(e) => handleInputChange('certificacoes', e.target.value)}
                           placeholder="Ex: Orgânico, ISO, etc."
+                          required
                         />
                       </div>
                     </>
                   ) : (
                     <>
                       <div className={styles.formGroup}>
-                        <label className={styles.formLabel}>Razão Social</label>
+                        <label className={styles.formLabel}>Razão Social *</label>
                         <input
                           type="text"
                           className={styles.formInput}
                           value={formData.razaoSocial}
                           onChange={(e) => handleInputChange('razaoSocial', e.target.value)}
                           placeholder="Razão social da empresa"
+                          required
+                          minLength={3}
                         />
                       </div>
 
                       <div className={styles.formGroup}>
-                        <label className={styles.formLabel}>Nome Fantasia</label>
+                        <label className={styles.formLabel}>Nome Fantasia *</label>
                         <input
                           type="text"
                           className={styles.formInput}
                           value={formData.nomeFantasia}
                           onChange={(e) => handleInputChange('nomeFantasia', e.target.value)}
                           placeholder="Nome fantasia da empresa"
+                          required
+                          minLength={2}
                         />
                       </div>
 
                       <div className={styles.formGroup}>
-                        <label className={styles.formLabel}>Tipo de Atividade</label>
+                        <label className={styles.formLabel}>Tipo de Atividade *</label>
                         <input
                           type="text"
                           className={styles.formInput}
                           value={formData.tipoAtividade}
                           onChange={(e) => handleInputChange('tipoAtividade', e.target.value)}
                           placeholder="Ex: Indústria alimentícia, Comércio, etc."
+                          required
                         />
                       </div>
                     </>
@@ -417,7 +637,7 @@ function Cadastro() {
                   <h2 className={styles.etapaTitulo}>Contato e localização</h2>
 
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Endereço</label>
+                    <label className={styles.formLabel}>Endereço *</label>
                     <input
                       type="text"
                       className={styles.formInput}
@@ -425,19 +645,22 @@ function Cadastro() {
                       onChange={(e) => handleInputChange('endereco', e.target.value)}
                       placeholder="Digite seu endereço completo"
                       required
+                      minLength={10}
                     />
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Telefone</label>
+                    <label className={styles.formLabel}>Telefone *</label>
                     <input
                       type="tel"
                       className={styles.formInput}
                       value={formData.telefone}
-                      onChange={(e) => handleInputChange('telefone', e.target.value)}
+                      onChange={(e) => handleInputChange('telefone', formatTelefone(e.target.value))}
                       placeholder="(00) 00000-0000"
+                      maxLength={15}
                       required
                     />
+                   
                   </div>
 
                   <div className={styles.botoesNavegacao}>
@@ -460,7 +683,7 @@ function Cadastro() {
                   <h2 className={styles.etapaTitulo}>Crie sua senha</h2>
 
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Senha</label>
+                    <label className={styles.formLabel}>Senha *</label>
                     <input
                       type="password"
                       className={styles.formInput}
@@ -470,10 +693,11 @@ function Cadastro() {
                       minLength={6}
                       required
                     />
+                    
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Confirmar Senha</label>
+                    <label className={styles.formLabel}>Confirmar Senha *</label>
                     <input
                       type="password"
                       className={styles.formInput}

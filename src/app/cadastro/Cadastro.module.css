@@ -5,10 +5,10 @@
   --cadastro-cor-primaria: #8B5A3C;
   --cadastro-cor-segundaria: #D4A574;
   --cadastro-cor-concluida: #6B8E23;
-  --light-bg: #FEF9F0;
-  --cadastro-card: rgba(255, 253, 245, 0.95);
+  --light-bg: #aaa8a4;
+  --cadastro-card: rgba(253, 248, 239, 0.95);
   --cadastro-cor-dark: #5D4037;
-  --cadastro-cor-light: #FFF;
+  --cadastro-cor-light: #181717;
   --cadastro-sucesso: #4CAF50;
   --cadastro-error: #E57373;
   --border-radius: 16px;
@@ -24,7 +24,7 @@
     --light-bg: #2B2320;
     --cadastro-card: rgba(44, 36, 32, 0.95);
     --cadastro-cor-dark: #FFF;
-    --cadastro-cor-light: #D4A574;
+    --cadastro-cor-light: #e6d8c9;
     --cadastro-sucesso: #679e6a;
     --cadastro-error: #EF5350;
     --border-radius: 16px;
@@ -119,10 +119,8 @@
 
 .formCard {
   background: var(--cadastro-card);
-  /* backdrop-filter: blur(10px); REMOVIDO */
   padding: 40px;
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
   width: 100%;
   max-width: 450px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -253,10 +251,10 @@
 .userTypeButton {
   flex: 1;
   padding: 12px 20px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--cadastro-cor-light);
   border-radius: 8px;
   background:#A87453;
-  color: var(--cadastro-cor-light);
+  color: var(--cadastro-cor-dark);
   cursor: pointer;
   transition: var(--transition);
   font-family: 'Comfortaa', cursive;
@@ -270,10 +268,9 @@
 }
 
 .userTypeButton.selected {
-  background:  #6b4c3a;
+  background:  #dfa17b;
   color: rgb(247, 247, 247);
-  
-  box-shadow: 0 4px 8px rgba(107, 142, 35, 0.3);
+  transform: translateY(-5px);
 }
 .userTypeButton.selected:hover{
   background-color:#A87453; 
@@ -284,8 +281,8 @@
   padding: 16px;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(135deg, var(--cadastro-cor-primaria) 0%, var(--cadastro-cor-segundaria) 100%);
-  color: white;
+  background:  var(--cadastro-cor-primaria) 0;
+  color: rgb(255, 255, 255);
   font-family: 'Comfortaa', cursive;
   font-size: 16px;
   font-weight: 600;
