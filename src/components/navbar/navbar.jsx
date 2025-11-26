@@ -26,18 +26,31 @@ export default function BarraNvg() {
   const toggleMenu = () => setMenuAberto(!menuAberto);
 
   const menuItems = [
-    { label: "Demandas",href: "/demanda" }, // Corrigido
+    // Itens do mobile PRIMEIRO (apenas em telas pequenas)
+    ...(isSmallScreen ? [
+        { label: "Início", href: "/" },
+        { label: "Chat", href: "/chat" },
+        { label: "Suporte", href: "/suporte" },
+        { label: "Perfil", href: "/perfil" }
+    ] : []),
+    
+    // Itens principais (sempre no meio)
+    { label: "Demandas", href: "/demanda" },
     { label: "Ofertas", href: "/ofertas" },
     { label: "Minhas Demandas", href: "/minhas_demandas" },
     { label: "Minhas Ofertas", href: "/minhas_ofertas" },
-   
-    ...(isSmallScreen ? [
-      { label: "Início", href: "/" },
-      { label: "Chat", href: "/chat" },
-      { label: "Suporte", href: "/suporte" },
-      { label: "Perfil", href: "/perfil" }
-    ] : [])
-  ];
+    
+    // Sair SEMPRE por último
+    { 
+        label: (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                Sair
+                <img src="/sairsem.gif" alt="Sair" width="20" height="30" />
+            </div>
+        ), 
+        href: "/home"
+    }
+];
 
   const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
 

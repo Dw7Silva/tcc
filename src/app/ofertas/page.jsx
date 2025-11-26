@@ -89,7 +89,7 @@ export default function Ofertas() {
             </div>
           </div>
 
-          <Link href="/criar_oferta" passHref >
+          <Link href="/criar_oferta" passHref legacyBehavior >
             <button className={styles.criarOferta}>
               <span className={styles.textcriar}>Criar oferta</span>
             </button>
