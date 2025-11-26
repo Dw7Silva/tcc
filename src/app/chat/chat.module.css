@@ -23,11 +23,6 @@
   --cor-primaria-hover: #4a3020;
   --cor-online: #4caf50;
 
-  /* Tipografia */
-  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-  --altura-navbar: clamp(60px, 10vh, 80px);
-  --radius: 12px;
-  --transition: 0.3s ease-in-out;
 }
 
 /* =====================
@@ -54,18 +49,6 @@
   }
 }
 
-/* =====================
-   Estrutura
-===================== */
-body {
-  margin: 0;
-  font-family: 'Comfortaa', sans-serif;
-  font-size: var(--tamanho-fonte-base);
-  min-height: 100vh;
-  color: var(--cor-texto-chat);
-  background-color: var(--cor-fundo-chat);
-  transition: background-color var(--transition), color var(--transition);
-}
 
 .container {
   background-color: var(--cor-fundo-chat);

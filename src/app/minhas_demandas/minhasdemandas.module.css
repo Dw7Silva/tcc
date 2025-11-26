@@ -31,14 +31,6 @@
   }
 }
 
-body {
-  margin: 0;
-  font-family: 'Comfortaa', sans-serif;
-  font-size: var(--tamanho-fonte-base);
-  min-height: 100vh;
-  color: var(--cor-texto-demandas);
-  transition: background-color 0.3s, color 0.3s;
-}
 
 .container {
   background-color: var(--cor-fundo-demanda);

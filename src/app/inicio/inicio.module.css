@@ -33,18 +33,6 @@
     --cor-destaque-s: #F8DCA5;
   }
 }
-
-
-body {
-  margin: 0;
-  font-family: 'Comfortaa', sans-serif;
-  font-size: var(--tamanho-fonte-base-s);
-  min-height: 100vh;
-  color: var(--cor-texto-inicio-s);
-  background-color: var(--cor-fundo-inicio-s);
-  transition: background-color 0.3s, color 0.3s;
-  overflow-x: hidden;
-}
  
 .container { 
   background-color: var(--cor-fundo-inicio-s); 

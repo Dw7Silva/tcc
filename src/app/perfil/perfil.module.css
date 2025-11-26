@@ -34,18 +34,6 @@
 }
 
 
-/* Base Styles */
-body {
-  margin: 0;
-  font-family: 'Comfortaa', sans-serif;
-  font-size: var(--tamanho-fonte-base);
-  min-height: 100vh;
-  color: var(--cor-texto);
-  transition: all 0.3s ease;
-  background-color: var(--cor-fundo-perfil);
-}
-
-
 .pageContainer {
   display: flex;
   flex-direction: column;
