@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './Cadastro.module.css';
+import api from '@/services/api';
 
 function Cadastro() {
   const [etapa, setEtapa] = useState(1);
@@ -37,10 +38,8 @@ function Cadastro() {
     
     if (cpf.length !== 11) return false;
     
-    // Verifica se todos os dígitos são iguais
     if (/^(\d)\1+$/.test(cpf)) return false;
     
-    // Validação do primeiro dígito verificador
     let soma = 0;
     for (let i = 0; i < 9; i++) {
       soma += parseInt(cpf.charAt(i)) * (10 - i);
@@ -50,7 +49,6 @@ function Cadastro() {
     
     if (digitoVerificador1 !== parseInt(cpf.charAt(9))) return false;
     
-    // Validação do segundo dígito verificador
     soma = 0;
     for (let i = 0; i < 10; i++) {
       soma += parseInt(cpf.charAt(i)) * (11 - i);
@@ -67,10 +65,8 @@ function Cadastro() {
     
     if (cnpj.length !== 14) return false;
     
-    // Verifica se todos os dígitos são iguais
     if (/^(\d)\1+$/.test(cnpj)) return false;
     
-    // Validação do primeiro dígito verificador
     let tamanho = cnpj.length - 2;
     let numeros = cnpj.substring(0, tamanho);
     let digitos = cnpj.substring(tamanho);
@@ -85,7 +81,6 @@ function Cadastro() {
     let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
     if (resultado !== parseInt(digitos.charAt(0))) return false;
     
-    // Validação do segundo dígito verificador
     tamanho = tamanho + 1;
     numeros = cnpj.substring(0, tamanho);
     soma = 0;
@@ -147,19 +142,18 @@ function Cadastro() {
       ...prev,
       [field]: value
     }));
-    // Limpa mensagem quando o usuário começa a digitar
     if (mensagem.texto) {
       limparMensagem();
     }
   };
 
   const avancarEtapa = () => {
-    limparMensagem(); // Limpa mensagem ao avançar
+    limparMensagem();
     setEtapa(prev => prev + 1);
   };
 
   const voltarEtapa = () => {
-    limparMensagem(); // Limpa mensagem ao voltar
+    limparMensagem();
     setEtapa(prev => prev - 1);
   };
 
@@ -175,25 +169,21 @@ function Cadastro() {
   const handleSubmitEtapa2 = (e) => {
     e.preventDefault();
     
-    // Validações da etapa 2
     if (!formData.nome || !formData.email || !cpfCnpj) {
       setMensagem({ texto: "Preencha todos os campos obrigatórios", tipo: "erro" });
       return;
     }
 
-    // Validação do nome
     if (formData.nome.length < 3) {
       setMensagem({ texto: "O nome deve ter pelo menos 3 caracteres", tipo: "erro" });
       return;
     }
 
-    // Validação do email
     if (!validarEmail(formData.email)) {
       setMensagem({ texto: "Digite um email válido", tipo: "erro" });
       return;
     }
 
-    // Validação do CPF/CNPJ
     const documentoLimpo = cpfCnpj.replace(/\D/g, '');
     
     if (userType === 'Agricultor') {
@@ -221,14 +211,12 @@ function Cadastro() {
 
   const handleSubmitEtapa3 = (e) => {
     e.preventDefault();
-    // Validação para Agricultor
     if (userType === 'Agricultor') {
       if (!formData.localizacaoPropriedade || !formData.tiposAmendoim || !formData.certificacoes) {
         setMensagem({ texto: "Preencha todos os campos obrigatórios", tipo: "erro" });
         return;
       }
       
-      // Validações específicas para agricultor
       if (formData.localizacaoPropriedade.length < 3) {
         setMensagem({ texto: "O nome da propriedade deve ter pelo menos 3 caracteres", tipo: "erro" });
         return;
@@ -238,15 +226,12 @@ function Cadastro() {
         setMensagem({ texto: "Informe os tipos de amendoim cultivados", tipo: "erro" });
         return;
       }
-    } 
-    // Validação para Empresa
-    else {
+    } else {
       if (!formData.razaoSocial || !formData.nomeFantasia || !formData.tipoAtividade) {
         setMensagem({ texto: "Preencha todos os campos obrigatórios", tipo: "erro" });
         return;
       }
       
-      // Validações específicas para empresa
       if (formData.razaoSocial.length < 3) {
         setMensagem({ texto: "A razão social deve ter pelo menos 3 caracteres", tipo: "erro" });
         return;
@@ -267,13 +252,11 @@ function Cadastro() {
       return;
     }
     
-    // Validação do endereço
     if (formData.endereco.length < 10) {
       setMensagem({ texto: "O endereço deve ter pelo menos 10 caracteres", tipo: "erro" });
       return;
     }
     
-    // Validação do telefone
     const telefoneLimpo = formData.telefone.replace(/\D/g, '');
     if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
       setMensagem({ texto: "Digite um telefone válido com DDD", tipo: "erro" });
@@ -286,9 +269,8 @@ function Cadastro() {
   const handleSubmitFinal = async (e) => {
     e.preventDefault();
     setLoading(true);
-    limparMensagem(); // Limpa mensagens anteriores
+    limparMensagem();
 
-    // Validações da senha
     if (formData.senha !== formData.confirmarSenha) {
       setMensagem({ texto: "As senhas não coincidem", tipo: "erro" });
       setLoading(false);
@@ -301,7 +283,6 @@ function Cadastro() {
       return;
     }
 
-    // Validação de senha forte (opcional)
     const senhaForteRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/;
     if (!senhaForteRegex.test(formData.senha)) {
       setMensagem({ 
@@ -313,7 +294,6 @@ function Cadastro() {
     }
 
     try {
-      // PREPARAR DADOS PARA O BACKEND
       const usuarioData = {
         usu_tipo_usuario: userType === 'Agricultor' ? '1' : '2',
         usu_nome: formData.nome,
@@ -324,7 +304,6 @@ function Cadastro() {
         usu_telefone: formData.telefone.replace(/\D/g, ''),
         usu_data_cadastro: new Date().toISOString().split('T')[0],
         
-        // Campos específicos
         emp_razao_social: formData.razaoSocial || '',
         emp_nome_fantasia: formData.nomeFantasia || '',
         emp_tipo_atividade: formData.tipoAtividade || '',
@@ -335,41 +314,47 @@ function Cadastro() {
 
       console.log('Enviando dados:', usuarioData);
 
-      const response = await fetch('http://localhost:3333/usuarios', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(usuarioData)
-      });
+      // 🔥 REQUISIÇÃO COM API CONFIGURADA
+      const response = await api.post('/usuarios', usuarioData);
 
-      const resultado = await response.json();
-      console.log('Resposta do backend:', resultado);
+      console.log('Resposta do backend:', response.data);
 
-      if (response.ok && resultado.sucesso) {
+      if (response.data.sucesso) {
         setMensagem({ 
           texto: "Cadastro realizado com sucesso!Redirecionando para login...", 
           tipo: "sucesso" 
         });
         
-        // REDIRECIONAR PARA LOGIN APÓS 2 SEGUNDOS
         setTimeout(() => {
           router.push('/login');
         }, 2000);
         
       } else {
         setMensagem({ 
-          texto: resultado.mensagem || "Erro no cadastro. Verifique os dados.", 
+          texto: response.data.mensagem || "Erro no cadastro. Verifique os dados.", 
           tipo: "erro" 
         });
       }
 
     } catch (error) {
       console.error('Erro na requisição:', error);
-      setMensagem({ 
-        texto: "Erro ao conectar com o servidor. Verifique se o backend está rodando.", 
-        tipo: "erro" 
-      });
+      
+      if (error.response) {
+        setMensagem({ 
+          texto: error.response.data.mensagem || "Erro no servidor. Tente novamente.", 
+          tipo: "erro" 
+        });
+      } else if (error.request) {
+        setMensagem({ 
+          texto: "Erro ao conectar com o servidor. Verifique sua conexão.", 
+          tipo: "erro" 
+        });
+      } else {
+        setMensagem({ 
+          texto: "Erro inesperado. Tente novamente.", 
+          tipo: "erro" 
+        });
+      }
     } finally {
       setLoading(false);
     }
@@ -382,7 +367,6 @@ function Cadastro() {
       <div className={styles.container}>
         <div className={styles.twoColumnLayout}>
           
-          {/* Coluna Esquerda - Ilustração */}
           <div className={styles.leftColumn}>
             <div className={styles.logoContainer}>
               <img src={Logo} className={styles.logo} alt="Logo" />
@@ -417,7 +401,6 @@ function Cadastro() {
             </div>
           </div>
           
-          {/* Coluna Direita - Formulário */}
           <div className={styles.rightColumn}>
             <div className={styles.formCard}>
               {mensagem.texto && (
@@ -426,7 +409,6 @@ function Cadastro() {
                 </div>
               )}
               
-              {/* ETAPA 1: Seleção do Tipo */}
               {etapa === 1 && (
                 <form onSubmit={handleSubmitEtapa1} className={styles.formContainer}>
                   <h2 className={styles.etapaTitulo}>Qual é o seu perfil?</h2>
@@ -463,7 +445,6 @@ function Cadastro() {
                 </form>
               )}
               
-              {/* ETAPA 2: Dados Pessoais */}
               {etapa === 2 && (
                 <form onSubmit={handleSubmitEtapa2} className={styles.formContainer}>
                   <h2 className={styles.etapaTitulo}>Seus dados pessoais</h2>
@@ -511,7 +492,6 @@ function Cadastro() {
                       maxLength={userType === 'Agricultor' ? 14 : 18}
                       required
                     />
-                   
                   </div>
 
                   <div className={styles.botoesNavegacao}>
@@ -528,7 +508,6 @@ function Cadastro() {
                 </form>
               )}
               
-              {/* ETAPA 3: Dados Específicos */}
               {etapa === 3 && (
                 <form onSubmit={handleSubmitEtapa3} className={styles.formContainer}>
                   <h2 className={styles.etapaTitulo}>
@@ -631,7 +610,6 @@ function Cadastro() {
                 </form>
               )}
               
-              {/* ETAPA 4: Contato */}
               {etapa === 4 && (
                 <form onSubmit={handleSubmitEtapa4} className={styles.formContainer}>
                   <h2 className={styles.etapaTitulo}>Contato e localização</h2>
@@ -660,7 +638,6 @@ function Cadastro() {
                       maxLength={15}
                       required
                     />
-                   
                   </div>
 
                   <div className={styles.botoesNavegacao}>
@@ -677,7 +654,6 @@ function Cadastro() {
                 </form>
               )}
               
-              {/* ETAPA 5: Senha */}
               {etapa === 5 && (
                 <form onSubmit={handleSubmitFinal} className={styles.formContainer}>
                   <h2 className={styles.etapaTitulo}>Crie sua senha</h2>
@@ -693,7 +669,6 @@ function Cadastro() {
                       minLength={6}
                       required
                     />
-                    
                   </div>
 
                   <div className={styles.formGroup}>

@@ -38,6 +38,65 @@
   overflow-x: hidden;
 }
 
+.senhaContainer {
+  position: relative;
+  width: 100%;
+}
+
+/* Botão para mostrar/ocultar senha */
+.mostrarSenhaBtn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 4px;
+}
+
+.mostrarSenhaBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste no input de senha para dar espaço ao botão */
+.senhaContainer .formInput {
+  padding-right: 45px;
+}
+
+/* Checkbox personalizado */
+.rememberMe {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.rememberMe label {
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9rem;
+  color: var(--cor-texto-login);
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .mostrarSenhaBtn {
+    right: 8px;
+    font-size: 1.1rem;
+  }
+  
+  .senhaContainer .formInput {
+    padding-right: 40px;
+  }
+}
+
 /* Branding Section */
 .brandingSection {
   flex: 1;
@@ -155,6 +214,17 @@
   background-color: transparent;
   color: var(--cor-texto-login);
 }
+.formInput2 {
+  width: 90%;
+  padding: 1rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  background-color: transparent;
+  color: var(--cor-texto-login);
+}
+
 
 .formInput:focus {
   outline: none;

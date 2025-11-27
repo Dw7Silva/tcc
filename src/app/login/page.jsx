@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Login.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import api from '@/services/api';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -10,7 +11,20 @@ function Login() {
   const [tipoUsuario, setTipoUsuario] = useState('1');
   const [loading, setLoading] = useState(false);
   const [mensagem, setMensagem] = useState({ texto: "", tipo: "" });
+  const [lembrarDeMim, setLembrarDeMim] = useState(false);
+  const [mostrarSenha, setMostrarSenha] = useState(false);
   const router = useRouter();
+
+  // Carregar dados salvos quando o componente montar
+  useEffect(() => {
+    const credenciaisSalvas = localStorage.getItem('credenciaisSalvas');
+    if (credenciaisSalvas) {
+      const { email: emailSalvo, tipoUsuario: tipoSalvo } = JSON.parse(credenciaisSalvas);
+      setEmail(emailSalvo);
+      setTipoUsuario(tipoSalvo);
+      setLembrarDeMim(true);
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,27 +46,32 @@ function Login() {
 
       console.log('Enviando dados de login:', loginData);
 
-      const response = await fetch('http://localhost:3333/usuarios/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData)
-      });
+      const response = await api.post('/usuarios/login', loginData);
 
-      const resultado = await response.json();
+      console.log('Resposta do login:', response.data);
 
-      if (resultado.sucesso) {
+      if (response.data.sucesso) {
         setMensagem({ texto: "Login realizado com sucesso!", tipo: "sucesso" });
 
-        // 🔥 Correção definitiva: salvar tudo corretamente (sem sobrescrever)
+        // Salvar credenciais se "Lembrar de mim" estiver marcado
+        if (lembrarDeMim) {
+          localStorage.setItem('credenciaisSalvas', JSON.stringify({
+            email: email,
+            tipoUsuario: tipoUsuario
+          }));
+        } else {
+          // Remover se não estiver marcado
+          localStorage.removeItem('credenciaisSalvas');
+        }
+
+        // Salvar dados do usuário logado
         const usuario = {
-          id: resultado.dados.id,
-          nome: resultado.dados.nome,
-          tipo: resultado.dados.tipo,
-          agri_id: resultado.dados.agri_id ?? null,
-          emp_id: resultado.dados.emp_id ?? null,
-          imagem: resultado.dados.imagem ?? null
+          id: response.data.dados.id,
+          nome: response.data.dados.nome,
+          tipo: response.data.dados.tipo,
+          agri_id: response.data.dados.agri_id ?? null,
+          emp_id: response.data.dados.emp_id ?? null,
+          imagem: response.data.dados.imagem ?? null
         };
 
         localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
@@ -65,15 +84,35 @@ function Login() {
         }, 1000);
 
       } else {
-        setMensagem({ texto: resultado.mensagem || "Erro no login", tipo: "erro" });
+        setMensagem({ texto: response.data.mensagem || "Erro no login", tipo: "erro" });
       }
 
     } catch (error) {
-      console.error('Erro:', error);
-      setMensagem({ texto: "Erro ao conectar com o servidor", tipo: "erro" });
+      console.error('Erro no login:', error);
+      
+      if (error.response) {
+        setMensagem({ 
+          texto: error.response.data.mensagem || "Erro no servidor", 
+          tipo: "erro" 
+        });
+      } else if (error.request) {
+        setMensagem({ 
+          texto: "Erro de conexão. Verifique sua internet.", 
+          tipo: "erro" 
+        });
+      } else {
+        setMensagem({ 
+          texto: "Erro inesperado. Tente novamente.", 
+          tipo: "erro" 
+        });
+      }
     } finally {
       setLoading(false);
     }
+  };
+
+  const toggleMostrarSenha = () => {
+    setMostrarSenha(!mostrarSenha);
   };
 
   const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
@@ -135,24 +174,39 @@ function Login() {
           
           <div className={styles.formGroup}>
             <label htmlFor="senha" className={styles.inputLabel}>Senha</label>
-            <input
-              type="password"
-              id="senha"
-              name="senha"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              className={styles.formInput}
-              placeholder="••••••••"
-              required
-            />
+            <div className={styles.senhaContainer}>
+              <input
+                type={mostrarSenha ? "text" : "password"}
+                id="senha"
+                name="senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                className={styles.formInput2}
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                className={styles.mostrarSenhaBtn}
+                onClick={toggleMostrarSenha}
+              >
+                {mostrarSenha ? '🙈' : '👁️'}
+              </button>
+            </div>
           </div>
           
           <div className={styles.formOptions}>
             <div className={styles.rememberMe}>
-              <input type="checkbox" id="remember" className={styles.checkbox} />
+              <input 
+                type="checkbox" 
+                id="remember" 
+                className={styles.checkbox} 
+                checked={lembrarDeMim}
+                onChange={(e) => setLembrarDeMim(e.target.checked)}
+              />
               <label htmlFor="remember">Lembrar de mim</label>
             </div>
-            <Link href="/esqueceu_senha" passHref >
+            <Link href="/esqueceu_senha" passHref legacyBehavior>
               <p className={styles.forgotPassword}>Esqueceu a senha?</p>
             </Link>
           </div>
