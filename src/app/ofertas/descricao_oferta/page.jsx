@@ -31,6 +31,7 @@ export default function OfertaDescricao({ oferta }) {
 
   return (
     <>
+    <BarraNvg />
     <div className={styles.container}>
         <div className={styles.demandaContainer}>
           <div className={styles.demandaHeader}>

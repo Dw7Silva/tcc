@@ -1,41 +1,83 @@
-
-
 :root {
-  /* Tema Claro (default) */
+  /* Tema Claro - Usando as mesmas cores da Ofertas */
   --cor-primaria-d: #A87453;
   --cor-secundaria-d: #5c3b28;
-  --cor-texto-d-secundario: #ffffff;
+  --cor-texto-d: #333;
+  --cor-texto-d-secundario: #666;
   --cor-borda-d: #A46434;
-  --cor-sombra: rgba(0, 0, 0, 0.1);
+  --cor-card-d: #ffffff;
+  --cor-sombra-d: rgba(0, 0, 0, 0.1);
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
-   --cor-destaque:  rgba(117, 90, 90, 0.95);
+  --cor-destaque-d: rgba(117, 90, 90, 0.95);
+  --cor-button-d: #a87453;
+  --padding-lateral: 2rem;
 }
 
 /* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Cores principais invertidas */
+    /* Cores principais - mesmas da Ofertas */
     --cor-primaria-d: #F8DCA5;
     --cor-secundaria-d: #F8DCA5;
-    /* Escala de cinza invertida */
     --cor-fundo-d: #313030;
     --cor-texto-d: #f0f0f0;
-    --cor-texto-inicio-secundario: #b3b3b3;
-    /* Elementos de UI */
-    --cor-borda-inicio: #A46434;
-    --cor-card: #1e1e1e;
-    --cor-sombra: rgba(0, 0, 0, 0.5);
-    --cor-navbar: #311e04;
-    /* Ajustes para melhor contraste */
-    --cor-destaque: #F8DCA5;
-    
+    --cor-texto-d-secundario: #b3b3b3;
+    --cor-borda-d: #A46434;
+    --cor-card-d: #1e1e1e;
+    --cor-sombra-d: rgba(0, 0, 0, 0.5);
+    --cor-navbar-d: #311e04;
+    --cor-destaque-d: #F8DCA5;
+    --cor-button-d: #a87453;
   }
 }
 
+.linhaContainer {
+  margin-bottom: 40px;
+}
+
+.linhaContainer:last-child {
+  margin-bottom: 20px;
+}
+
+.tituloLinha {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--cor-texto-d);
+  font-weight: 600;
+}
+
+.semDemandas {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--cor-texto-d-secundario);
+}
+
+.criarPrimeiraDemanda {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+.criarPrimeiraDemanda:hover {
+  background: #45a049;
+}
+
+/* Loading state */
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: var(--cor-texto-d-secundario);
+}
 
 .container {
-
+  background-color: var(--cor-fundo-d);
   padding: 2rem var(--padding-lateral);
   margin-top: var(--altura-navbar);
   min-height: calc(100vh - var(--altura-navbar));
@@ -53,7 +95,6 @@
 }
 
 .headerTitle {
-  color: #e2dad2;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -89,8 +130,8 @@
   padding: 0.6rem 1rem;
   border-radius: 8px;
   border: 1px solid var(--cor-borda-d);
-  background-color: whitesmoke;
-  color: black;
+  background-color: var(--cor-card-d);
+  color: var(--cor-texto-d);
   font-family: inherit;
   min-width: 150px;
   width: 100%;
@@ -100,7 +141,7 @@
 
 .scrollWrapper {
   position: relative;
-  width:100%;
+  width: 100%;
   margin: 2.5rem 0;
 }
 
@@ -120,7 +161,6 @@
   display: none;
 }
 
-
 .arrow {
   position: absolute;
   top: 50%;
@@ -135,14 +175,13 @@
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 3px 8px var(--cor-sombra);
-  color:var(--cor-destaque);
+  box-shadow: 0 3px 8px var(--cor-sombra-d);
+  color: var(--cor-destaque-d);
   font-size: 2rem;
   transition: all 0.2s;
 }
 
 .arrow:hover {
-  
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -158,7 +197,7 @@
   display: block;
   margin: 3rem auto 0;
   padding: 1rem 2rem;
-  background-color: #a87453;
+  background-color: var(--cor-button-d);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -166,21 +205,21 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 8px var(--cor-sombra);
-  text-decoration: none; /* aqui tira o underline do <a> */
+  box-shadow: 0 2px 8px var(--cor-sombra-d);
+  text-decoration: none;
   width: 300px;
   height: 70px;
 }
 
 .textcriar {
-  text-decoration: none; /* garante que nunca sublinha */
+  text-decoration: none;
   font-size: 1.3rem;
+  color: white;
 }
      
 .criarOferta:hover {
-  background-color: var(--cor-primaria-d);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--cor-sombra);
+    background-color: var(--cor-primaria-d);
+    transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {

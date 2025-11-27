@@ -111,6 +111,7 @@
 
 .detalhes:hover {
  transform: translateY(-10%);
+ background-color: var(--cor-primaria-inicio) ;
 
 }
 
