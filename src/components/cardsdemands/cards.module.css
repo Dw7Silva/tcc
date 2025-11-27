@@ -44,6 +44,7 @@
   scroll-snap-align: start;
   background-color: var(--cor-texto-inicio-secundario);
   border-radius: 12px;
+  color:#333;
   padding: 1.5rem;
   box-shadow: 0 4px 12px var(--cor-sombra-geral);
   display: flex;

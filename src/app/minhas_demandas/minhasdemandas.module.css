@@ -1,15 +1,14 @@
-
-
 :root {
-  /* Tema Claro (default) */
-  --cor-primaria-demandas: #A87453;
-  --cor-secundaria-demandas: ;
-  --cor-texto-demandas: #333;
-  --cor-texto-secundario-demandas: #666;
-  --cor-borda-demandas: #A46434;
-  --cor-card-demandas: #ffffff;
-  --cor-sombra-demandas: rgba(0, 0, 0, 0.1);
-
+  /* Tema Claro (puxando as cores do INICIO) */
+  --cor-primaria-demandas: #A87453;                /* cor-primaria-inicio */
+  --cor-secundaria-demandas: #5c3b28;              /* cor-secundaria-inicio */
+  --cor-texto-demandas: #333;                      /* cor-texto-inicio */
+  --cor-texto-secundario-demandas: #ffffff;        /* cor-texto-inicio-secundario */
+  --cor-borda-demandas: #A46434;                   /* cor-borda-inicio */
+  --cor-card-demandas: #ffffff;                    /* fundo branco */
+  --cor-sombra-demandas: rgba(0, 0, 0, 0.1);        /* cor-sombra */
+  --cor-fundo-demanda: #e2dad2;                    /* cor-fundo-inicio */
+  --cor-button-hover:#e1ac74;;
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
   --altura-logo: clamp(40px, 8vh, 60px);
@@ -19,18 +18,17 @@
 /* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    --cor-primaria-demandas: #5c3b28;
-    --cor-secundaria-demandas: #F8DCA5;
-    --cor-texto-demandas: #f0f0f0;
-    --cor-texto-secundario-demandas: #b3b3b3; 
-    --cor-fundo-inicio: #313030;
+    --cor-primaria-demandas: #F8DCA5;              /* primária escuro */
+    --cor-secundaria-demandas: #F8DCA5;            /* secundária escuro */
+    --cor-texto-demandas: #f0f0f0;                 /* texto */
+    --cor-texto-secundario-demandas: #1e1e1e;      /* secundário */
+    --cor-fundo-demanda: #313030;                  /* fundo escuro */
     --cor-borda-demandas: #A46434;
     --cor-card-demandas: #1e1e1e; 
     --cor-sombra-demandas: rgba(0, 0, 0, 0.5);
-    --cor-destaque: #F8DCA5; 
+    --cor-destaque: #F8DCA5;
   }
 }
-
 
 .container {
   background-color: var(--cor-fundo-demanda);
@@ -178,8 +176,8 @@
 .detalhes {
   margin-top: auto;
   padding: 0.8rem;
-  background-color: #e1ac74;
-  color: rgb(255, 255, 255);
+  background-color: var(--cor-primaria-demandas);
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -189,84 +187,35 @@
 }
 
 .detalhes:hover {
-  background-color: var(--cor-primaria-demandas);
+  background-color: var(--cor-button-hover);
+  transform: translateY(-10%);
 }
 
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.9);
-  border: none;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 3px 8px var(--cor-sombra-demandas);
-  color: var(--cor-primaria-demandas);
-  font-size: 1.8rem;
-  transition: all 0.2s;
-}
 
-.arrow:hover {
-  background-color: rgba(255, 255, 255, 0.95);
-  transform: translateY(-50%) scale(1.1);
-}
 
-.arrowLeft {
-  left: -25px;
-}
 
-.arrowRight {
-  right: -25px;
-}
-
-.criarOferta {
-  display: block;
-  margin: 3rem auto 0;
-  padding: 1rem 2rem;
-  background-color: #e1ac74;
-  color: rgb(255, 255, 255);
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 2px 8px var(--cor-sombra-demandas);
-}
-
-.criarOferta:hover {
-  background-color: var(--cor-primaria-demandas);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--cor-sombra-demandas);
-}
 
 @media (max-width: 768px) {
   .headerTitle {
     flex-direction: row;
     align-items: center;
   }
-  
+
   .filtro {
     justify-content: flex-end;
     min-width: auto;
   }
-  
+
   .filtro select {
     min-width: 150px;
     max-width: 180px;
   }
-  
+
   .demandaCard {
     width: 280px;
     height: 380px;
   }
-  
+
   .imageContainer {
     height: 160px;
   }
@@ -276,26 +225,26 @@
   .container {
     padding: 1rem;
   }
-  
+
   .demandaCard {
     width: 240px;
     height: 340px;
   }
-  
+
   .arrow {
     width: 36px;
     height: 36px;
     font-size: 1.4rem;
   }
-  
+
   .arrowLeft {
     left: -18px;
   }
-  
+
   .arrowRight {
     right: -18px;
   }
-  
+
   .filtro select {
     min-width: 140px;
   }

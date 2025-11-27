@@ -9,7 +9,7 @@
   --cor-borda-minhaoferta: #A46434;
   --cor-card-minhaoferta: #ffffff;
   --cor-sombra-minhaoferta: rgba(0, 0, 0, 0.1);
-
+    
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
   --altura-logo: clamp(40px, 8vh, 60px);
