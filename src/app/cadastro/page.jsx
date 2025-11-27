@@ -348,7 +348,7 @@ function Cadastro() {
 
       if (response.ok && resultado.sucesso) {
         setMensagem({ 
-          texto: "Cadastro realizado com sucesso! Redirecionando para login...", 
+          texto: "Cadastro realizado com sucesso!Redirecionando para login...", 
           tipo: "sucesso" 
         });
         
