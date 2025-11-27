@@ -3,7 +3,7 @@
   --cor-primaria-demandas: #A87453;                /* cor-primaria-inicio */
   --cor-secundaria-demandas: #5c3b28;              /* cor-secundaria-inicio */
   --cor-texto-demandas: #333;                      /* cor-texto-inicio */
-  --cor-texto-secundario-demandas: #ffffff;        /* cor-texto-inicio-secundario */
+  --cor-texto-secundario-demandas: #333;        /* cor-texto-inicio-secundario */
   --cor-borda-demandas: #A46434;                   /* cor-borda-inicio */
   --cor-card-demandas: #ffffff;                    /* fundo branco */
   --cor-sombra-demandas: rgba(0, 0, 0, 0.1);        /* cor-sombra */
@@ -171,6 +171,7 @@
   margin: 0.8rem 0;
   color: var(--cor-texto-secundario-demandas);
   font-size: 1rem;
+
 }
 
 .detalhes {

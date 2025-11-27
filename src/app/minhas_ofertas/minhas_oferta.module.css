@@ -2,14 +2,14 @@
 
 :root {
   /* Tema Claro (default) */
-  --cor-primaria-minhaoferta: #A87453;
-  --cor-secundaria-minhaoferta: ;
+  --cor-primaria-minhaoferta:#5c3b28;
+  --cor-secundaria-minhaoferta: #a87453;;
   --cor-texto-minhaoferta: #333;
   --cor-texto-secundario-minhaoferta: #666;
   --cor-borda-minhaoferta: #A46434;
   --cor-card-minhaoferta: #ffffff;
   --cor-sombra-minhaoferta: rgba(0, 0, 0, 0.1);
-    
+  --cor-hover-minhaoferta:#e1ac74;
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
   --altura-logo: clamp(40px, 8vh, 60px);
@@ -57,12 +57,12 @@
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
+  color:var( --cor-primaria-minhaoferta)
 }
 
 .header h2 {
   margin: 0;
   font-size: clamp(1.5rem, 4vw, 2.2rem);
-  color: var(--cor-secundaria-minhaoferta);
   flex: 1;
   min-width: 150px;
 }
@@ -158,7 +158,7 @@
 
 .empresa {
   font-weight: 600;
-  color: var(--cor-secundaria-minhaoferta);
+  color: var(--cor-primaria-minhaoferta);
   margin: 0;
   font-size: 1.1rem;
 }
@@ -178,7 +178,7 @@
 .detalhes {
   margin-top: auto;
   padding: 0.8rem;
-  background-color: #e1ac74;
+  background-color:var(--cor-secundaria-minhaoferta);
   color: rgb(255, 255, 255);
   border: none;
   border-radius: 8px;
@@ -189,7 +189,7 @@
 }
 
 .detalhes:hover {
-  background-color: var(--cor-primaria-minhaoferta);
+  background-color: #e1ac74;;
 }
 
 .arrow {
