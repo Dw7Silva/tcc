@@ -1,61 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap');
 
 :root {
-  /* Tema Claro (default) */
-  --cor-primaria-inicio: #A87453;
-  --cor-secundaria-inicio: #5c3b28;
-  --cor-fundo-inicio: #e2dad2;
-  --cor-texto-inicio: #333;
-  --cor-texto-inicio-secundario: #ffffff;
-  --cor-borda-inicio: #A46434;
-  --cor-texto-h3:black;
-  --cor-sombra: rgba(0, 0, 0, 0.1);
-  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-
+  /* Tema Claro (default) - variáveis específicas para cardsdemands */
+  --cor-primaria-carddemanda: #A87453;
+  --cor-secundaria-carddemanda: #5c3b28;
+  --cor-fundo-carddemanda: #fcfaf8;
+  --cor-texto-carddemanda: #333;
+  --cor-texto-carddemanda-secundario: #666;
+  --cor-borda-carddemanda: #A46434;
+  --cor-accent-carddemanda: #e7e2e2;
+  --cor-sombra-carddemanda: rgba(255, 250, 250, 0.1);
+  --cor-button-carddemanda: #a87453;
+  --cor-button-hover-carddemanda: #e1ac74;
 }
 
 /* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Cores principais invertidas */
-    --cor-primaria-inicio: #F8DCA5;
-    --cor-secundaria-inicio: #F8DCA5;
-    /* Escala de cinza invertida */
-    --cor-fundo-inicio: #313030;
-    --cor-texto-inicio: #f0f0f0;
-    --cor-texto-inicio-secundario: #1e1e1e;
-    /* Elementos de UI */
-    --cor-borda-inicio:#a46434;
-    --cor-card: #1e1e1e;
-    --cor-sombra: rgba(0, 0, 0, 0.5);
-    --cor-navbar: #311e04;
-    --cor-texto-h3:white;
-    --cor-texto-p:#b3b3b3;
-    /* Ajustes para melhor contraste */
-    --cor-destaque: #F8DCA5;
+    --cor-primaria-carddemanda: #F8DCA5;
+    --cor-secundaria-carddemanda: #F8DCA5;
+    --cor-fundo-carddemanda: #1e1e1e;
+    --cor-texto-carddemanda: #f0f0f0;
+    --cor-texto-carddemanda-secundario: #b3b3b3;
+    --cor-borda-carddemanda: #A46434;
+    --cor-accent-carddemanda: #1e1e1e;
+    --cor-sombra-carddemanda: rgba(0, 0, 0, 0.5);
+    --cor-navbar-carddemanda: #311e04;
+    --cor-destaque-carddemanda: #F8DCA5;
+    --cor-button-carddemanda: #e1ac74;
+    --cor-button-hover-carddemanda: #5c3b28;
   }
 }
-
 
 .demandaCard {
   flex: 0 0 auto;
   width: 320px;
   height: 320px;
   scroll-snap-align: start;
-  background-color: var(--cor-texto-inicio-secundario);
+  background-color: var(--cor-fundo-carddemanda);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 12px var(--cor-sombra-geral);
+  box-shadow: 0 4px 12px var(--cor-sombra-carddemanda);
   display: flex;
   flex-direction: column;
   transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid var(--cor-borda-inicio);
+  border: 2px solid var(--cor-borda-carddemanda);
   margin: 0 5px;
 }
 
 .demandaCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px var(--cor-sombra-geral);
+  box-shadow: 0 6px 16px var(--cor-sombra-carddemanda);
 }
 
 .imageContainer {
@@ -79,7 +74,7 @@
 
 .empresa {
   font-weight: 600;
-  color: var(--cor-primaria-inicio);
+  color: var(--cor-secundaria-carddemanda);
   margin: 0;
   font-size: 1.1rem;
 }
@@ -87,31 +82,29 @@
 .demandaCard h3 {
   margin: 0.8rem 0;
   font-size: 1.2rem;
-  color: var(--cor-texto-h3);
+  color: var(--cor-texto-carddemanda);
 }
 
 .quantidade {
   margin: 0.8rem 0;
-  color: var(--cor-texto-p);
+  color: var(--cor-texto-carddemanda-secundario);
   font-size: 1rem;
 }
 
 .detalhes {
   margin-top: auto;
   padding: 0.8rem;
-  background-color: #a87453;
+  background-color: var(--cor-button-carddemanda);
   color: rgb(255, 255, 255);
-  border: none;
+  border: var(--cor-borda-carddemanda);
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.1s;
   font-size: 1rem;
   font-weight: 600;
 }
 
 .detalhes:hover {
- transform: translateY(-10%);
- background-color: var(--cor-primaria-inicio) ;
-
+  background-color: var(--cor-button-hover-carddemanda);
+  transform: translateY(-4%);
 }
-
