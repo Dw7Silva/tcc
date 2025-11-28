@@ -192,7 +192,7 @@ export default function CriarDemanda() {
     
     if (response.data.sucesso) {
       setShowSuccess(true);
-      setTimeout(() => router.push("/demanda"), 2000);
+      setTimeout(() => router.push("/minhas_demandas"), 2000);
     } else {
       setError(response.data.mensagem || "Erro ao criar demanda.");
     }

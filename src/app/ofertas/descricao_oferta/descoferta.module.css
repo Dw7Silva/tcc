@@ -11,11 +11,6 @@
   --cor-destaque-descoferta: #F8DCA5;
   --cor-chat-descoferta: #d9d9d9;
   --cor-input-descoferta: #ffffff;
-
-  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-  --altura-navbar: clamp(60px, 10vh, 80px);
-  --altura-logo: clamp(40px, 8vh, 60px);
-  --padding-lateral: clamp(10px, 2vw, 20px);
 }
 
 /* Tema Escuro */

@@ -6,6 +6,7 @@ import { FaImage, FaCheckCircle } from 'react-icons/fa';
 import BarraNvg from '@/components/navbar/navbar';
 import { useRouter } from 'next/navigation';
 import api from '@/services/api';
+import Link from 'next/link'; 
 
 export default function CriarOferta() {
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function CriarOferta() {
   });
 
   // -----------------------------
-  // 🔥 CARREGAR DADOS INICIAIS
+
   // -----------------------------
   useEffect(() => {
     const carregarDadosIniciais = async () => {
@@ -64,7 +65,7 @@ export default function CriarOferta() {
   }, []);
 
   // -----------------------------
-  // 🔥 BUSCAR TIPOS DE AMENDOIM
+
   // -----------------------------
   const buscarTiposAmendoim = async () => {
     try {
@@ -85,7 +86,7 @@ export default function CriarOferta() {
   };
 
   // -----------------------------
-  // 🔥 HANDLER IMAGEM
+
   // -----------------------------
   const handleImageChange = (e) => {
     console.log('🖼️ HANDLE IMAGE CHANGE CHAMADO');
@@ -129,7 +130,7 @@ export default function CriarOferta() {
   };
 
   // -----------------------------
-  // 🔥 INPUT CHANGE
+
   // -----------------------------
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -143,7 +144,7 @@ export default function CriarOferta() {
   };
 
   // -----------------------------
-  // 🔥 FORMATAR PREÇO (OPCIONAL)
+
   // -----------------------------
   const formatarPreco = (valor) => {
     // Remove tudo que não é número
@@ -167,9 +168,7 @@ export default function CriarOferta() {
     }));
   };
 
-  // -----------------------------
-  // 🔥 SUBMIT FORM
-  // -----------------------------
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -225,7 +224,7 @@ export default function CriarOferta() {
       }
 
       console.log('🌐 ENVIANDO PARA /Ofertas...');
-      const response = await api.post("/Ofertas", fd);
+      const response = await api.post("/minhas_ofertas", fd);
       
       console.log('✅ RESPOSTA:', response.data);
       
@@ -392,6 +391,7 @@ export default function CriarOferta() {
                   className={styles.formTextarea}
                 />
               </div>
+                
             </div>
 
             <button 

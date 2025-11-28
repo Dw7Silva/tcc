@@ -127,11 +127,7 @@ export default function Ofertas() {
             </div>
           )}
 
-          <Link href="/criar_oferta" legacyBehavior>
-            <button className={styles.criarOferta}>
-              <span className={styles.textcriar}>Criar Oferta</span>
-            </button>
-          </Link>
+      
         </div>
       </div>
     </>
