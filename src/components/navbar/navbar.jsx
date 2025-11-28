@@ -11,11 +11,17 @@ import styles from "./navbar.module.css";
 export default function BarraNvg() {
   const [menuAberto, setMenuAberto] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [tipoUsuario, setTipoUsuario] = useState(null);
 
   useEffect(() => {
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth <= 600);
     };
+    
+    // Verificar tipo do usuário logado
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    console.log("👤 TIPO DO USUÁRIO:", usuarioLogado?.tipo);
+    setTipoUsuario(usuarioLogado?.tipo);
     
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
@@ -25,32 +31,54 @@ export default function BarraNvg() {
 
   const toggleMenu = () => setMenuAberto(!menuAberto);
 
-  const menuItems = [
-    // Itens do mobile PRIMEIRO (apenas em telas pequenas)
-    ...(isSmallScreen ? [
-        { label: "Início", href: "/" },
-        { label: "Chat", href: "/chat" },
-        { label: "Suporte", href: "/suporte" },
-        { label: "Perfil", href: "/perfil" }
-    ] : []),
-    
-    // Itens principais (sempre no meio)
+  // Itens base do menu
+  const itensBase = [
     { label: "Demandas", href: "/demanda" },
-    { label: "Ofertas", href: "/ofertas" },
-    { label: "Minhas Demandas", href: "/minhas_demandas" },
-    { label: "Minhas Ofertas", href: "/minhas_ofertas" },
+    { label: "Ofertas", href: "/ofertas" }
+  ];
+
+  // Itens específicos por tipo de usuário
+  const itensPorTipo = {
+    // Tipo 1: Agricultor - PODE ver Minhas Ofertas, NÃO PODE ver Minhas Demandas
+    1: [
+      { label: "Minhas Ofertas", href: "/minhas_ofertas" }
+    ],
+    // Tipo 2: Empresário - PODE ver Minhas Demandas, NÃO PODE ver Minhas Ofertas
+    2: [
+      { label: "Minhas Demandas", href: "/minhas_demandas" }
+    ]
+  };
+
+  // Itens do mobile (apenas em telas pequenas)
+  const itensMobile = isSmallScreen ? [
+    { label: "Início", href: "/" },
+    { label: "Chat", href: "/chat" },
+    { label: "Suporte", href: "/suporte" },
+    { label: "Perfil", href: "/perfil" }
+  ] : [];
+
+  // Montar menu final baseado no tipo de usuário
+  const menuItems = [
+    // Itens do mobile PRIMEIRO
+    ...itensMobile,
+    
+    // Itens base (sempre disponíveis)
+    ...itensBase,
+    
+    // Itens específicos por tipo de usuário
+    ...(itensPorTipo[tipoUsuario] || []),
     
     // Sair SEMPRE por último
     { 
-        label: (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                Sair
-                <img src="/sairsem.gif" alt="Sair" width="20" height="30" />
-            </div>
-        ), 
-        href: "/home"
+      label: (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          Sair
+          <img src="/sairsem.gif" alt="Sair" width="20" height="30" />
+        </div>
+      ), 
+      href: "/home"
     }
-];
+  ];
 
   const Logo = "https://i.ibb.co/23YGGMNM/Logo-Transparente.png";
 
@@ -82,11 +110,9 @@ export default function BarraNvg() {
             <Link href="/perfil" className={styles.navIcon}>
               <FaUser />
             </Link>
-         
-            
           </>
         )}
-       <HiOutlineMenu 
+        <HiOutlineMenu 
           onClick={toggleMenu} 
           className={styles.menuIcon} 
         />

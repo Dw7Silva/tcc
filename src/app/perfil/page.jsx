@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import BarraNvg from "@/components/navbar/navbar";
 import InputsPerfil from "@/components/inputsperfil/page";
 import { useRouter } from 'next/navigation';
+import api from "@/services/api";
 
 export default function Perfil() {
   const router = useRouter();
@@ -34,14 +35,15 @@ export default function Perfil() {
     if (!urlOuNome) return null;
     
     if (urlOuNome.includes('://')) {
+
       if (urlOuNome.includes('/public/usuarios/')) {
         const nomeArquivo = urlOuNome.split('/').pop();
-        return `http://localhost:3333/uploads/usuarios/${nomeArquivo}`;
+        return `${api.defaults.baseURL}/uploads/usuarios/${nomeArquivo}`;
       }
       return urlOuNome;
     }
     
-    return `http://localhost:3333/uploads/usuarios/${urlOuNome}`;
+    return `${api.defaults.baseURL}/uploads/usuarios/${urlOuNome}`;
   };
 
   // Função para adicionar timestamp e evitar cache
@@ -74,16 +76,11 @@ export default function Perfil() {
         return;
       }
 
-      const response = await fetch(`http://localhost:3333/usuarios/${usuarioLogado.id}`);
+      // USANDO SUA API
+      const response = await api.get(`/usuarios/${usuarioLogado.id}`);
       
-      if (!response.ok) {
-        throw new Error('Erro na resposta do servidor');
-      }
-
-      const resultado = await response.json();
-
-      if (resultado.sucesso && resultado.dados) {
-        const dados = resultado.dados;
+      if (response.data.sucesso && response.data.dados) {
+        const dados = response.data.dados;
         setUsuario(dados);
         
         // Formatar CPF/CNPJ
@@ -113,9 +110,10 @@ export default function Perfil() {
         }
 
       } else {
-        setMensagem({ texto: resultado.mensagem || "Erro ao carregar dados", tipo: "erro" });
+        setMensagem({ texto: response.data.mensagem || "Erro ao carregar dados", tipo: "erro" });
       }
     } catch (error) {
+      console.error("Erro ao buscar dados:", error);
       setMensagem({ texto: "Erro ao conectar com o servidor", tipo: "erro" });
     } finally {
       setLoading(false);
@@ -245,16 +243,16 @@ export default function Perfil() {
         formData.append('imagem', imageInputRef.current.files[0]);
       }
 
-      const response = await fetch(`http://localhost:3333/usuarios/${usuarioLogado.id}`, {
-        method: 'PUT',
-        body: formData
+      // USANDO SUA API PARA ATUALIZAR
+      const response = await api.put(`/usuarios/${usuarioLogado.id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       });
 
-      const resultado = await response.json();
-
-      if (resultado.sucesso) {
-        if (resultado.dados?.imagem) {
-          const novaUrlImagem = normalizarUrlImagem(resultado.dados.imagem);
+      if (response.data.sucesso) {
+        if (response.data.dados?.imagem) {
+          const novaUrlImagem = normalizarUrlImagem(response.data.dados.imagem);
           setSelectedImage(adicionarTimestamp(novaUrlImagem));
         }
         
@@ -262,19 +260,20 @@ export default function Perfil() {
         
         const usuarioAtualizado = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
         usuarioAtualizado.nome = valores.propriedade || usuario?.nome;
-        if (resultado.dados?.imagem) {
-          usuarioAtualizado.imagem = resultado.dados.imagem;
+        if (response.data.dados?.imagem) {
+          usuarioAtualizado.imagem = response.data.dados.imagem;
         }
         localStorage.setItem('usuarioLogado', JSON.stringify(usuarioAtualizado));
         
-        setUsuario(prev => prev ? { ...prev, ...resultado.dados } : null);
+        setUsuario(prev => prev ? { ...prev, ...response.data.dados } : null);
         
         setTimeout(() => setEditMode(false), 2000);
         
       } else {
-        setMensagem({ texto: resultado.mensagem || "Erro ao atualizar dados", tipo: "erro" });
+        setMensagem({ texto: response.data.mensagem || "Erro ao atualizar dados", tipo: "erro" });
       }
     } catch (error) {
+      console.error("Erro ao salvar alterações:", error);
       setMensagem({ texto: "Erro de conexão com o servidor", tipo: "erro" });
     } finally {
       setSalvando(false);
@@ -327,12 +326,9 @@ export default function Perfil() {
       <div className={styles.container}>
         <div className={styles.profileCard}>
           <div className={styles.profileHeader}>
-            {/* CORREÇÃO: Mostrar nome do usuário e propriedade separadamente */}
             <div className={styles.nomeContainer}>
               <h2>{usuario.nome}</h2>
-              {usuario.localizacaoPropriedade && (
-                <p className={styles.propriedadeNome}>{usuario.localizacaoPropriedade}</p>
-              )}
+            
             </div>
             <div className={styles.botoesAcao}>
               {editMode ? (
@@ -376,14 +372,14 @@ export default function Perfil() {
                 onClick={editar_foto_perfil}
               >
                 <img
-                  src={selectedImage || "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik03NSA0M0M4Mi45NTU5IDQzIDg5LjM3NSA0OS40MTkxIDg5LjM3NSA1Ny4zNzVDODkuMzc1IDY1LjMzMDkgODIuOTU1OSA3MS43NSA3NSA3MS43NUM2Ny4wNDQxIDcxLjc1IDYwLjYyNSA2NS4zMzA5IDYwLjYyNSA1cy4zNzVDNjAuNjI1IDQ5LjQxOTEgNjcuMDQ0MSA0MyA3NSA0M1pNNzUgODcuNUM4OC44NDUyIDg3LjUgMTAwIDk5LjE2MDkgMTAwIDExMy41VjExNC4yNUMxMDAgMTE2LjU8L3N2Zz4K"}
-                  alt="Foto de Perfil"
-                  className={styles.perfilImg}
-                  key={selectedImage}
-                  onError={(e) => {
+                    src={selectedImage || "/Logo-Transparente.png"}
+                    alt="Foto de Perfil"
+                    className={styles.perfilImg}
+                    key={selectedImage}
+                    onError={(e) => {
                     e.target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNGM0Y0RjYiLz48L3N2Zz4=";
-                  }}
-                />
+  }}
+/>
                 {editMode && (
                   <div className={styles.editOverlay}>
                     <span>Alterar Foto</span>

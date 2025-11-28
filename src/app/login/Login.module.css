@@ -228,8 +228,8 @@
 
 .formInput:focus {
   outline: none;
-  border-color: var(--cor-primaria-login);
-  box-shadow: 0 0 0 3px rgba(168, 116, 83, 0.2);
+  border-color: var(--cor-texto-login); 
+
 }
 
 .formOptions {
@@ -246,6 +246,7 @@
 
 .checkbox {
   margin-right: 0.5rem;
+  border-radius: 25%;
 }
 
 .forgotPassword {
@@ -290,6 +291,7 @@
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s;
+  margin-left: 10px;
 }
 
 .registerLink:hover {

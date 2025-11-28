@@ -220,9 +220,9 @@ function Login() {
           </button>
           
           <div className={styles.registerPrompt}>
-            <p>Não tem uma conta? 
+            <p>Não tem uma conta?  
               <Link href="/cadastro" className={styles.registerLink}>
-                Cadastre-se
+                  Cadastre-se
               </Link>
             </p>
           </div>

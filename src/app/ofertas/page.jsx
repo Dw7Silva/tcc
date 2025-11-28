@@ -17,7 +17,7 @@ export default function Ofertas() {
 
   async function fetchOfertas() {
     try {
-      const response = await api.get("/ofertas?limit=12"); // Aumentei o limite
+      const response = await api.get("/ofertas?limit=12"); 
       if (response.status === 200) {
         setOfertas(response.data.dados || []);
       }
