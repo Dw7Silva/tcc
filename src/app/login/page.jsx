@@ -15,7 +15,7 @@ function Login() {
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const router = useRouter();
 
-
+  // Carregar dados salvos quando o componente montar
   useEffect(() => {
     const credenciaisSalvas = localStorage.getItem('credenciaisSalvas');
     if (credenciaisSalvas) {
