@@ -10,9 +10,7 @@
   --cor-texto-inicio-s: #333;
   --cor-texto-inicio-secundario-s: #666;
   --cor-borda-inicio-s: #A46434;
-
   --cor-sombra-s: rgba(0, 0, 0, 0.1);
-  --tamanho-fonte-base-s: clamp(14px, 2vw, 18px);
 }
 
 /* =============================
@@ -21,36 +19,31 @@
 .darkTheme {
   --cor-primaria-inicio-s: #F8DCA5;
   --cor-secundaria-inicio-s: #F8DCA5;
-
   --cor-fundo-inicio-s: #313030;
   --cor-texto-inicio-s: #f0f0f0;
   --cor-texto-inicio-secundario-s: #b3b3b3;
-
   --cor-borda-inicio-s: #A46434;
   --cor-card-s: #1e1e1e;
   --cor-sombra-s: rgba(0, 0, 0, 0.5);
-
   --cor-destaque-s: #F8DCA5;
 }
 
 
-/* =============================
-   ESTILOS GERAIS
-============================= */
+
 .wrapper {
   margin: 0;
   font-family: 'Comfortaa', sans-serif;
   font-size: var(--tamanho-fonte-base-s);
   min-height: 100vh;
   color: var(--cor-texto-inicio-s);
-  background-color: var(--cor-fundo-inicio-s);
+  background-color: transparent;
   transition: background-color 0.3s, color 0.3s;
   overflow-x: hidden;
 }
 
 
 .container { 
-  background-color: var(--cor-fundo-inicio-s); 
+  background-color: transparent; 
   display: flex;
   flex-direction: column;
   align-items: center;
