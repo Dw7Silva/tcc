@@ -95,7 +95,7 @@
 }
 
 .container {
-  background-color: transparent;
+  background-color: var(--cor-fundo-oferta);
   padding: 2rem var(--padding-lateral);
   margin-top: var(--altura-navbar);
   min-height: calc(100vh - var(--altura-navbar));

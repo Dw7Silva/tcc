@@ -106,6 +106,9 @@
   color: var(--cor-primaria-perfil);
 }
 
+/* ------------------------ */
+/*   Formulário             */
+/* ------------------------ */
 
 .formContent {
   display: flex;

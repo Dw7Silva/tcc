@@ -1,3 +1,5 @@
+
+
 :root {
   /* Tema Claro (default) */
   --cor-primaria-descdemanda: #F8DCA5;
@@ -11,6 +13,11 @@
   --cor-destaque-descdemanda: #F8DCA5;
   --cor-chat-descdemanda: #d9d9d9;
   --cor-input-descdemanda: #ffffff;
+
+  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
+  --altura-navbar: clamp(60px, 10vh, 80px);
+  --altura-logo: clamp(40px, 8vh, 60px);
+  --padding-lateral: clamp(10px, 2vw, 20px);
 }
 
 /* Tema Escuro */
@@ -34,7 +41,6 @@
   padding: 2rem;
   background-color: var(--cor-fundo-descdemanda);
   font-family: 'Comfortaa', cursive;
-  min-height: 100vh;
 }
 
 .demandaContainer {
@@ -48,18 +54,15 @@
 }
 
 .demandaHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  text-align: center;
   margin-bottom: 2rem;
-  gap: 2rem;
 }
 
 .productTitle {
   font-size: 2rem;
   font-weight: 600;
   color: var(--cor-secundaria-descdemanda);
-  margin: 0;
+  margin-bottom: 1rem;
 }
 
 .imageContainer {
@@ -68,11 +71,10 @@
 }
 
 .productImage {
-  width: 200px;
-  height: 200px;
+  max-width: 400px;
+  height: 300px;
   border-radius: 12px;
   box-shadow: 0 2px 6px var(--cor-sombra-descdemanda);
-  object-fit: cover;
 }
 
 .demandaContent {
@@ -88,28 +90,17 @@
   border: 1px solid var(--cor-borda-descdemanda);
 }
 
-.infoBox h2 {
-  margin: 0 0 1rem 0;
-  color: var(--cor-secundaria-descdemanda);
-  font-size: 1.5rem;
-}
-
 .infoGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+  margin-top: 1rem;
 }
 
 .infoRow {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--cor-borda-descdemanda);
-}
-
-.infoRow:last-child {
-  border-bottom: none;
+  font-size: var(--tamanho-fonte-base);
 }
 
 .infoLabel {
@@ -119,7 +110,6 @@
 
 .infoValue {
   color: var(--cor-texto-secundario-descdemanda);
-  font-weight: 500;
 }
 
 .editorSection {
@@ -127,12 +117,6 @@
   padding: 1.5rem;
   border-radius: 12px;
   border: 1px solid var(--cor-borda-descdemanda);
-}
-
-.editorSection h2 {
-  margin: 0 0 1rem 0;
-  color: var(--cor-secundaria-descdemanda);
-  font-size: 1.5rem;
 }
 
 .editorPlaceholder {
@@ -143,17 +127,14 @@
   color: var(--cor-texto-descdemanda);
 }
 
-.editorPlaceholder p {
-  margin: 0;
-  line-height: 1.6;
-}
-
 .actionButtons {
   display: flex;
   justify-content: center;
+  gap: 1rem;
   margin-top: 2rem;
 }
 
+.primaryButton,
 .secondaryButton {
   padding: 0.75rem 1.5rem;
   border: none;
@@ -163,164 +144,22 @@
   transition: 0.3s ease;
   font-weight: 600;
   font-family: 'Comfortaa', cursive;
-  background-color: var(--cor-destaque-descdemanda);
-  color: var(--cor-texto-descdemanda);
 }
 
-.secondaryButton:hover {
-  background-color: #f5c66e;
-  transform: translateY(-2px);
-}
-
-.secondaryButton:disabled {
-  background-color: var(--cor-texto-secundario-descdemanda);
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* MODAL STYLES */
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modalContent {
-  background: var(--cor-card-descdemanda);
-  padding: 2rem;
-  border-radius: 16px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 10px 30px var(--cor-sombra-descdemanda);
-  color: var(--cor-texto-descdemanda);
-}
-
-.modalContent h3 {
-  margin: 0 0 1.5rem 0;
-  color: var(--cor-secundaria-descdemanda);
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.propostaInfo {
-  background: var(--cor-chat-descdemanda);
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-}
-
-.infoItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--cor-borda-descdemanda);
-}
-
-.infoItem:last-child {
-  border-bottom: none;
-}
-
-.mensagem {
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  font-weight: 500;
-}
-
-.mensagem.sucesso {
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-.mensagem.erro {
-  background: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-
-.modalActions {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-}
-
-.cancelButton,
-.confirmButton {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-  font-weight: 600;
-  font-family: 'Comfortaa', cursive;
-}
-
-.cancelButton {
-  background-color: var(--cor-texto-secundario-descdemanda);
-  color: white;
-}
-
-.cancelButton:hover {
-  background-color: var(--cor-texto-descdemanda);
-}
-
-.confirmButton {
+.primaryButton {
   background-color: var(--cor-secundaria-descdemanda);
   color: white;
 }
 
-.confirmButton:hover {
+.secondaryButton {
+  background-color: var(--cor-destaque-descdemanda);
+  color: var(--cor-texto-descdemanda);
+}
+
+.primaryButton:hover {
   background-color: #3f2719;
 }
 
-.cancelButton:disabled,
-.confirmButton:disabled {
-  background-color: var(--cor-texto-secundario-descdemanda);
-  cursor: not-allowed;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-  
-  .demandaContainer {
-    padding: 1.5rem;
-  }
-  
-  .demandaHeader {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .productImage {
-    width: 100%;
-    max-width: 300px;
-    height: 200px;
-  }
-  
-  .infoGrid {
-    grid-template-columns: 1fr;
-  }
-  
-  .modalActions {
-    flex-direction: column;
-  }
-  
-  .cancelButton,
-  .confirmButton {
-    width: 100%;
-  }
+.secondaryButton:hover {
+  background-color: #f5c66e;
 }
