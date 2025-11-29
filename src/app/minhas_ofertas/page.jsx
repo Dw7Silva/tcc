@@ -4,7 +4,7 @@ import styles from "./minhas_oferta.module.css";
 import BarraNvg from "@/components/navbar/navbar";
 import api from "@/services/api";
 import { useRouter } from 'next/navigation';
-
+import Link from "next/link"; 
 export default function MinhasOfertas() {
   const [minhasOfertas, setMinhasOfertas] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,7 +57,7 @@ export default function MinhasOfertas() {
   };
 
   const handleVerDetalhes = (ofertaId) => {
-    router.push(`/oferta/${ofertaId}`);
+    router.push(`/ofertas /${ofertaId}`);
   };
 
   if (loading) {
@@ -111,7 +111,10 @@ export default function MinhasOfertas() {
                   >
                     Ver detalhes
                   </button>
+                   
                 </div>
+
+                
               ))
             ) : (
               <div style={{ width: '100%', textAlign: 'center', padding: '2rem' }}>
@@ -133,6 +136,12 @@ export default function MinhasOfertas() {
               </div>
             )}
           </div>
+         
+          <Link href="/criar_oferta" legacyBehavior>
+            <button className={styles.criarOferta}>
+              <span className={styles.textcriar}>Criar Oferta</span>
+            </button>
+          </Link>
         </div>
       </div>
     </>
