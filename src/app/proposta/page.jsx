@@ -1,234 +1,171 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import styles from "./proposta.module.css";
+
+import { useState, useEffect } from "react";
+import styles from './proposta.module.css';
 import BarraNvg from "@/components/navbar/navbar";
-import { useRouter, useSearchParams } from "next/navigation";
-import api from "@/services/api";
 
 export default function Proposta() {
-  const [formData, setFormData] = useState({
-    prop_preco: "",
-    prop_quantidade: "",
-    prop_data_envio: new Date().toISOString().split('T')[0],
-    prop_status: "pendente"
+ 
+  // Estados do formulário
+  const [proposta, setProposta] = useState({
+    preco: "",
+    quantidade: "",
+    observacoes: ""
   });
-  const [loading, setLoading] = useState(false);
-  const [oferta, setOferta] = useState(null);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  
+  const [statusEnvio, setStatusEnvio] = useState({
+    enviando: false,
+    sucesso: false,
+    erro: false,
+    mensagem: ""
+  });
 
-  const ofertaId = searchParams.get('oferta_id');
-
-  useEffect(() => {
-    if (ofertaId) {
-      carregarOferta(ofertaId);
-    }
-  }, [ofertaId]);
-
-  const carregarOferta = async (id) => {
+  // Função para enviar os dados
+  const enviarProposta = async (dados) => {
     try {
-      const response = await api.get(`/ofertas/${id}`);
-      if (response.data.sucesso) {
-        setOferta(response.data.dados);
-        setFormData(prev => ({
-          ...prev,
-          prop_quantidade: response.data.dados.oferta_quantidade || ""
-        }));
-      } else {
-        setError("Erro ao carregar dados da oferta");
-      }
-    } catch (error) {
-      console.error("Erro ao carregar oferta:", error);
-      setError("Erro ao carregar dados da oferta");
-    }
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    setSuccess("");
-
-    try {
-      const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+      setStatusEnvio({ enviando: true, sucesso: false, erro: false, mensagem: "" });
       
-      if (!usuarioLogado?.emp_id) {
-        setError("Apenas empresas podem enviar propostas");
-        setLoading(false);
-        return;
-      }
-
-      const propostaData = {
-        emp_id: usuarioLogado.emp_id,
-        preco: parseFloat(formData.prop_preco),
-        quantidade: parseFloat(formData.prop_quantidade),
-        data_envio: formData.prop_data_envio,
-        status: formData.prop_status
-      };
-
-      const response = await api.post('/propostas', propostaData);
-
-      if (response.data.sucesso) {
-        setSuccess("Proposta enviada com sucesso!");
-        
-        setTimeout(() => {
-          router.push('/ofertas');
-        }, 2000);
-      } else {
-        setError(response.data.mensagem || "Erro ao enviar proposta");
-      }
+      // Simulação de envio - substitua pela sua API real
+      console.log("Dados enviados:", dados);
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setStatusEnvio({
+        enviando: false,
+        sucesso: true,
+        erro: false,
+        mensagem: "Proposta enviada com sucesso!",
+      });
+      
+      // Limpa o formulário após 3 segundos
+      setTimeout(() => {
+        setProposta({ preco: "", quantidade: "", observacoes: "" });
+        setStatusEnvio({ enviando: false, sucesso: false, erro: false, mensagem: "" });
+      }, 3000);
 
     } catch (error) {
-      console.error("Erro ao enviar proposta:", error);
-      setError("Erro ao enviar proposta. Tente novamente.");
-    } finally {
-      setLoading(false);
+      setStatusEnvio({
+        enviando: false,
+        sucesso: false,
+        erro: true,
+        mensagem: error.message || "Erro ao enviar proposta",
+      });
     }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProposta(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    enviarProposta({
+      ...proposta,
+      dataEnvio: new Date().toISOString(),
+    });
   };
 
   return (
     <>
-      <BarraNvg />
-
+      <BarraNvg></BarraNvg>
+      
       <div className={styles.container}>
+        {/* COLUNA ESQUERDA - PROPOSTA ORIGINAL (SÓ LEITURA) */}
         <div className={styles.caract_off}>
-          <h2 className={styles.titulo}>Enviar Proposta</h2>
+          <h2 className={styles.titulo}>Proposta Original</h2>
+          
+          <div className={styles.infoGroup}>
+            <label>Agricultor</label>
+            <p className={styles.infoValue}>João Silva</p>
+          </div>
+          
+          <div className={styles.infoGroup}>
+            <label>Email</label>
+            <p className={styles.infoValue}>joao@fazenda.com</p>
+          </div>
+          
+          <div className={styles.infoGroup}>
+            <label>Preço Original</label>
+            <p className={styles.infoValue}>R$ 200/saca</p>
+          </div>
+          
+          <div className={styles.infoGroup}>
+            <label>Quantidade Original</label>
+            <p className={styles.infoValue}>21 sacas</p>
+          </div>
+          
+          <div className={styles.infoGroup}>
+            <label>Espécie Amendoim</label>
+            <p className={styles.infoValue}>(31) 99999-9999</p>
+          </div>
+          
+          <div className={styles.infoGroup}>
+            <label>Descrição</label>
+            <p className={styles.infoValue}>Amendolm e/casco - colheita 2023</p>
+          </div>
+        </div>
 
-          {/* Informações da Oferta */}
-          {oferta && (
-            <div className={styles.ofertaInfo}>
-              <h3 className={styles.subtitulo}>Oferta Selecionada</h3>
-              <div className={styles.infoGroup}>
-                <label>Agricultor</label>
-                <p className={styles.infoValue}>{oferta.agri_nome}</p>
-              </div>
-              <div className={styles.infoGroup}>
-                <label>Variedade</label>
-                <p className={styles.infoValue}>{oferta.amen_variedade}</p>
-              </div>
-              <div className={styles.infoGroup}>
-                <label>Quantidade Disponível</label>
-                <p className={styles.infoValue}>{oferta.oferta_quantidade} kg</p>
-              </div>
-              <div className={styles.infoGroup}>
-                <label>Data de Colheita</label>
-                <p className={styles.infoValue}>
-                  {new Date(oferta.oferta_data_colheita).toLocaleDateString('pt-BR')}
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* Formulário de Proposta */}
+        {/* COLUNA DIREITA - CONTRAPROPOSTA (EDITÁVEL) */}
+        <div className={styles.caract_prop}>
           <form onSubmit={handleSubmit} className={styles.propostaForm}>
+            <h2 className={styles.titulo}>Faça sua Contraproposta</h2>
+            
             <div className={styles.formGroup}>
-              <label htmlFor="prop_preco" className={styles.formLabel}>
-                Preço Proposto (R$)
-              </label>
-              <input
-                type="number"
-                id="prop_preco"
-                name="prop_preco"
-                value={formData.prop_preco}
-                onChange={handleInputChange}
-                className={styles.formInput}
-                placeholder="Ex: 150.00"
-                step="0.01"
-                min="0"
+              <label>Novo Preço (R$/saca)</label>
+              <input 
+                type="number" 
+                name="preco"
+                value={proposta.preco}
+                onChange={handleChange}
+                className={styles.inputField}
                 required
               />
             </div>
-
+            
             <div className={styles.formGroup}>
-              <label htmlFor="prop_quantidade" className={styles.formLabel}>
-                Quantidade Desejada (kg)
-              </label>
-              <input
-                type="number"
-                id="prop_quantidade"
-                name="prop_quantidade"
-                value={formData.prop_quantidade}
-                onChange={handleInputChange}
-                className={styles.formInput}
-                placeholder="Ex: 1000"
-                min="0"
-                required
-              />
-              {oferta && formData.prop_quantidade > oferta.oferta_quantidade && (
-                <span className={styles.warning}>
-                  Atenção: Quantidade maior que a disponível
-                </span>
-              )}
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="prop_data_envio" className={styles.formLabel}>
-                Data da Proposta
-              </label>
-              <input
-                type="date"
-                id="prop_data_envio"
-                name="prop_data_envio"
-                value={formData.prop_data_envio}
-                onChange={handleInputChange}
-                className={styles.formInput}
+              <label>Quantidade Desejada</label>
+              <input 
+                type="number" 
+                name="quantidade"
+                value={proposta.quantidade}
+                onChange={handleChange}
+                className={styles.inputField}
                 required
               />
             </div>
-
+            
             <div className={styles.formGroup}>
-              <label htmlFor="observacoes" className={styles.formLabel}>
-                Observações (Opcional)
-              </label>
-              <textarea
-                id="observacoes"
+              <label>Observações</label>
+              <textarea 
                 name="observacoes"
-                className={styles.formTextarea}
-                placeholder="Adicione observações sobre sua proposta..."
+                value={proposta.observacoes}
+                onChange={handleChange}
+                className={styles.textareaField} 
                 rows="4"
               />
             </div>
-
-            {error && (
-              <div className={styles.errorMessage}>
-                {error}
-              </div>
-            )}
-
-            {success && (
-              <div className={styles.successMessage}>
-                {success}
-              </div>
-            )}
-
-            <div className={styles.actionButtons}>
-              <button
-                type="button"
-                onClick={() => router.back()}
-                className={styles.cancelButton}
-                disabled={loading}
-              >
-                Cancelar
-              </button>
-              
-              <button
-                type="submit"
-                className={styles.submitButton}
-                disabled={loading}
-              >
-                {loading ? "Enviando..." : "Enviar Proposta"}
-              </button>
+            
+            <div className={styles.formGroup}>
+              <label>Empresa</label>
+              <p className={styles.infoValue}>Fofo Agroindustrial</p>
             </div>
+            
+            <button 
+              type="submit" 
+              disabled={statusEnvio.enviando}
+              className={styles.enviarButton}
+            >
+              {statusEnvio.enviando ? "Enviando..." : "Enviar Contraproposta"}
+            </button>
+
+            {/* Feedback para o usuário */}
+            {statusEnvio.mensagem && (
+              <div className={`${styles.feedback} ${
+                statusEnvio.sucesso ? styles.sucesso : styles.erro
+              }`}>
+                {statusEnvio.mensagem}
+              </div>
+            )}
           </form>
         </div>
       </div>
