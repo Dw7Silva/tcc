@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./minhasdemandas.module.css"; 
 import BarraNvg from "@/components/navbar/navbar";
 import api from "@/services/api";
+import Link from "next/link"; 
 import { useRouter } from 'next/navigation';
 
 export default function MinhasDemandas() {
@@ -112,6 +113,8 @@ export default function MinhasDemandas() {
                     Ver detalhes
                   </button>
                 </div>
+
+                
               ))
             ) : (
               <div style={{ width: '100%', textAlign: 'center', padding: '2rem' }}>
@@ -134,6 +137,11 @@ export default function MinhasDemandas() {
             )}
           </div>
         </div>
+           <Link href="/criar_demanda" legacyBehavior>
+            <button className={styles.criarDemanda}>
+              <span className={styles.textcriar}>Criar Demanda</span>
+            </button>
+          </Link>
       </div>
     </>
   );

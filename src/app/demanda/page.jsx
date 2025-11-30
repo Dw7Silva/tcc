@@ -126,11 +126,7 @@ export default function Demandas() {
             </div>
           )}
 
-          <Link href="/criar_demanda" legacyBehavior>
-            <button className={styles.criarOferta}>
-              <span className={styles.textcriar}>Criar Demanda</span>
-            </button>
-          </Link>
+       
         </div>
       </div>
     </>

@@ -5,6 +5,7 @@ import BarraNvg from "@/components/navbar/navbar";
 import api from "@/services/api";
 import { useRouter } from 'next/navigation';
 import Link from "next/link"; 
+
 export default function MinhasOfertas() {
   const [minhasOfertas, setMinhasOfertas] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,7 +58,7 @@ export default function MinhasOfertas() {
   };
 
   const handleVerDetalhes = (ofertaId) => {
-    router.push(`/ofertas /${ofertaId}`);
+    router.push(`/ofertas/${ofertaId}`);
   };
 
   if (loading) {

@@ -9,10 +9,6 @@
   --cor-sombra-demandas: rgba(0, 0, 0, 0.1);        /* cor-sombra */
   --cor-fundo-demanda: #e2dad2;                    /* cor-fundo-inicio */
   --cor-button-hover:#e1ac74;;
-  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-  --altura-navbar: clamp(60px, 10vh, 80px);
-  --altura-logo: clamp(40px, 8vh, 60px);
-  --padding-lateral: clamp(10px, 2vw, 20px);
 }
 
 /* Tema Escuro */
@@ -192,7 +188,35 @@
   transform: translateY(-10%);
 }
 
+.criarDemanda {
+  display: block;
+  margin: 3rem auto 0;
+  padding: 1rem 2rem;
+  background-color: #e1ac74;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px var(--cor-sombra-d);
+  text-decoration: none;
+  width: 300px;
+  height: 70px;
+}
 
+.textcriar {
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: white;
+}
+     
+.criarDemanda:hover {
+   background-color: var(--cor-primaria-demandas );
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--cor-sombra-demandas);
+}
 
 
 

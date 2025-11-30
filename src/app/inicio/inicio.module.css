@@ -1,8 +1,6 @@
 
 
-/* =============================
-   TEMA CLARO (DEFAULT)
-============================= */
+
 .lightTheme {
   --cor-primaria-inicio-s: #A87453;
   --cor-secundaria-inicio-s: #5c3b28;
@@ -12,12 +10,9 @@
   --cor-borda-inicio-s: #A46434;
 
   --cor-sombra-s: rgba(0, 0, 0, 0.1);
-  --tamanho-fonte-base-s: clamp(14px, 2vw, 18px);
+
 }
 
-/* =============================
-   TEMA ESCURO
-============================= */
 .darkTheme {
   --cor-primaria-inicio-s: #F8DCA5;
   --cor-secundaria-inicio-s: #F8DCA5;
@@ -34,16 +29,14 @@
 }
 
 
-/* =============================
-   ESTILOS GERAIS
-============================= */
+
 .wrapper {
   margin: 0;
   font-family: 'Comfortaa', sans-serif;
   font-size: var(--tamanho-fonte-base-s);
   min-height: 100vh;
   color: var(--cor-texto-inicio-s);
-  background-color: var(--cor-fundo-inicio-s);
+  background-color: transparent;
   transition: background-color 0.3s, color 0.3s;
   overflow-x: hidden;
 }
