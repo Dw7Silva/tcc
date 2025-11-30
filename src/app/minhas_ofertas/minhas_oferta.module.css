@@ -9,17 +9,18 @@
   --cor-borda-minhaoferta: #A46434;
   --cor-card-minhaoferta: #ffffff;
   --cor-sombra-minhaoferta: rgba(0, 0, 0, 0.1);
-  --cor-hover-minhaoferta:#e1ac74;
+  --cor-hover-minhaoferta:#5c3b28;
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --altura-navbar: clamp(60px, 10vh, 80px);
   --altura-logo: clamp(40px, 8vh, 60px);
   --padding-lateral: clamp(10px, 2vw, 20px);
+  --cor-button-oferta:#e1ac74;
 }
 
 /* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    --cor-primaria-minhaoferta: #5c3b28;
+    --cor-primaria-minhaoferta: #f8dca5;
     --cor-secundaria-minhaoferta: #F8DCA5;
     --cor-texto-minhaoferta: #f0f0f0;
     --cor-texto-secundario-minhaoferta: #b3b3b3; 
@@ -27,7 +28,9 @@
     --cor-borda-minhaoferta: #A46434;
     --cor-card-minhaoferta: #1e1e1e; 
     --cor-sombra-minhaoferta: rgba(0, 0, 0, 0.5);
-    --cor-destaque: #F8DCA5; 
+    --cor-destaque:#e1ac74;
+    --cor-button-oferta:#e1ac74;
+    --cor-hover-minhaoferta:#5c3b28;
   }
 }
 
@@ -178,7 +181,7 @@
 .detalhes {
   margin-top: auto;
   padding: 0.8rem;
-  background-color:var(--cor-secundaria-minhaoferta);
+  background-color:var(--cor-button-oferta);;
   color: rgb(255, 255, 255);
   border: none;
   border-radius: 8px;
@@ -189,7 +192,7 @@
 }
 
 .detalhes:hover {
-  background-color: #e1ac74;;
+  background-color:var(--cor-hover-minhaoferta);
 }
 
 .arrow {
@@ -229,7 +232,7 @@
   display: block;
   margin: 3rem auto 0;
   padding: 1rem 2rem;
-  background-color: #e1ac74;
+  background-color: var(--cor-button-oferta);
   color: rgb(255, 255, 255);
   border: none;
   border-radius: 8px;
@@ -241,7 +244,7 @@
 }
 
 .criarOferta:hover {
-  background-color: var(--cor-primaria-minhaoferta);
+  background-color: var(--cor-hover-minhaoferta);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px var(--cor-sombra-minhaoferta);
 }

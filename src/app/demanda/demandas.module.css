@@ -28,7 +28,8 @@
     --cor-sombra-d: rgba(0, 0, 0, 0.5);
     --cor-navbar-d: #311e04;
     --cor-destaque-d: #F8DCA5;
-    --cor-button-d: #a87453;
+    --cor-button-d: #e1ac74;
+    --cor-button-hover-d:#5c3b28;
   }
 }
 
@@ -54,7 +55,7 @@
 }
 
 .criarPrimeiraDemanda {
-  background: #4CAF50;
+  background:var(--cor-button-d);
   color: white;
   border: none;
   padding: 12px 24px;
@@ -65,7 +66,7 @@
 }
 
 .criarPrimeiraDemanda:hover {
-  background: #45a049;
+  background:var(--cor-button-hover-d);
 }
 
 /* Loading state */
@@ -193,6 +194,35 @@
   right: -25px;
 }
 
+
+.criarOferta {
+  display: block;
+  margin: 3rem auto 0;
+  background-color: var(--cor-button-d);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px var(--cor-sombra-d);
+  text-decoration: none;
+  width: 200px;
+  height: 60px;
+  text-align: center;
+}
+
+.textcriar {
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: white;
+}
+     
+.criarOferta:hover {
+    background-color: var(--cor-button-hover-d);
+    transform: translateY(-2px);
+}
 
 
 @media (max-width: 768px) {
