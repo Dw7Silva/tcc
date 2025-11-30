@@ -9,6 +9,7 @@
   --cor-sombra-oferta: rgba(0, 0, 0, 0.1);
   --cor-destaque-oferta: rgba(117, 90, 90, 0.95);
   --cor-button-oferta: #a87453;
+  --cor-button-hover-oferta: #e1ac74;
 }
 
 /* Tema Escuro */
@@ -25,6 +26,7 @@
     --cor-sombra-oferta: rgba(0, 0, 0, 0.5);
     --cor-destaque-oferta: #F8DCA5;  
     --cor-button-oferta: #a87453;
+    --cor-button-hover-oferta: #e1ac74;
   }
 }
 
@@ -52,7 +54,7 @@
 }
 
 .criarPrimeiraOferta {
-  background: #4CAF50;
+  background:var(--cor-button-oferta);
   color: white;
   border: none;
   padding: 12px 24px;
@@ -64,7 +66,7 @@
 }
 
 .criarPrimeiraOferta:hover {
-  background: #45a049;
+  background:var(--cor-button-hover-oferta);
   transform: translateY(-2px);
   transition: all 0.3s ease;
 }
