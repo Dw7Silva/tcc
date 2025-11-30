@@ -54,7 +54,7 @@
 }
 
 .criarPrimeiraDemanda {
-  background: #4CAF50;
+  background:var(--cor-button-d);
   color: white;
   border: none;
   padding: 12px 24px;

@@ -229,7 +229,7 @@
   display: block;
   margin: 3rem auto 0;
   padding: 1rem 2rem;
-  background-color: #e1ac74;
+  background-color: #a87453;
   color: rgb(255, 255, 255);
   border: none;
   border-radius: 8px;
@@ -241,7 +241,7 @@
 }
 
 .criarOferta:hover {
-  background-color: var(--cor-primaria-minhaoferta);
+  background-color: var(--cor-hover-minhaoferta);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px var(--cor-sombra-minhaoferta);
 }
