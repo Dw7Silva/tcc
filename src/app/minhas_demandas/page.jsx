@@ -29,7 +29,7 @@ export default function MinhasDemandas() {
         return;
       }
 
-      console.log("🔄 Buscando demandas do usuário - emp_id:", usuarioLogado.id);
+      console.log("🔄 Buscando demandas do usuário - emp_id:", usuarioLogado.emp_id);
 
       // Buscar TODAS as demandas e filtrar por emp_id
       const response = await api.get('/demandas');
@@ -37,7 +37,7 @@ export default function MinhasDemandas() {
       if (response.data.sucesso) {
         // Filtrar demandas pelo emp_id do usuário logado
         const demandasDoUsuario = response.data.dados.filter(demanda => 
-          demanda.emp_id === usuarioLogado.id
+          demanda.emp_id === usuarioLogado.emp_id
         );
 
         console.log("✅ Demandas encontradas:", demandasDoUsuario);
@@ -117,22 +117,8 @@ export default function MinhasDemandas() {
                 
               ))
             ) : (
-              <div style={{ width: '100%', textAlign: 'center', padding: '2rem' }}>
-                <p>Você ainda não possui nenhuma demanda cadastrada.</p>
-                <button 
-                  onClick={handleCriarDemanda}
-                  style={{
-                    marginTop: '1rem',
-                    padding: '10px 20px',
-                    backgroundColor: '#A87453',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  Criar Primeira Demanda
-                </button>
+              <div className={styles.semDemandas}>
+                <p className={styles.semDemandastext}>Você ainda não criou nenhuma demanda.</p>
               </div>
             )}
           </div>
