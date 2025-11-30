@@ -118,21 +118,20 @@ export default function Demandas() {
           {!loading && demandas.length === 0 && (
             <div className={styles.semDemandas}>
               <p>Nenhuma demanda encontrada</p>
-              <Link href="/criar_demanda">
-                <button className={styles.criarPrimeiraDemanda}>
-                  Criar Primeira Demanda
-                </button>
-              </Link>
+           
             </div>
           )}
 
           <Link href="/criar_demanda" legacyBehavior>
             <button className={styles.criarOferta}>
-              <span className={styles.textcriar}>Criar Demanda</span>
-            </button>
+                {demandas.length === 0 
+                ? "Criar primeira demanda"
+                : "Criar demanda"}
+           </button>
           </Link>
         </div>
       </div>
     </>
   );
 }
+
