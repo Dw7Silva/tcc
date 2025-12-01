@@ -38,14 +38,14 @@ export default function DemandaDescricao({ demanda }) {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuario') || '{}');
     return usuarioLogado.emp_id === demanda.emp_id;
   };
-const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-      console.log("📦 DADOS DO LOCALSTORAGE:", usuarioLogado);
+   const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+      
       
 
   const iniciarNegociacao = async () => {
     setLoading(true);
     try {
-      // Obter o usuário logado do localStorage
+      // Obter o usuário logado do localStorage 
       const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
       
       if (!usuarioLogado.agri_id) {

@@ -178,6 +178,18 @@
   font-size: 1rem;
 }
 
+.criarOferta2{
+  display: block;
+  margin: 3rem auto 0;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+
+
+}
+
 .detalhes {
   margin-top: auto;
   padding: 0.8rem;
@@ -226,6 +238,13 @@
 
 .arrowRight {
   right: -25px;
+}
+
+.semOfertas{
+  text-align: center;
+  color: var(--cor-texto-primaria-minhaoferta);
+  font-size: 1.2rem;
+  margin-top: 2rem; 
 }
 
 .criarOferta {

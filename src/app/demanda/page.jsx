@@ -124,11 +124,13 @@ export default function Demandas() {
 
 
           <Link href="/criar_demanda" legacyBehavior>
+           {demandas.length === 0 
+                ? 
             <button className={styles.criarOferta}>
-                {demandas.length === 0 
-                ? "Criar primeira demanda"
-                : "Criar demanda"}
-           </button>
+                "Criar primeira demanda"
+                 </button>
+                : ""}
+          
           </Link>
         </div>
       </div>

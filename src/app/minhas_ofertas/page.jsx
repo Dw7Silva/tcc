@@ -118,23 +118,12 @@ export default function MinhasOfertas() {
                 
               ))
             ) : (
-              <div style={{ width: '100%', textAlign: 'center', padding: '2rem' }}>
+              <div className={styles.criarOferta2}> 
+              <div className={styles.semOfertas}>
                 <p>Você ainda não possui nenhuma oferta cadastrada.</p>
-                <button 
-                  onClick={handleCriarOferta}
-                  style={{
-                    marginTop: '1rem',
-                    padding: '10px 20px',
-                    backgroundColor: '#A87453',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  Criar Primeira Oferta
-                </button>
+                
               </div>
+                </div>
             )}
           </div>
          

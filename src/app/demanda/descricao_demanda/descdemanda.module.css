@@ -13,11 +13,7 @@
   --cor-destaque-descdemanda: #F8DCA5;
   --cor-chat-descdemanda: #d9d9d9;
   --cor-input-descdemanda: #ffffff;
-
-  --tamanho-fonte-base: clamp(14px, 2vw, 18px);
-  --altura-navbar: clamp(60px, 10vh, 80px);
-  --altura-logo: clamp(40px, 8vh, 60px);
-  --padding-lateral: clamp(10px, 2vw, 20px);
+      --cor-button-hover-d:#5c3b28;
 }
 
 /* Tema Escuro */
@@ -34,6 +30,7 @@
     --cor-destaque-descdemanda: #A87453;
     --cor-chat-descdemanda: #2a2a2a;
     --cor-input-descdemanda: #3a3a3a;
+        --cor-button-hover-d:#5c3b28;
   }
 }
 
@@ -141,13 +138,13 @@
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s ease;
   font-weight: 600;
-  font-family: 'Comfortaa', cursive;
+
+
 }
 
 .primaryButton {
-  background-color: var(--cor-secundaria-descdemanda);
+  background-color: var(--cor-primaria-descdemanda  );
   color: white;
 }
 
@@ -157,7 +154,7 @@
 }
 
 .primaryButton:hover {
-  background-color: #3f2719;
+  background-color: var(--cor-button-hover-d);
 }
 
 .secondaryButton:hover {
