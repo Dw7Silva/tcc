@@ -294,8 +294,10 @@ function Cadastro() {
     }
 
     try {
+      // 🔴 CORREÇÃO CRÍTICA: Tipos de usuário corretos
       const usuarioData = {
-        usu_tipo_usuario: userType === 'Agricultor' ? '1' : '2',
+        // 1=Admin, 2=Agricultor, 3=Empresa (conforme backend)
+        usu_tipo_usuario: userType === 'Agricultor' ? '2' : '3', // 🔥 CORREÇÃO AQUI
         usu_nome: formData.nome,
         usu_documento: cpfCnpj.replace(/\D/g, ''),
         usu_email: formData.email,
@@ -304,24 +306,27 @@ function Cadastro() {
         usu_telefone: formData.telefone.replace(/\D/g, ''),
         usu_data_cadastro: new Date().toISOString().split('T')[0],
         
-        emp_razao_social: formData.razaoSocial || '',
-        emp_nome_fantasia: formData.nomeFantasia || '',
-        emp_tipo_atividade: formData.tipoAtividade || '',
-        agri_localizacao_propriedade: formData.localizacaoPropriedade || '',
-        agri_tipos_amendoim_cultivados: formData.tiposAmendoim || '',
-        agri_certificacoes: formData.certificacoes || ''
+        // Campos específicos para empresa
+        emp_razao_social: userType === 'Empresa' ? formData.razaoSocial : '',
+        emp_nome_fantasia: userType === 'Empresa' ? formData.nomeFantasia : '',
+        emp_tipo_atividade: userType === 'Empresa' ? formData.tipoAtividade : '',
+        
+        // Campos específicos para agricultor
+        agri_localizacao_propriedade: userType === 'Agricultor' ? formData.localizacaoPropriedade : '',
+        agri_tipos_amendoim_cultivados: userType === 'Agricultor' ? formData.tiposAmendoim : '',
+        agri_certificacoes: userType === 'Agricultor' ? formData.certificacoes : ''
       };
 
-      console.log('Enviando dados:', usuarioData);
+      console.log('📤 Enviando dados para cadastro:', usuarioData);
 
       // 🔥 REQUISIÇÃO COM API CONFIGURADA
       const response = await api.post('/usuarios', usuarioData);
 
-      console.log('Resposta do backend:', response.data);
+      console.log('📥 Resposta do backend:', response.data);
 
       if (response.data.sucesso) {
         setMensagem({ 
-          texto: "Cadastro realizado com sucesso!Redirecionando para login...", 
+          texto: "✅ Cadastro realizado com sucesso! Redirecionando para login...", 
           tipo: "sucesso" 
         });
         
@@ -331,30 +336,38 @@ function Cadastro() {
         
       } else {
         setMensagem({ 
-          texto: response.data.mensagem || "Erro no cadastro. Verifique os dados.", 
+          texto: response.data.mensagem || "❌ Erro no cadastro. Verifique os dados.", 
           tipo: "erro" 
         });
       }
 
     } catch (error) {
-      console.error('Erro na requisição:', error);
+      console.error('💥 Erro na requisição:', error);
+      
+      let erroMensagem = "Erro inesperado. Tente novamente.";
       
       if (error.response) {
-        setMensagem({ 
-          texto: error.response.data.mensagem || "Erro no servidor. Tente novamente.", 
-          tipo: "erro" 
-        });
+        // Erro do servidor com resposta
+        erroMensagem = error.response.data.mensagem || 
+                      error.response.data.dados || 
+                      "Erro no servidor. Tente novamente.";
+        
+        // Tratar erros específicos
+        if (error.response.status === 409) {
+          erroMensagem = "Email já cadastrado. Use outro email.";
+        } else if (error.response.status === 400) {
+          erroMensagem = "Dados inválidos. Verifique as informações.";
+        }
+        
       } else if (error.request) {
-        setMensagem({ 
-          texto: "Erro ao conectar com o servidor. Verifique sua conexão.", 
-          tipo: "erro" 
-        });
-      } else {
-        setMensagem({ 
-          texto: "Erro inesperado. Tente novamente.", 
-          tipo: "erro" 
-        });
+        // Erro de conexão
+        erroMensagem = "Erro ao conectar com o servidor. Verifique sua conexão.";
       }
+      
+      setMensagem({ 
+        texto: erroMensagem, 
+        tipo: "erro" 
+      });
     } finally {
       setLoading(false);
     }
@@ -388,6 +401,20 @@ function Cadastro() {
                 {etapa === 4 && "Onde podemos encontrar você?"}
                 {etapa === 5 && "Crie uma senha segura para proteger sua conta"}
               </p>
+              
+              {/* Indicador de progresso */}
+              <div className={styles.progressContainer}>
+                <div className={styles.progressBar}>
+                  <div 
+                    className={styles.progressFill} 
+                    style={{ width: `${(etapa / 5) * 100}%` }}
+                  ></div>
+                </div>
+                <div className={styles.progressText}>
+                  Etapa {etapa} de 5
+                </div>
+              </div>
+              
               <div className={styles.illustration}>
                 <div className={styles.iconContainer}>
                   <span className={styles.icon}>
@@ -422,7 +449,11 @@ function Cadastro() {
                         limparMensagem();
                       }}
                     >
-                      🌱 Agricultor
+                      <div className={styles.userTypeIcon}>🌱</div>
+                      <div className={styles.userTypeContent}>
+                        <div className={styles.userTypeTitle}>Agricultor</div>
+                        <div className={styles.userTypeDesc}></div>
+                      </div>
                     </button>
                     <button
                       type="button"
@@ -432,13 +463,18 @@ function Cadastro() {
                         limparMensagem();
                       }}
                     >
-                      🏢 Empresa
+                      <div className={styles.userTypeIcon}>🏢</div>
+                      <div className={styles.userTypeContent}>
+                        <div className={styles.userTypeTitle}>Empresa</div>
+                        <div className={styles.userTypeDesc}></div>
+                      </div>
                     </button>
                   </div>
                   
                   <button 
                     type="submit" 
                     className={styles.submitButton}
+                    disabled={!userType}
                   >
                     Continuar
                   </button>
@@ -657,6 +693,16 @@ function Cadastro() {
               {etapa === 5 && (
                 <form onSubmit={handleSubmitFinal} className={styles.formContainer}>
                   <h2 className={styles.etapaTitulo}>Crie sua senha</h2>
+                  
+                  <div className={styles.passwordTips}>
+                    <p className={styles.tipTitle}>Dicas para uma senha segura:</p>
+                    <ul className={styles.tipList}>
+                      <li>Mínimo 6 caracteres</li>
+                      <li>Pelo menos 1 letra maiúscula</li>
+                      <li>Pelo menos 1 letra minúscula</li>
+                      <li>Pelo menos 1 número</li>
+                    </ul>
+                  </div>
 
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>Senha *</label>
@@ -665,7 +711,7 @@ function Cadastro() {
                       className={styles.formInput}
                       value={formData.senha}
                       onChange={(e) => handleInputChange('senha', e.target.value)}
-                      placeholder="Mínimo 6 caracteres"
+                      placeholder="Digite sua senha"
                       minLength={6}
                       required
                     />
@@ -693,8 +739,17 @@ function Cadastro() {
                       className={styles.submitButton}
                       disabled={loading}
                     >
-                      {loading ? 'Cadastrando...' : 'Finalizar Cadastro'}
+                      {loading ? (
+                        <>
+                          <span className={styles.loadingSpinner}></span>
+                          Cadastrando...
+                        </>
+                      ) : 'Finalizar Cadastro'}
                     </button>
+                  </div>
+                  
+                  <div className={styles.loginLink}>
+                    <p>Já tem uma conta? <a href="/login" className={styles.link}>Faça login</a></p>
                   </div>
                 </form>
               )}
