@@ -1,5 +1,6 @@
 :root {
-  --cor-fundo-home: rgb(248, 247, 242);
+  /* Tema Claro (default) */
+ 
   --cor-texto-home: #5c3b28;
   --cor-texto-houver-home: #a87453;
   --cor-ec-home: #6b4c3a;
@@ -27,7 +28,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --cor-fundo-home: #1e1e1e;
+    /* Tema Escuro */
+ 
     --cor-texto-home: #e0e0e0;
     --cor-texto-houver-home: #c69c62;
     --cor-ec-home: #c69c62;
@@ -58,7 +60,7 @@
 .navbr {
   width: 100vw;
   height: 100px;
-  background-color: transparent;
+  background-color: var(--cor-bege);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,7 +113,9 @@
 .info span:hover {
   color: var(--cor-texto-houver-home);
 }
-
+.carouselContainer{
+  background-color: var( --cor-bege);
+}
 .ec {
   display: flex;
   gap: 15px;
@@ -130,13 +134,14 @@
   height: 38px;
   border: 2px solid var(--cor-marrom-medio);
 }
-.login span{
+
+.login span {
   text-decoration: none;
   color: var(--cor-marrom-medio);
 }
 
 .cadastrar {
-  text-decoration:none;
+  text-decoration: none;
   display: flex;
   align-items: center;
   background-color: var(--cor-ec-home);
@@ -147,13 +152,13 @@
   height: 40px;
 }
 
-.cadastrar span{
+.cadastrar span {
   text-decoration: none;
   color: var(--cor-branco);
 }
 
-.tirar{
- text-decoration:none;
+.tirar {
+  text-decoration: none;
 }
 
 .menuMobile {
@@ -172,7 +177,8 @@
   box-shadow: 0 4px 8px var(--cor-sombra-menu);
   transition: all 0.3s;
 }
-.menuMobile a{
+
+.menuMobile a {
   text-decoration: none !important;
   outline: none;
   color: var(--cor-marrom-escuro);
@@ -221,7 +227,7 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-  margin-bottom:100px;
+  margin-bottom: 100px;
   color: var(--cor-marrom-escuro);
 }
 
@@ -229,7 +235,7 @@
   background-color: var(--cor-bege);
   margin: 0;
   padding: 0;
-  height:700px;
+  height: 700px;
 }
 
 /* CARDS */
@@ -238,7 +244,7 @@
   width: 90vw;
   align-items: center;
   text-align: center;
-  margin:0 auto;
+  margin: 0 auto;
   gap: 10vw;
 }
 
@@ -390,7 +396,7 @@
   flex-direction: column;
   align-items: center;
   background-color: var(--cor-bege);
-  margin-bottom:50px;
+ 
 }
 
 .rev h1 {
@@ -428,7 +434,8 @@
   align-items: center;
   border: 2px solid var(--cor-dourado-claro);
 }
-.faleconos:hover{
+
+.faleconos:hover {
   transform: translateY(-10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -446,7 +453,8 @@
   text-align: center;
   width: 170px;
 }
-.cadasgra:hover{
+
+.cadasgra:hover {
   transform: translateY(-10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -505,35 +513,36 @@
   margin: 0;
 }
 
-@media  (min-width: 769px) and (max-width: 1045px) {
-  .fundocpa{
-    height:700px;
+@media (min-width: 769px) and (max-width: 1045px) {
+  .fundocpa {
+    height: 700px;
   }
+
   .containerPassos {
-    display: grid;                          /* muda de flex para grid */
-    grid-template-columns: repeat(2, 1fr);  /* 2 colunas */
-    gap: 40px;                              /* espaço entre os itens */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
     width: 90%;
     margin: 0 auto;
- 
   }
 
-  .espaço, .espaço2, .espaço3, .espaço4 {
-    
-    margin-left: 0;   /* garante que não empurre pro lado */
-    justify-self: center; /* centraliza cada "passo" na célula */
+  .espaço,
+  .espaço2,
+  .espaço3,
+  .espaço4 {
+    margin-left: 0;
+    justify-self: center;
   }
 
-   .rev{
-    margin-top:100px;
-    margin-bottom:70px;
-    text-align:center;
+  .rev {
+    margin-top: 100px;
+    margin-bottom: 70px;
+    text-align: center;
   }
-
 }
 
 /* MOBILE */
-@media (max-width: 768px)  {
+@media (max-width: 768px) {
   .menuIcon {
     color: var(--cor-marrom-escuro);
     display: block;
@@ -542,187 +551,69 @@
     font-size: 35px;
   }
 
-
   .info {
-    display:none;
+    display: none;
   }
-  
+
   .ec {
     margin-left: 0;
   }
-  .logo{
-    position: absolute; 
+
+  .logo {
+    position: absolute;
     left: 5px;
-    height: 150px;      
+    height: 150px;
     width: auto;
-    margin:0
+    margin: 0;
   }
-  .fundocpa{
-    margin-top:100px;
-  }
+
+
   .card {
     height: auto;
     flex-direction: column;
-    gap: 20px;               
-    width: 100%;             
-    align-items: center;     
-    margin-bottom: 200px;     
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 200px;
     justify-content: center;
   }
 
   .agr,
   .empre,
   .ts {
-    width: 90% ;  
+    width: 90%;
     max-width: 500px;
   }
-  .ts{
-    margin:0 ;
+
+  .ts {
+    margin: 0;
   }
-  .comofun{
+
+  .comofun {
     height: auto;
     padding: 50px 20px;
     margin-top: 500px;
-    margin-bottom: 20px;
+    
   }
-  .containerPassos{
+
+  .containerPassos {
     width: 90%;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
     margin: 0 auto;
     gap: 40px;
   }
-  .espaço, .espaço2, .espaço3, .espaço4 {
+
+  .espaço,
+  .espaço2,
+  .espaço3,
+  .espaço4 {
     margin-left: 0;
-  }
-  .rev{
-    margin-bottom:70px;
-    text-align:center;
-  }
-}
-
-/* === DARK MODE AUTOMÁTICO === */
-@media (prefers-color-scheme: dark) {
-  body, .body {
-    background-color: var(--cor-fundo-home);
-    color: var(--cor-texto-claro);
-  }
-
-  .navbr {
-    background-color: var(--cor-fundo-home);
-    box-shadow: 0 0 2px 0 #555;
-  }
-
-  .info {
-    color: var(--cor-texto-cinza);
-  }
-
-  .info span:hover {
-    color: var(--cor-dourado-claro);
-  }
-
-  .login {
-    color: var(--cor-texto-claro);
-    border: 2px solid var(--cor-texto-claro);
-  }
-
-  .login span {
-    color: var(--cor-texto-claro);
-  }
-
-  .cadastrar {
-    background-color: var(--cor-dourado-claro);
-  }
-
-  .cadastrar span {
-    color: var(--cor-branco);
-  }
-
-  .menuMobile {
-    background-color: var(--cor-fundo-home);
-    border: 2px solid var(--cor-borda-escura);
-  }
-
-  .menuMobile a {
-    color: var(--cor-texto-claro);
-  }
-  .menuIcon{
-    color: var(--cor-dourado-claro);
-  }
-  .teste {
-    background-color: var(--cor-fundo-home);
-  }
-
-  .texto {
-    color: var(--cor-texto-claro);
-  }
-
-  .sub {
-    color: var(--cor-texto-cinza);
-  }
-
-  .fundocpa {
-    background-color: var(--cor-fundo-home);
-  }
-
-  .agr, .empre, .ts {
-    background-color: var(--cor-fundo-escuro);
-    border: 1px solid var(--cor-borda-escura);
-    color: var(--cor-texto-claro);
-  }
-
-  .agr h3, .empre h3, .ts h3 {
-    color: var(--cor-dourado-claro);
-  }
-
-  .agr span, .empre span, .ts span {
-    color: var(--cor-texto-claro);
-  }
-  .ajuda h1{
-    color: var(--cor-dourado-claro);
-  }
-
-  .comofun {
-    background-color: var(--cor-fundo-home);
-    
-  }
-  .comofun h1{
-    background-color: var(--cor-fundo-home);
-    color: var(--cor-dourado-claro);
-  }
-  .conta p, .publique p, .conta3 p, .conta4 p {
-    color: var(--cor-texto-cinza);
-  }
-
-  .passo, .passo2, .passo3, .passo4 {
-    background-color: var(--cor-fundo-escuro);
-    border: 2px solid var(--cor-borda-escura);
   }
 
   .rev {
-    background-color: var(--cor-fundo-home);
+    text-align: center;
+    height:400px
   }
 
-  .rev h1 {
-    color: var(--cor-dourado-claro);
-  }
-
-  .rev p {
-    color: var(--cor-texto-claro);
-  }
-
-  .footer {
-    background-color: var(--cor-cinza-footer);
-  }
-
-  .textopeanut h1,
-  .texth3,
-  .rapido h1,
-  .linkra h3 {
-    color: var(--cor-texto-claro);
-  }
-
-  .menuIcon {
-    color: var(--cor-dourado-claro);
-  }
 }
