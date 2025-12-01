@@ -8,7 +8,6 @@ import api from '@/services/api';
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [tipoUsuario, setTipoUsuario] = useState('2'); // 🔥 Alterado: 2=Agricultor (padrão)
   const [loading, setLoading] = useState(false);
   const [mensagem, setMensagem] = useState({ texto: "", tipo: "" });
   const [lembrarDeMim, setLembrarDeMim] = useState(false);
@@ -20,10 +19,8 @@ function Login() {
     const credenciaisSalvas = localStorage.getItem('credenciaisSalvas');
     if (credenciaisSalvas) {
       try {
-        const { email: emailSalvo, tipoUsuario: tipoSalvo } = JSON.parse(credenciaisSalvas);
+        const { email: emailSalvo } = JSON.parse(credenciaisSalvas);
         setEmail(emailSalvo || '');
-        // Garantir que o tipo salvo seja válido (2 ou 3)
-        setTipoUsuario(tipoSalvo === '2' || tipoSalvo === '3' ? tipoSalvo : '2');
         setLembrarDeMim(true);
       } catch (error) {
         console.error('Erro ao carregar credenciais salvas:', error);
@@ -31,6 +28,34 @@ function Login() {
       }
     }
   }, []);
+
+  // 🔥 NOVA FUNÇÃO: Tentar login em todos os tipos
+  const tentarLoginTodosTipos = async (email, senha) => {
+    const tipos = ['2', '3', '1']; // Agricultor, Empresa, Admin
+    
+    for (const tipo of tipos) {
+      try {
+        console.log(`🔍 Tentando login como tipo ${tipo}...`);
+        
+        const response = await api.post('/usuarios/login', {
+          email: email.trim().toLowerCase(),
+          senha: senha,
+          tipo: tipo
+        });
+
+        if (response.data.sucesso) {
+          console.log(`✅ Login bem-sucedido como tipo ${tipo}`);
+          return { sucesso: true, data: response.data, tipo: tipo };
+        }
+      } catch (error) {
+        // Continua para o próximo tipo
+        console.log(`❌ Falha como tipo ${tipo}:`, error.response?.data?.mensagem || error.message);
+        continue;
+      }
+    }
+    
+    return { sucesso: false };
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -60,44 +85,41 @@ function Login() {
     }
 
     try {
-      const loginData = {
-        email: email.trim().toLowerCase(),
-        senha: senha,
-        tipo: tipoUsuario // 🔥 Agora correto: 2=Agricultor, 3=Empresa
-      };
+      setMensagem({ texto: "🔍 Verificando credenciais...", tipo: "info" });
 
-      console.log('📤 Enviando dados de login:', loginData);
-
-      const response = await api.post('/usuarios/login', loginData);
-
-      console.log('📥 Resposta do login:', response.data);
-
-      if (response.data.sucesso) {
+      // 🔥 TENTAR LOGIN EM TODOS OS TIPOS
+      const resultado = await tentarLoginTodosTipos(email, senha);
+      
+      if (resultado.sucesso) {
+        const response = resultado.data;
+        const tipoDetectado = resultado.tipo;
+        
         setMensagem({ texto: "✅ Login realizado com sucesso!", tipo: "sucesso" });
 
         // Salvar credenciais se "Lembrar de mim" estiver marcado
         if (lembrarDeMim) {
           localStorage.setItem('credenciaisSalvas', JSON.stringify({
             email: email,
-            tipoUsuario: tipoUsuario
+            tipoUsuario: tipoDetectado
           }));
         } else {
-          // Remover se não estiver marcado
           localStorage.removeItem('credenciaisSalvas');
         }
 
         // Salvar dados do usuário logado
         const usuario = {
-          id: response.data.dados.id,
-          nome: response.data.dados.nome,
-          tipo: response.data.dados.tipo,
-          agri_id: response.data.dados.agri_id || null,
-          emp_id: response.data.dados.emp_id || null,
-          imagem: response.data.dados.imagem || null,
-          email: response.data.dados.email || email,
-          documento: response.data.dados.documento || null,
-          telefone: response.data.dados.telefone || null,
-          endereco: response.data.dados.endereco || null
+          id: response.dados.id,
+          nome: response.dados.nome,
+          tipo: response.dados.tipo,
+          agri_id: response.dados.agri_id || null,
+          emp_id: response.dados.emp_id || null,
+          imagem: response.dados.imagem || null,
+          email: response.dados.email || email,
+          documento: response.dados.documento || null,
+          telefone: response.dados.telefone || null,
+          endereco: response.dados.endereco || null,
+          tipo_descricao: tipoDetectado === '2' ? 'Agricultor' : 
+                         tipoDetectado === '3' ? 'Empresa' : 'Administrador'
         };
 
         localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
@@ -105,17 +127,46 @@ function Login() {
 
         console.log("💾 Usuário logado salvo:", usuario);
 
-        // Redirecionar baseado no tipo de usuário
+        // Redirecionar após 1 segundo
         setTimeout(() => {
-          // Você pode personalizar o redirecionamento por tipo se quiser
           router.push('/inicio');
         }, 1000);
 
       } else {
-        setMensagem({ 
-          texto: response.data.mensagem || "❌ Credenciais inválidas", 
-          tipo: "erro" 
-        });
+        // 🔥 VERIFICAR SE É EMAIL NÃO CADASTRADO OU SENHA ERRADA
+        // Primeiro verificar se o email existe em algum tipo (com senha errada)
+        let emailExiste = false;
+        const tipos = ['2', '3', '1'];
+        
+        for (const tipo of tipos) {
+          try {
+            await api.post('/usuarios/login', {
+              email: email.trim().toLowerCase(),
+              senha: 'senha_errada_teste',
+              tipo: tipo
+            });
+          } catch (error) {
+            // Se o erro for "Usuário não encontrado", email não existe nesse tipo
+            // Se o erro for "senha incorreta", email EXISTE nesse tipo
+            if (error.response?.data?.mensagem?.includes("senha incorreta") || 
+                error.response?.data?.mensagem?.includes("Usuário não encontrado ou senha incorreta")) {
+              emailExiste = true;
+              break;
+            }
+          }
+        }
+        
+        if (emailExiste) {
+          setMensagem({ 
+            texto: "❌ Senha incorreta. Tente novamente.", 
+            tipo: "erro" 
+          });
+        } else {
+          setMensagem({ 
+            texto: "📧 Email não cadastrado. Verifique ou cadastre-se.", 
+            tipo: "erro" 
+          });
+        }
       }
 
     } catch (error) {
@@ -124,19 +175,14 @@ function Login() {
       let erroMensagem = "Erro inesperado. Tente novamente.";
       
       if (error.response) {
-        // Erro do servidor com resposta
         if (error.response.status === 401 || error.response.status === 404) {
           erroMensagem = "Email ou senha incorretos.";
         } else if (error.response.status === 400) {
           erroMensagem = "Dados inválidos. Verifique as informações.";
         } else {
-          erroMensagem = error.response.data.mensagem || 
-                        error.response.data.dados || 
-                        "Erro no servidor.";
+          erroMensagem = error.response.data.mensagem || "Erro no servidor.";
         }
-        
       } else if (error.request) {
-        // Erro de conexão
         erroMensagem = "Erro de conexão. Verifique sua internet.";
       }
       
@@ -164,14 +210,13 @@ function Login() {
             alt="Logo PeanutDrop" 
             className={styles.logo}
           />
-          
         </div>
         <div className={styles.welcomeContent}>
           <h1 className={styles.welcomeTitle}>Bem-vindo de volta!</h1>
           <p className={styles.welcomeSubtitle}>
-            Acesse sua conta para gerenciar suas ofertas e demandas
+            Faça login com seu email e senha !!
           </p>
-          
+         
         </div>
       </div>
 
@@ -180,7 +225,7 @@ function Login() {
           <form className={styles.loginForm} onSubmit={handleSubmit}>
             <div className={styles.formHeader}>
               <h2 className={styles.formTitle}>Login</h2>
-            
+          
             </div>
             
             {mensagem.texto && (
@@ -190,32 +235,7 @@ function Login() {
             )}
             
             <div className={styles.formGroup}>
-              <label htmlFor="tipoUsuario" className={styles.inputLabel}>
-                <span className={styles.labelIcon}>👤</span>
-                Tipo de Usuário
-              </label>
-              <select
-                id="tipoUsuario"
-                name="tipoUsuario"
-                value={tipoUsuario}
-                onChange={(e) => setTipoUsuario(e.target.value)}
-                className={styles.formSelect}
-                required
-              >
-                <option value="2">🌱 Agricultor</option>
-                <option value="3">🏢 Empresa</option>
-                <option value="1" disabled>🔧 Administrador</option>
-              </select>
-              <p className={styles.selectHelp}>
-                {tipoUsuario === '2' 
-                  ? ' '
-                  : ''}
-              </p>
-            </div>
-            
-            <div className={styles.formGroup}>
               <label htmlFor="email" className={styles.inputLabel}>
-                <span className={styles.labelIcon}>📧</span>
                 Email
               </label>
               <input
@@ -227,12 +247,12 @@ function Login() {
                 className={styles.formInput}
                 placeholder="seu@email.com"
                 required
+                disabled={loading}
               />
             </div>
             
             <div className={styles.formGroup}>
               <label htmlFor="senha" className={styles.inputLabel}>
-                <span className={styles.labelIcon}>🔒</span>
                 Senha
               </label>
               <div className={styles.senhaContainer}>
@@ -242,32 +262,21 @@ function Login() {
                   name="senha"
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
-                  className={styles.formInput}
+                  className={styles.formInput2}
                   placeholder="Digite sua senha"
                   required
                   minLength={6}
+                  disabled={loading}
                 />
                 <button
                   type="button"
                   className={styles.mostrarSenhaBtn}
                   onClick={toggleMostrarSenha}
                   title={mostrarSenha ? "Ocultar senha" : "Mostrar senha"}
+                  disabled={loading}
                 >
-                  {mostrarSenha ? '🙈' : '👁️ '}
+                  {mostrarSenha ? '🙈' : '👁️'}
                 </button>
-              </div>
-              <div className={styles.passwordStrength}>
-                {senha.length > 0 && (
-                  <div className={styles.strengthMeter}>
-                    <div 
-                      className={`${styles.strengthBar} ${
-                        senha.length < 6 ? styles.weak :
-                        senha.length < 8 ? styles.medium : styles.strong
-                      }`}
-                      style={{ width: `${Math.min(senha.length * 8, 100)}%` }}
-                    ></div>
-                  </div>
-                )}
               </div>
             </div>
             
@@ -279,9 +288,10 @@ function Login() {
                   className={styles.checkbox} 
                   checked={lembrarDeMim}
                   onChange={(e) => setLembrarDeMim(e.target.checked)}
+                  disabled={loading}
                 />
                 <label htmlFor="remember" className={styles.checkboxLabel}>
-                  Lembrar de mim neste dispositivo
+                  Lembrar de mim
                 </label>
               </div>
               <Link href="/esqueceu_senha" className={styles.forgotPassword}>
@@ -291,15 +301,10 @@ function Login() {
             
             <button 
               type="submit" 
-              className={`${styles.loginButton} ${loading ? styles.loading : ''}`}
+              className={styles.loginButton}
               disabled={loading || !email || !senha}
             >
-              {loading ? (
-                <>
-                  <span className={styles.spinner}></span>
-                  Entrando...
-                </>
-              ) : 'Entrar na plataforma'}
+              {loading ? 'Entrando...' : 'Entrar'}
             </button>
             
             <div className={styles.registerPrompt}>
@@ -309,7 +314,6 @@ function Login() {
                   Crie sua conta
                 </Link>
               </p>
-              
             </div>
           </form>
         </div>

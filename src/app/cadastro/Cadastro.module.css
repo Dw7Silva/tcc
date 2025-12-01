@@ -246,6 +246,14 @@
   gap: 15px;
   margin-top: 10px;
 }
+.tipTitle{
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var( --cadastro-cor-dark) ;
+      } 
+      .tipList{
+        color: var( --cadastro-cor-dark) ;
+      }
 
 .userTypeButton {
   flex: 1;

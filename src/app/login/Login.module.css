@@ -15,7 +15,7 @@
 /* Dark Theme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --cor-primaria-login: #F8DCA5;
+    --cor-primaria-login: #fcd78e;
     --cor-secundaria-login: #5c3b28;;
     --cor-fundo-login: #313030;
     --cor-texto-login: #f0f0f0;
@@ -263,7 +263,7 @@
 .loginButton {
   width: 100%;
   padding: 1rem;
-  background-color: var(--cor-secundaria-login);
+  background-color: var(--cor-primaria-login);
   color: white;
   border: none;
   border-radius: 8px;
@@ -275,10 +275,10 @@
 }
 
 .loginButton:hover {
-  background-color: var(--cor-primaria-login);
+  background-color: var(--cor-secundaria-login);
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: #1e1e1e;
+  color: #ffffff;
 }
 
 .registerPrompt {
@@ -299,7 +299,7 @@
 }
 
 .formSelect {
-  width: 120px;
+  width: 150px;
   height: 25px;
   padding: 0 10px;
   border: 1px solid var(--cor-borda);

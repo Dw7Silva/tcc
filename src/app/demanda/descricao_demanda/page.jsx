@@ -38,13 +38,15 @@ export default function DemandaDescricao({ demanda }) {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuario') || '{}');
     return usuarioLogado.emp_id === demanda.emp_id;
   };
+const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+      console.log("📦 DADOS DO LOCALSTORAGE:", usuarioLogado);
+      
 
-  // Função para iniciar negociação a partir da demanda
   const iniciarNegociacao = async () => {
     setLoading(true);
     try {
       // Obter o usuário logado do localStorage
-      const usuarioLogado = JSON.parse(localStorage.getItem('usuario') || '{}');
+      const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
       
       if (!usuarioLogado.agri_id) {
         setMensagem("Você precisa estar logado como agricultor para iniciar uma negociação");

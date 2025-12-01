@@ -748,9 +748,7 @@ function Cadastro() {
                     </button>
                   </div>
                   
-                  <div className={styles.loginLink}>
-                    <p>Já tem uma conta? <a href="/login" className={styles.link}>Faça login</a></p>
-                  </div>
+                  
                 </form>
               )}
             </div>

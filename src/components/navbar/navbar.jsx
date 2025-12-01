@@ -37,11 +37,11 @@ export default function BarraNvg() {
 
   const itensPorTipo = {
 
-    1: [
+    2: [
       { label: "Minhas Ofertas", href: "/minhas_ofertas" }
     ],
 
-    2: [
+    3: [
       { label: "Minhas Demandas", href: "/minhas_demandas" }
     ]
   };
