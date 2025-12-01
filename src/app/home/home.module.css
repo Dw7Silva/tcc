@@ -16,9 +16,7 @@
 
 
 
-body{
- background-color: var(--cor-fundo-home);
-}
+
 
 /* NAVBAR */
 .navbr {
@@ -31,7 +29,6 @@ body{
   padding: 0 20px;
   box-sizing: border-box;
   position: relative;
-  box-shadow: 0 0 1px 0 #000;
   
 }
 

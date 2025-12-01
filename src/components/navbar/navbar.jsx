@@ -1,7 +1,6 @@
 "use client";
 import { GoHomeFill } from "react-icons/go";
 import { FaSearch, FaUser } from "react-icons/fa";
-import { IoChatbox } from "react-icons/io5";
 import { MdSupportAgent } from "react-icons/md";
 import { HiOutlineMenu } from "react-icons/hi";
 import { useState, useEffect } from "react";
@@ -18,7 +17,7 @@ export default function BarraNvg() {
       setIsSmallScreen(window.innerWidth <= 600);
     };
     
-    // Verificar tipo do usuário logado
+
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     console.log("👤 TIPO DO USUÁRIO:", usuarioLogado?.tipo);
     setTipoUsuario(usuarioLogado?.tipo);
@@ -31,19 +30,17 @@ export default function BarraNvg() {
 
   const toggleMenu = () => setMenuAberto(!menuAberto);
 
-  // Itens base do menu
   const itensBase = [
     { label: "Demandas", href: "/demanda" },
     { label: "Ofertas", href: "/ofertas" }
   ];
 
-  // Itens específicos por tipo de usuário
   const itensPorTipo = {
-    // Tipo 1: Agricultor - PODE ver Minhas Ofertas, NÃO PODE ver Minhas Demandas
+
     1: [
       { label: "Minhas Ofertas", href: "/minhas_ofertas" }
     ],
-    // Tipo 2: Empresário - PODE ver Minhas Demandas, NÃO PODE ver Minhas Ofertas
+
     2: [
       { label: "Minhas Demandas", href: "/minhas_demandas" }
     ]
@@ -52,7 +49,6 @@ export default function BarraNvg() {
   // Itens do mobile (apenas em telas pequenas)
   const itensMobile = isSmallScreen ? [
     { label: "Início", href: "/" },
-    { label: "Chat", href: "/chat" },
     { label: "Suporte", href: "/suporte" },
     { label: "Perfil", href: "/perfil" }
   ] : [];
@@ -101,9 +97,7 @@ export default function BarraNvg() {
             <Link href="/inicio" className={styles.navIcon}>
               <GoHomeFill />
             </Link>
-            <Link href="/chat" className={styles.navIcon}>
-              <IoChatbox />
-            </Link>
+            
             <Link href="/suporte" className={styles.navIcon}>
               <MdSupportAgent />
             </Link>

@@ -15,7 +15,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --cor-primaria-demandas: #F8DCA5;              /* primária escuro */
-    --cor-secundaria-demandas: #F8DCA5;            /* secundária escuro */
+    --cor-secundaria-demandas: #5c3b28;            /* secundária escuro */
     --cor-texto-demandas: #f0f0f0;                 /* texto */
     --cor-texto-secundario-demandas:  #b3b3b3;      /* secundário */
     --cor-fundo-demanda: #313030;                  /* fundo escuro */
@@ -56,44 +56,13 @@
 .header h2 {
   margin: 0;
   font-size: clamp(1.5rem, 4vw, 2.2rem);
-  color: var(--cor-secundaria-demandas);
+  color: var(--cor-primaria-demandas);
   flex: 1;
   min-width: 150px;
 }
 
-.filtro {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex: 1;
-  justify-content: flex-end;
-  min-width: 250px;
-}
 
-.filtro label {
-  font-weight: 400;
-  color: var(--cor-secundaria-demandas);
-  white-space: nowrap;
-}
 
-.filtro select {
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  border: 1px solid var(--cor-borda-demandas);
-  background-color: var(--cor-card-demandas);
-  color: var(--cor-texto-demandas);
-  font-family: inherit;
-  min-width: 150px;
-  width: 100%;
-  max-width: 200px;
-  transition: all 0.3s;
-}
-
-.scrollWrapper {
-  position: relative;
-  width: 100%;
-  margin: 2.5rem 0;
-}
 
 .demandasGrid {
   display: flex;
@@ -152,7 +121,7 @@
 
 .empresa {
   font-weight: 600;
-  color: var(--cor-secundaria-demandas);
+  color: var(--cor-primaria-demandas);
   margin: 0;
   font-size: 1.1rem;
 }
@@ -204,7 +173,7 @@
 }
 
 .detalhes:hover {
-  background-color: var(--cor-button-hover);
+   background-color: var(--cor-secundaria-demandas );
   transform: translateY(-10%);
 }
 
@@ -232,7 +201,7 @@
 }
      
 .criarDemanda:hover {
-   background-color: var(--cor-primaria-demandas );
+   background-color: var(--cor-secundaria-demandas );
   transform: translateY(-2px);
   box-shadow: 0 4px 12px var(--cor-sombra-demandas);
 }
