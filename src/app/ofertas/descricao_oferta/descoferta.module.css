@@ -1,7 +1,7 @@
 :root {
   /* Tema Claro (default) */
   --cor-primaria-descoferta: #F8DCA5;
-  --cor-secundaria-descoferta-1: #5c3b28;
+  --cor-secundaria-descoferta-1: #ffffff;
   --cor-texto-descoferta-1: #333;
   --cor-texto-secundario-descoferta: #666;
   --cor-borda-descoferta: #A46434;
@@ -11,15 +11,17 @@
   --cor-destaque-descoferta: #F8DCA5;
   --cor-chat-descoferta: #d9d9d9;
   --cor-input-descoferta: #ffffff;
+  --cor-button-descoferta:#e1ac74;
+  --cor-button-hover-descoferta:#5c3b28;
 }
 
 /* Tema Escuro */
 @media (prefers-color-scheme: dark) {
   :root {
-    --cor-primaria-descoferta: #F8DCA5;
+    --cor-primaria-descoferta:#999999;
     --cor-secundaria-descoferta-1: #ffffff;
     --cor-texto-descoferta-1: #f0f0f0;
-    --cor-texto-secundario-descoferta: #b3b3b3;
+    --cor-texto-secundario-descoferta: #999999;
     --cor-borda-descoferta: #A46434;
     --cor-card-descoferta: #1e1e1e;
     --cor-sombra-descoferta: rgba(0, 0, 0, 0.5);
@@ -27,6 +29,8 @@
     --cor-destaque-descoferta: #A87453;
     --cor-chat-descoferta: #2a2a2a;
     --cor-input-descoferta: #3a3a3a;
+    --cor-button-descoferta:#e1ac74;
+    --cor-button-hover-descoferta:#5c3b28;
   }
 }
 
@@ -125,6 +129,7 @@
   justify-content: center;
   gap: 1rem;
   margin-top: 2rem;
+  
 }
 
 .primaryButton,
@@ -137,12 +142,16 @@
   transition: 0.3s ease;
   font-weight: 600;
   font-family: 'Comfortaa', cursive;
+  background-color: var(--cor-button-descoferta);
+  color: rgb(252, 252, 252);
 }
 
-.primaryButton {
-  background-color: var(--cor-secundaria-descoferta-1);
-  color: white;
+.primaryButton:hover {
+background-color: var(--cor-button-hover-descoferta);
 }
+
+
+
 /* Modal Styles - APENAS AS NOVAS CLASSES */
 .modalOverlay {
   position: fixed;
@@ -184,6 +193,7 @@
 
 .closeButton {
   background: none;
+
   border: none;
   font-size: 2rem;
   cursor: pointer;
@@ -210,13 +220,14 @@
   height: 3rem;
   border-radius: 50%;
   background: var(--cor-secundaria-descoferta-1);
-  color: white;
+  color: rgb(0, 0, 0);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   flex-shrink: 0;
   font-size: 1.2rem;
+  border:1px solid var(--cor-borda-descoferta)
 }
 
 .etapaLoading {
@@ -263,7 +274,7 @@
 }
 
 .confirmButton {
-  background: var(--cor-secundaria-descoferta-1);
+  background: var(--cor-button-descoferta);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -276,6 +287,7 @@
 
 .confirmButton:hover:not(:disabled) {
   opacity: 0.9;
+  background-color: var(--cor-button-hover-descoferta);
 }
 
 .confirmButton:disabled {
