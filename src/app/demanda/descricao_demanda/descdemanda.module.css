@@ -13,7 +13,10 @@
   --cor-destaque-descdemanda: #F8DCA5;
   --cor-chat-descdemanda: #d9d9d9;
   --cor-input-descdemanda: #ffffff;
-      --cor-button-hover-d:#5c3b28;
+  --cor-button-hover-d: #e1ac74;
+  --cor-button-d:#a87453;
+  --cor-icon:#f0f0f0;
+  
 }
 
 /* Tema Escuro */
@@ -30,7 +33,9 @@
     --cor-destaque-descdemanda: #A87453;
     --cor-chat-descdemanda: #2a2a2a;
     --cor-input-descdemanda: #3a3a3a;
-        --cor-button-hover-d:#5c3b28;
+    --cor-button-hover-d:#5c3b28;
+    --cor-button-d: #e1ac74;
+    --cor-icon:#f0f0f0;
   }
 }
 
@@ -102,7 +107,7 @@
 
 .infoLabel {
   font-weight: 600;
-  color: var(--cor-secundaria-descdemanda);
+  color: var(--cor-texto-descdemanda);
 }
 
 .infoValue {
@@ -144,7 +149,7 @@
 }
 
 .primaryButton {
-  background-color: var(--cor-primaria-descdemanda  );
+  background-color: var(--cor-button-d );
   color: white;
 }
 
@@ -226,14 +231,15 @@
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background: var(--cor-secundaria-descdemanda);
-  color: white;
+  background: var(--cor-icon);
+  color: rgb(0, 0, 0);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   flex-shrink: 0;
   font-size: 1.2rem;
+  border:1px solid var(--cor-borda-descdemanda);
 }
 
 .etapaLoading {
@@ -280,7 +286,7 @@
 }
 
 .confirmButton {
-  background: var(--cor-secundaria-descdemanda);
+  background: var(--cor-button-d);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -292,7 +298,7 @@
 }
 
 .confirmButton:hover:not(:disabled) {
-  background: #3f2719;
+  background:var(--cor-button-hover-d);
 }
 
 .confirmButton:disabled {

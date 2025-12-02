@@ -1,7 +1,7 @@
 :root {
   /* Tema Claro (default) */
   --cor-primaria-descoferta: #F8DCA5;
-  --cor-secundaria-descoferta-1: #ffffff;
+  --cor-secundaria-descoferta-1:  #5c3b28;
   --cor-texto-descoferta-1: #333;
   --cor-texto-secundario-descoferta: #666;
   --cor-borda-descoferta: #A46434;
@@ -13,6 +13,9 @@
   --cor-input-descoferta: #ffffff;
   --cor-button-descoferta:#e1ac74;
   --cor-button-hover-descoferta:#5c3b28;
+  --cor-icon: #ffffff;
+  
+
 }
 
 /* Tema Escuro */
@@ -31,6 +34,7 @@
     --cor-input-descoferta: #3a3a3a;
     --cor-button-descoferta:#e1ac74;
     --cor-button-hover-descoferta:#5c3b28;
+      --cor-icon:#f0f0f0; 
   }
 }
 
@@ -219,7 +223,7 @@ background-color: var(--cor-button-hover-descoferta);
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background: var(--cor-secundaria-descoferta-1);
+  background: var(--cor-icon);
   color: rgb(0, 0, 0);
   display: flex;
   align-items: center;
