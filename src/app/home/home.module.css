@@ -81,7 +81,7 @@
   color: var(--cor-texto-home);
   text-align: center;
   width: 80%;
-  gap: 10px;
+  gap: 15px;
   margin: 0 auto;
   opacity: 1;
   visibility: visible;
@@ -95,7 +95,7 @@
   font-weight: 300;
   cursor: pointer;
   transition: color 0.3s ease;
-  gap: 10px;
+  gap: 20px;
 }
 
 .info span:hover {
