@@ -4,7 +4,10 @@ export default function dev() {
 
   return(
 
+
     <Home/>
+
+
 
   );
 

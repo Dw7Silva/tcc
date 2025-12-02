@@ -182,10 +182,15 @@
 }
 
 .fundocpa {
-  background-color:transparent;
-  margin: 0;
-  padding: 0;
-  height: 700px;
+  background-color: transparent;
+  min-height: 700px; /* Muda para min-height */
+  margin: 5vw;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 /* CARDS */
@@ -526,28 +531,72 @@
 
 /* Tablet pequeno (600px - 768px) */
 @media (max-width: 768px) {
-  .menuIcon {
-    color: var(--cor-marrom-escuro);
-    display: block;
-    position: relative;
-    right: 0;
-    font-size: 2rem;
+  /* CORREÇÕES PARA O CARD */
+  .card {
+    flex-direction: column;
+    gap: 30px;
+    width: 90%;
+    margin: 0 auto;
+    align-items: center;
   }
+  
+  .agr,
+  .empre,
+  .ts {
+    height: 250px;
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  /* CORREÇÃO ESPECÍFICA PARA .ts */
+  .ts {
+    margin-right: 0;
+    margin-left: 0; /* Adicionado para garantir */
+    transform: none; /* Remove qualquer transformação */
+    position: static; /* Garante posição normal */
+  }
+  
+
+  /* NAVBAR MOBILE */
+  .menuIcon {
+    height: auto;
+    color: var(--cor-marrom-escuro);
+    display: flex;
+    position: absolute;
+    font-size: 2rem;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+  }
+  
+  .ec {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    left: 50px;
+   }
   
   .info {
     display: none;
   }
   
   .logo {
-    height: 50px;
+    height: 125px;
     width: auto;
-    position: relative;
-    left: 0;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
   }
   
+  /* COMO FUNCIONA */
   .comofun {
     padding: 2.5rem 0;
     width: 95vw;
+    margin-top: 0;
   }
   
   .comoh1 {
@@ -563,6 +612,7 @@
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: space-around;
+    width: 100%;
   }
   
   .espaço {
@@ -588,9 +638,11 @@
     font-size: 0.9rem;
   }
   
+  /* REVOLUCIONAR */
   .rev {
     padding: 3rem 1.5rem;
     min-height: auto;
+    margin-top: 0;
   }
   
   .rev h1 {
@@ -614,6 +666,7 @@
     font-size: 0.9rem;
   }
   
+  /* FOOTER */
   .footer {
     flex-direction: column;
     padding: 2rem 1rem;
@@ -634,118 +687,18 @@
   .linkra h3 {
     font-size: 0.9rem;
   }
-}
-
-/* Mobile pequeno (até 480px) */
-@media (max-width: 480px) {
-  .comofun {
-    padding: 2rem 0;
+  
+  /* ADICIONAR ESPAÇAMENTO ENTRE SEÇÕES */
+  #Ajuda {
+    margin-bottom: 50px;
   }
   
-  .comoh1 {
-    margin-bottom: 2rem;
+  #Como Funciona {
+    margin-top: 50px;
   }
   
-  .comofun h1 {
-    font-size: 1.8rem;
-  }
-  
-  .containerPassos {
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
-  .espaço {
-    flex: 1;
-    width: 100%;
-    max-width: 300px;
-    min-width: unset;
-    padding: 1rem 0.5rem;
-  }
-  
-  .passo {
-    height: 60px;
-    width: 60px;
-  }
-  
-  .fazer h1 {
-    font-size: 1.2rem;
-  }
-  
-  .conta p,
-  .publique p,
-  .conta3 p,
-  .conta4 p {
-    font-size: 0.9rem;
-    max-width: 250px;
-    margin: 0 auto;
-  }
-  
-  .rev {
-    padding: 2rem 1rem;
-  }
-  
-  .rev h1 {
-    font-size: 1.6rem;
-  }
-  
-  .rev p {
-    font-size: 0.9rem;
-  }
-  
-  .botao {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .faleconos,
-  .cadasgra {
-    width: 100%;
-    max-width: 250px;
-    padding: 0.6rem 1rem;
-  }
-  
-  .logo {
-    height: 40px;
-  }
-}
-
-/* Para telas muito grandes */
-@media (min-width: 1440px) {
-  .comofun {
-    max-width: 1600px;
-  }
-  
-  .containerPassos {
-    gap: 3rem;
-  }
-  
-  .espaço {
-    max-width: 280px;
-  }
-  
-  .passo {
-    height: 120px;
-    width: 120px;
-  }
-  
-  .fazer h1 {
-    font-size: 1.8rem;
-  }
-  
-  .conta p,
-  .publique p,
-  .conta3 p,
-  .conta4 p {
-    font-size: 1.1rem;
-  }
-  
-  .rev h1 {
-    font-size: 2.5rem;
-  }
-  
-  .rev p {
-    font-size: 1.2rem;
+  #Sobre Nos {
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }
