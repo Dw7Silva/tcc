@@ -334,12 +334,7 @@ export default function OfertaDescricao({ oferta }) {
                     <p>Parabéns! Sua negociação com {agricultor} foi concluída com sucesso.</p>
                     <p>Você pode acompanhar o andamento na sua área de negociações.</p>
                     <div className={styles.modalActions}>
-                      <button 
-                        onClick={handleFechar}
-                        className={styles.successButton}
-                      >
-                        Fechar
-                      </button>
+
                     </div>
                   </div>
                 </div>
@@ -347,7 +342,7 @@ export default function OfertaDescricao({ oferta }) {
 
               {/* Mensagem de status */}
               {mensagem && (
-                <div className={mensagem.includes("sucesso") ? styles.mensagemSucesso : styles.mensagemErro}>
+                <div className={mensagem.includes("sucesso") ? styles.mensagemStatus : styles.mensagemErro}>
                   {mensagem}
                 </div>
               )}

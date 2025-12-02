@@ -240,7 +240,7 @@ background-color: var(--cor-button-hover-descoferta);
 }
 
 .etapaSuccess {
-  background:#e1ac74;
+  background:var(--cor-icon);
 }
 
 .etapaContent {
@@ -341,7 +341,7 @@ background-color: var(--cor-button-hover-descoferta);
 }
 
 .mensagemStatus {
-  background: var(--cor-primaria-descoferta);
+
   border: 1px solid var(--cor-borda-descoferta);
   color: var(--cor-texto-descoferta-1);
   padding: 1rem;
