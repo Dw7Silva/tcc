@@ -184,7 +184,7 @@
 .fundocpa {
   background-color: transparent;
   min-height: 700px; /* Muda para min-height */
-  margin: 50px;
+  margin: 5vw;
   width: 90vw;
   display: flex;
   flex-direction: column;
@@ -557,16 +557,7 @@
     position: static; /* Garante posição normal */
   }
   
-  .fundocpa {
-    height: auto;
-    min-height: auto;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
+
   /* NAVBAR MOBILE */
   .menuIcon {
     height: auto;

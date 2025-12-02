@@ -1,5 +1,6 @@
+// src/components/OfertaDescricao.jsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./descoferta.module.css";
 import BarraNvg from "@/components/navbar/navbar";
 import api from "@/services/api";
@@ -9,6 +10,25 @@ export default function OfertaDescricao({ oferta }) {
   const [etapa, setEtapa] = useState(1); // 1=Enviar, 2=Aguardando, 3=Finalizada
   const [loading, setLoading] = useState(false);
   const [mensagem, setMensagem] = useState("");
+  const [usuarioLogado, setUsuarioLogado] = useState(null);
+
+  // Carregar usuário do localStorage quando o componente montar
+  useEffect(() => {
+    const carregarUsuario = () => {
+      try {
+        const usuarioJSON = localStorage.getItem('usuarioLogado');
+        if (usuarioJSON) {
+          const usuario = JSON.parse(usuarioJSON);
+          setUsuarioLogado(usuario);
+          console.log("Usuário logado:", usuario);
+        }
+      } catch (error) {
+        console.error("Erro ao carregar usuário:", error);
+      }
+    };
+    
+    carregarUsuario();
+  }, []);
 
   if (!oferta) {
     return (
@@ -16,7 +36,7 @@ export default function OfertaDescricao({ oferta }) {
         <BarraNvg />
         <div className={styles.container}>
           <div className={styles.demandaContainer}>
-            <p>Oferta não encontrada</p>
+            <h2>Oferta não encontrada</h2>
           </div>
         </div>
       </>
@@ -32,68 +52,113 @@ export default function OfertaDescricao({ oferta }) {
   const data_publicacao = oferta.oferta_data_publicacao; 
   const imagemOferta = oferta.oferta_img;
 
-  // Função para iniciar negociação
-// Função utilitária (pode ser colocada em um arquivo separado)
-const validarUsuarioEmpresa = () => {
-  const usuarioJSON = localStorage.getItem('usuario');
-  if (!usuarioJSON) {
-    throw new Error("Faça login para acessar esta funcionalidade");
-  }
-  
-  const usuario = JSON.parse(usuarioJSON);
-  
-  if (usuario.tipo !== 3) {
-    throw new Error("Acesso restrito a empresas");
-  }
-  
-  if (usuario.emp_id == null) {
-    throw new Error("Empresa não registrada no sistema");
-  }
-  
-  return usuario;
-};
+  // Função para verificar se a oferta é do próprio agricultor logado
+  const isProprioAgricultor = () => {
+    if (!usuarioLogado) return false;
+    return usuarioLogado.tipo === 2 && usuarioLogado.agri_id === oferta.agri_id;
+  };
 
-// Na sua função principal
-const iniciarNegociacao = async () => {
-  setLoading(true);
-  
-  try {
-    // Valida usuário empresa
-    const usuarioLogado = validarUsuarioEmpresa();
+  // Função para verificar se o usuário é empresa (tipo 3)
+  const isEmpresa = () => {
+    return usuarioLogado && usuarioLogado.tipo === 3;
+  };
+
+  // Função para iniciar negociação
+  const iniciarNegociacao = async () => {
+    setLoading(true);
     
-    // Valida oferta
-    if (!oferta?.oferta_id) {
-      throw new Error("Selecione uma oferta válida");
+    try {
+      // 1. Verificar se usuário está logado
+      if (!usuarioLogado) {
+        setMensagem("Faça login para iniciar uma negociação");
+        setLoading(false);
+        return;
+      }
+
+      // 2. Verificar se é empresa (tipo 3)
+      if (!isEmpresa()) {
+        setMensagem("Apenas empresas podem iniciar negociações com ofertas");
+        setLoading(false);
+        return;
+      }
+
+      // 3. Verificar se tem emp_id
+      if (!usuarioLogado.emp_id) {
+        setMensagem("Empresa não identificada. Faça login novamente");
+        setLoading(false);
+        return;
+      }
+
+      // 4. Verificar se oferta existe
+      if (!oferta || !oferta.oferta_id) {
+        setMensagem("Oferta não encontrada");
+        setLoading(false);
+        return;
+      }
+
+      // 5. Iniciar negociação na API
+      const response = await api.post('/negociacoes/iniciar-oferta', {
+        oferta_id: oferta.oferta_id,
+        emp_id: usuarioLogado.emp_id
+      });
+
+      // 6. Processar resposta da API
+      if (response.data.sucesso) {
+        setEtapa(2); // Move para etapa 2 (Aguardando confirmação)
+        setMensagem("Negociação enviada! Aguardando confirmação do agricultor.");
+        
+        // Aguardar 3 segundos e finalizar (simulação)
+        setTimeout(() => {
+          setEtapa(3);
+          setMensagem("Negociação finalizada com sucesso!");
+        }, 3000);
+      } else {
+        setMensagem(response.data.mensagem || "Não foi possível iniciar a negociação");
+      }
+
+    } catch (error) {
+      console.error('Erro ao iniciar negociação:', error);
+      
+      // Tratamento específico para diferentes tipos de erro
+      if (error.response) {
+        if (error.response.status === 401) {
+          setMensagem("Sessão expirada. Faça login novamente");
+          localStorage.removeItem('usuarioLogado');
+          setUsuarioLogado(null);
+        } else if (error.response.status === 400) {
+          setMensagem(error.response.data.mensagem || "Dados inválidos para iniciar negociação");
+        } else {
+          setMensagem("Erro no servidor. Tente novamente mais tarde.");
+        }
+      } else if (error.request) {
+        setMensagem("Erro de conexão. Verifique sua internet.");
+      } else {
+        setMensagem("Erro ao configurar a solicitação.");
+      }
+    } finally {
+      setLoading(false);
     }
-    
-    // Faz a requisição
-    const response = await api.post('/negociacoes/iniciar-oferta', {
-      oferta_id: oferta.oferta_id,
-      emp_id: usuarioLogado.emp_id
-    });
-    
-    if (!response.data.sucesso) {
-      throw new Error(response.data.mensagem || "Erro ao iniciar negociação");
-    }
-    
-    // Sucesso
-    setEtapa(2);
-    setMensagem("Negociação enviada! Aguardando confirmação do agricultor.");
-    
-    setTimeout(() => {
-      setEtapa(3);
-      setMensagem("Negociação finalizada com sucesso!");
-    }, 3000);
-    
-  } catch (error) {
-    console.error('Erro:', error);
-    setMensagem(error.message);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   const handleIniciarNegociacao = () => {
+    // Verificar se está logado
+    if (!usuarioLogado) {
+      setMensagem("Faça login para iniciar uma negociação");
+      return;
+    }
+
+    // Verificar se é a própria oferta do agricultor
+    if (isProprioAgricultor()) {
+      setMensagem("Você não pode negociar com sua própria oferta");
+      return;
+    }
+
+    // Verificar se é empresa
+    if (!isEmpresa()) {
+      setMensagem("Apenas empresas podem iniciar negociações com ofertas");
+      return;
+    }
+
     setShowConfirmacao(true);
     setEtapa(1);
     setMensagem("");
@@ -112,11 +177,13 @@ const iniciarNegociacao = async () => {
   return (
     <>
       <BarraNvg />
+
       <div className={styles.container}>
         <div className={styles.demandaContainer}>
           <div className={styles.demandaHeader}>
             <div>
               <p className={styles.productTitle}>{agricultor}</p>
+              <p className={styles.productSubtitle}>Agricultor</p>
             </div>
 
             <div className={styles.imageContainer}>
@@ -125,6 +192,9 @@ const iniciarNegociacao = async () => {
                 className={styles.productImage}
                 loading="lazy"
                 alt={`Oferta de ${variedade}`}
+                onError={(e) => {
+                  e.target.src = "/imagens/default-produto.jpg";
+                }}
               />
             </div>
           </div>
@@ -144,7 +214,9 @@ const iniciarNegociacao = async () => {
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Data de colheita:</span>
-                  <span className={styles.infoValue}>{new Date(dataColheita).toLocaleDateString('pt-BR')}</span>
+                  <span className={styles.infoValue}>
+                    {new Date(dataColheita).toLocaleDateString('pt-BR')}
+                  </span>
                 </div>
                 
                 <div className={styles.infoRow}>
@@ -153,7 +225,9 @@ const iniciarNegociacao = async () => {
                 </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Publicado em:</span>
-                  <span className={styles.infoValue}>{new Date(data_publicacao).toLocaleDateString('pt-BR')}</span>
+                  <span className={styles.infoValue}>
+                    {new Date(data_publicacao).toLocaleDateString('pt-BR')}
+                  </span>
                 </div>
               </div>
             </div>
@@ -161,7 +235,7 @@ const iniciarNegociacao = async () => {
             <div className={styles.editorSection}>
               <h2>Observações</h2>
               <div className={styles.editorPlaceholder}>
-                <p>{informacoes}</p>
+                <p>{informacoes || "Sem observações adicionais."}</p>
               </div>
             </div>
           </div>
@@ -170,10 +244,28 @@ const iniciarNegociacao = async () => {
             <button 
               onClick={handleIniciarNegociacao}
               className={styles.primaryButton}
-              disabled={loading}
+              disabled={loading || isProprioAgricultor() || !isEmpresa()}
             >
               {loading ? "Enviando..." : "Iniciar Negociação"}
             </button>
+            
+            {!usuarioLogado && (
+              <div className={styles.avisoLogin}>
+                Faça login como empresa para negociar
+              </div>
+            )}
+            
+            {usuarioLogado && !isEmpresa() && (
+              <div className={styles.avisoTipoUsuario}>
+                Apenas empresas podem negociar com ofertas
+              </div>
+            )}
+            
+            {isProprioAgricultor() && (
+              <div className={styles.avisoPropriaOferta}>
+                Esta é sua própria oferta
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -199,6 +291,7 @@ const iniciarNegociacao = async () => {
                       <p><strong>Produto:</strong> {variedade}</p>
                       <p><strong>Quantidade:</strong> {quantidade} kg</p>
                       <p><strong>Preço:</strong> R$ {preco}</p>
+                      <p><strong>Data de Colheita:</strong> {new Date(dataColheita).toLocaleDateString('pt-BR')}</p>
                     </div>
                     <div className={styles.modalActions}>
                       <button 
@@ -254,7 +347,7 @@ const iniciarNegociacao = async () => {
 
               {/* Mensagem de status */}
               {mensagem && (
-                <div className={styles.mensagemStatus}>
+                <div className={mensagem.includes("sucesso") ? styles.mensagemSucesso : styles.mensagemErro}>
                   {mensagem}
                 </div>
               )}
