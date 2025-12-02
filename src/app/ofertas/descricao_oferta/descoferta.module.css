@@ -4,7 +4,7 @@
   --cor-secundaria-descoferta-1:  #5c3b28;
   --cor-texto-descoferta-1: #333;
   --cor-texto-secundario-descoferta: #666;
-  --cor-borda-descoferta: #A46434;
+  --cor-borda-descoferta: #A87453;
   --cor-card-descoferta: #ffffff;
   --cor-sombra-descoferta: rgba(0, 0, 0, 0.1);
   --cor-fundo-inicio: #e2dad2;
@@ -12,7 +12,7 @@
   --cor-chat-descoferta: #d9d9d9;
   --cor-input-descoferta: #ffffff;
   --cor-button-descoferta:#e1ac74;
-  --cor-button-hover-descoferta:#5c3b28;
+  --cor-button-hover-descoferta:#e1ac74;
   --cor-icon: #ffffff;
   
 
@@ -272,13 +272,14 @@ background-color: var(--cor-button-hover-descoferta);
 }
 
 .modalActions {
+  width: 100%;
   display: flex;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-bottom: 10px;
 }
 
 .confirmButton {
-  background: var(--cor-button-descoferta);
+  background: var(--cor-borda-descoferta);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -286,7 +287,6 @@ background-color: var(--cor-button-hover-descoferta);
   font-weight: 600;
   cursor: pointer;
   flex: 1;
-  font-family: 'Comfortaa', cursive;
 }
 
 .confirmButton:hover:not(:disabled) {
@@ -307,7 +307,7 @@ background-color: var(--cor-button-hover-descoferta);
   border-radius: 8px;
   cursor: pointer;
   flex: 1;
-  font-family: 'Comfortaa', cursive;
+
 }
 
 .cancelButton:hover {
@@ -358,4 +358,101 @@ background-color: var(--cor-button-hover-descoferta);
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
+}
+
+/* Estilos para os botões de proprietário */
+.acoesProprietario {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.editarButton {
+  padding: 0.8rem 2rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.editarButton:hover {
+  background-color: #45a049;
+}
+
+.excluirButton {
+  padding: 0.8rem 2rem;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.excluirButton:hover {
+  background-color: #d32f2f;
+}
+
+.excluirButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.propriaOfertaBadge {
+  display: inline-block;
+  background-color: #2196F3;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-left: 1rem;
+  vertical-align: middle;
+}
+
+/* Modal de exclusão */
+.modalBody {
+  padding: 1.5rem;
+}
+
+.ofertaInfo {
+  background-color: transparent;
+  border: 2px solid ;
+  border-color: var(--cor-borda-descoferta) ;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+.ofertaInfo p {
+  margin: 0.5rem 0;
+}
+
+.warningText {
+  color: #dc3545;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.mensagemSucesso {
+  background-color: transparent;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.mensagemErro {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  text-align: center;
 }
