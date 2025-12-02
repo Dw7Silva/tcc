@@ -32,45 +32,19 @@ const Suporte = () => {
 
     return (
       <>
+       
               <BarraNvg></BarraNvg>
         <div className={styles.container}>
             {/* Navbar */}
+
+            <iframe
+            src="https://peanut-drop-support-517718302694.us-west1.run.app/"
+            className={styles.container2}
+            title="Peanut Drop Assistant"
+            />
+
       
 
-            {/* Container do Chat */}
-            <div className={styles.chatContainer}>
-                {/* Cabeçalho do Chat */}
-                <div className={styles.chatHeader}>
-                    <MdSupportAgent />   {/* Ícone de suporte */}
-                    <span>Suporte</span> {/* Título do chat   */}
-                </div>
-
-                {/* Mensagens do Chat */}
-                <div className={styles.chatMessages}>
-                    {messages.map((msg, index) => (
-                        <div
-                            key={index}
-                            className={`${styles.message} ${
-                                msg.sender === "support" ? styles.supportMessage : styles.userMessage
-                            }`}
-                        >
-                            {msg.text} 
-                        </div>
-                    ))}
-                </div>
-
-                {/* Campo de Digitação */}
-                <div className={styles.chatInput}>
-                    <input
-                        type="text"
-                        placeholder="Digite sua mensagem aqui"
-                        value={inputMessage} // Valor do campo de entrada
-                        onChange={(e) => setInputMessage(e.target.value)} // Atualiza o estado ao digitar
-                        onKeyPress={(e) => e.key === "Enter" && handleSendMessage()} // Envia mensagem ao pressionar Enter
-                    />
-                    <button onClick={handleSendMessage}>Enviar</button> {/* Botão para enviar a mensagem */}
-                </div>
-            </div>
         </div>
 
       </>  

@@ -219,9 +219,7 @@ export default function DemandaDescricao({ demanda }) {
           <div className={styles.demandaHeader}>
             <div>
               <p className={styles.productTitle}>{empresa}</p>
-              {isPropriaDemanda() && (
-                <span className={styles.propriaDemandaBadge}>Minha Demanda</span>
-              )}
+             
             </div>
 
             <div className={styles.imageContainer}>

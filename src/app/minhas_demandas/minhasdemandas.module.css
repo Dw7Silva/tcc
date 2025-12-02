@@ -8,7 +8,8 @@
   --cor-card-demandas: #ffffff;                    /* fundo branco */
   --cor-sombra-demandas: rgba(0, 0, 0, 0.1);        /* cor-sombra */
   --cor-fundo-demanda: #e2dad2;                    /* cor-fundo-inicio */
-  --cor-button-hover:#e1ac74;;
+  --cor-button-hover-demanda: #e1ac74;
+  --cor-button-demanda:#a87453;
 }
 
 /* Tema Escuro */
@@ -23,6 +24,8 @@
     --cor-card-demandas: #1e1e1e; 
     --cor-sombra-demandas: rgba(0, 0, 0, 0.5);
     --cor-destaque: #F8DCA5;
+    --cor-button-hover-demanda:#5c3b28;
+    --cor-button-demanda: #e1ac74;
   }
 }
 
@@ -181,7 +184,7 @@
   display: block;
   margin: 3rem auto 0;
   padding: 1rem 2rem;
-  background-color:#e1ac74;
+  background-color:var(--cor-button-demanda);
   color: rgb(255, 255, 255);
   border: none;
   border-radius: 8px;
@@ -201,7 +204,7 @@
 }
      
 .criarDemanda:hover {
-   background-color: var(--cor-secundaria-demandas );
+   background-color: var(--cor-button-hover-demanda);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px var(--cor-sombra-demandas);
 }

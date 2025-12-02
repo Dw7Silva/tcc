@@ -16,6 +16,7 @@
   --cor-button-hover-d: #e1ac74;
   --cor-button-d:#a87453;
   --cor-icon:#f0f0f0;
+
   
   
 }
@@ -283,7 +284,8 @@
 .modalActions {
   display: flex;
   gap: 1rem;
-  margin-top: 1.5rem;
+  width:100%;
+  margin-bottom: 10px;
 }
 
 .confirmButton {
@@ -439,10 +441,12 @@
 }
 
 .demandaInfo {
-  background-color: #f8f9fa;
+  background-color:transparent;
+  border: 1px solid var(--cor-borda-descdemanda);
   padding: 1rem;
   border-radius: 6px;
   margin: 1rem 0;
+  
 }
 
 .demandaInfo p {
