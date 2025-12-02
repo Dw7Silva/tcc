@@ -12,7 +12,7 @@ export default function dev() {
 
 
 
-    <Politica/>
+    <Home/>
 
 
 
