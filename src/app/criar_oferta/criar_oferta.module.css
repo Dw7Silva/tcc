@@ -10,11 +10,13 @@
   --cor-button-houver-perfil: #A88C66;
   --tamanho-fonte-base: clamp(14px, 2vw, 18px);
   --cor-fundo-perfil: #e2dad2;
+  --cor-button: #a87453;
+  --cor-button-hover:#e1ac74;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --cor-primaria-perfil: #e0cfa183;
+    --cor-primaria-perfil: #ffffff;
     --cor-secundaria-perfil: #F8DCA5;
     --cor-texto-perfil: #dbd9d9;
     --cor-texto-secundario-perfil: #ffffff;
@@ -22,6 +24,9 @@
     --cor-card-perfil: #1e1e1e; 
     --cor-sombra-perfil: rgba(0, 0, 0, 0.5);
     --cor-fundo-perfil: #313030;
+    --cor-button-hover: #5c3b28;
+    --cor-button:#e1ac74;
+
   }
 }
 
@@ -193,7 +198,7 @@
   width: 100%;
   padding: 16px;
   font-size: 18px;
-  background: var(--cor-primaria-perfil);
+  background: var(--cor-button);
   color: white;
   border: none;
   border-radius: 14px;
@@ -204,7 +209,7 @@
 }
 
 .criarOferta:hover {
-  background: var(--cor-button-houver-perfil);
+  background: var(--cor-button-hover);
   transform: translateY(-2px);
 }
 
