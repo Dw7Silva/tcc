@@ -307,12 +307,7 @@ export default function DemandaDescricao({ demanda }) {
                     <p>Parabéns! Sua negociação com {empresa} foi concluída com sucesso.</p>
                     <p>Você pode acompanhar o andamento na sua área de negociações.</p>
                     <div className={styles.modalActions}>
-                      <button 
-                        onClick={handleFechar}
-                        className={styles.successButton}
-                      >
-                        Fechar
-                      </button>
+                  
                     </div>
                   </div>
                 </div>
