@@ -38,49 +38,113 @@ export default function DemandaDescricao({ demanda }) {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuario') || '{}');
     return usuarioLogado.emp_id === demanda.emp_id;
   };
-   const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-      
+
+  const usuarioLogadoJSON = localStorage.getItem("usuarioLogado");
+
+        if (usuarioLogadoJSON) {
+             const usuarioLogado = JSON.parse(usuarioLogadoJSON);
+ 
+             console.log(usuarioLogado);
+             console.log("ID:", usuarioLogado.id);
+             console.log("Tipo:", usuarioLogado.tipo);
+             console.log("Nome:", usuarioLogado.nome);
+          } else {
+          console.log("Nenhum usuário logado");
+          }
       
 
   const iniciarNegociacao = async () => {
-    setLoading(true);
-    try {
-      // Obter o usuário logado do localStorage 
-      const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
-      
-      if (!usuarioLogado.agri_id) {
-        setMensagem("Você precisa estar logado como agricultor para iniciar uma negociação");
-        return;
-      }
-
-      // Verificar se é a própria empresa
-      if (isPropriaEmpresa()) {
-        setMensagem("Você não pode negociar com sua própria demanda");
-        return;
-      }
-
-      const response = await api.post('/negociacoes/iniciar-demanda', {
-        demanda_id: demanda.demanda_id,
-        agri_id: usuarioLogado.agri_id
-      });
-
-      if (response.data.sucesso) {
-        setEtapa(2); // Move para etapa 2 (Aguardando confirmação)
-        setMensagem("Negociação enviada! Aguardando confirmação da empresa.");
-        
-        // Simular recebimento de confirmação após 3 segundos
-        setTimeout(() => {
-          setEtapa(3);
-          setMensagem("Negociação finalizada com sucesso!");
-        }, 3000);
-      }
-    } catch (error) {
-      console.error('Erro ao iniciar negociação:', error);
-      setMensagem("Erro ao iniciar negociação. Tente novamente.");
-    } finally {
+  setLoading(true);
+  
+  try {
+    // 1. Recuperar usuário do localStorage com tratamento de erros
+    const usuarioJSON = localStorage.getItem('usuarioLogado');
+    
+    if (!usuarioJSON) {
+      setMensagem("Faça login para iniciar uma negociação");
       setLoading(false);
+      return;
     }
-  };
+
+    let usuarioLogado;
+    try {
+      usuarioLogado = JSON.parse(usuarioJSON);
+    } catch (parseError) {
+      console.error('Erro ao processar dados do usuário:', parseError);
+      setMensagem("Erro na sessão. Faça login novamente");
+      setLoading(false);
+      return;
+    }
+
+    console.log('Usuário logado:', usuarioLogado);
+    
+    if (!usuarioLogado || usuarioLogado.tipo !== 2) {
+      setMensagem("Você precisa estar logado como agricultor para iniciar uma negociação");
+      setLoading(false);
+      return;
+    }
+
+    // 3. Verificar se tem agri_id
+    if (!usuarioLogado.agri_id) {
+      setMensagem("Agricultor não identificado. Faça login novamente");
+      setLoading(false);
+      return;
+    }
+
+    // 4. Verificar se demanda existe
+    if (!demanda || !demanda.demanda_id) {
+      setMensagem("Demanda não encontrada");
+      setLoading(false);
+      return;
+    }
+
+    // 5. Iniciar negociação na API
+    const response = await api.post('/negociacoes/iniciar-demanda', {
+      demanda_id: demanda.demanda_id,
+      agri_id: usuarioLogado.agri_id
+    });
+
+    // 6. Processar resposta da API
+    if (response.data.sucesso) {
+      setEtapa(2); // Move para etapa 2 (Aguardando confirmação)
+      setMensagem("Negociação enviada! Aguardando confirmação da empresa.");
+      
+      // Aguardar 3 segundos e finalizar
+      setTimeout(() => {
+        setEtapa(3);
+        setMensagem("Negociação finalizada com sucesso!");
+      }, 3000);
+    } else {
+      // Caso a API retorne sucesso: false
+      setMensagem(response.data.mensagem || "Não foi possível iniciar a negociação");
+    }
+
+  } catch (error) {
+    console.error('Erro ao iniciar negociação:', error);
+    
+    // Tratamento específico para diferentes tipos de erro
+    if (error.response) {
+      // Erro da API (4xx, 5xx)
+      if (error.response.status === 401) {
+        setMensagem("Sessão expirada. Faça login novamente");
+        // Opcional: limpar localStorage e redirecionar para login
+        localStorage.removeItem('usuarioLogado');
+      } else if (error.response.status === 400) {
+        setMensagem(error.response.data.mensagem || "Dados inválidos para iniciar negociação");
+      } else {
+        setMensagem("Erro no servidor. Tente novamente mais tarde.");
+      }
+    } else if (error.request) {
+      // Erro de rede (não houve resposta)
+      setMensagem("Erro de conexão. Verifique sua internet.");
+    } else {
+      // Erro na configuração da requisição
+      setMensagem("Erro ao configurar a solicitação.");
+    }
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleIniciarNegociacao = () => {
     // Verificar se é a própria empresa antes de abrir o modal

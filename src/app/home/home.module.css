@@ -1,6 +1,4 @@
 :root {
-  /* Tema Claro (default) */
- 
   --cor-texto-home: #5c3b28;
   --cor-texto-houver-home: #a87453;
   --cor-ec-home: #6b4c3a;
@@ -17,19 +15,11 @@
   --cor-marrom-escuro: #5c3b28;
   --cor-bege: #f8f7f2;
   --cor-borda-card: #c49e7c;
-  --cor-texto-cinza: #aaa;
-  --cor-texto-claro: #e0e0e0;
-  --cor-fundo-escuro: #222;
-  --cor-borda-escura: #444;
   --cor-sombra: rgba(0, 0, 0, 0.1);
-  --cor-sombra-hover: rgba(0, 0, 0, 0.2);
-  --cor-sombra-menu: rgba(0, 0, 0, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Tema Escuro */
- 
     --cor-texto-home: #e0e0e0;
     --cor-texto-houver-home: #c69c62;
     --cor-ec-home: #c69c62;
@@ -46,21 +36,19 @@
     --cor-marrom-escuro: #c69c62;
     --cor-bege: #1e1e1e;
     --cor-borda-card: #444;
-    --cor-texto-cinza: #aaa;
-    --cor-texto-claro: #e0e0e0;
-    --cor-fundo-escuro: #222;
-    --cor-borda-escura: #666;
     --cor-sombra: rgba(0, 0, 0, 0.5);
-    --cor-sombra-hover: rgba(0, 0, 0, 0.7);
-    --cor-sombra-menu: rgba(0, 0, 0, 0.5);
   }
+}
+
+.tudo{
+  background-color: transparent;
 }
 
 /* NAVBAR */
 .navbr {
   width: 100vw;
   height: 100px;
-  background-color: var(--cor-bege);
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,9 +101,11 @@
 .info span:hover {
   color: var(--cor-texto-houver-home);
 }
+
 .carouselContainer{
-  background-color: var( --cor-bege);
+  background-color: transparent;
 }
+
 .ec {
   display: flex;
   gap: 15px;
@@ -133,11 +123,6 @@
   cursor: pointer;
   height: 38px;
   border: 2px solid var(--cor-marrom-medio);
-}
-
-.login span {
-  text-decoration: none;
-  color: var(--cor-marrom-medio);
 }
 
 .cadastrar {
@@ -163,7 +148,7 @@
 
 .menuMobile {
   position: fixed;
-  top: var(--altura-navbar);
+  top: 100px;
   right: 2%;
   background-color: var(--cor-cinza-claro);
   border: 2px solid var(--cor-preto);
@@ -174,7 +159,7 @@
   gap: 0.5rem;
   min-width: 150px;
   z-index: 1001;
-  box-shadow: 0 4px 8px var(--cor-sombra-menu);
+  box-shadow: 0 4px 8px var(--cor-sombra);
   transition: all 0.3s;
 }
 
@@ -182,41 +167,6 @@
   text-decoration: none !important;
   outline: none;
   color: var(--cor-marrom-escuro);
-}
-
-/* BANNER */
-.teste {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 450px;
-  background-color: var(--cor-bege);
-  padding-left: 40px;
-  box-sizing: border-box;
-}
-
-.texto {
-  flex: 1;
-  max-width: 600px;
-  color: var(--cor-preto);
-  display: flex;
-  flex-direction: column;
-}
-
-.des {
-  font-size: 48px;
-  margin: 0 0 20px 0;
-  line-height: 1.2;
-  font-weight: bold;
-}
-
-.sub {
-  font-size: 18px;
-  line-height: 1.5;
-  white-space: normal;
-  word-wrap: break-word;
-  color: var(--cor-cinza-medio);
 }
 
 /* AJUDA */
@@ -232,7 +182,7 @@
 }
 
 .fundocpa {
-  background-color: var(--cor-bege);
+  background-color:transparent;
   margin: 0;
   padding: 0;
   height: 700px;
@@ -273,7 +223,7 @@
 .empre:hover,
 .ts:hover {
   transform: translateY(-10px);
-  box-shadow: 0 8px 12px var(--cor-sombra-hover);
+  box-shadow: 0 8px 12px var(--cor-sombra);
 }
 
 .agr h3,
@@ -298,128 +248,125 @@
 
 /* COMO FUNCIONA */
 .comofun {
-  height: 500px;
-  width: 100%;
-  background-color: var(--cor-bege);
+  width: 90vw;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 0;
+  background-color: transparent;
 }
 
 .comoh1 {
-  margin-bottom: 100px;
+  margin-bottom: 4rem;
+  text-align: center;
 }
 
 .comofun h1 {
   text-align: center;
   margin: 0;
   color: var(--cor-marrom-escuro);
+  font-size: 2.5rem;
 }
 
 .containerPassos {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  gap: 60px;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
-.conta {
-  width: 425px;
-  margin-left: 25px;
-}
-
-.conta p {
-  text-align: center;
-  font-size: 20px;
-  margin: 0;
-  word-break: break-word;
-  color: var(--cor-marrom-escuro);
-}
-
-.espaço,
-.espaço2,
-.espaço3,
-.espaço4 {
+.espaço {
   display: flex;
   flex-direction: column;
-  width: 274px;
-  height: 200px;
   align-items: center;
-  gap: 10px;
-  margin-left: 100px;
+  text-align: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  padding: 1rem;
 }
 
-.passo,
-.passo2,
-.passo3,
-.passo4 {
+.passo {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
   border-radius: 50%;
   height: 100px;
   width: 100px;
   background-color: var(--cor-branco);
   border: 2px solid var(--cor-preto);
-}
-
-.fazer h1,
-.fazer2 h1,
-.fazer3 h1,
-.fazer4 h1 {
-  width: 500px;
-  font-size: 30px;
   margin: 0;
-  padding-bottom: 10px;
 }
 
+.fazer h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  color: var(--cor-marrom-escuro);
+  width: 100%;
+  text-align: center;
+}
+
+.conta,
 .publique,
 .conta3,
 .conta4 {
-  width: 425px;
+  width: 100%;
 }
 
+.conta p,
 .publique p,
 .conta3 p,
 .conta4 p {
   text-align: center;
-  font-size: 20px;
+  font-size: 1rem;
   margin: 0;
   word-break: break-word;
   color: var(--cor-marrom-escuro);
+  line-height: 1.5;
 }
 
 /* REVOLUCIONAR */
 .rev {
   display: flex;
   width: 100%;
-  height: 332px;
+  min-height: 332px;
   flex-direction: column;
   align-items: center;
-  background-color: var(--cor-bege);
- 
+  justify-content: center;
+  background-color: transparent;
+  padding: 4rem 2rem;
+  text-align: center;
 }
 
 .rev h1 {
-  display: flex;
   text-align: center;
-  justify-content: center;
-  margin-top: 60px;
-  margin-bottom: 35px;
+  margin: 0 0 1.5rem 0;
   color: var(--cor-marrom-escuro);
+  font-size: 2.2rem;
+  max-width: 800px;
+  line-height: 1.3;
 }
 
 .rev p {
-  display: flex;
-  justify-content: center;
+  text-align: center;
   white-space: normal;
-  margin-top: 0;
+  margin: 0.5rem 0;
   color: var(--cor-marrom-escuro);
+  font-size: 1.1rem;
+  max-width: 800px;
+  line-height: 1.6;
 }
 
 .botao {
   display: flex;
-  gap: 40px;
-  margin: 25px;
+  gap: 1.5rem;
+  margin: 2rem 0 0 0;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .faleconos {
@@ -427,17 +374,21 @@
   color: var(--cor-branco);
   background-color: var(--cor-dourado-claro);
   text-align: center;
-  padding: 5px;
+  padding: 0.8rem 2rem;
   border-radius: 5px;
   cursor: pointer;
-  height: 45px;
   align-items: center;
+  justify-content: center;
   border: 2px solid var(--cor-dourado-claro);
+  text-decoration: none;
+  min-width: 200px;
+  font-weight: 500;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .faleconos:hover {
-  transform: translateY(-10px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .cadasgra {
@@ -445,27 +396,32 @@
   border: 2px solid var(--cor-dourado-claro);
   color: var(--cor-dourado-escuro);
   border-radius: 5px;
-  padding: 5px;
+  padding: 0.8rem 2rem;
   cursor: pointer;
-  height: 45px;
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 170px;
+  text-decoration: none;
+  min-width: 150px;
+  font-weight: 500;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cadasgra:hover {
-  transform: translateY(-10px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* FOOTER */
 .footer {
   background-color: var(--cor-cinza-footer);
-  height: 26vw;
-  width: 100vw;
+  min-height: 300px;
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  flex-wrap: wrap;
 }
 
 .peanuth {
@@ -473,147 +429,323 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 16vw;
-  width: 16vw;
-  margin-left: 3vw;
+  height: auto;
+  width: 100%;
+  max-width: 300px;
   text-align: center;
+  margin: 1rem;
 }
 
 .textopeanut {
-  width: 16vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .textopeanut h1 {
-  font-size: 1.3vw;
+  font-size: 1.5rem;
 }
 
 .texth3 {
-  font-size: 0.8vw;
+  font-size: 1rem;
 }
 
 .linkra {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 16vw;
-  width: 16vw;
+  height: auto;
+  width: 100%;
+  max-width: 300px;
   text-align: center;
+  margin: 1rem;
 }
 
 .rapido h1 {
   display: block;
-  font-size: 1.3vw;
-  margin-top: -0.5vw;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .linkra h3 {
-  margin: 0;
+  margin: 0.5rem 0;
+  font-size: 1rem;
 }
 
-@media (min-width: 769px) and (max-width: 1045px) {
-  .fundocpa {
-    height: 700px;
-  }
+/* RESPONSIVIDADE */
 
+/* Tablet (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .comofun {
+    padding: 3rem 0;
+  }
+  
+  .comoh1 {
+    margin-bottom: 3rem;
+  }
+  
+  .comofun h1 {
+    font-size: 2.2rem;
+  }
+  
   .containerPassos {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    width: 90%;
-    margin: 0 auto;
+    gap: 1.5rem;
   }
-
-  .espaço,
-  .espaço2,
-  .espaço3,
-  .espaço4 {
-    margin-left: 0;
-    justify-self: center;
+  
+  .espaço {
+    min-width: 200px;
+    max-width: 250px;
   }
-
-  .rev {
-    margin-top: 100px;
-    margin-bottom: 70px;
-    text-align: center;
+  
+  .passo {
+    height: 80px;
+    width: 80px;
+  }
+  
+  .fazer h1 {
+    font-size: 1.3rem;
+  }
+  
+  .conta p,
+  .publique p,
+  .conta3 p,
+  .conta4 p {
+    font-size: 0.95rem;
+  }
+  
+  .rev h1 {
+    font-size: 2rem;
+  }
+  
+  .rev p {
+    font-size: 1rem;
   }
 }
 
-/* MOBILE */
+/* Tablet pequeno (600px - 768px) */
 @media (max-width: 768px) {
   .menuIcon {
     color: var(--cor-marrom-escuro);
     display: block;
-    position: absolute;
-    right: 20px;
-    font-size: 35px;
+    position: relative;
+    right: 0;
+    font-size: 2rem;
   }
-
+  
   .info {
     display: none;
   }
-
-  .ec {
-    margin-left: 0;
-  }
-
+  
   .logo {
-    position: absolute;
-    left: 5px;
-    height: 150px;
+    height: 50px;
     width: auto;
-    margin: 0;
+    position: relative;
+    left: 0;
   }
-
-
-  .card {
-    height: auto;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    align-items: center;
-    margin-bottom: 200px;
-    justify-content: center;
-  }
-
-  .agr,
-  .empre,
-  .ts {
-    width: 90%;
-    max-width: 500px;
-  }
-
-  .ts {
-    margin: 0;
-  }
-
+  
   .comofun {
-    height: auto;
-    padding: 50px 20px;
-    margin-top: 500px;
-    
+    padding: 2.5rem 0;
+    width: 95vw;
   }
-
+  
+  .comoh1 {
+    margin-bottom: 2.5rem;
+  }
+  
+  .comofun h1 {
+    font-size: 2rem;
+  }
+  
   .containerPassos {
-    width: 90%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-around;
+  }
+  
+  .espaço {
+    flex: 0 0 calc(50% - 1rem);
+    min-width: 150px;
+    max-width: 200px;
+    padding: 1rem;
+  }
+  
+  .passo {
+    height: 60px;
+    width: 60px;
+  }
+  
+  .fazer h1 {
+    font-size: 1.2rem;
+  }
+  
+  .conta p,
+  .publique p,
+  .conta3 p,
+  .conta4 p {
+    font-size: 0.9rem;
+  }
+  
+  .rev {
+    padding: 3rem 1.5rem;
+    min-height: auto;
+  }
+  
+  .rev h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .rev p {
+    font-size: 1rem;
+  }
+  
+  .botao {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .faleconos,
+  .cadasgra {
+    padding: 0.7rem 1.5rem;
+    min-width: 180px;
+    font-size: 0.9rem;
+  }
+  
+  .footer {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  
+  .peanuth,
+  .linkra {
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+  
+  .textopeanut h1,
+  .rapido h1 {
+    font-size: 1.3rem;
+  }
+  
+  .texth3,
+  .linkra h3 {
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile pequeno (até 480px) */
+@media (max-width: 480px) {
+  .comofun {
+    padding: 2rem 0;
+  }
+  
+  .comoh1 {
+    margin-bottom: 2rem;
+  }
+  
+  .comofun h1 {
+    font-size: 1.8rem;
+  }
+  
+  .containerPassos {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .espaço {
+    flex: 1;
+    width: 100%;
+    max-width: 300px;
+    min-width: unset;
+    padding: 1rem 0.5rem;
+  }
+  
+  .passo {
+    height: 60px;
+    width: 60px;
+  }
+  
+  .fazer h1 {
+    font-size: 1.2rem;
+  }
+  
+  .conta p,
+  .publique p,
+  .conta3 p,
+  .conta4 p {
+    font-size: 0.9rem;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  .rev {
+    padding: 2rem 1rem;
+  }
+  
+  .rev h1 {
+    font-size: 1.6rem;
+  }
+  
+  .rev p {
+    font-size: 0.9rem;
+  }
+  
+  .botao {
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
-    gap: 40px;
+    gap: 1rem;
   }
-
-  .espaço,
-  .espaço2,
-  .espaço3,
-  .espaço4 {
-    margin-left: 0;
+  
+  .faleconos,
+  .cadasgra {
+    width: 100%;
+    max-width: 250px;
+    padding: 0.6rem 1rem;
   }
-
-  .rev {
-    text-align: center;
-    height:400px
+  
+  .logo {
+    height: 40px;
   }
+}
 
+/* Para telas muito grandes */
+@media (min-width: 1440px) {
+  .comofun {
+    max-width: 1600px;
+  }
+  
+  .containerPassos {
+    gap: 3rem;
+  }
+  
+  .espaço {
+    max-width: 280px;
+  }
+  
+  .passo {
+    height: 120px;
+    width: 120px;
+  }
+  
+  .fazer h1 {
+    font-size: 1.8rem;
+  }
+  
+  .conta p,
+  .publique p,
+  .conta3 p,
+  .conta4 p {
+    font-size: 1.1rem;
+  }
+  
+  .rev h1 {
+    font-size: 2.5rem;
+  }
+  
+  .rev p {
+    font-size: 1.2rem;
+  }
 }

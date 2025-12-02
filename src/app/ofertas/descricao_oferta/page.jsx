@@ -33,39 +33,65 @@ export default function OfertaDescricao({ oferta }) {
   const imagemOferta = oferta.oferta_img;
 
   // Função para iniciar negociação
-  const iniciarNegociacao = async () => {
-    setLoading(true);
-    try {
-      // Obter o usuário logado do localStorage
-      const usuarioLogado = JSON.parse(localStorage.getItem('usuario') || '{}');
-      
-      if (!usuarioLogado.emp_id) {
-        setMensagem("Você precisa estar logado como empresa para iniciar uma negociação");
-        return;
-      }
+// Função utilitária (pode ser colocada em um arquivo separado)
+const validarUsuarioEmpresa = () => {
+  const usuarioJSON = localStorage.getItem('usuario');
+  if (!usuarioJSON) {
+    throw new Error("Faça login para acessar esta funcionalidade");
+  }
+  
+  const usuario = JSON.parse(usuarioJSON);
+  
+  if (usuario.tipo !== 3) {
+    throw new Error("Acesso restrito a empresas");
+  }
+  
+  if (usuario.emp_id == null) {
+    throw new Error("Empresa não registrada no sistema");
+  }
+  
+  return usuario;
+};
 
-      const response = await api.post('/negociacoes/iniciar-oferta', {
-        oferta_id: oferta.oferta_id,
-        emp_id: usuarioLogado.emp_id
-      });
-
-      if (response.data.sucesso) {
-        setEtapa(2); // Move para etapa 2 (Aguardando confirmação)
-        setMensagem("Negociação enviada! Aguardando confirmação do agricultor.");
-        
-        // Simular recebimento de confirmação após 3 segundos
-        setTimeout(() => {
-          setEtapa(3);
-          setMensagem("Negociação finalizada com sucesso!");
-        }, 3000);
-      }
-    } catch (error) {
-      console.error('Erro ao iniciar negociação:', error);
-      setMensagem("Erro ao iniciar negociação. Tente novamente.");
-    } finally {
-      setLoading(false);
+// Na sua função principal
+const iniciarNegociacao = async () => {
+  setLoading(true);
+  
+  try {
+    // Valida usuário empresa
+    const usuarioLogado = validarUsuarioEmpresa();
+    
+    // Valida oferta
+    if (!oferta?.oferta_id) {
+      throw new Error("Selecione uma oferta válida");
     }
-  };
+    
+    // Faz a requisição
+    const response = await api.post('/negociacoes/iniciar-oferta', {
+      oferta_id: oferta.oferta_id,
+      emp_id: usuarioLogado.emp_id
+    });
+    
+    if (!response.data.sucesso) {
+      throw new Error(response.data.mensagem || "Erro ao iniciar negociação");
+    }
+    
+    // Sucesso
+    setEtapa(2);
+    setMensagem("Negociação enviada! Aguardando confirmação do agricultor.");
+    
+    setTimeout(() => {
+      setEtapa(3);
+      setMensagem("Negociação finalizada com sucesso!");
+    }, 3000);
+    
+  } catch (error) {
+    console.error('Erro:', error);
+    setMensagem(error.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleIniciarNegociacao = () => {
     setShowConfirmacao(true);
