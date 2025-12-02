@@ -48,23 +48,17 @@ export default function BarraNvg() {
 
   // Itens do mobile (apenas em telas pequenas)
   const itensMobile = isSmallScreen ? [
-    { label: "Início", href: "/" },
+    { label: "Início", href: "/inicio" },
     { label: "Suporte", href: "/suporte" },
     { label: "Perfil", href: "/perfil" }
   ] : [];
 
   // Montar menu final baseado no tipo de usuário
   const menuItems = [
-    // Itens do mobile PRIMEIRO
     ...itensMobile,
-    
-    // Itens base (sempre disponíveis)
     ...itensBase,
-    
-    // Itens específicos por tipo de usuário
     ...(itensPorTipo[tipoUsuario] || []),
-    
-    // Sair SEMPRE por último
+
     { 
       label: (
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
