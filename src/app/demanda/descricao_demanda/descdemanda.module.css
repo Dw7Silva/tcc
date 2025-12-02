@@ -17,6 +17,7 @@
   --cor-button-d:#a87453;
   --cor-icon:#f0f0f0;
   
+  
 }
 
 /* Tema Escuro */
@@ -248,7 +249,7 @@
 }
 
 .etapaSuccess {
-  background: #28a745;
+  background: #ffffff;
 }
 
 .etapaContent {
@@ -321,20 +322,11 @@
   opacity: 0.9;
 }
 
-.successButton {
-  background: var(--cor-secundaria-descdemanda);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  width: 100%;
-  font-family: 'Comfortaa', cursive;
-}
+
 
 .successButton:hover {
-  background: #3f2719;
+  background:var(--cor-button-hover-d);
+ 
 }
 
 .loadingSpinner {
@@ -348,7 +340,7 @@
 }
 
 .mensagemStatus {
-  background: var(--cor-primaria-descdemanda);
+
   border: 1px solid var(--cor-borda-descdemanda);
   color: var(--cor-texto-descdemanda);
   padding: 1rem;
